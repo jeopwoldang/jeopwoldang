@@ -1177,8 +1177,8 @@ input.input::placeholder{color:#b3ab9d}
     <h1>2027, <em>붉은 양의 해</em><br>나의 한 해를<br>미리 펴봅니다</h1>
 
     <p class="lead">
-      정미년 1월부터 12월까지, 어느 달에 밀고 어느 달에 쉬어야 하는지.<br>
-      재물·직장·관계·건강의 흐름을 한 장에 담아 1:1로 써 내려갑니다.
+      정미년 1월부터 12월까지, 어느 달에 밀고<br>
+      어느 달에 쉬어야 하는지 한 장에 담았습니다.
     </p>
     <div class="yr-chips" aria-label="2027년의 기운">
       <span>丁 · 붉은 불</span><span>未 · 양</span><span>2027 丁未年</span>
@@ -1585,6 +1585,7 @@ input.input::placeholder{color:#b3ab9d}
     amount: 19800,
     text: "19,800원",
     listText: "26,900원",
+    shortName: "2027 정미년 신년운세 분석지",
     subjectPrefix: "[접월당 2027 신년운세]"
   };
 
@@ -1833,7 +1834,7 @@ input.input::placeholder{color:#b3ab9d}
     }
 
     addGroup("신청 정보");
-    addRow("상품", PRODUCT.name);
+    addRow("상품", PRODUCT.shortName);
     addRow("입금 금액", PRODUCT.text);
     addRow("받으실 이메일", email || "-", true);
 

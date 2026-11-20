@@ -6,6 +6,34 @@
 <meta name="theme-color" content="#faf8f4">
 <title>접월당 | 11년 경력 사주 전문 · 1:1 맞춤 사주 분석</title>
 <meta name="description" content="막연한 위로 대신 지금 움직일 타이밍을 짚어드립니다. 10년 대운과 월별 운세까지 담은 접월당 1:1 맞춤 사주 분석. 입금 확인 즉시 분석을 시작해 24시간 내 이메일로 보내드립니다. 1인 39,800원 / 2인 75,000원.">
+<link rel="canonical" href="https://jeopwoldang.github.io/jeopwoldang/">
+
+<!-- 공유 미리보기 (Open Graph / X) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="접월당">
+<meta property="og:title" content="접월당 | 11년 경력 사주 전문 · 1:1 맞춤 사주 분석">
+<meta property="og:description" content="막연한 위로 대신 지금 움직일 타이밍을 짚어드립니다. 10년 대운과 월별 운세까지 담은 1:1 맞춤 사주 분석. 입금 확인 즉시 분석을 시작해 24시간 내 이메일로 보내드립니다. 1인 39,800원 / 2인 75,000원.">
+<meta property="og:url" content="https://jeopwoldang.github.io/jeopwoldang/">
+<meta property="og:image" content="https://jeopwoldang.github.io/jeopwoldang/og-image.jpg">
+<meta property="og:image:secure_url" content="https://jeopwoldang.github.io/jeopwoldang/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="접월당 — 막연한 위로 대신, 지금 움직일 타이밍을 짚어드립니다">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="접월당 | 11년 경력 사주 전문 · 1:1 맞춤 사주 분석">
+<meta name="twitter:description" content="막연한 위로 대신 지금 움직일 타이밍을 짚어드립니다. 10년 대운과 월별 운세까지 담은 1:1 맞춤 사주 분석. 24시간 내 이메일 발송. 1인 39,800원 / 2인 75,000원.">
+<meta name="twitter:image" content="https://jeopwoldang.github.io/jeopwoldang/og-image.jpg">
+<meta name="twitter:image:alt" content="접월당 — 막연한 위로 대신, 지금 움직일 타이밍을 짚어드립니다">
+
+<!-- 파비콘 -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -601,6 +629,60 @@ input.input::placeholder{color:#b3ab9d}
   word-break:keep-all;
 }
 
+/* 개인정보 수집·이용 동의 */
+.consent{
+  margin:0 0 14px;
+  padding:14px 15px 12px;
+  border:1px solid var(--line-2);
+  border-radius:16px;
+  background:#fffdf8;
+  transition:border-color .18s ease, background .18s ease;
+}
+.consent .check{margin-top:0; align-items:flex-start; min-height:0}
+.consent .check input{margin-top:1px}
+.consent .check > span{
+  font-size:12.5px; line-height:1.55; color:var(--ink-soft);
+  word-break:keep-all;
+}
+.consent .check b{color:var(--gold); font-weight:700; margin-right:2px}
+.consent-more{margin:8px 0 0}
+.consent-more summary{
+  list-style:none; cursor:pointer; position:relative;
+  padding:5px 20px 5px 0;
+  font-size:11.5px; font-weight:600; color:var(--muted);
+  word-break:keep-all;
+}
+.consent-more summary::-webkit-details-marker{display:none}
+.consent-more summary::after{
+  content:"+";
+  position:absolute; right:2px; top:50%; transform:translateY(-50%);
+  color:var(--gold); font-size:15px; line-height:1; font-weight:400;
+}
+.consent-more[open] summary::after{content:"–"; font-size:15px}
+.consent-list{
+  margin:3px 0 0; padding:11px 12px;
+  border-radius:12px; background:#f7f3ea;
+  display:grid; gap:7px;
+}
+.consent-list > div{display:grid; grid-template-columns:58px 1fr; gap:8px; align-items:start}
+.consent-list dt{font-size:10.5px; font-weight:700; color:var(--gold); padding-top:1px; line-height:1.5}
+.consent-list dd{
+  margin:0; font-size:11.5px; line-height:1.6;
+  color:var(--ink-soft); word-break:keep-all;
+}
+.consent-more-note{
+  margin:8px 0 0; font-size:10.5px; line-height:1.6;
+  color:var(--muted); word-break:keep-all;
+}
+.consent .err-msg{margin:9px 0 0}
+.consent.invalid{
+  border-color:rgba(192,57,43,.55);
+  background:#fffafa;
+}
+.consent.invalid .err-msg{display:block}
+.consent.invalid .check input{border-color:rgba(192,57,43,.6); background:#fff}
+.consent.invalid .consent-check-text{color:var(--err)}
+
 /* FAQ */
 .faq{display:grid; gap:8px}
 .faq details{
@@ -628,6 +710,11 @@ input.input::placeholder{color:#b3ab9d}
 .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
 .faq p{margin:0 0 15px; font-size:13px; color:var(--ink-soft); line-height:1.72; word-break:keep-all}
 .faq b{color:var(--ink)}
+.faq a{
+  color:var(--ink); text-decoration:none;
+  border-bottom:1px solid rgba(185,146,78,.45);
+}
+.faq a:active{background:var(--gold-soft)}
 
 /* 푸터 */
 .footer{
@@ -802,6 +889,10 @@ input.input::placeholder{color:#b3ab9d}
   word-break:keep-all;
 }
 .send-delay[hidden]{display:none}
+.send-delay a{
+  color:var(--ink-soft); text-decoration:none;
+  border-bottom:1px solid rgba(185,146,78,.45);
+}
 
 /* 요약 */
 .summary{
@@ -1165,6 +1256,25 @@ input.input::placeholder{color:#b3ab9d}
           </div>
         </div>
 
+        <!-- 개인정보 수집·이용 및 환불 안내 -->
+        <div class="consent" id="consentBox">
+          <label class="check" for="consent" id="consentLabel">
+            <input type="checkbox" id="consent" name="consent">
+            <span class="consent-check-text"><b>[필수]</b>개인정보 수집·이용 및 안내 사항에 동의합니다</span>
+          </label>
+          <details class="consent-more">
+            <summary>수집 항목 · 보관 기간 · 환불 안내 보기</summary>
+            <dl class="consent-list">
+              <div><dt>수집 항목</dt><dd>이름, 생년월일, 태어난 시간, 성별, 이메일</dd></div>
+              <div><dt>수집 목적</dt><dd>사주 분석 및 분석지(PDF) 이메일 발송</dd></div>
+              <div><dt>보관 기간</dt><dd>분석지 발송 완료 후 1개월 (이후 지체 없이 파기)</dd></div>
+              <div><dt>환불 안내</dt><dd>입금 확인 후 <b>분석 시작 전에는 전액 환불</b>됩니다. 분석을 시작하거나 분석지를 발송한 뒤에는 환불이 어렵습니다.</dd></div>
+            </dl>
+            <p class="consent-more-note">동의를 거부하실 수 있으나, 이 경우 신청이 어렵습니다. 수집한 정보는 제3자에게 제공하지 않습니다.</p>
+          </details>
+          <p class="err-msg" id="consentErr">개인정보 수집·이용에 동의해 주세요.</p>
+        </div>
+
         <button class="submit" type="submit" id="submitBtn">
           신청하기
           <span class="btn-price" id="submitPrice">39,800원</span>
@@ -1198,11 +1308,11 @@ input.input::placeholder{color:#b3ab9d}
       </details>
       <details>
         <summary>입금하고 나면 어떻게 진행되나요?</summary>
-        <p>입금이 확인되는 즉시 사주 분석을 시작하며, 24시간 내로 신청서에 적어주신 이메일 주소로 분석지(PDF)를 보내드립니다. 분석지를 받으신 날을 기준으로 <b>10일간 무제한 추가 질문</b>이 가능하며(1인은 개인 질문만, 2인은 궁합·동업 또는 개인 질문 모두 가능), 추가 질문은 카카오채널 <b>‘접월당’</b>을 추가해서 문의해 주시면 됩니다.</p>
+        <p>입금이 확인되는 즉시 사주 분석을 시작하며, 24시간 내로 신청서에 적어주신 이메일 주소로 분석지(PDF)를 보내드립니다. 분석지를 받으신 날을 기준으로 <b>10일간 무제한 추가 질문</b>이 가능하며(1인은 개인 질문만, 2인은 궁합·동업 또는 개인 질문 모두 가능), 추가 질문은 카카오채널 <a href="https://pf.kakao.com/_ubiBX" target="_blank" rel="noopener"><b>‘접월당’</b></a>을 추가해서 문의해 주시면 됩니다.</p>
       </details>
       <details>
         <summary>이메일 주소를 잘못 적었어요.</summary>
-        <p>신청 완료 화면에서 <b>‘입력 내용 수정하기’</b>를 누르면 바로 고칠 수 있습니다. 화면을 이미 닫으셨다면 카카오채널 <b>‘접월당’</b>으로 이름과 바른 이메일 주소를 알려주세요.</p>
+        <p>신청 완료 화면에서 <b>‘입력 내용 수정하기’</b>를 누르면 바로 고칠 수 있습니다. 화면을 이미 닫으셨다면 카카오채널 <a href="https://pf.kakao.com/_ubiBX" target="_blank" rel="noopener"><b>‘접월당’</b></a>으로 이름과 바른 이메일 주소를 알려주세요.</p>
       </details>
     </div>
   </div>
@@ -1213,7 +1323,7 @@ input.input::placeholder{color:#b3ab9d}
     <div class="mark">接月堂</div>
     <p>접월당 · 11년 경력 사주 상담<br>
     입금 계좌 : 케이뱅크 100-301-474580 (예금주 접월당)<br>
-    문의 : 카카오채널 ‘접월당’ / 스레드 <a href="https://www.threads.net/@jeopwol_dang" target="_blank" rel="noopener">@jeopwol_dang</a></p>
+    문의 : 카카오채널 <a href="https://pf.kakao.com/_ubiBX" target="_blank" rel="noopener">‘접월당’</a> / 스레드 <a href="https://www.threads.net/@jeopwol_dang" target="_blank" rel="noopener">@jeopwol_dang</a></p>
   </div>
 </footer>
 <div class="footer-space" aria-hidden="true"></div>
@@ -1251,7 +1361,7 @@ input.input::placeholder{color:#b3ab9d}
         </button>
       </div>
 
-      <p class="send-delay" id="sendDelayNote" hidden>메일 전송이 지연될 경우 입금 후 카카오채널 ‘접월당’으로 알려 주세요.</p>
+      <p class="send-delay" id="sendDelayNote" hidden>메일 전송이 지연될 경우 입금 후 카카오채널 <a href="https://pf.kakao.com/_ubiBX" target="_blank" rel="noopener">‘접월당’</a>으로 알려 주세요.</p>
 
       <div class="check-note" role="note">
         <span class="cn-ico" aria-hidden="true">
@@ -1524,13 +1634,21 @@ input.input::placeholder{color:#b3ab9d}
     var key = currentPlanKey();
     var second = (key === "2") ? validatePerson(2) : { bad: false, data: null };
     var mail = validateEmail();
-    var bad = first.bad || second.bad || mail.bad;
+
+    /* 개인정보 수집·이용 동의 (필수) */
+    var consentBox = $("consentBox");
+    var consentOk = $("consent").checked;
+    if (consentOk) consentBox.classList.remove("invalid");
+    else consentBox.classList.add("invalid");
+
+    var bad = first.bad || second.bad || mail.bad || !consentOk;
 
     if (bad){
       var firstBad = form.querySelector(".field.invalid");
-      if (firstBad){
-        firstBad.scrollIntoView({behavior:"smooth", block:"center"});
-        var inp = firstBad.querySelector("input");
+      var target = firstBad || (consentOk ? null : consentBox);
+      if (target){
+        target.scrollIntoView({behavior:"smooth", block:"center"});
+        var inp = target.querySelector("input");
         if (inp) inp.focus({preventScroll:true});
       }
       return;
@@ -1559,6 +1677,7 @@ input.input::placeholder{color:#b3ab9d}
       person1: personPayload(people[0]),
       person2: people[1] ? personPayload(people[1]) : null,
       account: ACCOUNT.bank + " " + ACCOUNT.number + " (예금주 " + ACCOUNT.holder + ")",
+      privacy_consent: "동의함 (" + new Date().toLocaleString("ko-KR") + ")",
       message: summaryText,
       submitted_at: new Date().toISOString()
     };
@@ -1729,6 +1848,11 @@ input.input::placeholder{color:#b3ab9d}
   $("heroCta").addEventListener("click", function(e){
     e.preventDefault();
     $("apply").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+
+  /* ---------- 개인정보 동의 ---------- */
+  $("consent").addEventListener("change", function(){
+    if (this.checked) $("consentBox").classList.remove("invalid");
   });
 
   /* ---------- 입력 시 에러 해제 ---------- */

@@ -1259,7 +1259,7 @@ input.input::placeholder{color:#b3ab9d}
         <!-- 개인정보 수집·이용 및 환불 안내 -->
         <div class="consent" id="consentBox">
           <label class="check" for="consent" id="consentLabel">
-            <input type="checkbox" id="consent" name="consent">
+            <input type="checkbox" id="consent" name="consent" aria-required="true" aria-describedby="consentErr">
             <span class="consent-check-text"><b>[필수]</b>개인정보 수집·이용 및 안내 사항에 동의합니다</span>
           </label>
           <details class="consent-more">

@@ -2140,7 +2140,8 @@ function paintProduct(){
   const p = byId(pdId); if(!p) return;
   const tk = tierKind(pdId);
   const tierName = tk === 'saju' ? '종합 사주 분석지' : tk === 'ziwei' ? '자미두수 분석지' : '';
-  const cat = catLabel(p.cat) + (p.no ? ` · NO. ${p.no}` : '');
+  const catName = p.id === 'new2027' ? '신년운세' : catLabel(p.cat);   /* 상단 메뉴와 같은 이름으로 표기 */
+  const cat = catName + (p.no ? ` · NO. ${p.no}` : '');
   $('#pdTitle').textContent = cat;
   const mediaClass = (p.type === 'talisman' || p.type === 'custom')
     ? ' pd__media--portrait'

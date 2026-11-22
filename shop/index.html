@@ -356,6 +356,8 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 }
 .fcard__name:hover{color:#F6E3B8}
 .fcard__lines{font-size:13.5px;line-height:1.78;color:#C4B6E2;min-height:4.6em}
+.fcard__spec,.tcard2__spec{display:block;margin:9px 0 12px;font-size:11.5px;line-height:1.62;letter-spacing:-.01em;color:#E3CB9C;word-break:keep-all}
+.fcard__spec b,.tcard2__spec b{font-weight:600;color:#F6E3B8;white-space:nowrap}
 .fcard__foot{margin-top:auto;padding-top:18px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(216,192,255,.16)}
 .fcard__price{flex:1;min-width:120px;display:flex;flex-direction:column;gap:2px}
 .fcard__price s{font-size:12px;color:var(--mut)}
@@ -393,26 +395,26 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 .go:hover{background:linear-gradient(135deg,#FBEDCB,#E3C48F);border-color:transparent;transform:translateY(-2px)}
 .go:hover svg{stroke:#2A1B44}
 
-/* ---------- 신뢰 배지 ---------- */
+/* ---------- 신뢰 배지 (2칸) ---------- */
 .trust{margin-top:52px;padding:0}
 .trust__in{
   max-width:1320px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(5,1fr);
-  border-radius:18px;padding:26px 0;
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border-radius:18px;padding:6px 0;
   background:rgba(48,36,94,.44);
   border:1px solid rgba(216,192,255,.2);
   box-shadow:var(--sh), inset 0 1px 0 rgba(255,255,255,.07);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
 }
-.trust__i{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;padding:2px 8px;min-width:0;text-align:center}
+.trust__i{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;padding:42px 32px;min-width:0;text-align:center}
 .trust__i + .trust__i::before{
-  content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(216,192,255,.24),transparent);
+  content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(216,192,255,.26),transparent);
 }
-.trust__i svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(242,216,155,.3))}
-.trust__t{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.35;min-width:0}
-.trust__t b{font-size:13.5px;font-weight:600;color:#F7F1FF;letter-spacing:-.01em;white-space:nowrap}
-.trust__t span{font-size:12.5px;color:#C4B6E2;letter-spacing:-.01em;white-space:nowrap}
+.trust__i svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(242,216,155,.3))}
+.trust__t{display:flex;flex-direction:column;align-items:center;gap:10px;line-height:1.4;min-width:0}
+.trust__t > b{font-size:18.5px;font-weight:600;color:#F7F1FF;letter-spacing:-.01em;line-height:1.42;word-break:keep-all}
+.trust__t > span{font-size:14.5px;color:#C4B6E2;letter-spacing:-.01em;line-height:1.65;word-break:keep-all;max-width:26em}
 
 /* ---------- 1:1 상담 ---------- */
 .consult{
@@ -1021,11 +1023,11 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fcard__body{padding:20px 20px 20px 16px;justify-content:center}
   .fcard__lines{min-height:0}
   .trust{padding:0}
-  .trust__in{grid-template-columns:repeat(5,1fr);gap:0;padding:20px 0}
-  .trust__i{gap:8px;padding:2px 4px}
-  .trust__i svg{width:20px;height:20px}
-  .trust__t b{font-size:12px}
-  .trust__t span{font-size:11px}
+  .trust__in{padding:4px 0}
+  .trust__i{padding:30px 20px;gap:14px}
+  .trust__i svg{width:28px;height:28px}
+  .trust__t > b{font-size:16.5px}
+  .trust__t > span{font-size:13.2px;max-width:24em}
   .tgrid{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:1fr}
   .orderinfo{grid-template-columns:1fr}
@@ -1079,12 +1081,14 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fcard__price b{font-size:19px}
   .addbtn{padding:10px 14px;font-size:12px}
   .go{width:40px;height:40px}
-  .trust{padding:0;margin-top:40px}
-  .trust__in{padding:15px 0;gap:0;border-radius:16px}
-  .trust__i{padding:0 2px;gap:6px}
-  .trust__i svg{width:17px;height:17px}
-  .trust__t b{font-size:11px}
-  .trust__t span{font-size:10px}
+  .trust{padding:0;margin-top:28px}
+  .trust__in{padding:2px 0;border-radius:16px}
+  .trust__i{padding:18px 13px;gap:9px}
+  .trust__i + .trust__i::before{top:16%;bottom:16%}
+  .trust__i svg{width:23px;height:23px}
+  .trust__t{gap:6px}
+  .trust__t > b{font-size:13.2px}
+  .trust__t > span{font-size:11.4px;line-height:1.6;max-width:15em}
   .consult{padding:26px 20px;min-height:0;text-align:left}
   .consult__bg{background-position:58% 40%}
   .consult__bg{
@@ -1168,6 +1172,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fslide .fcard__price{min-width:0}
   .fslide .fcard__name{font-size:19px;margin:3px 0 6px}
   .fslide .fcard__lines{font-size:12.5px;line-height:1.7}
+  .fslide .fcard__spec{font-size:11px;margin:7px 0 9px}
   .fslide__cta{margin-top:10px;min-width:0}
   .fslide__cta .btn{
     width:100%;max-width:100%;min-width:0;box-sizing:border-box;
@@ -1208,27 +1213,28 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .faq__list summary{padding:11px 26px 11px 2px;font-size:12.5px}
   .faq__list p{padding:0 13px 11px 12px;font-size:11.5px;line-height:1.65}
   .trust{margin-top:22px}
-  .trust__in{padding:13px 0;gap:0}
+  .trust__in{padding:2px 0;gap:0}
   .consult{margin-top:0}
   .ftr{padding:24px 0 18px;margin-top:8px}
   .ftr__top{gap:14px}
   .copy{font-size:9.5px}
 }
-/* 360 이남: 신뢰 배지 압축 */
+/* 360 이남: 신뢰 배지 압축 (2칸 유지) */
 @media (max-width:380px){
-  .trust__in{padding:13px 0}
-  .trust__i{gap:5px;padding:0 1px}
-  .trust__i svg{width:16px;height:16px}
-  .trust__t b{font-size:10.8px}
-  .trust__t span{font-size:10px;letter-spacing:-.02em}
+  .trust__in{padding:2px 0}
+  .trust__i{gap:8px;padding:16px 10px}
+  .trust__i svg{width:21px;height:21px}
+  .trust__t > b{font-size:12.6px}
+  .trust__t > span{font-size:10.9px;letter-spacing:-.02em}
 }
 /* 아주 좁은 화면(≤340px): 슬라이드 CTA 한 줄 유지 */
 @media (max-width:340px){
   .fslide__cta .btn{font-size:12px;padding:11px 8px}
-  .trust__in{padding:12px 0}
-  .trust__i svg{width:15px;height:15px}
-  .trust__t b{font-size:10.2px}
-  .trust__t span{font-size:9.4px}
+  .trust__in{padding:2px 0}
+  .trust__i{padding:15px 8px;gap:7px}
+  .trust__i svg{width:20px;height:20px}
+  .trust__t > b{font-size:12.2px}
+  .trust__t > span{font-size:10.3px}
 }
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
@@ -1374,24 +1380,12 @@ body:has(#doneView.is-open) .toast{bottom:112px}
     <div class="trust" data-rev>
       <ul class="trust__in">
         <li class="trust__i">
-          <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16M9.5 4 8 9l4 11 4-11-1.5-5"/></svg>
-          <span class="trust__t"><b>11년 경력</b><span>전문 사주명리</span></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16M9.5 4 8 9l4 11 4-11-1.5-5"/></svg>
+          <span class="trust__t"><b>11년 사주 경력자</b><span>11년 사주 경력자가 직접 전문적으로 풀어드립니다</span></span>
         </li>
         <li class="trust__i">
-          <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15h6M9 18h4"/></svg>
-          <span class="trust__t"><b>맞춤 PDF</b><span>개별 리포트</span></span>
-        </li>
-        <li class="trust__i">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.6V12l3 1.8"/></svg>
-          <span class="trust__t"><b>24h 발송</b><span>결제 후</span></span>
-        </li>
-        <li class="trust__i">
-          <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4V6Z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg>
-          <span class="trust__t"><b>10일 질문</b><span>사주분석지</span></span>
-        </li>
-        <li class="trust__i">
-          <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/><path d="M12 14v2"/></svg>
-          <span class="trust__t"><b>기록 파기</b><span>상담 종료 후</span></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5.5 5.8v6.1c0 4.1 2.7 7.4 6.5 8.6 3.8-1.2 6.5-4.5 6.5-8.6V5.8Z"/><path d="M9.2 12.2 11 14l3.8-4.1"/></svg>
+          <span class="trust__t"><b>개인정보 보호</b><span>상담 종료 후 기록을 즉시 파기합니다</span></span>
         </li>
       </ul>
     </div>
@@ -1439,6 +1433,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
           <span class="tcard2__cat">Wish Talisman</span>
           <h3 class="tcard2__name">기원부적 <em>(선택형)</em></h3>
           <p class="tcard2__lines">건강·재물·일·관계·시험까지, 지금 필요한 기원을 하나 골라 담으세요. 같은 부적에 선택한 기원의 뜻을 담아 보내드립니다.</p>
+          <p class="tcard2__spec">결제 후 평균 6시간(최대 12시간) 내 메일 발송</p>
           <div class="twish" id="wishChips" role="group" aria-label="기원 테마 선택"></div>
           <p class="twishnow" id="wishNow"></p>
           <div class="tcard2__foot">
@@ -1461,13 +1456,14 @@ body:has(#doneView.is-open) .toast{bottom:112px}
           <span class="tcard2__cat">Custom Talisman</span>
           <h3 class="tcard2__name">나만의 부적 <em>(사주 맞춤)</em></h3>
           <p class="tcard2__lines">생년월일과 태어난 시간으로 사주 오행을 짚어 색감·문양·문장·해설을 1:1로 맞춰 그립니다.</p>
+          <p class="tcard2__spec">사주 맞춤 제작 후 평균 6시간(최대 12시간) 내 메일 발송</p>
           <ul class="tcard2__list">
             <li>큰 부적 1장 + 지갑용 2장 구성</li>
             <li>사주 해설지 3p · 사용 안내 포함</li>
             <li>주문서에 생년월일·태어난 시간 입력</li>
           </ul>
           <div class="tcard2__foot">
-            <div class="tcard2__price"><b>29,000원</b><span>제작 후 이메일 발송</span></div>
+            <div class="tcard2__price"><b>29,000원</b><span>제작 후 6~12시간 내 발송</span></div>
             <button class="addbtn" data-add="tal-custom">장바구니 담기</button>
             <button class="go" data-open="tal-custom" aria-label="나만의 부적 상세 보기">
               <svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
@@ -1508,7 +1504,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <div class="step">
         <div class="step__no">03</div>
         <h3>분석 · 발송</h3>
-        <p>입금 확인과 동시에 분석을 시작해 24시간 안에 PDF를 이메일로 보내드립니다. 부적은 결제 확인 후 파일로 받으실 수 있습니다.</p>
+        <p>입금 확인과 동시에 분석을 시작해 평균 6시간 · 최대 12시간 내에 PDF를 이메일로 보내드립니다. 부적은 결제 확인 후 파일로 받으실 수 있습니다.</p>
       </div>
     </div>
     <div class="orderinfo" data-rev>
@@ -1718,7 +1714,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
     </div>
 
     <div class="notice-box">
-      주문서를 보내면 <b>입금 계좌</b>가 바로 표시됩니다. 입금 확인 후 24시간 안에 분석지를 이메일로 보내드리며,
+      주문서를 보내면 <b>입금 계좌</b>가 바로 표시됩니다. 입금 확인 후 평균 6시간 · 최대 12시간 내에 분석지를 이메일로 보내드리며,
       부적은 같은 이메일로 파일을 보내드립니다. 현금영수증이 필요하시면 입금 후 카카오채널로 알려주세요.
     </div>
   </form>
@@ -1750,7 +1746,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <div><span>주문번호</span><b id="orderNo">—</b></div>
       <div><span>입금자명</span><b id="doneName">—</b></div>
       <div><span>받으실 이메일</span><b id="doneEmail">—</b></div>
-      <div><span>처리 예정</span><b>입금 확인 후 24시간 내</b></div>
+      <div><span>처리 예정</span><b>평균 6시간 · 최대 12시간 내</b></div>
     </div>
 
     <p style="font-size:12px;line-height:1.95">
@@ -1843,7 +1839,7 @@ const TAL_BULLETS = [
   'A4 300dpi PDF (부적 + 사용 안내 2페이지)',
   '같은 이미지의 고해상 PNG 1장 동봉',
   '인쇄해 지갑·파우치·수첩에 숨겨 간직하는 인쇄용 부적',
-  '결제 확인 후 이메일로 즉시 발송',
+  '결제 후 평균 6시간(최대 12시간) 내 메일 발송',
 ];
 
 /* ---------- 분석지 ---------- */
@@ -1853,40 +1849,40 @@ const PRODUCTS = [
     cover:{hanja:'四柱', en:'SAJU READING', top:'SAJU · 1 PERSON', sub:'1:1 종합 사주분석'},
     short:'연·월·일·시 여덟 글자로 읽는 10년 대운과 월별 흐름',
     desc:'태어난 연·월·일·시로 사주 명식을 세우고, 기운의 세기와 균형·10년 대운·올해의 월별 흐름까지 담은 1인 맞춤 분석지입니다.',
-    bullets:['사주 명식과 오행의 균형 분석','10년 대운 + 올해 월별 운세','재물·직업·관계·건강 영역별 해석','A4 PDF · 입금 확인 후 24시간 내 발송','수령일부터 10일간 추가 질문(개인 질문)'],
-    meta:[['분량','A4 20~30장 내외 PDF'],['발송','입금 확인 후 24시간 내 이메일'],['추가 질문','수령일부터 10일']] },
+    bullets:['사주 명식과 오행의 균형 분석','10년 대운 + 올해 월별 운세','재물·직업·관계·건강 영역별 해석','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함(수령일부터)'],
+    meta:[['분량','A4 20~30장 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일']] },
 
   { id:'saju2', cat:'saju', type:'saju', persons:2, timeRequired:false,
     name:'종합 사주분석지 · 2인', price:70000, photo:'assets/card_saju.jpg',
     cover:{hanja:'緣', en:'SAJU FOR TWO', top:'SAJU · 2 PERSONS', sub:'2인 궁합 · 동업 분석'},
     short:'두 사람의 명식을 나란히 놓고 보는 궁합·동업 분석',
     desc:'두 사람의 사주를 각각 풀고, 궁합·동업·관계의 결을 함께 짚는 2인 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
-    bullets:['2인 명식 각각 해석 + 궁합 분석','관계의 결·동업·동거 등 조합 해석','각 10년 대운과 올해 흐름','A4 PDF · 24시간 내 이메일 발송','수령일부터 10일간 추가 질문(궁합·동업·개인 모두)'],
-    meta:[['분량','A4 30~40장 내외 PDF'],['발송','입금 확인 후 24시간 내 이메일'],['추가 질문','수령일부터 10일']] },
+    bullets:['2인 명식 각각 해석 + 궁합 분석','관계의 결·동업·동거 등 조합 해석','각 10년 대운과 올해 흐름','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함(궁합·동업·개인 모두)'],
+    meta:[['분량','A4 30~40장 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일']] },
 
   { id:'new2027', cat:'saju', type:'saju', persons:1, timeRequired:false,
     name:'2027 정미년 신년운세', price:19800, orig:26900, badge:'11월 한정', photo:'assets/card_newyear.jpg',
     cover:{hanja:'丁未', en:'2027 NEW YEAR', top:'NEW YEAR · 2027', sub:'정미년 신년운세', variant:'sun'},
     short:'정미년 한 해의 흐름만 압축한 1인 전용 신년 리포트',
     desc:'2027 정미년, 나에게 오는 한 해의 흐름을 압축해 담았습니다. 1인 전용 상품으로 추가 질문은 포함되지 않습니다.',
-    bullets:['2027 정미년 세운 분석','상반기·하반기 흐름과 이동수','재물·직업·관계 키워드','1인 전용 · 추가 질문 미포함','A4 PDF · 24시간 내 이메일 발송'],
-    meta:[['분량','A4 8~12장 내외 PDF'],['발송','입금 확인 후 24시간 내 이메일'],['추가 질문','미포함']] },
+    bullets:['2027 정미년 세운 분석','상반기·하반기 흐름과 이동수','재물·직업·관계 키워드','1인 전용 · 추가 질문 미포함','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송'],
+    meta:[['분량','A4 8~12장 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','미포함']] },
 
   { id:'ziwei1', cat:'ziwei', type:'ziwei', persons:1, timeRequired:true,
     name:'자미두수 명반 정밀 분석지 · 1인', price:49800, badge:'NEW', photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI DOU SHU', top:'ZIWEI · 12 PALACES', sub:'12궁 명반 정밀 분석', variant:'wheel'},
     short:'12궁 명반과 14주성·사화로 읽는 영역별 정밀 분석',
     desc:'태어난 시각으로 명반을 그려 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 읽는 정밀 분석지입니다.',
-    bullets:['12궁 명반(명궁·재백·관록·부처·질액 등) 정밀 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','10년 대한 · 유년의 시기별 흐름','출생시 필수 · 시간을 모르면 신청 불가','A4 PDF · 수령 후 10일 추가 질문'],
-    meta:[['분량','A4 20~30장 내외 PDF'],['발송','입금 확인 후 24시간 내 이메일'],['필수 정보','출생시(시·분) 필수']] },
+    bullets:['12궁 명반(명궁·재백·관록·부처·질액 등) 정밀 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','10년 대한 · 유년의 시기별 흐름','출생시 필수 · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송 · 10일 추가 질문'],
+    meta:[['분량','A4 20~30장 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['필수 정보','출생시(시·분) 필수']] },
 
   { id:'ziwei2', cat:'ziwei', type:'ziwei', persons:2, timeRequired:true,
     name:'자미두수 명반 정밀 분석지 · 2인', price:90000, photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI FOR TWO', top:'ZIWEI · 2 PERSONS', sub:'2인 명반 · 궁합·관계 분석', variant:'wheel'},
     short:'두 사람의 12궁 명반을 나란히 놓고 읽는 궁합·관계 정밀 분석',
     desc:'두 사람의 출생 시각으로 명반을 각각 그려, 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 나란히 읽는 2인 정밀 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
-    bullets:['2인 명반 각각 정밀 해석 + 궁합·관계 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','각 10년 대한 · 유년의 시기별 흐름','출생시 필수(두 분 모두) · 시간을 모르면 신청 불가','A4 PDF · 수령 후 10일 추가 질문'],
-    meta:[['분량','A4 20~30장 × 2인 PDF'],['발송','입금 확인 후 24시간 내 이메일'],['필수 정보','두 분 출생시(시·분) 필수']] },
+    bullets:['2인 명반 각각 정밀 해석 + 궁합·관계 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','각 10년 대한 · 유년의 시기별 흐름','출생시 필수(두 분 모두) · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송 · 10일 추가 질문'],
+    meta:[['분량','A4 20~30장 × 2인 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['필수 정보','두 분 출생시(시·분) 필수']] },
 ];
 
 /* 부적 → 상품 데이터로 확장 */
@@ -1899,11 +1895,11 @@ TALISMANS.forEach(t => {
     name:t.name, price:isCustom ? 29000 : 9900, badge:isCustom ? 'CUSTOM' : null,
     short:t.tag, desc:t.desc,
     bullets:isCustom
-      ? ['생년월일·태어난 시간으로 읽은 사주 오행에 맞춘 색감·문양','색감·문양·문장·해설 1:1 맞춤 제작','큰 부적 1장 + 지갑용 2장 · 사주 해설지 3p 포함','A4 300dpi 인쇄용 PDF + PNG 파일 · 상품 이미지는 완성 예시']
+      ? ['생년월일·태어난 시간으로 읽은 사주 오행에 맞춘 색감·문양','색감·문양·문장·해설 1:1 맞춤 제작','큰 부적 1장 + 지갑용 2장 · 사주 해설지 3p 포함','A4 300dpi 인쇄용 PDF + PNG 파일 · 상품 이미지는 완성 예시','사주 맞춤 제작 후 평균 6시간(최대 12시간) 내 메일 발송']
       : [`기원 · ${t.variant}`, ...TAL_BULLETS],
     meta:isCustom
-      ? [['구성','큰 부적 1 + 지갑용 2'],['규격','A4 210×297mm · 300dpi'],['제작','사주 맞춤 · 입금 확인 후 제작']]
-      : [['기원', t.variant],['규격','A4 210×297mm · 300dpi'],['발송','결제 확인 후 이메일']],
+      ? [['구성','큰 부적 1 + 지갑용 2'],['규격','A4 210×297mm · 300dpi'],['발송','사주 맞춤 제작 후 평균 6시간(최대 12시간) 내']]
+      : [['기원', t.variant],['규격','A4 210×297mm · 300dpi'],['발송','결제 후 평균 6시간(최대 12시간) 내']],
   });
 });
 
@@ -1968,13 +1964,16 @@ const FEATURED = [
   { key:'saju', badge:'가장 많이 찾는', name:'종합 사주 분석지', tab:'종합 사주', cat:'Saju Reading',
     alt:'달빛 아래 놓인 사주명리 양장본',
     lines:['타고난 성향부터','연애·재물·직장·시기까지','한 번에 보는 종합 리포트'],
+    spec:'맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송 · <b>10일 추가 질문 포함</b>',
     img:'assets/card_saju.jpg', dual:true, ids:['saju1','saju2'] },
   { key:'newyear', badge:'2027년 운세 오픈', name:'2027 신년운세', tab:'2027 신년운세', cat:'New Year 2027',
     lines:['다가오는 한 해의','운의 흐름과','핵심 포인트'],
+    spec:'맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송',
     img:'assets/card_newyear.jpg', ids:['new2027'] },
   { key:'ziwei', badge:'심화 분석', name:'자미두수 분석지', tab:'자미두수', cat:'Ziwei Dou Shu',
     alt:'열두 궁위와 열네 주성이 그려진 자미두수 명반',
     lines:['더 세밀하게 보는','성향·운세·적성·인연 흐름'],
+    spec:'맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송 · <b>10일 추가 질문 포함</b>',
     img:'assets/card_ziwei.jpg', dual:true, ids:['ziwei1','ziwei2'] },
 ];
 
@@ -2010,6 +2009,7 @@ function fslideHTML(f){
       <span class="fcard__cat">${f.cat}</span>
       <h3 class="fcard__name" ${openAttr}>${f.name}</h3>
       <p class="fcard__lines">${f.lines.join('<br>')}</p>
+      ${f.spec ? `<p class="fcard__spec">${f.spec}</p>` : ''}
       <div class="fcard__foot">
         ${price}
         <button class="addbtn" ${f.dual ? `data-add-${f.key}` : `data-add="${first.id}"`}>담기</button>
@@ -2139,9 +2139,9 @@ function renderCart(){
   }
   body.innerHTML = cart.map(l => {
     const p = byId(l.id);
-    const opt = p.type === 'talisman' ? `${p.variant || '기원'} 선택 · 인쇄용 PDF · 이메일 발송`
-              : p.type === 'custom' ? '사주 맞춤 · 출생 정보 입력'
-              : 'A4 PDF · 24시간 내 발송';
+    const opt = p.type === 'talisman' ? `${p.variant || '기원'} 선택 · 평균 6시간(최대 12시간) 내 메일 발송`
+              : p.type === 'custom' ? '사주 맞춤 제작 후 평균 6시간(최대 12시간) 내 발송'
+              : 'A4 PDF · 평균 6시간 · 최대 12시간 내 발송';
     return `<div class="citem">
       <div class="citem__thumb">${mediaHTML(p, true)}</div>
       <div>
@@ -2655,7 +2655,7 @@ const DOCS = {
     <ol>
       <li>사주분석지·자미두수 분석지는 이용자가 제공한 출생 정보를 바탕으로 회사가 직접 작성한 맞춤형 PDF 문서입니다.</li>
       <li>부적은 회사가 제작한 이미지 파일(PDF·PNG)로, 인쇄해 소장하는 용도로 이용할 수 있습니다.</li>
-      <li>모든 상품은 실물 배송이 없는 디지털 콘텐츠이며, 결제 확인 후 이메일로 발송됩니다.</li>
+      <li>모든 상품은 실물 배송이 없는 디지털 콘텐츠이며, 결제 확인 후 평균 6시간 · 최대 12시간 내에 이메일로 발송됩니다.</li>
     </ol>
     <h4>제3조 (주문 및 결제)</h4>
     <ol>
@@ -2664,7 +2664,7 @@ const DOCS = {
       <li>입금자명이 주문자와 다른 경우 확인이 지연될 수 있습니다.</li>
     </ol>
     <h4>제4조 (발송)</h4>
-    <p>분석지는 입금 확인 후 24시간 이내에 주문서에 기재된 이메일로 발송됩니다. 부적 파일은 결제 확인 후 같은 이메일로 발송됩니다. 천재지변 등 부득이한 사유가 있는 경우 지연될 수 있으며, 이 경우 카카오채널로 안내드립니다.</p>
+    <p>분석지는 입금 확인 후 평균 6시간, 최대 12시간 이내에 주문서에 기재된 이메일로 발송됩니다. 부적 파일은 결제 확인 후 같은 이메일로 발송됩니다. 천재지변 등 부득이한 사유가 있는 경우 지연될 수 있으며, 이 경우 카카오채널로 안내드립니다.</p>
     <h4>제5조 (추가 질문)</h4>
     <p>종합 사주분석지와 자미두수 분석지는 분석지를 받으신 날부터 10일간 카카오채널을 통해 추가 질문을 받습니다. 2027 신년운세 상품은 추가 질문이 포함되지 않습니다.</p>
     <h4>제6조 (책임의 한계)</h4>
@@ -2701,7 +2701,7 @@ const DOCS = {
     <h4>3. 회사의 귀책 사유</h4>
     <p>다음의 경우에는 전액 환불 또는 재작성해 드립니다.</p>
     <ul>
-      <li>결제 후 24시간이 지나도 파일을 받지 못한 경우</li>
+      <li>평균 6시간 · 최대 12시간이 지나도 파일을 받지 못한 경우</li>
       <li>회사의 입력 오류로 다른 사람의 분석지가 발송된 경우</li>
       <li>파일이 손상되어 열리지 않는 경우</li>
     </ul>

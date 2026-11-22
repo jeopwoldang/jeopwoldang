@@ -775,6 +775,7 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 .pd__price s{font-size:12.5px;color:var(--mut)}
 .pd__price b{font-family:var(--serif);font-size:27px;font-weight:600;color:#FDF8FF}
 .pd__price em{font-style:normal;font-size:11.5px;color:#2A1B44;background:linear-gradient(135deg,#FBEDCB,#E3C48F);padding:2px 7px;border-radius:4px;font-weight:700}
+.pd__tier{font-style:normal;font-size:12px;letter-spacing:.02em;color:#F6E7C2;padding:3px 9px;border:1px solid rgba(242,216,155,.45);border-radius:999px;background:rgba(242,216,155,.14);align-self:center}
 .pd__list{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
 .pd__list li{position:relative;padding-left:16px;font-size:13px;line-height:1.75;color:#C4B6E2}
 .pd__list li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:rgba(242,216,155,.85)}
@@ -820,6 +821,8 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 .mini-qty{display:inline-flex;align-items:center;border:1px solid rgba(216,192,255,.26);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.06)}
 .mini-qty button{width:26px;height:26px;display:grid;place-items:center;font-size:13px;color:#D6C9EF}
 .mini-qty button:hover{background:rgba(216,192,255,.16)}
+.mini-qty button:disabled{opacity:.3;cursor:default}
+.mini-qty button:disabled:hover{background:transparent}
 .mini-qty span{min-width:22px;text-align:center;font-size:12px;color:#F2ECFD}
 .citem__price{font-size:13px;font-weight:600;color:#F3DFB6}
 .citem__del{font-size:11px;color:#8F80B2;border-bottom:1px solid rgba(143,128,178,.5);align-self:flex-start;margin-top:4px}
@@ -1930,7 +1933,7 @@ const $$ = s => Array.from(document.querySelectorAll(s));
 const byId = id => PRODUCTS.find(p => p.id === id);
 /* 기원부적은 '기원부적 · 재물운'처럼 선택한 기원까지 함께 표기 */
 const dispName = p => (p && p.type === 'talisman' && p.variant) ? `${p.name} · ${p.variant}` : (p ? p.name : '');
-const catLabel = c => c === 'saju' ? '사주분석지' : c === 'ziwei' ? '자미두수' : '인쇄 부적';
+const catLabel = c => c === 'saju' ? '종합사주' : c === 'ziwei' ? '자미두수' : '인쇄 부적';
 
 /* ---------- 상태 ---------- */
 let cart = loadCart();
@@ -1991,6 +1994,10 @@ const FEATURED = [
 ];
 
 let sajuPersons = 1, ziweiPersons = 1;
+/* 1인/2인 상품을 수량으로 묶는 티어 정의 (1 = 1인, 2 = 2인) */
+const TIER_OF = { saju1:'saju', saju2:'saju', ziwei1:'ziwei', ziwei2:'ziwei' };
+const TIER_IDS = { saju:{ 1:'saju1', 2:'saju2' }, ziwei:{ 1:'ziwei1', 2:'ziwei2' } };
+const tierKind = id => TIER_OF[id] || null;
 function personPick(ids){
   return `<div class="fcard__price">
               <div class="opt" role="group" aria-label="인원 선택">
@@ -2182,12 +2189,16 @@ function renderCart(){
 let pdQty = 1, pdId = null;
 function openProduct(id){
   const p = byId(id); if(!p) return;
-  pdId = id; pdQty = 1;
+  const tk = tierKind(id);
+  pdId = id;
+  pdQty = tk ? (id === TIER_IDS[tk][2] ? 2 : 1) : 1;
   paintProduct();
   openOverlay('#pdOverlay');
 }
 function paintProduct(){
   const p = byId(pdId); if(!p) return;
+  const tk = tierKind(pdId);
+  const tierName = tk === 'saju' ? '종합 사주 분석지' : tk === 'ziwei' ? '자미두수 분석지' : '';
   const cat = catLabel(p.cat) + (p.no ? ` · NO. ${p.no}` : '');
   $('#pdTitle').textContent = cat;
   const mediaClass = (p.type === 'talisman' || p.type === 'custom')
@@ -2198,9 +2209,10 @@ function paintProduct(){
       <div class="pd__media${mediaClass}">${mediaHTML(p)}</div>
       <div class="pd__info">
         <span class="pd__cat">${cat}</span>
-        <h3 class="pd__name">${dispName(p)}</h3>
+        <h3 class="pd__name">${tk ? tierName : dispName(p)}</h3>
         <p class="pd__short">${p.short}</p>
         <div class="pd__price">
+          ${tk ? `<span class="pd__tier">${pdQty}인</span>` : ''}
           ${p.orig ? `<s>${won(p.orig)}</s>` : ''}
           <b>${won(p.price)}</b>
           ${p.orig ? `<em>${Math.round((1 - p.price / p.orig) * 100)}%</em>` : ''}
@@ -2216,11 +2228,11 @@ function paintProduct(){
   $('#pdFoot').innerHTML = `
     <div style="display:flex;align-items:center;gap:14px">
       <span class="qty mini-qty" style="height:44px">
-        <button data-pdq="-1" aria-label="수량 줄이기" style="width:38px;height:42px">−</button>
-        <span id="pdQty" style="min-width:28px">${pdQty}</span>
-        <button data-pdq="1" aria-label="수량 늘리기" style="width:38px;height:42px">+</button>
+        <button data-pdq="-1" aria-label="수량 줄이기" style="width:38px;height:42px"${pdQty <= 1 ? ' disabled' : ''}>−</button>
+        <span id="pdQty" style="min-width:34px">${tierKind(pdId) ? pdQty + '인' : pdQty}</span>
+        <button data-pdq="1" aria-label="수량 늘리기" style="width:38px;height:42px"${pdQty >= (tierKind(pdId) ? 2 : 9) ? ' disabled' : ''}>+</button>
       </span>
-      <button class="btn btn--gold" style="flex:1" id="pdAdd">장바구니 담기 · ${won(p.price * pdQty)}</button>
+      <button class="btn btn--gold" style="flex:1" id="pdAdd">장바구니 담기 · ${won(tierKind(pdId) ? p.price : p.price * pdQty)}</button>
     </div>`;
 }
 
@@ -2272,10 +2284,16 @@ document.addEventListener('click', e => {
     return;
   }
   if(t.dataset.pdq){
-    pdQty = Math.max(1, Math.min(9, pdQty + Number(t.dataset.pdq)));
-    const el = $('#pdQty'); if(el) el.textContent = pdQty;
-    const add = $('#pdAdd'), cur = byId(pdId);
-    if(add && cur) add.textContent = `장바구니 담기 · ${won(cur.price * pdQty)}`;
+    const tk = tierKind(pdId);
+    const max = tk ? 2 : 9;
+    const next = Math.max(1, Math.min(max, pdQty + Number(t.dataset.pdq)));
+    if(next === pdQty) return;
+    pdQty = next;
+    if(tk){
+      pdId = TIER_IDS[tk][pdQty];          // 1 → 1인 상품, 2 → 2인 상품
+      setPersons(tk, pdQty);               // 슬라이드 카드의 1인/2인 토글도 맞춰 줌
+    }
+    paintProduct();
     return;
   }
   if(t.dataset.addSaju !== undefined){
@@ -2286,7 +2304,11 @@ document.addEventListener('click', e => {
     addToCart(ziweiPersons === 2 ? 'ziwei2' : 'ziwei1', 1);
     return;
   }
-  if(t.id === 'pdAdd'){ addToCart(pdId, pdQty); closeAll(); openCart(); return; }
+  if(t.id === 'pdAdd'){
+    const tk = tierKind(pdId);
+    addToCart(pdId, tk ? 1 : pdQty);   // 1·2인은 각각 별도 상품(39,800/70,000)으로 담김
+    closeAll(); openCart(); return;
+  }
   if(t.id === 'goCheckout'){ startCheckout(); return; }
   if(t.dataset.open){ openProduct(t.dataset.open); return; }
   if(t.dataset.add){ addToCart(t.dataset.add, 1); return; }

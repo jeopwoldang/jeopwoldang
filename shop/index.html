@@ -1545,6 +1545,10 @@ body:has(#doneView.is-open) .toast{bottom:112px}
         <p>사주는 태어난 연·월·일·시를 여덟 글자로 풀어 기운의 세기와 균형을 읽습니다. 자미두수는 같은 생년월일시로 명반을 그려 명궁을 중심으로 열두 궁위에 열네 주성과 살성을 배치해 재물·직업·관계·건강 같은 영역을 나누어 읽습니다. 두 상품은 각각 따로 신청하실 수 있습니다.</p>
       </details>
       <details>
+        <summary>1인 상품으로 궁합을 볼 수 있나요?</summary>
+        <p>종합 사주분석지·자미두수 분석지의 <b>1인 상품은 본인 개인 질문만 가능</b>하며, 타인 사주·궁합 질문은 받지 않습니다. 두 사람의 궁합·관계·동업을 보시려면 <b>2인 상품</b>을 선택해 주세요. 2인 상품은 두 분의 명식(명반)을 각각 풀고 궁합·관계 질문까지 함께 받습니다.</p>
+      </details>
+      <details>
         <summary>태어난 시간을 모르면 신청할 수 없나요?</summary>
         <p>사주분석지는 일주 중심으로 해석하므로 시간을 몰라도 신청하실 수 있습니다. 다만 자미두수는 출생시로 명궁의 자리가 정해지기 때문에 시간을 모르면 명반이 그려지지 않아 신청이 어렵습니다. 출생신고서·가족의 기억·산모수첩 등으로 먼저 확인해 보시고, 그래도 모르시면 카카오채널 ‘접월당’으로 문의해 주세요.</p>
       </details>
@@ -1865,16 +1869,17 @@ const PRODUCTS = [
     cover:{hanja:'四柱', en:'SAJU READING', top:'SAJU · 1 PERSON', sub:'1:1 종합 사주분석'},
     short:'연·월·일·시 여덟 글자로 읽는 10년 대운과 월별 흐름',
     desc:'태어난 연·월·일·시로 사주 명식을 세우고, 기운의 세기와 균형·10년 대운·올해의 월별 흐름까지 담은 1인 맞춤 분석지입니다.',
-    bullets:['사주 명식과 오행의 균형 분석','10년 대운 + 올해 월별 운세','재물·직업·관계·건강 영역별 해석','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함(수령일부터)'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일']] },
+    bullets:['사주 명식과 오행의 균형 분석','10년 대운 + 올해 월별 운세','재물·직업·관계·건강 영역별 해석','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 본인 개인 질문만 가능 (타인·궁합 불가)'],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (본인 질문만 · 궁합 불가)']],
+    notice:'※ 1인 상품은 본인 개인 질문만 가능하며, 타인 사주·궁합 질문은 불가합니다. (궁합·2인 비교는 2인을 선택해 주세요.)' },
 
   { id:'saju2', cat:'saju', type:'saju', persons:2, timeRequired:false,
     name:'종합 사주분석지 · 2인', price:70000, photo:'assets/card_saju.jpg',
     cover:{hanja:'緣', en:'SAJU FOR TWO', top:'SAJU · 2 PERSONS', sub:'2인 궁합 · 동업 분석'},
     short:'두 사람의 명식을 나란히 놓고 보는 궁합·동업 분석',
     desc:'두 사람의 사주를 각각 풀고, 궁합·동업·관계의 결을 함께 짚는 2인 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
-    bullets:['2인 명식 각각 해석 + 궁합 분석','관계의 결·동업·동거 등 조합 해석','각 10년 대운과 올해 흐름','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함(궁합·동업·개인 모두)'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일']] },
+    bullets:['2인 명식 각각 해석 + 궁합 분석','관계의 결·동업·동거 등 조합 해석','각 10년 대운과 올해 흐름','맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 2인 사주·궁합·관계 질문 모두 가능'],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)']] },
 
   { id:'new2027', cat:'saju', type:'saju', persons:1, timeRequired:false,
     name:'2027 정미년 신년운세', price:19800, orig:26900, badge:'11월 한정', photo:'assets/card_newyear.jpg',
@@ -1889,16 +1894,17 @@ const PRODUCTS = [
     cover:{hanja:'紫微', en:'ZIWEI DOU SHU', top:'ZIWEI · 12 PALACES', sub:'12궁 명반 정밀 분석', variant:'wheel'},
     short:'12궁 명반과 14주성·사화로 읽는 영역별 정밀 분석',
     desc:'태어난 시각으로 명반을 그려 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 읽는 정밀 분석지입니다.',
-    bullets:['12궁 명반(명궁·재백·관록·부처·질액 등) 정밀 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','10년 대한 · 유년의 시기별 흐름','출생시 필수 · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송 · 10일 추가 질문'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['필수 정보','출생시(시·분) 필수']] },
+    bullets:['12궁 명반(명궁·재백·관록·부처·질액 등) 정밀 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','10년 대한 · 유년의 시기별 흐름','출생시 필수 · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 본인 개인 질문만 가능 (타인·궁합 불가)'],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (본인 질문만 · 궁합 불가)'],['필수 정보','출생시(시·분) 필수']],
+    notice:'※ 1인 상품은 본인 개인 질문만 가능하며, 타인 명반·궁합 질문은 불가합니다. (궁합·2인 비교는 2인을 선택해 주세요.)' },
 
   { id:'ziwei2', cat:'ziwei', type:'ziwei', persons:2, timeRequired:true,
     name:'자미두수 명반 정밀 분석지 · 2인', price:90000, photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI FOR TWO', top:'ZIWEI · 2 PERSONS', sub:'2인 명반 · 궁합·관계 분석', variant:'wheel'},
     short:'두 사람의 12궁 명반을 나란히 놓고 읽는 궁합·관계 정밀 분석',
     desc:'두 사람의 출생 시각으로 명반을 각각 그려, 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 나란히 읽는 2인 정밀 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
-    bullets:['2인 명반 각각 정밀 해석 + 궁합·관계 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','각 10년 대한 · 유년의 시기별 흐름','출생시 필수(두 분 모두) · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송 · 10일 추가 질문'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['필수 정보','두 분 출생시(시·분) 필수']] },
+    bullets:['2인 명반 각각 정밀 해석 + 궁합·관계 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','각 10년 대한 · 유년의 시기별 흐름','출생시 필수(두 분 모두) · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 2인 명반·궁합·관계 질문 모두 가능'],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)'],['필수 정보','두 분 출생시(시·분) 필수']] },
 ];
 
 /* 부적 → 상품 데이터로 확장 */
@@ -2221,6 +2227,7 @@ function paintProduct(){
         <ul class="pd__list">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
         <div class="pd__meta">${p.meta.map(([k,v]) => `<div><b>${k}</b><span>${v}</span></div>`).join('')}</div>
         <p class="pd__desc">${p.desc}</p>
+        ${p.notice ? `<p class="pd__notice">${p.notice}</p>` : ''}
         ${(p.type === 'talisman' || p.type === 'custom') ? '<p class="pd__notice">※ 화면 미리보기에는 도용 방지 워터마크가 적용되어 있으며, 구매 후 전달되는 고해상 PDF·PNG에는 워터마크가 없습니다.</p>' : ''}
         ${p.photos ? `<div class="pd__gal">${p.photos.map((src, i) => `<button class="pd__thumb" data-gal="${src}" aria-label="미리보기 ${i + 1}"><img src="${src}" alt=""></button>`).join('')}</div>` : ''}
       </div>
@@ -2371,10 +2378,12 @@ function birthBlock(p, n){
   const titleName = persons === 2 ? p.name.replace(/\s*·\s*2인$/, '') : p.name;
   const key = `${p.id}-${n}`;
   const timeRequired = p.type === 'ziwei';
+  const oneHint = ['saju1','ziwei1'].includes(p.id)
+    ? ' 1인 상품은 본인 정보만 입력하며, 질문도 본인 개인 질문만 가능합니다.' : '';
   return `
     <div class="fgroup" data-birth="${key}" data-type="${p.type}" data-time-required="${timeRequired ? '1' : '0'}">
       <div class="fgroup__title"><i></i>${titleName} · ${who}</div>
-      <p class="fgroup__hint">${birthHint(p)}</p>
+      <p class="fgroup__hint">${birthHint(p)}${oneHint}</p>
       <div class="row2">
         <div class="field"><label>이름 <span class="req">*</span></label>
           <input type="text" data-f="name" placeholder="이름">
@@ -2413,12 +2422,15 @@ function birthBlock(p, n){
     </div>`;
 }
 function renderOrderForm(){
+  const onePersonIds = ['saju1','ziwei1'];
+  const hasOne = cart.some(l => onePersonIds.includes(l.id));
   $('#orderItems').innerHTML = cart.map(l => {
     const p = byId(l.id);
     return `<div style="display:flex;justify-content:space-between;gap:14px;font-size:13px;padding:9px 0;border-bottom:1px solid rgba(120,96,180,.14)">
       <span>${dispName(p)} <span style="color:var(--mut);font-size:11.5px">× ${l.qty}</span></span>
       <b style="white-space:nowrap;font-weight:500;color:var(--ink)">${won(p.price * l.qty)}</b></div>`;
-  }).join('');
+  }).join('') + (hasOne ? `
+    <p class="fgroup__hint" style="margin:12px 0 0">※ 1인 상품(종합 사주분석지·자미두수 1인)은 본인 개인 질문만 가능하며, 타인 사주·궁합 질문은 불가합니다. 궁합·2인 비교는 장바구니에서 2인 상품을 선택해 주세요.</p>` : '');
   $('#orderTotal').textContent = won(cartTotal());
   $('#submitTotal').textContent = won(cartTotal());
 
@@ -2703,7 +2715,7 @@ const DOCS = {
     <h4>제4조 (발송)</h4>
     <p>분석지는 입금 확인 후 평균 6시간, 최대 12시간 이내에 주문서에 기재된 이메일로 발송됩니다. 부적 파일은 결제 확인 후 같은 이메일로 발송됩니다. 천재지변 등 부득이한 사유가 있는 경우 지연될 수 있으며, 이 경우 카카오채널로 안내드립니다.</p>
     <h4>제5조 (추가 질문)</h4>
-    <p>종합 사주분석지와 자미두수 분석지는 분석지를 받으신 날부터 10일간 카카오채널을 통해 추가 질문을 받습니다. 2027 신년운세 상품은 추가 질문이 포함되지 않습니다.</p>
+    <p>종합 사주분석지와 자미두수 분석지는 분석지를 받으신 날부터 10일간 카카오채널을 통해 추가 질문을 받습니다. 1인 상품의 추가 질문은 본인 개인 질문에 한하며, 타인 사주·궁합 질문은 받지 않습니다(궁합·2인 비교는 2인 상품 이용). 2027 신년운세 상품은 추가 질문이 포함되지 않습니다.</p>
     <h4>제6조 (책임의 한계)</h4>
     <p>본 상품은 전통 해석학에 기반한 참고 자료이며, 의료·법률·투자 등 전문적 판단을 대신하지 않습니다. 이용자의 최종 결정과 그 결과에 대한 책임은 이용자에게 있습니다.</p>
     <h4>제7조 (지적재산권)</h4>

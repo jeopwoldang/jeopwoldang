@@ -394,26 +394,25 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 .go:hover svg{stroke:#2A1B44}
 
 /* ---------- 신뢰 배지 ---------- */
-.trust{margin-top:52px;padding:0 32px}
+.trust{margin-top:52px;padding:0}
 .trust__in{
   max-width:1320px;margin:0 auto;
   display:grid;grid-template-columns:repeat(5,1fr);
-  border-radius:18px;padding:26px 8px;
+  border-radius:18px;padding:26px 0;
   background:rgba(48,36,94,.44);
   border:1px solid rgba(216,192,255,.2);
   box-shadow:var(--sh), inset 0 1px 0 rgba(255,255,255,.07);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
 }
-.trust__i{position:relative;display:flex;align-items:center;justify-content:center;gap:13px;padding:4px 12px}
+.trust__i{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;padding:2px 8px;min-width:0;text-align:center}
 .trust__i + .trust__i::before{
-  content:"";position:absolute;left:0;top:12%;bottom:12%;width:1px;
+  content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;
   background:linear-gradient(180deg,transparent,rgba(216,192,255,.24),transparent);
 }
 .trust__i svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(242,216,155,.3))}
-.trust__t{display:flex;flex-direction:column;line-height:1.4}
-.trust__t b{font-size:12.5px;font-weight:600;color:#F7F1FF;letter-spacing:-.01em}
-.trust__t span{font-size:11.5px;color:#C4B6E2}
-.trust__t em{font-style:normal;font-size:11px;color:var(--mut)}
+.trust__t{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.35;min-width:0}
+.trust__t b{font-size:13.5px;font-weight:600;color:#F7F1FF;letter-spacing:-.01em;white-space:nowrap}
+.trust__t span{font-size:12.5px;color:#C4B6E2;letter-spacing:-.01em;white-space:nowrap}
 
 /* ---------- 1:1 상담 ---------- */
 .consult{
@@ -1021,12 +1020,12 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fcard__media::after{background:linear-gradient(90deg, rgba(25,17,48,0) 62%, rgba(30,20,58,.5) 92%, rgba(36,26,72,.92) 100%)}
   .fcard__body{padding:20px 20px 20px 16px;justify-content:center}
   .fcard__lines{min-height:0}
-  .trust{padding:0 22px}
-  .trust__in{grid-template-columns:repeat(2,1fr);gap:18px 0;padding:22px 6px}
-  .trust__i{justify-content:flex-start;padding:2px 20px}
-  .trust__i + .trust__i::before{display:none}
-  .trust__i:nth-child(2n)::before{display:block;left:0;top:6%;bottom:6%}
-  .trust__i:last-child{grid-column:1 / -1}
+  .trust{padding:0}
+  .trust__in{grid-template-columns:repeat(5,1fr);gap:0;padding:20px 0}
+  .trust__i{gap:8px;padding:2px 4px}
+  .trust__i svg{width:20px;height:20px}
+  .trust__t b{font-size:12px}
+  .trust__t span{font-size:11px}
   .tgrid{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:1fr}
   .orderinfo{grid-template-columns:1fr}
@@ -1080,13 +1079,12 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fcard__price b{font-size:19px}
   .addbtn{padding:10px 14px;font-size:12px}
   .go{width:40px;height:40px}
-  .trust{padding:0 18px;margin-top:40px}
-  .trust__in{padding:18px 4px;gap:16px 0}
-  .trust__i{padding:2px 12px;gap:10px}
-  .trust__i svg{width:22px;height:22px}
-  .trust__t b{font-size:11.5px}
-  .trust__t span{font-size:10.5px}
-  .trust__t em{font-size:10px}
+  .trust{padding:0;margin-top:40px}
+  .trust__in{padding:15px 0;gap:0;border-radius:16px}
+  .trust__i{padding:0 2px;gap:6px}
+  .trust__i svg{width:17px;height:17px}
+  .trust__t b{font-size:11px}
+  .trust__t span{font-size:10px}
   .consult{padding:26px 20px;min-height:0;text-align:left}
   .consult__bg{background-position:58% 40%}
   .consult__bg{
@@ -1210,15 +1208,27 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .faq__list summary{padding:11px 26px 11px 2px;font-size:12.5px}
   .faq__list p{padding:0 13px 11px 12px;font-size:11.5px;line-height:1.65}
   .trust{margin-top:22px}
-  .trust__in{padding:13px 4px;gap:11px 0}
+  .trust__in{padding:13px 0;gap:0}
   .consult{margin-top:0}
   .ftr{padding:24px 0 18px;margin-top:8px}
   .ftr__top{gap:14px}
   .copy{font-size:9.5px}
 }
+/* 360 이남: 신뢰 배지 압축 */
+@media (max-width:380px){
+  .trust__in{padding:13px 0}
+  .trust__i{gap:5px;padding:0 1px}
+  .trust__i svg{width:16px;height:16px}
+  .trust__t b{font-size:10.8px}
+  .trust__t span{font-size:10px;letter-spacing:-.02em}
+}
 /* 아주 좁은 화면(≤340px): 슬라이드 CTA 한 줄 유지 */
 @media (max-width:340px){
   .fslide__cta .btn{font-size:12px;padding:11px 8px}
+  .trust__in{padding:12px 0}
+  .trust__i svg{width:15px;height:15px}
+  .trust__t b{font-size:10.2px}
+  .trust__t span{font-size:9.4px}
 }
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
@@ -1365,23 +1375,23 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <ul class="trust__in">
         <li class="trust__i">
           <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16M9.5 4 8 9l4 11 4-11-1.5-5"/></svg>
-          <span class="trust__t"><b>전문 사주명리</b><span>11년 경력</span></span>
+          <span class="trust__t"><b>11년 경력</b><span>전문 사주명리</span></span>
         </li>
         <li class="trust__i">
           <svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15h6M9 18h4"/></svg>
-          <span class="trust__t"><b>맞춤형</b><span>PDF 리포트</span></span>
+          <span class="trust__t"><b>맞춤 PDF</b><span>개별 리포트</span></span>
         </li>
         <li class="trust__i">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.6V12l3 1.8"/></svg>
-          <span class="trust__t"><b>결제 후</b><span>24시간 내 발송</span></span>
+          <span class="trust__t"><b>24h 발송</b><span>결제 후</span></span>
         </li>
         <li class="trust__i">
           <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4V6Z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg>
-          <span class="trust__t"><b>분석지 전용</b><span>10일 추가 질문</span><em>(종합 사주분석지)</em></span>
+          <span class="trust__t"><b>10일 질문</b><span>사주분석지</span></span>
         </li>
         <li class="trust__i">
           <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/><path d="M12 14v2"/></svg>
-          <span class="trust__t"><b>개인정보 보호</b><span>상담 종료 후 기록 파기</span></span>
+          <span class="trust__t"><b>기록 파기</b><span>상담 종료 후</span></span>
         </li>
       </ul>
     </div>

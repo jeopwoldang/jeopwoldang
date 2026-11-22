@@ -922,6 +922,16 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 .tot b{font-family:var(--serif);font-size:20px;color:#FDF8FF;letter-spacing:0}
 #orderItems > div{border-bottom:1px solid rgba(216,192,255,.14)!important}
 #orderItems span{color:#C4B6E2!important}
+#orderItems .oitem{padding:11px 0}
+#orderItems .oitem__top{display:flex;align-items:baseline;justify-content:space-between;gap:14px;font-size:13px}
+#orderItems .oitem__name{line-height:1.5}
+#orderItems .oitem__qty{font-size:11.5px}
+#orderItems .oitem__price{white-space:nowrap;font-weight:500;color:var(--ink)}
+#orderItems .oitem__foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+#orderItems .ptoggle{display:inline-flex;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(216,192,255,.24)}
+#orderItems .ptoggle button{min-width:58px;min-height:34px;padding:0 16px;border-radius:999px;font-size:12.5px;font-weight:500;color:#C8BAE6;transition:background .18s,color .18s,box-shadow .18s}
+#orderItems .ptoggle button[aria-pressed="true"]{background:linear-gradient(135deg,#FCEDCB,#E3C48F);color:#2A1B44;font-weight:700;box-shadow:0 6px 16px -10px rgba(224,178,100,.9)}
+#orderItems .oitem__note{font-size:11px;line-height:1.5}
 
 /* 완료 */
 .done{max-width:620px;margin:0 auto;padding:60px 24px 110px;text-align:center}
@@ -2179,8 +2189,10 @@ function openCart(){ renderCart(); openOverlay('#cartOverlay'); }
 
 /* ---------- 클릭 위임 ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-qty],[data-del],[data-close],[data-wish],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons]');
+  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-qty],[data-del],[data-close],[data-wish],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person]');
   if(!t) return;
+
+  if(t.dataset.person && t.dataset.line){ switchPersons(t.dataset.person, Number(t.dataset.n), t.dataset.line); return; }
 
   if(t.dataset.slide !== undefined){ goSlide(sIdx + Number(t.dataset.slide), true); return; }
   if(t.dataset.goto !== undefined){ goSlide(Number(t.dataset.goto), true); return; }
@@ -2267,6 +2279,7 @@ document.addEventListener('click', e => {
 function startCheckout(){
   if(!cart.length){ toast('장바구니가 비어 있습니다'); return; }
   closeAll();
+  birthStash = {};                                     // 새 주문서는 빈 상태로 시작
   renderOrderForm();
   $('#checkout').classList.add('is-open');
   document.body.classList.add('lock');
@@ -2345,16 +2358,92 @@ function birthBlock(p, n){
       </div>
     </div>`;
 }
+/* 주문서 인원 전환 시 입력 중인 출생 정보를 잃지 않도록 보관·복원 */
+let birthStash = {};
+function birthKeyOf(fg){
+  const key = fg.dataset.birth || '';
+  const cut = key.lastIndexOf('-');
+  const pId = cut > 0 ? key.slice(0, cut) : key;
+  return `${tierKind(pId) || pId}|${cut > 0 ? key.slice(cut + 1) : '1'}`;
+}
+function readBirthState(){
+  $$('#birthArea [data-birth]').forEach(fg => {
+    const v = fg.querySelector('[data-f="name"]');
+    if(!v) return;
+    birthStash[birthKeyOf(fg)] = {
+      name: v.value,
+      gender: fg.querySelector('[data-f="gender"]:checked')?.value || '',
+      birth: fg.querySelector('[data-f="birth"]')?.value || '',
+      cal: fg.querySelector('[data-f="cal"]:checked')?.value || '',
+      ampm: fg.querySelector('[data-f="ampm"]')?.value || '',
+      hour: fg.querySelector('[data-f="hour"]')?.value || '',
+      minute: fg.querySelector('[data-f="minute"]')?.value || '',
+      noTime: !!fg.querySelector('[data-f="noTime"]')?.checked,
+    };
+  });
+}
+function writeBirthState(){
+  $$('#birthArea [data-birth]').forEach(fg => {
+    const v = birthStash[birthKeyOf(fg)];
+    if(!v) return;
+    const setVal = (sel, val) => { const el = fg.querySelector(sel); if(el) el.value = val; };
+    setVal('[data-f="name"]', v.name);
+    setVal('[data-f="birth"]', v.birth);
+    setVal('[data-f="ampm"]', v.ampm);
+    setVal('[data-f="hour"]', v.hour);
+    setVal('[data-f="minute"]', v.minute);
+    if(v.gender){ const r = fg.querySelector(`[data-f="gender"][value="${v.gender}"]`); if(r) r.checked = true; }
+    if(v.cal){ const r = fg.querySelector(`[data-f="cal"][value="${v.cal}"]`); if(r) r.checked = true; }
+    const nt = fg.querySelector('[data-f="noTime"]');
+    if(nt && v.noTime){
+      nt.checked = true;
+      fg.querySelectorAll('select[data-f]').forEach(s => s.disabled = true);
+    }
+  });
+}
+/* 장바구니 항목의 1인 ↔ 2인 전환: 상품명·단가·TOTAL·결제 금액·출생정보 블록을 즉시 갱신 */
+function switchPersons(kind, n, lineId){
+  const want = n === 2 ? 2 : 1;
+  const idx = cart.findIndex(l => l.id === lineId);
+  if(idx < 0) return;
+  const targetId = TIER_IDS[kind] && TIER_IDS[kind][want];
+  if(!targetId || cart[idx].id === targetId) return;
+  const qty = cart[idx].qty;
+  const dup = cart.findIndex((l, i) => i !== idx && l.id === targetId);
+  if(dup >= 0){
+    cart[dup].qty = Math.min(9, cart[dup].qty + qty);
+    cart.splice(idx, 1);
+  }else{
+    cart[idx] = { id: targetId, qty };
+  }
+  saveCart(); renderCart(); updateCount();
+  setPersons(kind, want);
+  renderOrderForm();
+  toast(want === 2 ? `2인으로 변경했습니다 · 상대방 정보를 입력해 주세요` : `1인으로 변경했습니다`);
+}
 function renderOrderForm(){
   const onePersonIds = ['saju1','ziwei1'];
   const hasOne = cart.some(l => onePersonIds.includes(l.id));
+  readBirthState();                                    // 다시 그려도 입력값 유지
   $('#orderItems').innerHTML = cart.map(l => {
     const p = byId(l.id);
-    return `<div style="display:flex;justify-content:space-between;gap:14px;font-size:13px;padding:9px 0;border-bottom:1px solid rgba(120,96,180,.14)">
-      <span>${dispName(p)} <span style="color:var(--mut);font-size:11.5px">× ${l.qty}</span></span>
-      <b style="white-space:nowrap;font-weight:500;color:var(--ink)">${won(p.price * l.qty)}</b></div>`;
+    const tk = tierKind(l.id);
+    const cur = tk && l.id === TIER_IDS[tk][2] ? 2 : 1;
+    return `<div class="oitem">
+      <div class="oitem__top">
+        <span class="oitem__name">${dispName(p)} <span class="oitem__qty">× ${l.qty}</span></span>
+        <b class="oitem__price">${won(p.price * l.qty)}</b>
+      </div>${tk ? `
+      <div class="oitem__foot">
+        <span class="ptoggle" role="group" aria-label="${dispName(p).replace(/\s*·.*$/, '')} 인원 선택">
+          <button type="button" data-person="${tk}" data-n="1" data-line="${l.id}" aria-pressed="${cur === 1}">1인</button>
+          <button type="button" data-person="${tk}" data-n="2" data-line="${l.id}" aria-pressed="${cur === 2}">2인</button>
+        </span>
+        <span class="oitem__note">${tk === 'ziwei' ? '2인 선택 시 두 분의 명반을 함께 봅니다' : '2인 선택 시 두 분의 명식과 궁합을 함께 봅니다'}</span>
+      </div>` : ''}
+    </div>`;
   }).join('') + (hasOne ? `
-    <p class="fgroup__hint" style="margin:12px 0 0">※ 1인 상품(종합 사주분석지·자미두수 1인)은 본인 개인 질문만 가능하며, 타인 사주·궁합 질문은 불가합니다. 궁합·2인 비교는 장바구니에서 2인 상품을 선택해 주세요.</p>` : '');
+    <p class="fgroup__hint" style="margin:12px 0 0">※ 1인 상품(종합 사주분석지·자미두수 1인)은 본인 개인 질문만 가능하며, 타인 사주·궁합 질문은 불가합니다. 궁합·2인 비교는 위에서 2인으로 바로 변경해 주세요.</p>` : '');
   $('#orderTotal').textContent = won(cartTotal());
   $('#submitTotal').textContent = won(cartTotal());
 
@@ -2405,6 +2494,7 @@ function renderOrderForm(){
     ph.value = d.length > 7 ? `${d.slice(0,3)}-${d.slice(3,d.length-4)}-${d.slice(-4)}`
              : d.length > 3 ? `${d.slice(0,3)}-${d.slice(3)}` : d;
   };
+  writeBirthState();
 }
 
 function fieldErr(el, bad){

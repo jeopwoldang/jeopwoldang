@@ -259,32 +259,21 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
   letter-spacing:.01em;text-shadow:0 2px 14px rgba(8,3,24,.9);
 }
 
-/* ---------- 빠른 메뉴 ---------- */
-.quick{position:relative;z-index:6;margin-top:-72px}
-.quick__in{
-  max-width:1320px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(8,1fr);
-  border-radius:20px;
-  background:rgba(48,36,94,.58);
-  border:1px solid rgba(216,192,255,.24);
-  box-shadow:0 34px 70px -34px rgba(3,0,14,.95), inset 0 1px 0 rgba(255,255,255,.1);
+/* ---------- 자격 배지 ---------- */
+.credo{position:relative;z-index:6;margin-top:-72px}
+.credo__in{
+  width:fit-content;max-width:min(560px,100%);margin:0 auto;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:17px 28px;border-radius:999px;
+  background:linear-gradient(180deg,rgba(58,44,110,.66),rgba(38,27,82,.6));
+  border:1px solid rgba(242,216,155,.32);
+  box-shadow:0 30px 64px -32px rgba(3,0,14,.95), inset 0 1px 0 rgba(255,255,255,.12);
   backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
-  overflow:hidden;
+  text-align:center;
 }
-.qitem{
-  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  padding:22px 6px 20px;min-width:0;
-  font-size:13px;letter-spacing:.01em;color:#E2D7F6;
-  transition:background .25s, color .25s;
-}
-.qitem + .qitem::before{
-  content:"";position:absolute;left:0;top:26%;bottom:26%;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(216,192,255,.28),transparent);
-}
-.qitem:hover{background:rgba(216,192,255,.12);color:#FFF8EB}
-.qitem__ico{width:30px;height:30px;display:grid;place-items:center}
-.qitem__ico svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px rgba(242,216,155,.3))}
-.qitem:hover .qitem__ico svg{stroke:#FBEFD0}
+.credo__ico{width:22px;height:22px;display:grid;place-items:center;flex:none}
+.credo__ico svg{width:19px;height:19px;fill:none;stroke:var(--gold);stroke-width:1.3;stroke-linejoin:round;filter:drop-shadow(0 0 9px rgba(242,216,155,.4))}
+.credo__txt{font-family:var(--serif);font-size:16px;letter-spacing:.06em;color:#F7E8C8;line-height:1.4;white-space:nowrap;text-shadow:0 1px 14px rgba(8,3,24,.7)}
 
 /* ---------- 섹션 ---------- */
 .sec{padding:78px 0;position:relative}
@@ -404,26 +393,14 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
 .go:hover{background:linear-gradient(135deg,#FBEDCB,#E3C48F);border-color:transparent;transform:translateY(-2px)}
 .go:hover svg{stroke:#2A1B44}
 
-/* ---------- 신뢰 배지 (2칸) ---------- */
-.trust{margin-top:52px;padding:0}
-.trust__in{
-  max-width:1320px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(2,1fr);
-  border-radius:18px;padding:6px 0;
-  background:rgba(48,36,94,.44);
-  border:1px solid rgba(216,192,255,.2);
-  box-shadow:var(--sh), inset 0 1px 0 rgba(255,255,255,.07);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+/* ---------- 개인정보 안내 한 줄 ---------- */
+.trust{margin-top:44px;padding:0}
+.pnote{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  font-size:12px;line-height:1.75;letter-spacing:-.01em;color:#A99BC9;
+  text-align:center;word-break:keep-all;
 }
-.trust__i{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px 32px;min-width:0;text-align:center}
-.trust__i + .trust__i::before{
-  content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(216,192,255,.26),transparent);
-}
-.trust__i svg{width:36px;height:36px;stroke:var(--gold);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(242,216,155,.3))}
-.trust__t{display:flex;flex-direction:column;align-items:center;gap:10px;line-height:1.4;min-width:0}
-.trust__t > b{font-size:19.5px;font-weight:600;color:#F7F1FF;letter-spacing:-.01em;line-height:1.42;word-break:keep-all}
-.trust__t > span{font-size:15px;color:#C4B6E2;letter-spacing:-.01em;line-height:1.65;word-break:keep-all;max-width:26em}
+.pnote svg{width:13px;height:13px;flex:none;stroke:rgba(242,216,155,.7);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- 1:1 상담 ---------- */
 .consult{
@@ -1024,22 +1001,17 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .hero__lead{color:#F4EEFF}
   .hero__sub{color:#C8BAE6}
   .hero__copy{max-width:520px;margin-top:auto}
-  .quick{margin-top:-64px}
-  .quick__in{display:flex;overflow-x:auto;gap:0;scrollbar-width:none}
-  .quick__in::-webkit-scrollbar{display:none}
-  .qitem{flex:0 0 92px;padding:18px 4px 16px;font-size:12px}
+  .credo{margin-top:-64px}
+  .credo__in{padding:15px 22px;gap:10px}
+  .credo__txt{font-size:14px;letter-spacing:.04em}
   .pgrid{grid-template-columns:1fr;gap:18px}
   .fcard{flex-direction:row;align-items:stretch}
   .fcard__media{width:44%;aspect-ratio:auto;flex-shrink:0}
   .fcard__media::after{background:linear-gradient(90deg, rgba(25,17,48,0) 62%, rgba(30,20,58,.5) 92%, rgba(36,26,72,.92) 100%)}
   .fcard__body{padding:20px 20px 20px 16px;justify-content:center}
   .fcard__lines{min-height:0}
-  .trust{padding:0}
-  .trust__in{padding:4px 0}
-  .trust__i{padding:30px 20px;gap:14px}
-  .trust__i svg{width:28px;height:28px}
-  .trust__t > b{font-size:16.5px}
-  .trust__t > span{font-size:13.2px;max-width:24em}
+  .trust{padding:0;margin-top:34px}
+  .pnote{font-size:11.6px}
   .tgrid{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:1fr}
   .orderinfo{grid-template-columns:1fr}
@@ -1076,9 +1048,11 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .hero__lead{font-size:19px;line-height:1.6}
   .hero__sub{font-size:13px;margin-bottom:0}
   .btn--lg{padding:15px 24px;font-size:14px;width:100%}
-  .quick{margin-top:-56px}
-  .qitem{flex-basis:80px;font-size:11.5px;gap:7px}
-  .qitem__ico svg{width:23px;height:23px}
+  .credo{margin-top:-56px}
+  .credo__in{padding:13px 18px;gap:9px}
+  .credo__ico{width:18px;height:18px}
+  .credo__ico svg{width:17px;height:17px}
+  .credo__txt{font-size:12.5px;letter-spacing:.02em}
   .ohead{gap:10px;margin-bottom:28px}
   .ohead h2{font-size:21px;letter-spacing:.03em;white-space:normal}
   .ohead svg{width:15px;height:15px}
@@ -1093,14 +1067,9 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fcard__price b{font-size:19px}
   .addbtn{padding:10px 14px;font-size:12px}
   .go{width:40px;height:40px}
-  .trust{padding:0;margin-top:28px}
-  .trust__in{padding:2px 0;border-radius:16px}
-  .trust__i{padding:18px 13px;gap:9px}
-  .trust__i + .trust__i::before{top:16%;bottom:16%}
-  .trust__i svg{width:23px;height:23px}
-  .trust__t{gap:6px}
-  .trust__t > b{font-size:13.2px}
-  .trust__t > span{font-size:11.4px;line-height:1.6;max-width:15em}
+  .trust{padding:0;margin-top:24px}
+  .pnote{font-size:11.2px;gap:6px}
+  .pnote svg{width:12px;height:12px}
   .consult{padding:26px 20px;min-height:0;text-align:left}
   .consult__bg{background-position:58% 40%}
   .consult__bg{
@@ -1169,7 +1138,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .shead{margin-bottom:18px;gap:10px}
   .kicker{font-size:11px;letter-spacing:.24em}
   .hero__in{padding-top:322px;padding-bottom:86px}
-  .quick{margin-top:-26px}
+  .credo{margin-top:-26px}
   .twish{gap:5px}
   .tchip{padding:5px 9px;font-size:10.5px}
   .tcard2__lines{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -1224,29 +1193,20 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .faq{gap:16px}
   .faq__list summary{padding:11px 26px 11px 2px;font-size:12.5px}
   .faq__list p{padding:0 13px 11px 12px;font-size:11.5px;line-height:1.65}
-  .trust{margin-top:22px}
-  .trust__in{padding:2px 0;gap:0}
+  .trust{margin-top:18px}
   .consult{margin-top:0}
   .ftr{padding:24px 0 18px;margin-top:8px}
   .ftr__top{gap:14px}
   .copy{font-size:9.5px}
 }
-/* 360 이남: 신뢰 배지 압축 (2칸 유지) */
+/* 360 이남: 개인정보 안내 문구 미세 축소 */
 @media (max-width:380px){
-  .trust__in{padding:2px 0}
-  .trust__i{gap:8px;padding:16px 10px}
-  .trust__i svg{width:21px;height:21px}
-  .trust__t > b{font-size:12.6px}
-  .trust__t > span{font-size:10.9px;letter-spacing:-.02em}
+  .pnote{font-size:10.8px}
 }
 /* 아주 좁은 화면(≤340px): 슬라이드 CTA 한 줄 유지 */
 @media (max-width:340px){
   .fslide__cta .btn{font-size:12px;padding:11px 8px}
-  .trust__in{padding:2px 0}
-  .trust__i{padding:15px 8px;gap:7px}
-  .trust__i svg{width:20px;height:20px}
-  .trust__t > b{font-size:12.2px}
-  .trust__t > span{font-size:10.3px}
+  .pnote{font-size:10.4px;gap:5px}
 }
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
@@ -1322,43 +1282,13 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   </div>
 </section>
 
-<!-- ===== 빠른 메뉴 ===== -->
-<section class="quick" aria-label="빠른 메뉴">
-  <div class="wrap" style="padding:0 32px">
-    <div class="quick__in">
-      <button class="qitem" data-scroll="#products" data-focus="saju">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z"/><path d="M15 4v3h3"/><path d="M9 11h6M9 14h6M9 17h4"/></svg></span>
-        종합사주
-      </button>
-      <button class="qitem" data-scroll="#newyear">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg></span>
-        신년운세
-      </button>
-      <button class="qitem" data-scroll="#ziwei">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.6" r="1.5"/><circle cx="4.8" cy="14" r="1.5"/><circle cx="19.2" cy="14" r="1.5"/><circle cx="12" cy="20.2" r="1.5"/><path d="M12 6.1v12.6M6.2 13.6 11 6.1M17.8 13.6 13 6.1M6.2 14.6 11 19.6M17.8 14.6 13 19.6"/></svg></span>
-        자미두수
-      </button>
-      <button class="qitem" data-scroll="#talisman">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><path d="M11 3.2l1.5 4.4 4.4 1.5-4.4 1.5L11 15l-1.5-4.4L5.1 9.1l4.4-1.5L11 3.2Z"/><path d="M16.8 15.4l.75 2.15 2.15.75-2.15.75-.75 2.15-.75-2.15-2.15-.75 2.15-.75.75-2.15Z"/></svg></span>
-        부적
-      </button>
-      <button class="qitem" data-scroll="#saju" data-persons="2">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.2"/><circle cx="15" cy="12" r="5.2"/></svg></span>
-        궁합
-      </button>
-      <button class="qitem" data-scroll="#talisman" data-tal="money">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><path d="M7 9h10l1.5 9.4a2 2 0 0 1-2 2.3H7.5a2 2 0 0 1-2-2.3L7 9Z"/><path d="M9 9V7.5a3 3 0 0 1 6 0V9"/><path d="M9.5 14.5c.8.9 1.6 1.3 2.5 1.3s1.7-.4 2.5-1.3"/></svg></span>
-        재물운
-      </button>
-      <button class="qitem" data-scroll="#products" data-focus="saju">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M9 8V6.5A1.5 1.5 0 0 1 10.5 5h3A1.5 1.5 0 0 1 15 6.5V8M4 13h16"/></svg></span>
-        직업·진로
-      </button>
-      <button class="qitem" data-scroll="#consult">
-        <span class="qitem__ico"><svg viewBox="0 0 24 24"><path d="M12 20c-4 0-7-2.6-7-6 1.8 0 3.4.7 4.6 1.9M12 20c4 0 7-2.6 7-6-1.8 0-3.4.7-4.6 1.9"/><path d="M12 20c-2.6-1.9-4-4.3-4-6.8C8 10.6 9.8 8.6 12 7c2.2 1.6 4 3.6 4 6.2 0 2.5-1.4 4.9-4 6.8Z"/></svg></span>
-        상담신청
-      </button>
-    </div>
+<!-- ===== 자격 배지 ===== -->
+<section class="credo" aria-label="사주명리사 상담 안내">
+  <div class="wrap">
+    <p class="credo__in">
+      <span class="credo__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16"/></svg></span>
+      <span class="credo__txt">11년 경력 사주명리사 직접 상담</span>
+    </p>
   </div>
 </section>
 
@@ -1388,18 +1318,12 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       </div>
     </div>
 
-    <!-- 신뢰 배지 -->
+    <!-- 개인정보 안내 -->
     <div class="trust" data-rev>
-      <ul class="trust__in">
-        <li class="trust__i">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16M9.5 4 8 9l4 11 4-11-1.5-5"/></svg>
-          <span class="trust__t"><b>11년 사주 경력자</b><span>11년 사주 경력자가 직접 전문적으로 풀어드립니다</span></span>
-        </li>
-        <li class="trust__i">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5.5 5.8v6.1c0 4.1 2.7 7.4 6.5 8.6 3.8-1.2 6.5-4.5 6.5-8.6V5.8Z"/><path d="M9.2 12.2 11 14l3.8-4.1"/></svg>
-          <span class="trust__t"><b>개인정보 보호</b><span>상담 종료 후 기록을 즉시 파기합니다</span></span>
-        </li>
-      </ul>
+      <p class="pnote">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.6" rx="2.4"/><path d="M8.6 10.5V8a3.4 3.4 0 0 1 6.8 0v2.5"/></svg>
+        <span>상담 종료 후 입력하신 개인정보와 기록은 즉시 파기합니다.</span>
+      </p>
     </div>
   </div>
 </section>

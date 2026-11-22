@@ -1013,26 +1013,29 @@ input.input::placeholder{color:#b3ab9d}
 .tguard{position:absolute; inset:0; z-index:3; background:transparent; cursor:default}
 
 /* ---- 3페이지 구성 ---- */
-.pdf3{display:grid; gap:11px}
-@media (min-width:760px){ .pdf3{grid-template-columns:repeat(3,1fr)} }
-.pdfitem{
-  position:relative;
+.pdf3{list-style:none; margin:0; padding:0; display:grid; gap:9px}
+.pdfrow{
+  display:flex; gap:13px; align-items:center;
+  padding:11px;
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:17px;
   background:var(--white);
-  box-shadow:var(--shadow);
+  box-shadow:0 12px 26px -28px rgba(58,46,24,.9);
+}
+.pdfrow .tmedia{
+  flex:0 0 92px; width:92px;
+  aspect-ratio:1 / 1;
+  border-radius:12px;
   overflow:hidden;
+  border:1px solid rgba(60,48,28,.07);
 }
-.pdfitem .tmedia{aspect-ratio:1 / 1}
-.pdfitem .pdfno{
-  position:absolute; left:10px; top:10px; z-index:4;
-  font-family:var(--serif); font-size:11px; font-weight:700; letter-spacing:.1em;
-  color:#fff; background:rgba(30,39,66,.74);
-  padding:3px 9px; border-radius:7px;
+.pdfrow .pdfno{font-size:10px; letter-spacing:.16em; font-weight:700; color:var(--gold)}
+.pdfrow h3{margin:2px 0 4px; font-size:14px; color:var(--ink); letter-spacing:-.02em}
+.pdfrow p{margin:0; font-size:12px; line-height:1.62; color:var(--ink-soft); word-break:keep-all}
+@media (min-width:760px){
+  .pdfrow{padding:13px}
+  .pdfrow .tmedia{flex-basis:104px; width:104px}
 }
-.pdfitem .pdfbody{padding:14px 14px 16px}
-.pdfitem h3{margin:0 0 5px; font-size:14.5px; color:var(--ink); letter-spacing:-.02em}
-.pdfitem p{margin:0; font-size:12.5px; line-height:1.7; color:var(--ink-soft); word-break:keep-all}
 
 /* ---- 상품 카드 ---- */
 .pcard{
@@ -1433,43 +1436,43 @@ body.has-mbar{padding-bottom:78px}
       <p>어떻게 인쇄하고 어디에 간직하면 좋은지까지 담아, 인쇄용 PDF 3페이지로 보내드립니다.</p>
     </div>
 
-    <div class="pdf3 reveal">
-      <article class="pdfitem">
-        <div class="tmedia">
+    <ul class="pdf3 reveal">
+      <li class="pdfrow">
+        <span class="tmedia">
           <img src="assets/talisman/tal-sample-guide.jpg" alt="해설지·사용 안내 페이지 미리보기 — 도용 방지 워터마크 적용" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal">
           <span class="tguard" aria-hidden="true"></span>
-          <span class="pdfno">01</span>
-        </div>
+        </span>
         <div class="pdfbody">
+          <b class="pdfno">01</b>
           <h3>해설지</h3>
           <p>이 부적에 담은 기원과 오행의 뜻, 인쇄·보관 방법을 한 페이지에 정리했습니다.</p>
         </div>
-      </article>
+      </li>
 
-      <article class="pdfitem">
-        <div class="tmedia">
+      <li class="pdfrow">
+        <span class="tmedia">
           <img src="assets/talisman/tal-sample.jpg" alt="큰 부적 7×15cm 실물 크기 미리보기 — 도용 방지 워터마크 적용" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal">
           <span class="tguard" aria-hidden="true"></span>
-          <span class="pdfno">02</span>
-        </div>
+        </span>
         <div class="pdfbody">
+          <b class="pdfno">02</b>
           <h3>큰 부적 7×15cm</h3>
           <p>실제 크기 그대로 잘라 쓰는 본 부적입니다. 지갑·수첩·파우치 속에 넣어 두기 좋습니다.</p>
         </div>
-      </article>
+      </li>
 
-      <article class="pdfitem">
-        <div class="tmedia">
+      <li class="pdfrow">
+        <span class="tmedia">
           <img src="assets/talisman/tal-sample-custom.jpg" alt="지갑용 부적 2장 구성 미리보기 — 도용 방지 워터마크 적용" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal">
           <span class="tguard" aria-hidden="true"></span>
-          <span class="pdfno">03</span>
-        </div>
+        </span>
         <div class="pdfbody">
+          <b class="pdfno">03</b>
           <h3>지갑용 2장</h3>
           <p>더 작게 잘라 지갑 한 칸에 들어가는 두 장. 하나는 지갑에, 하나는 수첩에 나눠 두셔도 좋습니다.</p>
         </div>
-      </article>
-    </div>
+      </li>
+    </ul>
 
     <p class="cta-sub reveal" style="text-align:center; margin-top:14px">A4 300dpi 인쇄용 PDF 3페이지 + 같은 이미지의 고해상 PNG 1장을 함께 보내드립니다.<br>화면 미리보기에는 도용 방지 워터마크가 들어가 있으며, 전달되는 파일에는 없습니다.</p>
   </div>

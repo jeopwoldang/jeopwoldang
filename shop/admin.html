@@ -1196,9 +1196,9 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     L.push('');
     items.forEach((i, n) => {
       L.push(`${n + 1}. ${itemLabel(i)} × ${i.qty}`);
-      if (i.type === 'ziwei') L.push('   · 열두 궁위와 14주성·사화를 중심으로 정리한 A4 PDF입니다. 인쇄하셔도, 화면으로 보셔도 좋습니다.');
-      else if (i.type === 'saju' && i.id === 'new2027') L.push('   · 2027 정미년 한 해의 흐름을 압축한 A4 PDF입니다.');
-      else if (i.type === 'saju') L.push('   · 사주 명식과 10년 대운, 올해의 흐름을 담은 A4 PDF입니다.');
+      if (i.type === 'ziwei') L.push('   · 열두 궁위와 14주성·사화를 중심으로 정리한 약 120페이지 A4 PDF입니다. 인쇄하셔도, 화면으로 보셔도 좋습니다.');
+      else if (i.type === 'saju' && i.id === 'new2027') L.push('   · 2027 정미년 한 해의 흐름을 달마다 깊게 풀어낸 약 100페이지 A4 PDF입니다.');
+      else if (i.type === 'saju') L.push('   · 사주 명식과 10년 대운, 올해의 흐름을 담은 약 120페이지 A4 PDF입니다.');
       else if (i.type === 'custom') L.push('   · 사주 오행에 맞춰 제작한 부적 PDF 3장과 고해상 PNG 1장을 첨부했습니다.');
       else if (i.type === 'talisman') L.push('   · 부적 PDF 3장과 고해상 PNG 1장입니다. 인쇄하시거나 휴대폰 배경으로 쓰실 수 있습니다.');
     });

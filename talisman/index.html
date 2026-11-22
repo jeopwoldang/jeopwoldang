@@ -1320,6 +1320,71 @@ body.has-mbar{padding-bottom:78px}
   .reveal{animation:none; opacity:1; transform:none}
 }
 
+/* ===== 중복 통폐합 컴팩트 블록 (부적 2종 · 14종 · 3단계 · 드롭다운) ===== */
+/* 상품 2종 — 가로 압축 카드 */
+.picks{display:grid; gap:9px; margin-bottom:14px}
+@media (min-width:620px){ .picks{grid-template-columns:1fr 1fr; gap:10px} }
+.pick{
+  display:flex; align-items:center; gap:12px;
+  padding:10px;
+  border:1px solid var(--line); border-radius:16px;
+  background:var(--white);
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:transform .16s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.pick:active{transform:scale(.995)}
+.pick:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+.pick__media{flex:0 0 96px; width:96px; aspect-ratio:1 / 1; border-radius:12px; border:1px solid rgba(60,48,28,.07)}
+.pick__media img{display:block; width:100%; height:100%; object-fit:cover}
+.pick__body{flex:1 1 auto; min-width:0}
+.pick__cat{display:block; font-size:9.5px; letter-spacing:.14em; font-weight:700; color:var(--gold)}
+.pick__name{margin:3px 0 4px; font-family:var(--serif); font-size:16px; line-height:1.35; letter-spacing:-.03em; color:var(--ink)}
+.pick__name em{font-style:normal; font-size:12px; font-weight:700; color:var(--gold); margin-left:3px}
+.pick__desc{margin:0; font-size:11.5px; line-height:1.55; color:var(--muted); word-break:keep-all}
+.pick__go{display:inline-flex; align-items:center; gap:4px; margin-top:7px; font-size:11.5px; font-weight:700; color:var(--navy)}
+.pick__go svg{width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round}
+
+/* 기원 14종 — 페이지에서 한 번만 */
+.wishpick{margin-top:4px; padding:13px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72)}
+.wishpick__head{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:9px}
+.wishpick__head b{font-family:var(--serif); font-size:15px; letter-spacing:-.02em; color:var(--ink)}
+.wishpick__head span{font-size:11px; color:var(--muted)}
+.wishpick .tgal{grid-template-columns:repeat(4,1fr); gap:6px}
+@media (min-width:560px){ .wishpick .tgal{grid-template-columns:repeat(5,1fr); gap:8px} }
+@media (min-width:760px){ .wishpick .tgal{grid-template-columns:repeat(7,1fr)} }
+.wishpick .tgal__lab{font-size:9.5px; padding:13px 2px 4px; letter-spacing:-.03em}
+.wishpick .nowbar{margin:9px 0 0}
+.wishpick__cta{margin-top:10px; min-height:52px; font-size:15px}
+
+/* 이런 분께 — 한 줄 칩 */
+.fit{margin-top:14px; padding-top:13px; border-top:1px dashed rgba(185,146,78,.3)}
+.fit__t{display:block; font-size:11.5px; font-weight:700; letter-spacing:.02em; color:var(--gold); margin-bottom:8px}
+.fit__l{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px}
+.fit__l li{padding:5px 11px; border:1px solid var(--line-2); border-radius:999px; background:#fff; font-size:11.5px; color:var(--ink-soft); letter-spacing:-.02em}
+
+/* 3단계 — 3열 압축 */
+.steps{grid-template-columns:repeat(3,1fr); gap:8px}
+.steps li{padding:12px 11px 13px; gap:7px; flex-direction:column; align-items:flex-start}
+.steps .num{flex:0 0 22px; width:22px; height:22px; font-size:10.5px}
+.steps b{font-size:12.5px; margin-bottom:2px}
+.steps span{font-size:10.5px; line-height:1.5}
+
+/* 3페이지 — 썰네일 3열 스트립 */
+.pdf3{grid-template-columns:repeat(3,1fr); gap:8px}
+.pdfrow{flex-direction:column; align-items:stretch; gap:7px; padding:8px 8px 10px; border-radius:15px}
+.pdfrow .tmedia{flex:0 0 auto; width:100%; border-radius:10px}
+.pdfrow .pdfno{font-size:9.5px; letter-spacing:.14em}
+.pdfrow h3{margin:1px 0 0; font-size:11.5px; line-height:1.35; letter-spacing:-.03em}
+
+/* 섹션 리듬 */
+section{padding:28px 0}
+
+/* 기원 드롭다운 1줄 */
+.sel{position:relative}
+.sel select.input{min-height:50px; padding:12px 40px 12px 15px; font-size:15px; font-weight:600; cursor:pointer}
+.sel__arrow{position:absolute; right:14px; top:50%; transform:translateY(-50%); width:16px; height:16px; stroke:var(--gold); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; pointer-events:none}
+
 </style>
 </head>
 <body>
@@ -1387,53 +1452,13 @@ body.has-mbar{padding-bottom:78px}
   </div>
 </header>
 
-<!-- ============ 왜 인쇄용 부적인가 ============ -->
-<section aria-labelledby="featTitle">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">WHY TALISMAN</p>
-      <h2 id="featTitle"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8 14.2 8.9 21.4 11.1 14.2 13.3 12 20.4 9.8 13.3 2.6 11.1 9.8 8.9Z"/></svg>부적은, 매일 꺼내 보는<br>마음의 자리입니다</h2>
-      <p>화면 속 그림은 금세 잊히지만, 지갑 한 칸에 접어 넣은 종이는 하루에 몇 번씩 눈에 닿습니다. 접월당은 그 자리에 놓일 한 장을 그립니다.</p>
-    </div>
-
-    <div class="cards">
-      <article class="card reveal">
-        <div class="ico" aria-hidden="true">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V4h10v5"/><rect x="4" y="9" width="16" height="7" rx="1.6"/><path d="M7 16h10v4H7z"/></svg>
-        </div>
-        <h3>손에 쥐는 부적</h3>
-        <p>화면 속 그림이 아니라 A4 300dpi 인쇄용 파일입니다. 실제 크기로 인쇄해 지갑·수첩·파우치에 넣어 두세요.</p>
-        <span class="tag">인쇄용 PDF</span>
-      </article>
-
-      <article class="card reveal">
-        <div class="ico" aria-hidden="true">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6c1.7 2.2 4 3.4 6.4 3.6-.3 6.4-2.7 10.4-6.4 12.2-3.7-1.8-6.1-5.8-6.4-12.2 2.4-.2 4.7-1.4 6.4-3.6Z"/><path d="M9.6 12.2 11.5 14l3-3.2"/></svg>
-        </div>
-        <h3>한 사람을 위한 그림</h3>
-        <p>생년월일과 태어난 시간으로 부족한 오행을 짚어, 색감·문양·문장을 1:1로 맞춰 그립니다.</p>
-        <span class="tag">사주 맞춤</span>
-      </article>
-
-      <article class="card reveal">
-        <div class="ico" aria-hidden="true">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 7.5 12 3.6l8.4 3.9v9L12 20.4l-8.4-3.9v-9Z"/><path d="M3.6 7.5 12 11.4l8.4-3.9M12 11.4v9"/></svg>
-        </div>
-        <h3>여섯 시간이면 도착</h3>
-        <p>입금이 확인되면 바로 제작을 시작해, 평균 6시간 · 최대 12시간 안에 이메일로 보내드립니다.</p>
-        <span class="tag">빠른 발송</span>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 3페이지 구성 ============ -->
+<!-- ============ 3페이지 구성 + 이런 분께 ============ -->
 <section aria-labelledby="specTitle">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">WHAT YOU GET</p>
       <h2 id="specTitle">부적 한 장이<br>아닙니다</h2>
-      <p>어떻게 인쇄하고 어디에 간직하면 좋은지까지 담아, 인쇄용 PDF 3페이지로 보내드립니다.</p>
+      <p>인쇄하고 간직하는 법까지 담아 <b>인쇄용 PDF 3페이지</b>로 보내드립니다. 해설지 · 큰 부적 7×15cm · 지갑용 2장.</p>
     </div>
 
     <ul class="pdf3 reveal">
@@ -1445,7 +1470,6 @@ body.has-mbar{padding-bottom:78px}
         <div class="pdfbody">
           <b class="pdfno">01</b>
           <h3>해설지</h3>
-          <p>이 부적에 담은 기원과 오행의 뜻, 인쇄·보관 방법을 한 페이지에 정리했습니다.</p>
         </div>
       </li>
 
@@ -1457,7 +1481,6 @@ body.has-mbar{padding-bottom:78px}
         <div class="pdfbody">
           <b class="pdfno">02</b>
           <h3>큰 부적 7×15cm</h3>
-          <p>실제 크기 그대로 잘라 쓰는 본 부적입니다. 지갑·수첩·파우치 속에 넣어 두기 좋습니다.</p>
         </div>
       </li>
 
@@ -1469,155 +1492,75 @@ body.has-mbar{padding-bottom:78px}
         <div class="pdfbody">
           <b class="pdfno">03</b>
           <h3>지갑용 2장</h3>
-          <p>더 작게 잘라 지갑 한 칸에 들어가는 두 장. 하나는 지갑에, 하나는 수첩에 나눠 두셔도 좋습니다.</p>
         </div>
       </li>
     </ul>
 
-    <p class="cta-sub reveal" style="text-align:center; margin-top:14px">A4 300dpi 인쇄용 PDF 3페이지 + 같은 이미지의 고해상 PNG 1장을 함께 보내드립니다.<br>화면 미리보기에는 도용 방지 워터마크가 들어가 있으며, 전달되는 파일에는 없습니다.</p>
-  </div>
-</section>
+    <p class="tgal-note reveal" style="margin-top:11px">A4 300dpi 인쇄용 PDF 3페이지 + 같은 이미지의 고해상 PNG 1장을 함께 보내드립니다.</p>
 
-<!-- ============ 이런 분께 ============ -->
-<section aria-labelledby="fitTitle">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">FOR YOU</p>
-      <h2 id="fitTitle">이런 분께 딱 맞아요</h2>
+    <div class="fit reveal">
+      <b class="fit__t">이런 분께 딱 맞아요</b>
+      <ul class="fit__l">
+        <li>지갑 속 작은 부적 한 장</li>
+        <li>시험 · 면접 · 이직</li>
+        <li>집 판매 · 이사</li>
+        <li>인연 · 재회</li>
+        <li>사주에 맞는 색과 문양</li>
+      </ul>
     </div>
-    <ul class="checklist reveal">
-      <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12.5 9.3 17.3 19.5 7"/></svg></span><span>지갑 속에 <b>작은 부적 한 장</b>을 두고 싶은 분</span></li>
-      <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12.5 9.3 17.3 19.5 7"/></svg></span><span>시험·면접·이직처럼 <b>한 걸음 앞</b>이 중요한 분</span></li>
-      <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12.5 9.3 17.3 19.5 7"/></svg></span><span>집을 팔거나 옮기며 <b>좋은 사람</b>을 기다리는 분</span></li>
-      <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12.5 9.3 17.3 19.5 7"/></svg></span><span><b>인연·재회</b>처럼 마음이 먼저 움직이는 일이 있는 분</span></li>
-      <li><span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12.5 9.3 17.3 19.5 7"/></svg></span><span>내 사주에 맞는 <b>색과 문양</b>으로 받고 싶은 분</span></li>
-    </ul>
   </div>
 </section>
 
-<!-- ============ 부적 2종 ============ -->
+<!-- ============ 부적 2종 & 기원 14종 ============ -->
 <section id="products" aria-labelledby="prodTitle">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="eyebrow">PRINTED TALISMAN</p>
+      <p class="eyebrow">TWO TALISMANS</p>
       <h2 id="prodTitle">부적은 <em>두 가지</em>입니다</h2>
-      <p>필요한 한 가지 기원을 고르는 <b>기원부적</b>, 사주 오행에 맞춰 1:1로 그리는 <b>나만의 부적</b>. 둘 다 인쇄용 3페이지 PDF로 보내드립니다.</p>
+      <p>기원 하나를 고르는 <b>기원부적 9,900원</b>, 사주 오행에 맞춰 1:1로 그리는 <b>나만의 부적 29,000원</b>.</p>
     </div>
 
-    <div class="reveal">
-      <article class="pcard" id="wishCard">
-        <div class="tmedia">
+    <div class="picks reveal">
+      <article class="pick" id="wishCard" data-pick="wish" tabindex="0" role="button" aria-label="기원부적 9,900원 — 신청서로 이동">
+        <span class="tmedia pick__media">
           <img id="wishMedia" src="assets/talisman/wish/01-health.jpg" alt="접월당 기원부적(건강운) 미리보기 — 도용 방지 워터마크 적용" width="620" height="620" draggable="false" data-protect="tal">
           <span class="tguard" aria-hidden="true"></span>
-          <span class="pbadge">선택형 · 14가지 기원</span>
-        </div>
-        <div class="pcard__body">
-          <span class="pcard__cat">WISH TALISMAN</span>
-          <h3 class="pcard__name">기원부적 <em>(선택형)</em></h3>
-          <p class="pcard__desc">건강·재물·일·관계·시험까지, 지금 마음에 있는 기원 하나를 고르세요. 같은 부적에 고른 기원의 뜻을 담아 보내드립니다.</p>
-          <p class="pcard__spec">인쇄용 3페이지 PDF · 평균 6시간(최대 12시간) 내 메일 발송</p>
-          <div class="wchips" id="wishChipsCard" role="group" aria-label="기원 미리 선택"></div>
-          <p class="nowbar" id="wishNow"></p>
-          <div class="pcard__foot">
-            <div class="pcard__price"><b>9,900원</b><span>A4 300dpi · 인쇄용 PDF</span></div>
-            <button class="pcard__cta" type="button" data-pick="wish">
-              이 기원으로 신청
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
-            </button>
-          </div>
+        </span>
+        <div class="pick__body">
+          <span class="pick__cat">WISH · 14가지 기원</span>
+          <h3 class="pick__name">기원부적 <em>9,900원</em></h3>
+          <p class="pick__desc">지금 마음에 걸리는 기원 하나를 골라 그 뜻을 담습니다.</p>
+          <span class="pick__go">신청하기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg></span>
         </div>
       </article>
 
-      <article class="pcard" id="customCard">
-        <div class="tmedia">
+      <article class="pick" id="customCard" data-pick="custom" tabindex="0" role="button" aria-label="나만의 부적 29,000원 — 신청서로 이동">
+        <span class="tmedia pick__media">
           <img src="assets/talisman/wish/15-custom.jpg" alt="나만의 부적 완성 예시 — 사주 오행에 맞춘 1:1 제작, 도용 방지 워터마크 적용" width="620" height="620" loading="lazy" draggable="false" data-protect="tal">
           <span class="tguard" aria-hidden="true"></span>
-          <span class="pbadge gold">1:1 사주 맞춤</span>
-        </div>
-        <div class="pcard__body">
-          <span class="pcard__cat">CUSTOM TALISMAN</span>
-          <h3 class="pcard__name">나만의 부적 <em>(사주 맞춤)</em></h3>
-          <p class="pcard__desc">생년월일과 태어난 시간으로 사주 오행을 짚어, 색감·문양·문장·해설을 1:1로 맞춰 그립니다.</p>
-          <p class="pcard__spec">사주 맞춤 제작 후 평균 6시간(최대 12시간) 내 메일 발송</p>
-          <ul class="pcard__list">
-            <li>큰 부적 1장(7×15cm) + 지갑용 2장</li>
-            <li>해설지·사용 안내 포함 3페이지 PDF</li>
-            <li>신청서에 생년월일·태어난 시간 입력</li>
-          </ul>
-          <div class="pcard__foot">
-            <div class="pcard__price"><b>29,000원</b><span>제작 후 6~12시간 내 발송</span></div>
-            <button class="pcard__cta" type="button" data-pick="custom">
-              나만의 부적으로 신청
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
-            </button>
-          </div>
+        </span>
+        <div class="pick__body">
+          <span class="pick__cat">CUSTOM · 사주 맞춤</span>
+          <h3 class="pick__name">나만의 부적 <em>29,000원</em></h3>
+          <p class="pick__desc">생년월일과 태어난 시간으로 색감·문양·문장을 1:1로 맞춰 그립니다.</p>
+          <span class="pick__go">신청하기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg></span>
         </div>
       </article>
     </div>
-  </div>
-</section>
 
-<!-- ============ 나만의 부적 ============ -->
-<section id="custom" aria-labelledby="customTitle">
-  <div class="wrap">
-    <div class="feat reveal">
-      <div class="feat__media">
-        <div class="feat__frame">
-          <div class="tmedia">
-            <img id="featImg" src="assets/talisman/wish/15-custom.jpg" alt="나만의 부적 완성 예시 — 사주 오행에 맞춘 1:1 제작" width="620" height="620" loading="lazy" draggable="false" data-protect="tal">
-            <span class="tguard" aria-hidden="true"></span>
-          </div>
-        </div>
-        <div class="feat__gal">
-          <button type="button" class="is-on" data-feat="assets/talisman/wish/15-custom.jpg" aria-label="나만의 부적 완성 예시 보기">
-            <span class="tmedia"><img src="assets/talisman/wish/15-custom.jpg" alt="" width="620" height="620" loading="lazy" draggable="false" data-protect="tal"><span class="tguard" aria-hidden="true"></span></span>
-          </button>
-          <button type="button" data-feat="assets/talisman/tal-sample-custom.jpg" aria-label="큰 부적과 지갑용 2장 구성 보기">
-            <span class="tmedia"><img src="assets/talisman/tal-sample-custom.jpg" alt="" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal"><span class="tguard" aria-hidden="true"></span></span>
-          </button>
-          <button type="button" data-feat="assets/talisman/tal-sample-guide.jpg" aria-label="해설지 보기">
-            <span class="tmedia"><img src="assets/talisman/tal-sample-guide.jpg" alt="" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal"><span class="tguard" aria-hidden="true"></span></span>
-          </button>
-        </div>
+    <div class="wishpick reveal">
+      <div class="wishpick__head">
+        <b>기원, 열네 가지</b>
+        <span>그림을 누르면 바로 선택되어 신청서에 담깁니다</span>
       </div>
-
-      <div class="feat__body">
-        <span class="feat__kicker">CUSTOM TALISMAN · 29,000원</span>
-        <h2 class="feat__name" id="customTitle">사주 오행에 맞춘<br><em>나만의 부적</em></h2>
-        <p class="feat__lead">생년월일과 태어난 시간으로 사주를 세우고, 부족한 오행과 필요한 기운을 짚어 색감·문양·문장·해설을 1:1로 맞춰 그립니다.</p>
-        <ul class="olist">
-          <li><b>색감</b> — 부족한 오행을 채우는 색으로 부적의 바탕을 잡습니다.</li>
-          <li><b>문양</b> — 필요한 기운의 문양과 접월당의 나비 문장을 배치합니다.</li>
-          <li><b>문장·해설</b> — 왜 이 부적인지 3페이지 해설지에 함께 담습니다.</li>
-        </ul>
-        <div class="meta-list">
-          <div><b>구성</b><span>큰 부적 1장 + 지갑용 2장</span></div>
-          <div><b>규격</b><span>A4 300dpi · 7×15cm</span></div>
-          <div><b>발송</b><span>평균 6시간(최대 12시간)</span></div>
-          <div><b>필요 정보</b><span>생년월일·출생시간·성별</span></div>
-        </div>
-        <div class="feat__foot">
-          <div class="feat__price"><b>29,000원</b><span>이미지는 완성 예시입니다</span></div>
-          <button class="pcard__cta" type="button" data-pick="custom">
-            나만의 부적으로 신청
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
-          </button>
-        </div>
-      </div>
+      <div class="tgal" id="tgal" role="group" aria-label="기원 14종 선택"></div>
+      <p class="nowbar" id="wishNow"></p>
+      <a class="cta-main wishpick__cta" href="#apply" id="wishCta" data-pick="wish">
+        <span id="wishCtaLabel">이 기원으로 신청하기</span>
+        <span class="price">9,900원</span>
+      </a>
+      <p class="tgal-note">※ 화면 미리보기에만 도용 방지 워터마크가 있으며, 전달되는 PDF·PNG에는 없습니다.</p>
     </div>
-  </div>
-</section>
-
-<!-- ============ 기원 14종 ============ -->
-<section id="themes" aria-labelledby="themesTitle">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">14 WISHES</p>
-      <h2 id="themesTitle">기원, 열네 가지</h2>
-      <p>지금 마음에 닿는 그림을 먼저 골라도 좋습니다. 고른 기원은 위 기원부적 카드와 신청서에 그대로 담깁니다.</p>
-    </div>
-    <div class="tgal reveal" id="tgal" role="group" aria-label="기원 14종 미리보기"></div>
-    <p class="tgal-note reveal">※ 화면 미리보기에는 도용 방지 워터마크가 적용되어 있으며, 구매 후 전달되는 고해상 PDF·PNG에는 워터마크가 없습니다.</p>
   </div>
 </section>
 
@@ -1629,9 +1572,9 @@ body.has-mbar{padding-bottom:78px}
       <h2 id="stepTitle">신청은 세 단계면 끝납니다</h2>
     </div>
     <ol class="steps reveal">
-      <li><span class="num">1</span><div><b>신청서 작성</b><span>상품과 원하는 기원(또는 생년월일·태어난 시간), 부적 파일을 받으실 이메일만 남겨주세요. 1분이면 충분합니다.</span></div></li>
-      <li><span class="num">2</span><div><b>입금</b><span>신청 후 안내되는 케이뱅크 계좌로 입금하시면 접수가 확정됩니다. 입금자명은 신청서의 이름과 같게 해 주세요.</span></div></li>
-      <li><span class="num">3</span><div><b>제작 · 발송</b><span>입금이 확인되면 부적을 만들기 시작해, 평균 6시간·최대 12시간 안에 인쇄용 PDF를 이메일로 보내드립니다.</span></div></li>
+      <li><span class="num">1</span><div><b>신청서 작성</b><span>상품·기원·이메일</span></div></li>
+      <li><span class="num">2</span><div><b>입금</b><span>케이뱅크 계좌 안내</span></div></li>
+      <li><span class="num">3</span><div><b>제작 · 발송</b><span>평균 6시간 내 메일</span></div></li>
     </ol>
 
     <div class="orderinfo reveal">
@@ -1681,10 +1624,12 @@ body.has-mbar{padding-bottom:78px}
 
         <!-- 원하는 기원 -->
         <div class="field" id="f-wish">
-          <span class="label">원하는 기원 <span class="req">필수</span></span>
-          <div class="wchips" id="wishChips" role="radiogroup" aria-label="원하는 기원 선택"></div>
+          <label for="wishSel">원하는 기원 <span class="req">필수</span></label>
+          <div class="sel">
+            <select class="input" id="wishSel" name="wish"></select>
+            <svg class="sel__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+          </div>
           <p class="hint-msg">고른 기원의 뜻을 담아 부적을 그립니다.</p>
-          <p class="err-msg">원하는 기원을 선택해 주세요.</p>
         </div>
 
         <!-- 나만의 부적 정보 -->
@@ -1837,15 +1782,11 @@ body.has-mbar{padding-bottom:78px}
       </details>
       <details>
         <summary>어떤 기원을 골라야 할지 모르겠어요.</summary>
-        <p>건강운·재물운·취업운·사업운·직장상사운·직장부하운·합격운·집판매운·집값올림운·인연운·재회운·시험운·결혼운·액막이용까지 14가지입니다. 지금 가장 마음에 걸리는 한 가지를 고르시면 됩니다. 여러 사람 몫이 필요하면 한 번에 한 장씩 나누어 신청하시면 됩니다.</p>
+        <p>지금 가장 마음에 걸리는 한 가지를 고르시면 됩니다. 여러 사람 몫이 필요하면 한 번에 한 장씩 나누어 신청하시면 됩니다.</p>
       </details>
       <details>
         <summary>부적은 어떻게 인쇄하고 간직하나요?</summary>
         <p>받으신 PDF를 A4 300dpi로 실제 크기에 맞춰 인쇄한 뒤, 큰 부적은 반으로 접어 지갑·파우치·수첩 속에 넣어 두시면 됩니다. 부적은 남에게 보이기보다 숨겨 간직할 때 뜻이 살아난다고 봅니다. 인쇄·보관 방법은 파일 안의 해설지에 담았습니다.</p>
-      </details>
-      <details>
-        <summary>나만의 부적은 어떻게 만들어지나요?</summary>
-        <p>신청서에 적어주신 생년월일과 태어난 시간으로 사주를 세우고, 부족한 오행과 필요한 기운을 짚어 색감·문양·문장·해설을 1:1로 맞춰 그립니다. 큰 부적 1장과 지갑용 2장, 해설지를 함께 보내드립니다. 상품 이미지는 완성 예시이며, 신청하신 사주에 따라 다른 한 장이 만들어집니다.</p>
       </details>
       <details>
         <summary>태어난 시간을 모르면 나만의 부적을 신청할 수 없나요?</summary>
@@ -2060,33 +2001,25 @@ body.has-mbar{padding-bottom:78px}
   var policyModal = $('policyModal');
   var lastFocus = null;
 
-  /* ---------- 칩 · 갤러리 렌더 ---------- */
-  function cardChipsHTML() {
+  /* ---------- 기원 선택(갤러리 · 신청서 드롭다운) 렌더 ---------- */
+  function formOptionsHTML() {
     return WISH.map(function (w) {
-      return '<button type="button" class="wchip-btn" data-wish="' + w.key + '" aria-pressed="' +
-        (w.key === state.wish) + '">' + w.label + '</button>';
-    }).join('');
-  }
-  function formChipsHTML() {
-    return WISH.map(function (w, i) {
-      return '<label class="wchip"><input type="radio" name="wish" value="' + w.key + '"' +
-        (w.key === state.wish ? ' checked' : '') + '><span>' + w.label + '</span></label>';
+      return '<option value="' + w.key + '"' + (w.key === state.wish ? ' selected' : '') + '>' +
+        w.no + '. ' + w.label + '</option>';
     }).join('');
   }
   function galleryHTML() {
     return WISH.map(function (w) {
       return '<button type="button" class="tgal__i" data-wish="' + w.key + '" aria-pressed="' +
-        (w.key === state.wish) + '" aria-label="' + w.label + ' 부적 미리보기">' +
+        (w.key === state.wish) + '" aria-label="' + w.label + ' 부적 선택">' +
         '<span class="tmedia"><img src="' + w.art + '" alt="' + w.label + ' 부적 미리보기" width="620" height="620" loading="lazy" draggable="false" data-protect="tal">' +
         '<span class="tguard" aria-hidden="true"></span></span>' +
         '<span class="tgal__lab">' + w.label + '</span></button>';
     }).join('');
   }
 
-  var chipWrap = $('wishChipsCard');
-  if (chipWrap) chipWrap.innerHTML = cardChipsHTML();
-  var formChips = $('wishChips');
-  if (formChips) formChips.innerHTML = formChipsHTML();
+  var wishSel = $('wishSel');
+  if (wishSel) wishSel.innerHTML = formOptionsHTML();
   var gal = $('tgal');
   if (gal) gal.innerHTML = galleryHTML();
 
@@ -2099,14 +2032,9 @@ body.has-mbar{padding-bottom:78px}
     }
     var now = $('wishNow');
     if (now) now.innerHTML = '선택 · <b>' + w.label + '</b> — ' + w.tag;
-    $$('.wchip-btn').forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.wish === state.wish));
-    });
+    if (wishSel) wishSel.value = state.wish;
     $$('.tgal__i').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.wish === state.wish));
-    });
-    $$('input[name="wish"]', form).forEach(function (r) {
-      r.checked = (r.value === state.wish);
     });
   }
 
@@ -2117,7 +2045,7 @@ body.has-mbar{padding-bottom:78px}
     syncWish();
     if (opts && opts.toast) {
       var w = wishOf(key);
-      toast(w.label + eul(w.label) + ' 선택했습니다');
+      toast(w.label + eul(w.label) + ' 선택했습니다 · 신청서에 반영');
     }
   }
 
@@ -2149,7 +2077,7 @@ body.has-mbar{padding-bottom:78px}
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setTimeout(function () {
-          var first = kind === 'custom' ? $('talName') : (formChips && formChips.querySelector('input:checked'));
+          var first = kind === 'custom' ? $('talName') : $('wishSel');
           if (first && first.focus) first.focus({ preventScroll: true });
         }, 420);
       }
@@ -2290,7 +2218,7 @@ body.has-mbar{padding-bottom:78px}
   /* ---------- 클릭 위임 ---------- */
   document.addEventListener('click', function (e) {
     var wishBtn = e.target.closest('[data-wish]');
-    if (wishBtn && !wishBtn.classList.contains('wchip')) {
+    if (wishBtn) {
       selectWish(wishBtn.dataset.wish, { toast: true, force: true });
       return;
     }
@@ -2300,24 +2228,25 @@ body.has-mbar{padding-bottom:78px}
       selectProduct(pick.dataset.pick, { scroll: true });
       return;
     }
-    var featBtn = e.target.closest('[data-feat]');
-    if (featBtn) {
-      var img = $('featImg');
-      if (img) img.src = featBtn.dataset.feat;
-      $$('.feat__gal button').forEach(function (b) { b.classList.toggle('is-on', b === featBtn); });
-      return;
-    }
     var pol = e.target.closest('[data-policy]');
     if (pol) { e.preventDefault(); openPolicy(pol.dataset.policy); return; }
     var tab = e.target.closest('#policyTabs [data-tab]');
     if (tab) { renderPolicy(tab.dataset.tab); return; }
   });
 
-  formChips.addEventListener('change', function (e) {
-    if (e.target && e.target.name === 'wish') {
-      selectWish(e.target.value);
-      setInvalid('f-wish', false);
-    }
+  if (wishSel) {
+    wishSel.addEventListener('change', function () {
+      selectWish(this.value);
+    });
+  }
+
+  /* 카드 전체를 눌러도 신청서로 이동 (키보드 Enter·Space 포함) */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    var card = e.target.closest && e.target.closest('.pick[data-pick]');
+    if (!card) return;
+    e.preventDefault();
+    selectProduct(card.dataset.pick, { scroll: true });
   });
 
   /* ---------- 검증 ---------- */

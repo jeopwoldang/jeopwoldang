@@ -784,6 +784,13 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hz) + 14px)}
   -webkit-touch-callout:none;
   -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
   -webkit-user-drag:none;user-drag:none;
+  pointer-events:none;   /* 길게 누르기 '이미지 저장' 메뉴·드래그 차단 */
+}
+.tcard2__media,.pd__media,.plate--img{position:relative}
+.tguard{
+  position:absolute;inset:0;z-index:2;display:block;pointer-events:none;
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;
+  -webkit-user-drag:none;
 }
 
 .photo{width:100%;height:100%;overflow:hidden}
@@ -1414,7 +1421,8 @@ body:has(#doneView.is-open) .toast{bottom:112px}
     <div class="tshop" id="tShop" data-rev>
       <article class="tcard2" id="wishCard">
         <button class="tcard2__media" data-open="tal-wish-health" aria-label="기원부적 상세 보기">
-          <img src="assets/talisman/tal-sample.jpg" alt="접월당 기원부적 샘플" width="1000" height="1250" loading="lazy" draggable="false" data-protect="tal">
+          <img src="assets/talisman/tal-sample.jpg?v=2" alt="접월당 기원부적 샘플" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal">
+          <span class="tguard" aria-hidden="true"></span>
           <span class="tcard2__badge">선택형 · 14가지 기원</span>
         </button>
         <div class="tcard2__body">
@@ -1435,7 +1443,8 @@ body:has(#doneView.is-open) .toast{bottom:112px}
 
       <article class="tcard2" id="customCard">
         <button class="tcard2__media" data-open="tal-custom" aria-label="나만의 부적 상세 보기">
-          <img src="assets/talisman/tal-sample-custom.jpg" alt="나만의 부적 구성 샘플 — 큰 부적 1장과 지갑용 2장" width="1000" height="1250" loading="lazy" draggable="false" data-protect="tal">
+          <img src="assets/talisman/tal-sample-custom.jpg?v=2" alt="나만의 부적 구성 샘플 — 큰 부적 1장과 지갑용 2장" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal">
+          <span class="tguard" aria-hidden="true"></span>
           <span class="tcard2__badge tcard2__badge--gold">1:1 사주 맞춤</span>
         </button>
         <div class="tcard2__body">
@@ -1804,9 +1813,9 @@ const WISH_THEMES = [
 
 /* 사용자가 보낸 부적 샘플(3034 해설지 · 3032 인쇄 구성컷 · 3033 사용 안내)에서
    부적 그림만 잘라 만든 웹용 카드 이미지 — SAMPLE 워터마크 포함 */
-const TAL_IMG_SAMPLE = 'assets/talisman/tal-sample.jpg';
-const TAL_IMG_CUSTOM = 'assets/talisman/tal-sample-custom.jpg';
-const TAL_IMG_GUIDE  = 'assets/talisman/tal-sample-guide.jpg';
+const TAL_IMG_SAMPLE = 'assets/talisman/tal-sample.jpg?v=2';
+const TAL_IMG_CUSTOM = 'assets/talisman/tal-sample-custom.jpg?v=2';
+const TAL_IMG_GUIDE  = 'assets/talisman/tal-sample-guide.jpg?v=2';
 
 const TALISMANS = WISH_THEMES.map((t, i) => ({
   id:'tal-wish-' + t.key, no:String(i + 1).padStart(2, '0'), hanja:t.hanja,
@@ -1931,7 +1940,7 @@ function coverHTML(p, extra=''){
 }
 function plateHTML(p){
   if(p.image){
-    return `<div class="plate plate--img"><img src="${p.image}" alt="${p.name}" loading="lazy" width="800" height="800" draggable="false" data-protect="tal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>`;
+    return `<div class="plate plate--img"><img src="${p.image}" alt="${p.name}" loading="lazy" width="1000" height="1000" draggable="false" data-protect="tal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><span class="tguard" aria-hidden="true"></span></div>`;
   }
   return `<div class="plate">
       <div class="plate__medal"><i class="plate__rays"></i><span class="plate__hanja">${p.hanja}</span></div>

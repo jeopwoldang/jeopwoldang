@@ -1201,9 +1201,11 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       else if (i.type === 'saju') L.push('   · 사주 명식과 10년 대운, 올해의 흐름을 담은 약 120페이지 A4 PDF입니다.');
       else if (i.type === 'custom') L.push('   · 사주 오행에 맞춰 제작한 부적 PDF 3장과 고해상 PNG 1장을 첨부했습니다.');
       else if (i.type === 'talisman') L.push('   · 부적 PDF 3장과 고해상 PNG 1장입니다. 인쇄하시거나 휴대폰 배경으로 쓰실 수 있습니다.');
-      else if (i.type === 'diary') L.push(i.option && i.option.indexOf('원국') === 0
-        ? '   · 사주 원국을 채운 A4 가로 PDF입니다. 굿노트·노타빌리티에서 여시면 오른쪽 색 탭과 북마크로 페이지를 넘길 수 있습니다. 2027년 2~12월 일진 달력은 완성되는 대로 같은 이메일로 보내드립니다.'
-        : '   · A4 가로 4페이지 PDF입니다. 굿노트·노타빌리티에 넣어 쓰세요. 2027년 2~12월 일진 달력은 완성되는 대로 같은 이메일로 보내드립니다.');
+      else if (i.type === 'diary') L.push(i.option && i.option.indexOf('프리미엄') === 0
+        ? '   · 내 사주 기준으로 1~12월 365일 날짜마다 풀리는 날·조심할 날·이동수를 표기한 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에서 바로 여세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.'
+        : i.option && i.option.indexOf('원국') === 0
+        ? '   · 사주 원국 8칸과 오행 밸런스를 채운 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에서 바로 여세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.'
+        : '   · 표지 2종·내 사주 원국·1~12월 일진 플래너·스티커 24종을 담은 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에 넣어 쓰세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.');
       else if (i.type === 'event') L.push('   · 2027 신년운세 약 60페이지 PDF를 첨부했습니다. 7일 안에 블로그·스레드·자사몰 중 한 곳에 후기를 남기고 링크를 보내주시면 참가비 10,000원을 전액 계좌로 환급해 드립니다.');
     });
     const askables = items.filter(i => (i.type === 'saju' || i.type === 'ziwei') && i.id !== 'new2027');

@@ -1155,7 +1155,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     const L = [`[접월당 출생정보] ${o.id}`];
     const bs = o.births || [];
     if (!bs.length) {
-      L.push('출생 정보 없음 (사주·자미두수·나만의 부적이 포함되지 않은 주문)');
+      L.push('출생 정보 없음 (사주·자미두수·나만의 부적·원국 기입형 다이어리·체험단이 포함되지 않은 주문)');
       return L.join('\n');
     }
     bs.forEach((b, i) => {
@@ -1201,8 +1201,16 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       else if (i.type === 'saju') L.push('   · 사주 명식과 10년 대운, 올해의 흐름을 담은 약 120페이지 A4 PDF입니다.');
       else if (i.type === 'custom') L.push('   · 사주 오행에 맞춰 제작한 부적 PDF 3장과 고해상 PNG 1장을 첨부했습니다.');
       else if (i.type === 'talisman') L.push('   · 부적 PDF 3장과 고해상 PNG 1장입니다. 인쇄하시거나 휴대폰 배경으로 쓰실 수 있습니다.');
+      else if (i.type === 'diary') L.push(i.option && i.option.indexOf('원국') === 0
+        ? '   · 사주 원국을 채운 A4 가로 PDF입니다. 굿노트·노타빌리티에서 여시면 오른쪽 색 탭과 북마크로 페이지를 넘길 수 있습니다. 2027년 2~12월 일진 달력은 완성되는 대로 같은 이메일로 보내드립니다.'
+        : '   · A4 가로 4페이지 PDF입니다. 굿노트·노타빌리티에 넣어 쓰세요. 2027년 2~12월 일진 달력은 완성되는 대로 같은 이메일로 보내드립니다.');
+      else if (i.type === 'event') L.push('   · 2027 신년운세 약 60페이지 PDF를 첨부했습니다. 7일 안에 블로그·스레드·자사몰 중 한 곳에 후기를 남기고 링크를 보내주시면 참가비 10,000원을 전액 계좌로 환급해 드립니다.');
     });
     const askables = items.filter(i => (i.type === 'saju' || i.type === 'ziwei') && i.id !== 'new2027');
+    if (items.some(i => i.type === 'event')) {
+      L.push('');
+      L.push('후기를 남기신 뒤 링크를 카카오채널로 보내주시면 확인 후 3영업일 이내에 참가비 10,000원을 계좌로 환급해 드립니다.');
+    }
     if (askables.length) {
       L.push('');
       L.push('분석지를 받으신 날부터 10일간 카카오채널(접월당)로 추가 질문을 받습니다.');

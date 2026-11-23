@@ -1448,8 +1448,8 @@ body:has(#doneView.is-open) .toast{bottom:112px}
         <p>종합 사주분석지·자미두수 분석지의 <b>1인 상품은 본인 개인 질문만 가능</b>하며, 타인 사주·궁합 질문은 받지 않습니다. 두 사람의 궁합·관계·동업을 보시려면 <b>2인 상품</b>을 선택해 주세요. 2인 상품은 두 분의 명식(명반)을 각각 풀고 궁합·관계 질문까지 함께 받습니다.</p>
       </details>
       <details>
-        <summary>태어난 시간을 모르면 신청할 수 없나요?</summary>
-        <p>사주분석지는 일주 중심으로 해석하므로 시간을 몰라도 신청하실 수 있습니다. 다만 자미두수는 출생시로 명궁의 자리가 정해지기 때문에 시간을 모르면 명반이 그려지지 않아 신청이 어렵습니다. 출생신고서·가족의 기억·산모수첩 등으로 먼저 확인해 보시고, 그래도 모르시면 카카오채널 ‘접월당’으로 문의해 주세요.</p>
+        <summary>태어난 시간을 정확히 모르면 신청할 수 없나요?</summary>
+        <p>사주분석지는 일주 중심으로 해석하므로 시간을 몰라도 신청하실 수 있습니다. 자미두수는 분 단위까지 정확하지 않아도 되고, <b>대략적인 태어난 시간(시진·시간대)은 알고 계셔야 합니다.</b> 시간을 전혀 모르면 명궁이 정해지지 않아 명반이 그려지지 않습니다. 출생신고서·가족의 기억·산모수첩 등으로 먼저 확인해 보시고, 그래도 모르시면 카카오채널 ‘접월당’으로 문의해 주세요.</p>
       </details>
       <details>
         <summary>2027 사주 개운 다이어리는 어떻게 쓰나요?</summary>
@@ -1766,18 +1766,18 @@ const PRODUCTS = [
     name:'자미두수 명반 정밀 분석지 · 1인', price:49800, badge:'NEW', photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI DOU SHU', top:'ZIWEI · 12 PALACES', sub:'12궁 명반 정밀 분석', variant:'wheel'},
     short:'12궁 명반과 14주성·사화로 읽는 영역별 정밀 분석',
-    desc:'태어난 시각으로 명반을 그려 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 읽는 정밀 분석지입니다.',
-    bullets:['12궁 명반(명궁·재백·관록·부처·질액 등) 정밀 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','10년 대한 · 유년의 시기별 흐름','출생시 필수 · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 본인 개인 질문만 가능 (타인·궁합 불가)'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (본인 질문만 · 궁합 불가)'],['필수 정보','출생시(시·분) 필수']],
+    desc:'대략적인 태어난 시간(시진)으로 명반을 그려 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 읽는 정밀 분석지입니다.',
+    bullets:['12궁 명반(명궁·재백·관록·부처·질액 등) 정밀 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','10년 대한 · 유년의 시기별 흐름','대략적인 태어난 시간은 필요 · 시간을 전혀 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 본인 개인 질문만 가능 (타인·궁합 불가)'],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (본인 질문만 · 궁합 불가)'],['필수 정보','대략적인 출생시간대(시진)']],
     notice:'※ 1인 상품은 본인 개인 질문만 가능하며, 타인 명반·궁합 질문은 불가합니다. (궁합·2인 비교는 2인을 선택해 주세요.)' },
 
   { id:'ziwei2', cat:'ziwei', type:'ziwei', persons:2, timeRequired:true,
     name:'자미두수 명반 정밀 분석지 · 2인', price:90000, photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI FOR TWO', top:'ZIWEI · 2 PERSONS', sub:'2인 명반 · 궁합·관계 분석', variant:'wheel'},
     short:'두 사람의 12궁 명반을 나란히 놓고 읽는 궁합·관계 정밀 분석',
-    desc:'두 사람의 출생 시각으로 명반을 각각 그려, 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 나란히 읽는 2인 정밀 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
-    bullets:['2인 명반 각각 정밀 해석 + 궁합·관계 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','각 10년 대한 · 유년의 시기별 흐름','출생시 필수(두 분 모두) · 시간을 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 2인 명반·궁합·관계 질문 모두 가능'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)'],['필수 정보','두 분 출생시(시·분) 필수']] },
+    desc:'두 사람의 대략적인 태어난 시간(시진)으로 명반을 각각 그려, 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 나란히 읽는 2인 정밀 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
+    bullets:['2인 명반 각각 정밀 해석 + 궁합·관계 해석','14주성·살성 배치와 사화(化祿·權·科·忌)','각 10년 대한 · 유년의 시기별 흐름','두 분 모두 대략적인 태어난 시간은 필요 · 전혀 모르면 신청 불가','맞춤형 PDF 리포트 · 평균 6시간(최대 12시간) 내 발송','10일 추가 질문 포함 · 2인 명반·궁합·관계 질문 모두 가능'],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)'],['필수 정보','두 분 대략적인 출생시간대(시진)']] },
 ];
 
 /* ---------- 2027 사주 개운 굿노트 다이어리 (PDF) ----------
@@ -2249,8 +2249,18 @@ $('#copyAccount').addEventListener('click', async () => {
 function needsBirth(p){
   return ['saju', 'ziwei', 'custom'].includes(p.type) || p.birth === true;
 }
+/* 태어난 시간 표기 — 대략(시진)만 골랐고 분을 비워 두면 '무렵'으로 남긴다 */
+function birthTimeText(fg){
+  const noTime = fg.querySelector('[data-f="noTime"]')?.checked;
+  if(noTime) return '모름';
+  const h = fg.querySelector('[data-f="hour"]')?.value || '';
+  const m = fg.querySelector('[data-f="minute"]')?.value || '';
+  if(!h) return '미상';
+  const ampm = fg.querySelector('[data-f="ampm"]')?.value || '';
+  return m === '' ? `${ampm} ${h}시 무렵 (분 미상)` : `${ampm} ${h}시 ${m}분`;
+}
 function birthHint(p){
-  if(p.type === 'ziwei') return '자미두수는 출생시로 명궁이 정해지므로 태어난 시간이 반드시 필요합니다.';
+  if(p.type === 'ziwei') return '정통 자미두수는 대략적인 태어난 시간은 알고 있어야 합니다. 시진(두 시간 단위) 정도의 시간대면 충분하고, 분은 몰라도 됩니다.';
   if(p.type === 'diary') return '사주팔자 8칸과 오행 밸런스를 채우는 데 씁니다. 태어난 시간을 모르셔도 일주 중심으로 채워 드립니다.';
   return '태어난 시간을 모르셔도 일주 중심으로 해석해 드립니다.';
 }
@@ -2292,14 +2302,14 @@ function birthBlock(p, n){
         </div>
       </div>
       <div class="field">
-        <label>태어난 시간 ${timeRequired ? '<span class="req">*</span>' : ''}</label>
+        <label>태어난 시간${timeRequired ? '(대략 가능)' : ''} ${timeRequired ? '<span class="req">*</span>' : ''}</label>
         <div class="row3">
           <select data-f="ampm"><option value="오전">오전</option><option value="오후">오후</option></select>
-          <select data-f="hour">${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}시</option>`).join('')}</select>
-          <select data-f="minute">${Array.from({length:60},(_,i)=>`<option value="${i}">${i}분</option>`).join('')}</select>
+          <select data-f="hour">${timeRequired ? '<option value="">시</option>' : ''}${Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}시</option>`).join('')}</select>
+          <select data-f="minute">${timeRequired ? '<option value="">분 모름</option>' : ''}${Array.from({length:60},(_,i)=>`<option value="${i}">${i}분</option>`).join('')}</select>
         </div>
         ${timeRequired ? '' : '<label class="check"><input type="checkbox" data-f="noTime"> 태어난 시간을 모릅니다 (일주 중심으로 해석)</label>'}
-        <span class="errtxt">태어난 시간을 골라 주세요.</span>
+        <span class="errtxt">${timeRequired ? '태어난 시간대(시)를 골라 주세요. 분은 몰라도 됩니다.' : '태어난 시간을 골라 주세요.'}</span>
       </div>
     </div>`;
 }
@@ -2468,6 +2478,10 @@ function validateOrder(){
     if(!gender) ok = false;
     const birth = fg.querySelector('[data-f="birth"]');
     ok = fieldErr(birth, birth.value.replace(/\D/g,'').length !== 8) && ok;
+    if(fg.dataset.timeRequired === '1'){
+      const hour = fg.querySelector('[data-f="hour"]');
+      ok = fieldErr(hour, !hour.value) && ok;
+    }
   });
 
   const agree = $('#agreePrivacy').checked && $('#agreeRefund').checked && $('#agreeAge').checked;
@@ -2489,7 +2503,6 @@ function collectOrder(){
   const births = [];
   $$('#birthArea [data-birth]').forEach(fg => {
     const type = fg.dataset.type;
-    const noTime = fg.querySelector('[data-f="noTime"]')?.checked;
     const key = fg.dataset.birth || '';                 // 예) 'ziwei2-2', 'tal-custom-1'
     const cut = key.lastIndexOf('-');
     const pId = cut > 0 ? key.slice(0, cut) : '';
@@ -2500,8 +2513,7 @@ function collectOrder(){
       성별: fg.querySelector('[data-f="gender"]:checked')?.value || '',
       생년월일: fg.querySelector('[data-f="birth"]').value,
       달력: fg.querySelector('[data-f="cal"]:checked')?.value || '양력',
-      태어난시간: noTime ? '모름' :
-        `${fg.querySelector('[data-f="ampm"]').value} ${fg.querySelector('[data-f="hour"]').value}시 ${fg.querySelector('[data-f="minute"]').value}분`,
+      태어난시간: birthTimeText(fg),
       종류: type === 'ziwei' ? '자미두수' : type === 'diary' ? '다이어리 원국' : '사주',
       상품ID: pId,
       상품명: p.name || '',

@@ -1599,15 +1599,15 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <div class="pay">
         <label>
           <input type="radio" name="payMethod" value="bank" checked>
-          <b>계좌이체</b>
-          <span><span>주문서 확인 후 입금 계좌를 안내해 드립니다.</span></span>
+          <b>무통장 입금</b>
+          <span><span>케이뱅크 100-301-474580 (예금주 접월당)</span></span>
           <span class="tag">바로 이용</span>
         </label>
         <label>
-          <input type="radio" name="payMethod" value="card" disabled>
-          <b>카드결제</b>
-          <span><span>PG 심사 완료 후 열립니다. 현재는 계좌이체만 가능합니다.</span></span>
-          <span class="tag">준비 중</span>
+          <input type="radio" name="payMethod" value="card">
+          <b>카드 · 간편결제</b>
+          <span><span>신용카드 · 네이버페이 · 카카오페이 · 토스페이</span></span>
+          <span class="tag">바로 결제</span>
         </label>
       </div>
     </div>
@@ -1626,7 +1626,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <div class="errtxt" id="agreeErr" style="display:none;font-size:11.5px;margin-top:8px">필수 동의 항목을 모두 체크해 주세요.</div>
     </div>
 
-    <div class="notice-box">
+    <div class="notice-box" id="payNotice">
       주문서를 보내면 <b>입금 계좌</b>가 바로 표시됩니다. 입금 확인 후 평균 6시간 · 최대 12시간 내에 분석지를 이메일로 보내드립니다.
     </div>
   </form>
@@ -1673,6 +1673,38 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   </div>
 </section>
 
+<!-- ===== 카드·간편결제 완료(페이앱 결제창에서 돌아온 화면) ===== -->
+<section class="checkout" id="paidView" aria-label="결제 완료">
+  <div class="done">
+    <div class="done__seal" aria-hidden="true">蝶</div>
+    <h2>결제가 완료되었습니다</h2>
+    <p>카드·간편결제로 주문하신 내역입니다.<br>결제가 확인되면 평균 6시간 · 최대 12시간 내에 분석지를 이메일로 보내드립니다.</p>
+
+    <div class="bank">
+      <div class="k">결제 금액</div>
+      <div class="n" id="paidAmount">—</div>
+      <div class="o">신용카드 · 네이버페이 · 카카오페이 · 토스페이</div>
+      <div class="amt"><span>주문번호</span><b id="paidOrderNo">—</b></div>
+    </div>
+
+    <div class="done__meta">
+      <div><span>결제 수단</span><b>카드 · 간편결제</b></div>
+      <div><span>영수증</span><b>페이앱 결제창에서 발급</b></div>
+      <div><span>처리 예정</span><b>평균 6시간 · 최대 12시간 내</b></div>
+    </div>
+
+    <p style="font-size:12px;line-height:1.95">
+      결제를 취소하셨거나 결제가 완료되지 않았다면, 장바구니에 담긴 상품으로 다시 주문해 주세요.<br>
+      문의는 카카오채널 <b>접월당</b> 또는 jeopwoldang@naver.com 으로 부탁드립니다.
+    </p>
+
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:28px;flex-wrap:wrap">
+      <a class="btn btn--ghost" href="https://pf.kakao.com/_ubiBX" target="_blank" rel="noopener">카카오채널 열기</a>
+      <button class="btn btn--ink" data-paid-home>쇼핑 계속하기</button>
+    </div>
+  </div>
+</section>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- 주문 저장 어댑터 (admin.html과 공용) — jwd-orders.js의 JWD_CFG.API_URL 한 곳으로 백엔드 전환 -->
@@ -1689,6 +1721,15 @@ const CFG = {
   TEST_MODE: false,                   // 실제 접수 시작 시 false (2026-11-23 실제 주문 접수 전환)
   BANK: '케이뱅크 100-301-474580',
   BANK_OWNER: '접월당',
+  /* 카드·간편결제 — 페이앱(PayApp) JS API.
+     프론트엔드에는 판매자 아이디(userid)만 쓰고, 연동 KEY/VALUE·결제 KEY 같은 비밀키는
+     이 공개 페이지에 넣지 않습니다. (결제창은 lite.payapp.kr가 직접 띄웁니다.) */
+  PAY: {
+    userid: 'jeopwoldang',
+    shopname: '접월당',
+    script: 'https://lite.payapp.kr/public/api/v2/payapp-lite.js',
+    paytypes: 'card,naverpay,kakaopay,tosspay',   // 신용카드 · 네이버페이 · 카카오페이 · 토스페이
+  },
   /* 백엔드(Supabase/REST) 주소 — 실제 값은 jwd-orders.js의 JWD_CFG.API_URL 한 곳에서만 고칩니다.
      비어 있으면 브라우저 저장소(localStorage jwd_orders_v1) 모드로 동작합니다. */
   get API_URL(){ return (window.JWD_CFG && window.JWD_CFG.API_URL) || ''; },
@@ -2491,7 +2532,7 @@ function buildMessage(o, no){
   lines.push(`주문자: ${o.buyer} / 입금자: ${o.payer}`);
   lines.push(`연락처: ${o.phone}`);
   lines.push(`이메일: ${o.email}`);
-  lines.push(`결제방법: ${o.payMethod === 'bank' ? '계좌이체' : '카드결제'}`);
+  lines.push(`결제방법: ${o.payMethod === 'bank' ? '무통장 입금(케이뱅크)' : '카드·간편결제(페이앱)'}`);
   lines.push('');
   lines.push('■ 주문 상품');
   o.items.forEach(i => lines.push(`- ${i.name} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`));
@@ -2557,6 +2598,88 @@ async function saveOrder(o, no){
   }
 }
 
+/* ---------- 결제 수단 UI ---------- */
+function payMethodValue(){
+  return document.querySelector('input[name="payMethod"]:checked')?.value || 'bank';
+}
+function syncPayUI(){
+  const card = payMethodValue() === 'card';
+  const btn = $('#submitOrder');
+  if(btn && !btn.disabled) btn.textContent = card ? '결제하기' : '주문서 보내기';
+  const notice = $('#payNotice');
+  if(notice) notice.innerHTML = card
+    ? '결제하기를 누르면 <b>페이앱 결제창</b>이 열립니다. 결제가 끝나면 이 사이트로 돌아오며, 결제 확인 후 평균 6시간 · 최대 12시간 내에 분석지를 보내드립니다.'
+    : '주문서를 보내면 <b>입금 계좌</b>가 바로 표시됩니다. 입금 확인 후 평균 6시간 · 최대 12시간 내에 분석지를 이메일로 보내드립니다.';
+}
+$$('input[name="payMethod"]').forEach(r => r.addEventListener('change', syncPayUI));
+
+/* ---------- 페이앱(PayApp) 결제창 ----------
+   페이앱 JS API: 공개 페이지에는 판매자 아이디만 쓰고, 결제창은 lite.payapp.kr가 띄웁니다.
+   주문은 이미 Supabase(orders)에 저장된 뒤이며, 주문번호를 var1로 넘겨 결제내역과 대조합니다. */
+function loadPayApp(){
+  return new Promise((resolve, reject) => {
+    if(window.PayApp) return resolve(window.PayApp);
+    const s = document.createElement('script');
+    s.src = CFG.PAY.script;
+    s.async = true;
+    s.onload = () => window.PayApp ? resolve(window.PayApp) : reject(new Error('PayApp 객체를 찾지 못했습니다'));
+    s.onerror = () => reject(new Error('페이앱 스크립트를 불러오지 못했습니다'));
+    document.head.appendChild(s);
+  });
+}
+function payGoodname(o, no){
+  /* 결제현황에서 주문번호로 바로 찾을 수 있게 상품명 앞에 주문번호를 둡니다. */
+  const first = o.items[0];
+  const rest = o.items.length - 1;
+  let label = first ? first.name : '접월당 주문';
+  if(rest > 0) label += ` 외 ${rest}건`;
+  if(label.length > 34) label = label.slice(0, 33) + '…';
+  return `${no} · ${label}`;
+}
+async function startPayApp(o, no){
+  await loadPayApp();
+  const back = location.origin + '/store/?paid=' + encodeURIComponent(no) + '&amt=' + encodeURIComponent(o.total);
+  PayApp.setDefault({
+    userid: CFG.PAY.userid,
+    shopname: CFG.PAY.shopname,
+    charset: 'utf-8',
+    smsuse: 'n',
+    openpaytype: CFG.PAY.paytypes,
+  });
+  PayApp.setTarget('_self');              // 모바일 팝업 차단을 피해 현재 창에서 결제창으로 이동
+  PayApp.call({
+    goodname: payGoodname(o, no),
+    price: String(o.total),
+    recvphone: o.phone.replace(/\D/g, ''),
+    memo: `주문번호 ${no}`,
+    var1: no,
+    var2: 'store',
+    redirectpay: '1',                     // 결제요청 문자 대신 결제창으로 바로 이동
+    redirect: 'self',
+    redirecturl: back,
+    returnurl: back,
+  });
+}
+
+/* ---------- 페이앱 결제창에서 돌아온 화면 ---------- */
+(function paidReturn(){
+  const q = new URLSearchParams(location.search);
+  const no = q.get('paid');
+  if(!no) return;
+  const amt = Number(q.get('amt')) || 0;
+  const set = (sel, v) => { const el = $(sel); if(el) el.textContent = v; };
+  set('#paidOrderNo', no);
+  set('#paidAmount', amt ? won(amt) : '결제 금액 확인');
+  $('#paidView')?.classList.add('is-open');
+  document.body.classList.add('lock');
+})();
+$$('[data-paid-home]').forEach(b => b.addEventListener('click', () => {
+  $('#paidView').classList.remove('is-open');
+  document.body.classList.remove('lock');
+  try{ history.replaceState(null, '', location.pathname); }catch(e){}
+  window.scrollTo({top:0, behavior:'smooth'});
+}));
+
 $('#orderForm').addEventListener('submit', async e => {
   e.preventDefault();
   if(!cart.length){ toast('장바구니가 비어 있습니다'); return; }
@@ -2565,8 +2688,9 @@ $('#orderForm').addEventListener('submit', async e => {
   const o = collectOrder();
   const no = orderNo();
   const message = buildMessage(o, no);
+  const isCard = o.payMethod === 'card';
   const btn = $('#submitOrder');
-  btn.disabled = true; btn.textContent = '보내는 중…';
+  btn.disabled = true; btn.textContent = isCard ? '결제창 여는 중…' : '보내는 중…';
 
   const payload = {
     access_key: CFG.WEB3FORMS_KEY,
@@ -2593,13 +2717,23 @@ $('#orderForm').addEventListener('submit', async e => {
     } else {
       console.info('[테스트 모드] 아래 주문이 실제로는 전송되지 않았습니다.', payload);
     }
-    await saveOrder(o, no);
+    const saved = await saveOrder(o, no);
+    if(isCard){
+      /* 카드·간편결제: 주문이 먼저 저장된 뒤에만 결제창을 엽니다(결제 후 주문 유실 방지).
+         결제가 끝나면 페이앱이 /store/?paid=주문번호 로 돌려보냅니다. */
+      if(!saved) throw new Error('order-save-failed');
+      await startPayApp(o, no);
+      return;
+    }
     showDone(o, no);
   }catch(err){
     console.error(err);
-    toast('주문 접수 중 문제가 생겼습니다. 잠시 후 다시 시도해 주세요.');
+    toast(isCard
+      ? '결제창을 열지 못했습니다. 잠시 후 다시 시도하시거나 무통장 입금을 이용해 주세요.'
+      : '주문 접수 중 문제가 생겼습니다. 잠시 후 다시 시도해 주세요.');
   }finally{
-    btn.disabled = false; btn.textContent = '주문서 보내기';
+    btn.disabled = false;
+    syncPayUI();
   }
 });
 
@@ -2630,7 +2764,7 @@ const DOCS = {
     <h4>제3조 (주문 및 결제)</h4>
     <ol>
       <li>이용자는 주문서에 정확한 정보를 기재하여야 하며, 입력 오류로 인한 결과의 차이는 회사가 책임지지 않습니다.</li>
-      <li>현재 결제 수단은 계좌이체이며, 카드결제는 전자결제대행사(PG) 심사 완료 후 제공됩니다.</li>
+      <li>결제 수단은 무통장 입금(케이뱅크 100-301-474580 예금주 접월당)과 카드·간편결제(신용카드·네이버페이·카카오페이·토스페이)를 제공합니다. 카드·간편결제는 전자결제대행사 (주)유디아이디(페이앱)를 통해 처리됩니다.</li>
       <li>입금자명이 주문자와 다른 경우 확인이 지연될 수 있습니다.</li>
     </ol>
     <h4>제4조 (발송)</h4>
@@ -2663,7 +2797,7 @@ const DOCS = {
     <h4>3. 보유 및 이용 기간</h4>
     <p>분석지 발송 완료 후 <b>1개월</b>까지 보관하며, 이후 지체 없이 파기합니다. 단, 관련 법령(전자상거래법 등)에 따라 보존이 필요한 거래 기록은 해당 기간 동안 보관합니다.</p>
     <h4>4. 제3자 제공</h4>
-    <p>이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만 주문 접수에 사용하는 Web3Forms(이메일 전송 서비스)를 통해 주문 내용이 회사의 이메일로 전달됩니다.</p>
+    <p>이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만 주문 접수에 사용하는 Web3Forms(이메일 전송 서비스)를 통해 주문 내용이 회사의 이메일로 전달되며, 카드·간편결제를 선택한 경우 결제 처리를 위해 전자결제대행사 (주)유디아이디(페이앱)에 결제에 필요한 정보(상품명·금액·연락처·주문번호)가 전달됩니다.</p>
     <h4>5. 이용자의 권리</h4>
     <p>이용자는 언제든지 자신의 개인정보 열람·정정·삭제를 요청할 수 있으며, 요청 시 지체 없이 처리합니다. (문의: jeopwoldang@naver.com)</p>
     <h4>6. 동의 거부권</h4>

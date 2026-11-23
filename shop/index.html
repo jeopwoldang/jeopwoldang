@@ -528,6 +528,11 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 /* 다이어리 상세 페이지 미리보기 */
 .pd__gal--wide{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .pd__gal--wide .pd__thumb{width:100%;height:auto;aspect-ratio:1.414/1;border-radius:10px}
+/* 다이어리 카드: 모바일에선 페이지 전체가 보이도록 */
+@media (max-width:620px){
+  .fslide__media img[src*="card_diary"]{object-fit:contain;background:linear-gradient(180deg,#241a4e,#191233)}
+}
+
 
 /* 부적 2카드 */
 .tshop{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:1040px;margin:0 auto}

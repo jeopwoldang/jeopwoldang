@@ -532,6 +532,11 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .pd__thumb:hover,.pd__thumb.is-on{opacity:1;border-color:rgba(242,216,155,.75)}
 .pd__gal--wide{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .pd__gal--wide .pd__thumb{width:100%;height:auto;aspect-ratio:1.414/1;border-radius:10px}
+/* 다이어리 카드: 모바일에선 페이지 전체가 보이도록 */
+@media (max-width:620px){
+  .fslide__media img[src*="card_diary"]{object-fit:contain;background:linear-gradient(180deg,#241a4e,#191233)}
+}
+
 
 .tcard{
   display:flex;flex-direction:column;border-radius:16px;overflow:hidden;

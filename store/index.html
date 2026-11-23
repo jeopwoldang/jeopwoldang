@@ -2618,11 +2618,20 @@ $$('input[name="payMethod"]').forEach(r => r.addEventListener('change', syncPayU
    주문은 이미 Supabase(orders)에 저장된 뒤이며, 주문번호를 var1로 넘겨 결제내역과 대조합니다. */
 function loadPayApp(){
   return new Promise((resolve, reject) => {
-    if(window.PayApp) return resolve(window.PayApp);
+    const ready = () => {
+      /* 이 페이지는 자체 $ 헬퍼(const $ = ...)를 쓰기 때문에, 페이앱 스크립트 마지막 줄의
+         PayApp.$ = $.noConflict() 가 실행되지 않습니다. 스크립트에 함께 실린 jQuery를 붙여 줍니다. */
+      if(window.PayApp && !window.PayApp.$ && window.jQuery){
+        window.PayApp.$ = window.PayApp.jQuery = window.jQuery;
+      }
+      if(window.PayApp && window.PayApp.$) return resolve(window.PayApp);
+      reject(new Error('PayApp 초기화에 실패했습니다'));
+    };
+    if(window.PayApp) return ready();
     const s = document.createElement('script');
     s.src = CFG.PAY.script;
     s.async = true;
-    s.onload = () => window.PayApp ? resolve(window.PayApp) : reject(new Error('PayApp 객체를 찾지 못했습니다'));
+    s.onload = ready;
     s.onerror = () => reject(new Error('페이앱 스크립트를 불러오지 못했습니다'));
     document.head.appendChild(s);
   });

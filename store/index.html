@@ -492,6 +492,28 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .pdot{width:7px;height:7px;border-radius:50%;background:rgba(216,192,255,.34);transition:width .25s,background .25s}
 .pdot[aria-current="true"]{width:22px;border-radius:999px;background:linear-gradient(90deg,#FBEDCB,#E3C48F)}
 
+/* 2027 사주 개운 굿노트 다이어리 (단독 카드) */
+#diary{background:radial-gradient(820px 360px at 50% 0%, rgba(150,116,226,.13), transparent 72%)}
+.dcard{
+  display:grid;grid-template-columns:1.04fr 1fr;max-width:1040px;margin:0 auto;
+  border-radius:22px;overflow:hidden;background:var(--card);
+  border:1px solid rgba(216,192,255,.22);
+  box-shadow:var(--sh), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:border-color .35s, box-shadow .35s;
+}
+.dcard:hover{border-color:rgba(242,216,155,.42);box-shadow:0 30px 62px -34px rgba(0,0,0,1), inset 0 1px 0 rgba(255,255,255,.12)}
+.dcard__media{position:relative;display:block;border:0;padding:0;overflow:hidden;background:#F4EBD8;min-height:0;aspect-ratio:4/3}
+.dcard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform 1s cubic-bezier(.22,.8,.28,1)}
+.dcard:hover .dcard__media img{transform:scale(1.04)}
+.dcard__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, rgba(25,17,48,0) 62%, rgba(26,18,50,.34) 88%, rgba(28,19,54,.6) 100%)}
+.dcard__body{position:relative;z-index:2;display:flex;flex-direction:column;padding:26px 30px 26px;background:transparent}
+.dcard__body .fcard__lines{min-height:0}
+.dcard .fcard__foot{padding-top:16px}
+.dcard__cta{margin-top:12px}
+.dcard__cta .btn{width:100%;justify-content:center}
+.h2__emo{display:inline-block;margin-right:9px;font-size:.84em;vertical-align:.04em;line-height:1}
+
 /* 1만원 페이백 체험단 */
 .evt{
   position:relative;display:grid;grid-template-columns:1.45fr .85fr;border-radius:22px;overflow:hidden;
@@ -1203,6 +1225,24 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .fslide__cta .btn{font-size:12px;padding:11px 8px}
   .pnote{font-size:10.4px;gap:5px}
 }
+/* 2027 다이어리 단독 카드 — 반응형 */
+@media (max-width:980px){
+  .dcard{grid-template-columns:44% 1fr}
+  .dcard__media{min-height:0}
+  .dcard__body{padding:18px 18px}
+}
+@media (max-width:620px){
+  .dcard{grid-template-columns:1fr}
+  .dcard__media{aspect-ratio:4/3}
+  .dcard__media::after{background:linear-gradient(180deg, rgba(25,17,48,0) 70%, rgba(30,20,58,.45) 90%, rgba(36,26,72,.8) 100%)}
+  .dcard__body{padding:15px 16px 18px}
+  .dcard .fcard__name{font-size:20px;margin:3px 0 6px}
+  .dcard .fcard__lines{font-size:12.5px;line-height:1.7}
+  .dcard .fcard__spec{font-size:11px;margin:7px 0 9px}
+  .dcard .fcard__foot{padding-top:10px;gap:8px}
+  .dcard__cta{margin-top:10px}
+  .dcard__cta .btn{padding:12px 10px;font-size:13px;gap:5px;white-space:normal}
+}
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
   [data-rev]{opacity:1!important;transform:none!important;transition:none}
@@ -1250,7 +1290,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <a href="#products" data-nav="saju">종합사주</a>
       <a href="#products" data-nav="newyear">신년운세</a>
       <a href="#products" data-nav="ziwei">자미두수</a>
-      <a href="#products" data-nav="diary">2027 다이어리</a>
+      <a href="#diary" data-nav="diary">2027 다이어리</a>
       <a href="#consult">상담신청</a>
       <a href="#faq">이용안내</a>
     </nav>
@@ -1323,6 +1363,48 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   </div>
 </section>
 
+<!-- ===== 2027 사주 개운 굿노트 다이어리 (단독 상품) ===== -->
+<section class="sec" id="diary" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead" data-rev>
+      <div>
+        <span class="kicker">Goodnotes Diary</span>
+        <h2 class="h2"><span class="h2__emo" aria-hidden="true">📒</span>2027 사주 개운 <em>굿노트 다이어리</em></h2>
+      </div>
+      <p class="lead">내 사주 팔자와 2027년 일진을 담은 <b>아이패드 다이어리</b>. 굿노트·노타빌리티에 넣어 바로 쓰는 A4 가로 PDF로 보내드립니다.</p>
+    </div>
+
+    <article class="dcard" data-rev data-card="diary">
+      <button class="dcard__media" data-open="diary-basic" data-open-diary aria-label="2027 사주 개운 굿노트 다이어리 상세 보기">
+        <img src="assets/card_diary.jpg?v=1" alt="라벤더 달빛 표지의 2027 사주 개운 굿노트 다이어리" width="1448" height="1086" loading="lazy">
+        <span class="fbadge">NEW · 굿노트</span>
+      </button>
+      <div class="dcard__body">
+        <span class="fcard__cat">Goodnotes &amp; Notability · A4 PDF</span>
+        <h3 class="fcard__name" data-open="diary-basic" data-open-diary>2027 사주 개운 다이어리</h3>
+        <p class="fcard__lines">내 사주 팔자와 2027 일진을 담아 아이패드에서 쓰는 다이어리</p>
+        <p class="fcard__spec">굿노트·노타빌리티용 A4 PDF · 표지·사주 팔자·일진 달력·스티커 23종 · <b>즉시 발송</b></p>
+        <div class="fcard__foot">
+          <div class="fcard__price">
+            <div class="opt" role="group" aria-label="옵션 선택">
+              <button class="optb" data-persons="1" aria-pressed="true">기본형</button>
+              <button class="optb" data-persons="2" aria-pressed="false">원국 기입형</button>
+            </div>
+            <div class="prices">
+              <span class="prow is-on" data-persons="1">기본형 <b>19,800원</b></span>
+              <span class="prow" data-persons="2">원국 기입형 <b>29,000원</b></span>
+            </div>
+          </div>
+          <button class="addbtn" data-add-diary>담기</button>
+        </div>
+        <div class="dcard__cta">
+          <button class="btn btn--gold" data-open="diary-basic" data-open-diary>자세히 보기 · 구매하기 <span class="ar">›</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- ===== 1만원 페이백 체험단 ===== -->
 <section class="sec" id="event">
   <div class="wrap">
@@ -1337,7 +1419,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <div class="evt__steps">
         <div class="evt__step"><b>01</b><div><span>10,000원 결제</span><em>주문서를 보내고 안내된 계좌로 입금합니다.</em></div></div>
         <div class="evt__step"><b>02</b><div><span>2027 신년운세 PDF 수령</span><em>결제 확인 후 평균 6시간 · 최대 12시간 내 이메일로 받습니다.</em></div></div>
-        <div class="evt__step"><b>03</b><div><span>후기 1편 + 전액 환급</span><em>7일 안에 블로그·스레드·자사몰 중 한 곳에 후기를 남기고 링크를 보내주시면 10,000원을 계좌로 환급합니다.</em></div></div>
+        <div class="evt__step"><b>03</b><div><span>후기 1편 + 전액 환급</span><em>7일 안에 블로그·스레드·인스타그램 중 한 곳에 후기를 남기고 링크를 보내주시면 10,000원을 계좌로 환급합니다.</em></div></div>
       </div>
       <div class="evt__buy">
         <span class="tag">선착순 한정</span>
@@ -1436,7 +1518,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       </details>
       <details>
         <summary>1만원 페이백 체험단은 어떻게 참여하고 환급받나요?</summary>
-        <p>주문서에서 환급받으실 계좌·예금주와 후기를 남길 채널을 적고 10,000원을 입금하시면, 결제 확인 후 평균 6시간 · 최대 12시간 내에 2027 신년운세 PDF를 보내드립니다. 받으신 날부터 <b>7일 안에</b> 블로그·스레드·자사몰 중 한 곳에 솔직한 후기를 남기고 링크를 카카오채널로 보내주시면, 확인 후 3영업일 이내에 참가비 10,000원을 전액 계좌로 환급해 드립니다. 후기를 남기지 않으시면 정가 19,800원 상품을 10,000원에 이용하신 것으로 갈음되어 환급되지 않습니다. (후기 작성 확인 시 참가비 10,000원 전액 환급 조건의 체험단 이벤트입니다.)</p>
+        <p>주문서에서 환급받으실 계좌·예금주와 후기를 남길 채널을 적고 10,000원을 입금하시면, 결제 확인 후 평균 6시간 · 최대 12시간 내에 2027 신년운세 PDF를 보내드립니다. 받으신 날부터 <b>7일 안에</b> 블로그·스레드·인스타그램 중 한 곳에 솔직한 후기를 남기고 링크를 카카오채널로 보내주시면, 확인 후 3영업일 이내에 참가비 10,000원을 전액 계좌로 환급해 드립니다. 후기를 남기지 않으시면 정가 19,800원 상품을 10,000원에 이용하신 것으로 갈음되어 환급되지 않습니다. (후기 작성 확인 시 참가비 10,000원 전액 환급 조건의 체험단 이벤트입니다.)</p>
       </details>
       <details>
         <summary>환불이 가능한가요?</summary>
@@ -1771,12 +1853,12 @@ PRODUCTS.push({
   blockName:'2027 신년운세 · 페이백 체험단',
   photo:'assets/card_newyear.jpg',
   short:'10,000원에 2027 신년운세 60페이지 PDF를 받고, 7일 안에 솔직 후기를 쓰면 전액 환급',
-  desc:'2027 정미년 신년운세를 10,000원에 먼저 받아보시는 오픈 이벤트입니다. PDF를 받으신 뒤 7일 안에 블로그·스레드·자사몰 중 한 곳에 솔직한 후기를 남기고 링크를 보내주시면 참가비 10,000원을 전액 계좌로 돌려드립니다. 후기를 남기지 않으시면 정가 19,800원 상품을 10,000원에 이용하신 것으로 갈음됩니다.',
+  desc:'2027 정미년 신년운세를 10,000원에 먼저 받아보시는 오픈 이벤트입니다. PDF를 받으신 뒤 7일 안에 블로그·스레드·인스타그램 중 한 곳에 솔직한 후기를 남기고 링크를 보내주시면 참가비 10,000원을 전액 계좌로 돌려드립니다. 후기를 남기지 않으시면 정가 19,800원 상품을 10,000원에 이용하신 것으로 갈음됩니다.',
   bullets:[
     '2027 정미년 신년운세 약 60페이지 PDF',
     '10,000원 결제 → PDF 수령 → 7일 내 후기 1편',
     '후기 작성 확인 시 참가비 10,000원 전액 계좌 환급',
-    '후기 채널은 블로그 · 스레드 · 자사몰 중 1곳',
+    '후기 채널은 블로그 · 스레드 · 인스타그램 중 1곳',
     '결제 확인 후 평균 6시간 · 최대 12시간 내 이메일 발송',
   ],
   meta:[['정가','19,800원 → 이벤트가 10,000원'],['분량','약 60페이지 내외 PDF'],['환급','후기 작성 확인 후 3영업일 내 계좌 환급'],['모집','선착순 한정']],
@@ -1844,11 +1926,6 @@ const FEATURED = [
     lines:['더 세밀하게 보는','성향·운세·적성·인연 흐름'],
     spec:'맞춤형 PDF 리포트 · 결제 후 평균 6시간(최대 12시간) 내 발송 · <b>10일 추가 질문 포함</b>',
     img:'assets/card_ziwei.jpg', dual:true, ids:['ziwei1','ziwei2'] },
-  { key:'diary', badge:'NEW · 굿노트', name:'2027 사주 개운 다이어리', tab:'2027 다이어리', cat:'Goodnotes Diary',
-    alt:'라벤더 달빛 표지의 2027 사주 개운 굿노트 다이어리',
-    lines:['내 사주 팔자와','2027 일진을 담은','아이패드 다이어리'],
-    spec:'굿노트·노타빌리티용 A4 PDF · 표지·사주·일진·스티커 4페이지 · <b>입금 확인 즉시 발송</b>',
-    img:'assets/card_diary.jpg?v=1', dual:true, ids:['diary-basic','diary-saju'] },
   { key:'payback', badge:'오픈 이벤트', name:'1만원 페이백 체험단', tab:'체험단 이벤트', cat:'Open Event',
     alt:'2027 신년운세 페이백 체험단',
     lines:['10,000원으로 받고','솔직한 후기 한 편에','전액 환급'],
@@ -2166,17 +2243,25 @@ document.addEventListener('click', e => {
 });
 $('#cartOpen').addEventListener('click', openCart);
 
-/* 헤더 메뉴 상품 3종(종합사주 · 신년운세 · 자미두수) → 그 상품의 상세·구매 창을 바로 연다 */
+/* 헤더 메뉴(종합사주 · 신년운세 · 자미두수 → 대표 상품 슬라이드, 2027 다이어리 → 단독 섹션) */
 document.addEventListener('click', e => {
   const a = e.target.closest && e.target.closest('a[data-nav]');
   if(!a) return;
   const key = a.dataset.nav;
+  if(key === 'diary'){               // 다이어리는 대표 상품이 아닌 단독 섹션으로 연결
+    const sec = $('#diary');
+    if(!sec) return;
+    e.preventDefault();
+    sec.scrollIntoView({block:'start', behavior:'auto'});   // section의 scroll-margin-top(--hnav)을 그대로 사용
+    openProduct(diaryPersons === 2 ? 'diary-saju' : 'diary-basic');
+    return;
+  }
   const k = FEATURED.findIndex(f => f.key === key);
   if(k < 0) return;
   e.preventDefault();
   const f = FEATURED[k];
   goSlide(k, true);                     // 슬라이드도 그 상품으로 맞추고 자동 넘김 타이머 리셋
-  const persons = key === 'ziwei' ? ziweiPersons : key === 'diary' ? diaryPersons : sajuPersons;
+  const persons = key === 'ziwei' ? ziweiPersons : sajuPersons;
   const id = f.dual ? TIER_IDS[key][persons] : f.ids[0];
   const box = $('#products');           // 창을 닫았을 때 상품 섹션에 서 있도록 먼저 자리 이동
   if(box) window.scrollTo({top: Math.max(0, box.getBoundingClientRect().top + window.scrollY - 96), behavior:'auto'});
@@ -2346,7 +2431,7 @@ function eventBlockHTML(){
     channel: document.querySelector('input[name="evtChannel"]:checked')?.value || '블로그',
     link: $('#evtLink') ? $('#evtLink').value : '',
   };
-  const ch = ['블로그', '스레드', '자사몰']
+  const ch = ['블로그', '스레드', '인스타그램']
     .map(c => `<label><input type="radio" name="evtChannel" value="${c}"${cur.channel === c ? ' checked' : ''}>${c}</label>`).join('');
   return `
     <div class="fgroup">
@@ -2362,7 +2447,7 @@ function eventBlockHTML(){
       </div>
       <div class="field"><label>후기 작성 채널 <span class="req">*</span></label>
         <div class="seg">${ch}</div></div>
-      <div class="field"><label>블로그·스레드 주소 (선택)</label>
+      <div class="field"><label>블로그·스레드·인스타그램 주소 (선택)</label>
         <input type="text" id="evtLink" placeholder="예) blog.naver.com/아이디" value="${escAttr(cur.link)}">
         <span class="hint">후기를 올리신 뒤 카카오채널로 링크를 보내주셔도 됩니다.</span></div>
       <p class="fgroup__hint" style="margin:2px 0 0">후기 작성 확인 시 참가비 10,000원 전액 환급 조건의 체험단 이벤트입니다. 7일 안에 후기를 남기지 않으시면 정가 19,800원 상품을 10,000원에 이용하신 것으로 처리되어 환급되지 않습니다.</p>

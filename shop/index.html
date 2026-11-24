@@ -512,6 +512,49 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .dcard .fcard__foot{padding-top:16px}
 .dcard__cta{margin-top:12px}
 .dcard__cta .btn{width:100%;justify-content:center}
+/* ---------- 작명 · 택일 (5카드) ---------- */
+#naming{background:radial-gradient(820px 360px at 50% 0%, rgba(150,116,226,.13), transparent 72%)}
+.ngrid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.ncard{
+  grid-column:span 2;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;
+  background:var(--card);border:1px solid rgba(216,192,255,.22);
+  box-shadow:var(--sh), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:border-color .35s, box-shadow .35s, transform .35s;
+}
+.ncard:nth-child(4),.ncard:nth-child(5){grid-column:span 3}
+.ncard:hover{border-color:rgba(242,216,155,.42);box-shadow:0 30px 62px -34px rgba(0,0,0,1), inset 0 1px 0 rgba(255,255,255,.12);transform:translateY(-3px)}
+.ncard__media{position:relative;display:block;border:0;padding:0;overflow:hidden;background:#1B1236;aspect-ratio:4/3}
+.ncard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,.8,.28,1)}
+.ncard:hover .ncard__media img{transform:scale(1.04)}
+.ncard__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg, rgba(20,13,40,0) 62%, rgba(22,14,44,.5) 100%)}
+.ncard__body{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
+.ncard__body .fcard__cat{font-size:10.5px;letter-spacing:.18em}
+.ncard .fcard__name{font-size:19px;margin:5px 0 7px;line-height:1.42;word-break:keep-all}
+.ncard .fcard__lines{font-size:12.5px;line-height:1.7;min-height:3.4em;color:#C4B6E2}
+.ncard .fcard__spec{margin:8px 0 12px;font-size:11px}
+.ncard .fcard__foot{padding-top:14px;align-items:center}
+.ncard .fcard__price b{font-size:20px}
+.ncard__cta{margin-top:10px}
+.ncard__cta .btn{width:100%;justify-content:center;font-size:12.5px;padding:11px 14px}
+.field textarea{width:100%;min-height:66px;padding:11px 13px;border-radius:10px;border:1px solid rgba(216,192,255,.28);background:rgba(255,255,255,.06);font-size:13.5px;line-height:1.62;color:#FAF7FF;resize:vertical}
+.field textarea::placeholder{color:#8B7CAE}
+.field textarea:focus{outline:none;border-color:rgba(242,216,155,.6);box-shadow:0 0 0 3px rgba(242,216,155,.13);background:rgba(255,255,255,.09)}
+.field.has-err textarea{border-color:rgba(255,158,151,.65)}
+.extras{margin-top:12px;padding-top:14px;border-top:1px dashed rgba(216,192,255,.18);display:flex;flex-direction:column}
+.extras .field:first-child{margin-top:0}
+@media (max-width:980px){
+  .ngrid{grid-template-columns:repeat(2,1fr)}
+  .ncard,.ncard:nth-child(4),.ncard:nth-child(5){grid-column:auto}
+  .ncard:last-child{grid-column:1/-1}
+}
+@media (max-width:620px){
+  .ngrid{grid-template-columns:1fr;gap:14px}
+  .ncard:last-child{grid-column:auto}
+  .ncard .fcard__name{font-size:17.5px}
+  .ncard .fcard__lines{min-height:0}
+}
+
 .h2__emo{display:inline-block;margin-right:9px;font-size:.84em;vertical-align:.04em;line-height:1}
 
 /* 다이어리 상세 페이지 미리보기 */
@@ -1304,6 +1347,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <a href="#products" data-nav="newyear">신년운세</a>
       <a href="#products" data-nav="ziwei">자미두수</a>
       <a href="#diary" data-nav="diary">2027 다이어리</a>
+      <a href="#naming" data-nav="naming">작명·택일</a>
       <a href="#talisman">부적</a>
       <a href="#consult">상담신청</a>
       <a href="#faq">이용안내</a>
@@ -1421,6 +1465,124 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   </div>
 </section>
 
+<!-- ===== 작명 · 택일 ===== -->
+<section class="sec" id="naming" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead" data-rev>
+      <div>
+        <span class="kicker">Naming &amp; Date Selection</span>
+        <h2 class="h2">작명 · <em>택일</em></h2>
+      </div>
+      <p class="lead">이름과 날짜는 한 번 정하면 되돌리기 어렵습니다. <b>11년 경력 사주명리사</b>가 사주 원국과 성명학으로 직접 짓고 뽑아, PDF 작명서로 보내드립니다.</p>
+    </div>
+
+    <div class="ngrid" data-rev>
+      <article class="ncard" data-card="naming">
+        <button class="ncard__media" data-open="name-read" aria-label="정통 사주 기반 이름 감명 상세 보기">
+          <img src="assets/card_naming_read.jpg" alt="한지 두루마리 위의 금빛 붓터치와 나비 — 이름 감명" width="1448" height="1086" loading="lazy">
+          <span class="fbadge">01 · 감명</span>
+        </button>
+        <div class="ncard__body">
+          <span class="fcard__cat">Name Reading</span>
+          <h3 class="fcard__name" data-open="name-read">정통 사주 기반 이름 감명</h3>
+          <p class="fcard__lines">지금 쓰는 이름, 그대로 써도 될까요?</p>
+          <p class="fcard__spec">이름 감명 진단서 PDF · 접수 후 평균 1~2일</p>
+          <div class="fcard__foot">
+            <div class="fcard__price"><b>80,000원</b></div>
+            <button class="addbtn" data-add="name-read">담기</button>
+          </div>
+          <div class="ncard__cta">
+            <button class="btn btn--gold" data-open="name-read">자세히 보기 · 구매하기 <span class="ar">›</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="ncard" data-card="naming">
+        <button class="ncard__media" data-open="name-adult" aria-label="사주 맞춤 성인 개명 작명 상세 보기">
+          <img src="assets/card_naming_adult.jpg" alt="금테 이름 패 세 개와 만년필 — 성인 개명 작명 3안" width="1448" height="1086" loading="lazy">
+          <span class="fbadge">02 · 성인 개명</span>
+        </button>
+        <div class="ncard__body">
+          <span class="fcard__cat">Adult Naming</span>
+          <h3 class="fcard__name" data-open="name-adult">사주 맞춤 성인 개명 작명</h3>
+          <p class="fcard__lines">평생 쓰는 이름, 사주에 맞춰 추천 3안으로</p>
+          <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
+          <div class="fcard__foot">
+            <div class="fcard__price"><b>500,000원</b></div>
+            <button class="addbtn" data-add="name-adult">담기</button>
+          </div>
+          <div class="ncard__cta">
+            <button class="btn btn--gold" data-open="name-adult">자세히 보기 · 구매하기 <span class="ar">›</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="ncard" data-card="naming">
+        <button class="ncard__media" data-open="name-baby" aria-label="사주 용신 맞춤 신생아 작명 상세 보기">
+          <img src="assets/card_naming_baby.jpg" alt="금테 이름 카드와 금빛 나비 장식 — 신생아 작명" width="1448" height="1086" loading="lazy">
+          <span class="fbadge">03 · 신생아</span>
+        </button>
+        <div class="ncard__body">
+          <span class="fcard__cat">Baby Naming</span>
+          <h3 class="fcard__name" data-open="name-baby">사주 용신 맞춤 신생아 작명</h3>
+          <p class="fcard__lines">태어난 시간까지 반영한 사주로 짓는 첫 이름</p>
+          <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
+          <div class="fcard__foot">
+            <div class="fcard__price"><b>1,100,000원</b></div>
+            <button class="addbtn" data-add="name-baby">담기</button>
+          </div>
+          <div class="ncard__cta">
+            <button class="btn btn--gold" data-open="name-baby">자세히 보기 · 구매하기 <span class="ar">›</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="ncard" data-card="naming">
+        <button class="ncard__media" data-open="name-shop" aria-label="대표자 사주·업종 맞춤 사업 상호 작명 상세 보기">
+          <img src="assets/card_naming_shop.jpg" alt="한옥 처마 아래 금테 간판과 등불 — 사업 상호 작명" width="1448" height="1086" loading="lazy">
+          <span class="fbadge">04 · 상호</span>
+        </button>
+        <div class="ncard__body">
+          <span class="fcard__cat">Business Naming</span>
+          <h3 class="fcard__name" data-open="name-shop">대표자 사주·업종 맞춤 사업 상호 작명</h3>
+          <p class="fcard__lines">사업의 첫인상이 되는 상호, 사주와 업종을 함께</p>
+          <p class="fcard__spec">추천 상호 3안 + 상호 작명서 PDF · 평균 3~7일</p>
+          <div class="fcard__foot">
+            <div class="fcard__price"><b>500,000원</b></div>
+            <button class="addbtn" data-add="name-shop">담기</button>
+          </div>
+          <div class="ncard__cta">
+            <button class="btn btn--gold" data-open="name-shop">자세히 보기 · 구매하기 <span class="ar">›</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="ncard" data-card="naming">
+        <button class="ncard__media" data-open="date-pick" aria-label="개업·이사·결혼·계약 정통 길일 택일 상세 보기">
+          <img src="assets/card_naming_date.jpg" alt="고서 위 나침반과 금빛 달 펜던트 — 길일 택일" width="1448" height="1086" loading="lazy">
+          <span class="fbadge">05 · 택일</span>
+        </button>
+        <div class="ncard__body">
+          <span class="fcard__cat">Auspicious Date</span>
+          <h3 class="fcard__name" data-open="date-pick">개업·이사·결혼·계약 정통 길일 택일</h3>
+          <p class="fcard__lines">한 번 정하면 되돌리기 어려운 날, 사주로 뽑는 길일</p>
+          <p class="fcard__spec">최선 1일 + 차선 1일 (총 2안) PDF · 평균 3~7일</p>
+          <div class="fcard__foot">
+            <div class="fcard__price"><b>200,000원</b></div>
+            <button class="addbtn" data-add="date-pick">담기</button>
+          </div>
+          <div class="ncard__cta">
+            <button class="btn btn--gold" data-open="date-pick">자세히 보기 · 구매하기 <span class="ar">›</span></button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="trust" data-rev>
+      <p class="pnote">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.6" rx="2.4"/><path d="M8.6 10.5V8a3.4 3.4 0 0 1 6.8 0v2.5"/></svg>
+        <span>이름·사주 정보는 작명서 발송 후 즉시 파기합니다. 신생아 출산 택일은 진행하지 않습니다.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 1:1 상담 ===== -->
 <section class="sec" id="consult" style="padding-top:0">
   <div class="wrap">
@@ -1523,7 +1685,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <div class="step">
         <div class="step__no">01</div>
         <h3>주문서 작성</h3>
-        <p>상품을 담고 주문서를 보내주세요. 분석지 상품은 출생 정보(생년월일·태어난 시간·성별)를 함께 적어주시면 됩니다.</p>
+        <p>상품을 담고 주문서를 보내주세요. 분석지·작명 상품은 출생 정보(생년월일·태어난 시간·성별)를 함께 적어주시면 됩니다.</p>
       </div>
       <div class="step">
         <div class="step__no">02</div>
@@ -1579,6 +1741,10 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <details>
         <summary>2027 사주 개운 다이어리는 어떻게 쓰나요?</summary>
         <p>아이패드 굿노트·노타빌리티에서 여는 <b>A4 가로 16페이지 PDF</b>입니다. 표지 2종(자개 달빛 · 연보라 클래식) 중 마음에 드는 표지로 시작해 사주 원국을 채운 뒤 1월부터 12월까지 월별 일진 플래너에 기록하시면 됩니다. 사주 원국 8칸은 직접 손글씨로 쓰시거나 <b>원국 기입형</b>으로 신청하시면 접월당이 명식을 보고 여덟 칸과 오행 밸런스 게이지를 채워 드립니다. <b>프리미엄 맞춤 일진형</b>은 여기에 더해 내 사주 기준으로 365일 날짜마다 🌸 풀리는 날 · ⚠️ 조심할 날 · ✈️ 이동·변동수 있는 날을 배지로 찍어 드립니다. 16페이지 스티커는 올가미로 오려 속지에 붙여 쓰시면 됩니다. 스티커 24종은 개별 투명 PNG 파일로도 함께 보내드리니, 굿노트 「요소」에 등록해 두면 필요한 날짜 칸에 바로 끌어다 붙일 수 있습니다.</p>
+      </details>
+      <details>
+        <summary>작명·택일은 얼마나 걸리나요?</summary>
+        <p>이름 감명은 접수 확인 후 평균 1~2일, 성인 개명·신생아·상호 작명과 택일은 평균 3~7일 이내에 주문서에 적어주신 이메일로 보내드립니다. 사주 원국과 한자 획수를 직접 대조해 쓰는 작업이라 하루 이상 걸리며, 접수 순서대로 제작합니다.</p>
       </details>
       <details>
         <summary>환불이 가능한가요?</summary>
@@ -1754,6 +1920,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
     <div class="notice-box">
       주문서를 보내면 <b>입금 계좌</b>가 바로 표시됩니다. 분석지는 입금 확인 후 평균 6시간 · 최대 12시간 내에 이메일로 보내드리며,
       기원부적은 입금 확인 즉시, 나만의 부적은 평균 6시간 · 최대 12시간 내에 같은 이메일로 파일을 보내드립니다.
+      작명·택일은 상품별 안내된 납기(1~2일 · 3~7일) 내에 보내드립니다.
     </div>
   </form>
 
@@ -2009,6 +2176,97 @@ TALISMANS.forEach(t => {
   });
 });
 
+/* ---------- 작명 · 택일 5종 ---------- */
+PRODUCTS.push({
+  id:'name-read', cat:'naming', type:'naming', persons:1, birth:true,
+  kindLabel:'이름 감명', blockName:'이름 감명', optLabel:'이름 감명 진단서 PDF',
+  name:'정통 사주 기반 이름 감명', price:80000, badge:'01 · 감명',
+  photo:'assets/card_naming_read.jpg',
+  short:'지금 쓰는 이름, 그대로 써도 될까요? 사주 원국과 성명학으로 짚어 드리는 1:1 이름 감명',
+  desc:'현재 쓰고 계신 이름을 사주 원국과 성명학(수리·음양·자원오행)으로 함께 풀이해, 이름의 강점과 걸리는 부분을 정확히 짚어 드립니다. 그대로 쓰셔도 되는 이름이면 왜 괜찮은지, 바꾸는 게 좋으면 어느 글자에서 기운이 걸리는지 근거와 함께 PDF로 정리해 드립니다. 개명을 결심하기 전에 먼저 진단받아 보시는 상품입니다.',
+  bullets:['지금 쓰는 이름을 사주 원국과 성명학으로 대조', '그대로 써도 되는지 · 바꾸는 게 좋은지 판단과 근거', '어느 글자에서 기운이 걸리는지, 개선 방향까지', '이름 감명 진단서 PDF · 접수 확인 후 평균 1~2일 이내 이메일'],
+  meta:[['결과물', '이름 감명 진단서 PDF'], ['발송', '접수 확인 후 평균 1~2일 이내 이메일'], ['필요 정보', '성별 · 생년월일시 · 현재 이름']],
+  notice:'※ 현재 이름의 한자를 모르시면 한글만 적어 주세요. 확인이 필요한 부분은 접수 후 카카오채널로 여쭙습니다. 접수 확인 후 제작이 시작되며, 취소·환불은 환불규정을 따릅니다.',
+  birthHint:'지금 쓰시는 이름을 사주와 함께 풉니다. 이름 칸에는 현재 이름을 적어 주세요.',
+  extra:[
+    { k:'hanja', label:'현재 이름 한자', ph:'예) 沈松伊 (모르시면 비워 두세요)' },
+    { k:'worry', label:'이름 고민 · 개명 의향', type:'area', ph:'예) 발음이 마음에 걸립니다 / 개명까지 생각하고 있습니다' }
+  ],
+});
+
+PRODUCTS.push({
+  id:'name-adult', cat:'naming', type:'naming', persons:1, birth:true,
+  kindLabel:'성인 개명 작명', blockName:'성인 개명 작명', optLabel:'추천 3안 · 정밀 작명서 PDF',
+  name:'사주 맞춤 성인 개명 작명 (추천 3안)', price:500000, badge:'02 · 성인 개명',
+  photo:'assets/card_naming_adult.jpg',
+  short:'평생 쓰는 이름이라면 사주에 맞춰 새로. 추천 3안과 정밀 작명서로 개명까지 한 번에',
+  desc:'생년월일시로 사주 원국과 용신을 세운 뒤, 부족한 기운을 채우면서 부르기 좋고 뜻이 좋은 이름을 3안으로 추천해 드립니다. 각 안의 사주 적합도·수리·자원오행·뜻과 한자를 담은 정밀 작명서 PDF를 드리며, 개명 신청에 참고하실 수 있도록 한자와 획수 정보도 함께 표기합니다.',
+  bullets:['사주 원국·용신에 맞춘 추천 이름 3안', '각 안의 사주 적합도 · 수리 · 자원오행 · 한자 풀이', '개명 신청에 참고할 한자 · 획수 정리', '정밀 작명서 PDF · 접수 확인 후 평균 3~7일 이내 이메일'],
+  meta:[['결과물', '추천 이름 3안 + 정밀 작명서 PDF'], ['발송', '접수 확인 후 평균 3~7일 이내 이메일'], ['필요 정보', '성별 · 생년월일시 · 성씨 한자 · 현재 이름']],
+  notice:'※ 접수 확인 후 제작이 시작되며, 취소·환불은 환불규정을 따릅니다.',
+  birthHint:'새 이름을 지을 사주 원국을 세웁니다. 이름 칸에는 현재 이름(개명 전)을 적어 주세요.',
+  extra:[
+    { k:'surname', label:'성씨 한자', req:true, ph:'예) 沈 (모르시면 ‘모름’이라고 적어 주세요)' },
+    { k:'avoid', label:'피하고 싶은 글자', ph:'예) ㄹ 받침, 花 계열' },
+    { k:'feel', label:'희망하는 이름의 느낌', type:'area', ph:'예) 부드럽고 단정한 느낌, 두 글자' }
+  ],
+});
+
+PRODUCTS.push({
+  id:'name-baby', cat:'naming', type:'naming', persons:1, birth:true,
+  kindLabel:'신생아 작명', blockName:'신생아 작명', optLabel:'추천 3안 · 정밀 작명서 PDF',
+  name:'사주 용신 맞춤 신생아 작명 (추천 3안)', price:1100000, badge:'03 · 신생아',
+  photo:'assets/card_naming_baby.jpg',
+  short:'태어난 시간까지 반영한 사주로 짓는 아이의 첫 이름, 추천 3안과 정밀 작명서 PDF',
+  desc:'태어난 시간까지 반영한 사주에서 용신과 희용신을 잡고, 아이의 후천운을 보완하는 이름을 3안으로 지어 드립니다. 출생신고에 바로 쓰실 수 있도록 한글·한자·획수·수리·뜻을 정리한 정밀 작명서 PDF로 보내드리고, 3안을 나란히 비교해 드려 가족이 함께 보고 고르실 수 있습니다.',
+  bullets:['태어난 시간까지 반영한 용신 · 희용신 기준 작명', '추천 이름 3안을 나란히 비교', '출생신고에 바로 쓸 수 있는 한글 · 한자 · 획수 · 수리 정리', '정밀 작명서 PDF · 접수 확인 후 평균 3~7일 이내 이메일'],
+  meta:[['결과물', '추천 이름 3안 + 정밀 작명서 PDF'], ['발송', '접수 확인 후 평균 3~7일 이내 이메일'], ['필요 정보', '아이 성별 · 생년월일시 · 성씨 한자']],
+  notice:'※ 접수 확인 후 제작이 시작되며, 취소·환불은 환불규정을 따릅니다.',
+  birthHint:'아이의 사주 원국을 세웁니다. 이름 칸에는 아직 이름이 없으면 성씨만 적어 주세요.',
+  extra:[
+    { k:'surname', label:'성씨 한자', req:true, ph:'예) 沈 (모르시면 ‘모름’이라고 적어 주세요)' },
+    { k:'sibs', label:'형제 · 자매 이름 · 돌림자', ph:'예) 첫째 沈智浩, 智 돌림' },
+    { k:'avoid', label:'피하고 싶은 글자 · 희망하는 느낌', type:'area', ph:'예) 받침이 많은 글자는 피하고 싶습니다' }
+  ],
+});
+
+PRODUCTS.push({
+  id:'name-shop', cat:'naming', type:'naming', persons:1, birth:true,
+  kindLabel:'상호 작명', blockName:'상호 작명', optLabel:'추천 상호 3안 · 상호 작명서 PDF',
+  name:'대표자 사주·업종 맞춤 사업 상호 작명 (추천 3안)', price:500000, badge:'04 · 상호',
+  photo:'assets/card_naming_shop.jpg',
+  short:'사업의 첫인상이 되는 상호, 대표자 사주와 업종을 함께 보고 짓는 맞춤 작명',
+  desc:'대표자 생년월일시로 사주 원국을 세운 뒤, 업종과 취급 아이템에 맞는 상호를 3안으로 지어 드립니다. 상호마다 사주 적합도와 업종 궁합, 수리·음령오행, 부르기·기억하기 쉬운 정도를 함께 풀어낸 상호 작명서 PDF를 드리며, 사업자등록·간판·로고 작업에 바로 활용하실 수 있는 형태로 정리합니다.',
+  bullets:['대표자 사주와 업종을 함께 보는 상호 3안', '상호별 사주 적합도 · 업종 궁합 · 수리 · 음령오행', '부르기 · 기억하기 쉬운 정도까지 비교', '상호 작명서 PDF · 접수 확인 후 평균 3~7일 이내 이메일'],
+  meta:[['결과물', '추천 상호 3안 + 상호 작명서 PDF'], ['발송', '접수 확인 후 평균 3~7일 이내 이메일'], ['필요 정보', '대표자 생년월일시 · 업종 · 사업자 형태']],
+  notice:'※ 접수 확인 후 제작이 시작되며, 취소·환불은 환불규정을 따릅니다.',
+  birthHint:'대표자 사주로 상호를 짓습니다. 이름 칸에는 대표자 성함을 적어 주세요.',
+  extra:[
+    { k:'industry', label:'업종 · 취급 아이템', req:true, ph:'예) 카페 / 원두·디저트' },
+    { k:'biztype', label:'사업자등록 형태', type:'select', opts:['개인', '법인'], req:true },
+    { k:'feel', label:'희망하는 상호의 느낌 · 꼭 넣고 싶은 글자', type:'area', ph:'예) 차분하고 고급스러운 느낌, 月 자를 넣고 싶습니다' }
+  ],
+});
+
+PRODUCTS.push({
+  id:'date-pick', cat:'naming', type:'naming', persons:1, birth:true,
+  kindLabel:'길일 택일', blockName:'길일 택일', optLabel:'최선 1일 + 차선 1일 · 택일서 PDF',
+  name:'개업·이사·결혼·계약 정통 길일 택일 (총 2안)', price:200000, badge:'05 · 택일',
+  photo:'assets/card_naming_date.jpg',
+  short:'한 번 정하면 되돌리기 어려운 날, 사주로 뽑는 정통 길일 (출산 택일 제외)',
+  desc:'개업·이사·결혼·계약처럼 한 번 정하면 되돌리기 어려운 일정을 위해, 신청하신 분(과 상대방)의 사주를 기준으로 겹치지 않는 길일을 뽑습니다. 최선의 날 1일과 차선일 1일, 총 2안을 드리고 각 날짜를 고른 이유와 좋은 시간대까지 PDF로 정리해 드립니다. 신생아 출산 택일(제왕절개·유도분만 날짜)은 진행하지 않습니다.',
+  bullets:['행사 당사자 사주로 뽑는 최선 1일 + 차선 1일 (총 2안)', '날짜마다 고른 이유와 피한 날의 근거', '좋은 시간대까지 함께 정리한 택일서 PDF', '접수 확인 후 평균 3~7일 이내 이메일', '신생아 출산 택일(제왕절개·유도분만)은 진행하지 않습니다'],
+  meta:[['결과물', '최선 1일 + 차선 1일 (총 2안) PDF'], ['발송', '접수 확인 후 평균 3~7일 이내 이메일'], ['필요 정보', '행사 종류 · 당사자 생년월일시 · 희망 기간']],
+  notice:'※ 신생아 출산 택일(제왕절개·유도분만 날짜)은 진행하지 않습니다. 접수 확인 후 제작이 시작되며, 취소·환불은 환불규정을 따릅니다.',
+  birthHint:'행사 당사자의 사주로 길일을 뽑습니다. 이름 칸에는 당사자 성함을 적어 주세요.',
+  extra:[
+    { k:'event', label:'행사 종류', type:'select', opts:['개업', '이사', '결혼', '계약'], req:true },
+    { k:'period', label:'희망하는 기간', req:true, ph:'예) 12월 중, 2027년 3월 이전' },
+    { k:'partner', label:'함께 보는 상대방 정보 (선택)', type:'area', ph:'결혼·계약이면 상대방 성별·생년월일시 (모르면 비워 두세요)' },
+    { k:'region', label:'지역 · 이미 보고 있는 후보 날짜', ph:'예) 서울 강남 / 12월 5일·12일' }
+  ],
+});
+
 const won = n => n.toLocaleString('ko-KR') + '원';
 /* 받침에 맞는 목적격 조사 */
 function eul(word){
@@ -2023,7 +2281,7 @@ const $$ = s => Array.from(document.querySelectorAll(s));
 const byId = id => PRODUCTS.find(p => p.id === id);
 /* 기원부적은 '기원부적 · 재물운'처럼 선택한 기원까지 함께 표기 */
 const dispName = p => (p && p.type === 'talisman' && p.variant) ? `${p.name} · ${p.variant}` : (p ? p.name : '');
-const catLabel = c => c === 'saju' ? '종합사주' : c === 'ziwei' ? '자미두수' : c === 'diary' ? '2027 다이어리' : '인쇄 부적';
+const catLabel = c => c === 'saju' ? '종합사주' : c === 'ziwei' ? '자미두수' : c === 'diary' ? '2027 다이어리' : c === 'naming' ? '작명·택일' : '인쇄 부적';
 
 /* ---------- 상태 ---------- */
 let cart = loadCart();
@@ -2267,6 +2525,7 @@ function renderCart(){
     const opt = p.type === 'talisman' ? `${p.variant || '기원'} 선택 · 입금 확인 즉시 메일 발송`
               : p.type === 'custom' ? '사주 맞춤 제작 후 평균 6시간(최대 12시간) 내 발송'
               : p.type === 'diary' ? (p.id === 'diary-premium' ? '프리미엄 맞춤 일진형 · 365일 맞춤 표기 후 평균 6시간(최대 12시간) 내 발송' : p.birth ? '원국 기입형 · 기입 후 평균 6시간(최대 12시간) 내 발송' : '기본형 · 입금 확인 즉시 메일 발송')
+              : p.type === 'naming' ? `${p.optLabel} · 접수 확인 후 순차 발송`
               : 'A4 PDF · 평균 6시간 · 최대 12시간 내 발송';
     return `<div class="citem">
       <div class="citem__thumb">${mediaHTML(p, true)}</div>
@@ -2440,6 +2699,13 @@ document.addEventListener('click', e => {
   const a = e.target.closest && e.target.closest('a[data-nav]');
   if(!a) return;
   const key = a.dataset.nav;
+  if(key === 'naming'){              // 작명·택일은 단독 섹션으로 연결
+    const sec = $('#naming');
+    if(!sec) return;
+    e.preventDefault();
+    sec.scrollIntoView({block:'start', behavior:'auto'});
+    return;
+  }
   if(key === 'diary'){               // 다이어리는 대표 상품이 아닌 단독 섹션으로 연결
     const sec = $('#diary');
     if(!sec) return;
@@ -2507,7 +2773,32 @@ function birthHint(p){
   if(p.type === 'ziwei') return '정통 자미두수는 대략적인 태어난 시간은 알고 있어야 합니다. 시진(두 시간 단위) 정도의 시간대면 충분하고, 분은 몰라도 됩니다.';
   if(p.type === 'custom') return '사주에 맞춰 부적의 문장과 배치를 정합니다. 태어난 시간을 모르셔도 됩니다.';
   if(p.type === 'diary') return p.id === 'diary-premium' ? '사주팔자 8칸과 함께 2027년 365일 맞춤 일진을 만드는 데 씁니다. 태어난 시간을 모르셔도 일주 중심으로 표기해 드립니다.' : '사주팔자 8칸과 오행 밸런스를 채우는 데 씁니다. 태어난 시간을 모르셔도 일주 중심으로 채워 드립니다.';
+  if(p.type === 'naming') return p.birthHint || '사주 원국을 세우는 데 씁니다. 태어난 시간을 모르시면 ‘모름’으로 두셔도 됩니다.';
   return '태어난 시간을 모르셔도 일주 중심으로 해석해 드립니다.';
+}
+/* 작명·택일 상품의 추가 입력 (한자·업종·택일 목적 등) */
+function extraFields(p, key){
+  if(!p.extra || !p.extra.length) return '';
+  const one = el => {
+    const req = el.req ? ' <span class="req">*</span>' : '';
+    const reqAttr = el.req ? ' data-req="1"' : '';
+    const lbl = String(el.label).replace(/"/g, '&quot;');
+    const hint = el.hint ? `<span class="hint">${el.hint}</span>` : '';
+    const err = el.req ? '<span class="errtxt">필수 항목입니다. 적어 주세요.</span>' : '';
+    if(el.type === 'select'){
+      return `<div class="field"><label>${el.label}${req}</label>
+        <select data-x="${el.k}" data-label="${lbl}"${reqAttr}>
+          <option value="">선택해 주세요</option>${el.opts.map(o => `<option value="${o}">${o}</option>`).join('')}
+        </select>${hint}${err}</div>`;
+    }
+    if(el.type === 'area'){
+      return `<div class="field"><label>${el.label}${req}</label>
+        <textarea rows="2" data-x="${el.k}" data-label="${lbl}" placeholder="${el.ph || ''}"${reqAttr}></textarea>${hint}${err}</div>`;
+    }
+    return `<div class="field"><label>${el.label}${req}</label>
+      <input type="text" data-x="${el.k}" data-label="${lbl}" placeholder="${el.ph || ''}"${reqAttr}>${hint}${err}</div>`;
+  };
+  return `<div class="extras">${p.extra.map(one).join('')}</div>`;
 }
 function birthBlock(p, n){
   const persons = p.persons || 1;
@@ -2556,6 +2847,7 @@ function birthBlock(p, n){
         ${timeRequired ? '' : '<label class="check"><input type="checkbox" data-f="noTime"> 태어난 시간을 모릅니다 (일주 중심으로 해석)</label>'}
         <span class="errtxt">${timeRequired ? '태어난 시간대(시)를 골라 주세요. 분은 몰라도 됩니다.' : '태어난 시간을 골라 주세요.'}</span>
       </div>
+      ${extraFields(p, key)}
     </div>`;
 }
 /* 주문서 인원 전환 시 입력 중인 출생 정보를 잃지 않도록 보관·복원 */
@@ -2660,7 +2952,7 @@ function renderOrderForm(){
   $('#birthArea').innerHTML = blocks.length ? `
     <div class="fgroup" style="background:transparent;border:0;padding:0 2px">
       <div class="fgroup__title" style="font-size:16px"><i></i>출생 정보
-        <span style="font-family:var(--sans);font-size:11.5px;color:var(--mut);font-weight:400;letter-spacing:0">— 분석지·다이어리 작성에 사용됩니다</span>
+        <span style="font-family:var(--sans);font-size:11.5px;color:var(--mut);font-weight:400;letter-spacing:0">— 분석지·작명서 작성에 사용됩니다</span>
       </div>
     </div>` + blocks.join('') : '';
 
@@ -2728,6 +3020,9 @@ function validateOrder(){
       const hour = fg.querySelector('[data-f="hour"]');
       ok = fieldErr(hour, !hour.value) && ok;
     }
+    fg.querySelectorAll('[data-x][data-req="1"]').forEach(el => {
+      ok = fieldErr(el, !String(el.value || '').trim()) && ok;
+    });
   });
 
   const agree = $('#agreePrivacy').checked && $('#agreeRefund').checked && $('#agreeAge').checked;
@@ -2753,6 +3048,11 @@ function collectOrder(){
     const cut = key.lastIndexOf('-');
     const pId = cut > 0 ? key.slice(0, cut) : '';
     const p = byId(pId) || {};
+    const ex = [];
+    fg.querySelectorAll('[data-x]').forEach(el => {
+      const v = String(el.value || '').trim();
+      if(v) ex.push({ label: el.dataset.label || el.dataset.x, value: v });
+    });
     births.push({
       상품: fg.querySelector('.fgroup__title').textContent.replace(/\s+/g,' ').trim(),
       이름: fg.querySelector('[data-f="name"]').value.trim(),
@@ -2760,12 +3060,13 @@ function collectOrder(){
       생년월일: fg.querySelector('[data-f="birth"]').value,
       달력: fg.querySelector('[data-f="cal"]:checked')?.value || '양력',
       태어난시간: birthTimeText(fg),
-      종류: type === 'ziwei' ? '자미두수' : type === 'custom' ? '나만의 부적' : type === 'diary' ? (p.birthKind || '다이어리 원국') : '사주',
+      종류: type === 'ziwei' ? '자미두수' : type === 'custom' ? '나만의 부적' : type === 'diary' ? (p.birthKind || '다이어리 원국') : type === 'naming' ? (p.kindLabel || '작명·택일') : '사주',
       상품ID: pId,
       상품명: p.name || '',
       인원: cut > 0 ? Number(key.slice(cut + 1)) || 1 : 1,
       총인원: p.persons || 1,
       추가질문: '',                                      // 주문서에 추가 질문 입력칸이 생기면 여기로 연결
+      추가정보: ex,                                      // 작명·택일 추가 입력(한자·업종·택일 목적 등)
     });
   });
   return {
@@ -2800,6 +3101,7 @@ function buildMessage(o, no){
     lines.push('■ 출생 정보');
     o.births.forEach(b => {
       lines.push(`- [${b.종류}] ${b.이름} / ${b.성별} / ${b.생년월일}(${b.달력}) / ${b.태어난시간} — ${b.상품}`);
+      (b.추가정보 || []).forEach(x => lines.push(`   · ${x.label}: ${x.value}`));
     });
   }
   lines.push('');
@@ -2817,6 +3119,7 @@ function itemOption(p){
   if(p.type === 'custom') return '사주 맞춤 · 큰 부적 1 + 지갑용 2';
   if(p.type === 'talisman') return `기원부적 · ${p.variant || ''}`.trim();
   if(p.type === 'diary') return p.optLabel || (p.birth ? '원국 기입형 · 사주 1회 기입' : '기본형 · 16페이지 PDF');
+  if(p.type === 'naming') return p.optLabel || '작명·택일 PDF';
   return '';
 }
 function buildOrderRecord(o, no){
@@ -2833,7 +3136,7 @@ function buildOrderRecord(o, no){
     productId:b.상품ID || '', productName:b.상품명 || '', kind:b.종류,
     person:b.인원 || 1, persons:b.총인원 || 1, label:b.상품,
     name:b.이름, gender:b.성별, calendar:b.달력,
-    birth:b.생년월일, time:b.태어난시간, question:b.추가질문 || '',
+    birth:b.생년월일, time:b.태어난시간, question:b.추가질문 || '', extras:b.추가정보 || [],
   }));
   return {
     id:no, no, orderedAt:at, status:'입금대기',
@@ -2914,8 +3217,10 @@ function showDone(o, no){
   if(eta){
     const types = (o.items || []).map(i => i.type);
     const hasWish = types.includes('talisman');
-    const hasSlow = types.some(t => t !== 'talisman');
-    eta.textContent = hasWish && !hasSlow ? '기원부적 · 입금 확인 즉시'
+    const hasNaming = types.includes('naming');
+    const hasSlow = types.some(t => t !== 'talisman' && t !== 'naming');
+    eta.textContent = hasNaming ? '작명·택일 · 접수 후 1~7일'
+      : hasWish && !hasSlow ? '기원부적 · 입금 확인 즉시'
       : hasWish ? '기원부적 즉시 · 그 외 6~12시간'
       : '평균 6시간 · 최대 12시간 내';
   }
@@ -2936,7 +3241,7 @@ const DOCS = {
       <li>사주분석지·자미두수 분석지는 이용자가 제공한 출생 정보를 바탕으로 회사가 직접 작성한 맞춤형 PDF 문서입니다.</li>
       <li>부적은 회사가 제작한 이미지 파일(PDF·PNG)로, 인쇄해 소장하는 용도로 이용할 수 있습니다.</li>
       <li>2027 사주 개운 굿노트 다이어리는 태블릿(굿노트·노타빌리티)용 A4 가로 16페이지 PDF입니다. 기본형은 표지 2종·내 사주 원국·2027년 1~12월 일진 플래너·스티커 24종으로 구성됩니다. 원국 기입형은 회사가 사주팔자 8칸과 오행 균형을 직접 채워 발송합니다. 프리미엄 맞춤 일진형은 여기에 더해 회사가 2027년 1~12월 365일의 날짜별 기운(풀리는 날·조심할 날·이동·변동수 있는 날)을 사주에 맞춰 표기해 발송합니다. 스티커 24종은 시트 형태와 함께, 굿노트 「요소」 등록용 개별 투명 PNG 파일(ZIP)로도 함께 제공됩니다.</li>
-      <li>모든 상품은 실물 배송이 없는 디지털 콘텐츠이며, 이메일로 발송됩니다. 기원부적은 입금 확인 즉시(이미 완성된 파일), 나만의 부적은 입금 확인 후 평균 6시간 · 최대 12시간 내, 사주·자미두수 분석지와 2027 신년운세는 입금 확인 후 평균 6시간 · 최대 12시간 내에 발송됩니다.</li>
+      <li>모든 상품은 실물 배송이 없는 디지털 콘텐츠이며, 이메일로 발송됩니다. 기원부적은 입금 확인 즉시(이미 완성된 파일), 나만의 부적은 입금 확인 후 평균 6시간 · 최대 12시간 내, 사주·자미두수 분석지와 2027 신년운세는 입금 확인 후 평균 6시간 · 최대 12시간 내에 발송됩니다. 작명·택일 상품은 접수 확인 후 평균 1~2일(이름 감명) 또는 3~7일(성인 개명·신생아·상호 작명, 택일) 이내에 발송됩니다.</li>
     </ol>
     <h4>제3조 (주문 및 결제)</h4>
     <ol>
@@ -2945,7 +3250,7 @@ const DOCS = {
       <li>입금자명이 주문자와 다른 경우 확인이 지연될 수 있습니다.</li>
     </ol>
     <h4>제4조 (발송)</h4>
-    <p>분석지는 입금 확인 후 평균 6시간, 최대 12시간 이내에 주문서에 기재된 이메일로 발송됩니다. 부적은 기원부적의 경우 입금 확인 즉시, 나만의 부적의 경우 입금 확인 후 평균 6시간 · 최대 12시간 이내에 같은 이메일로 발송됩니다. 천재지변 등 부득이한 사유가 있는 경우 지연될 수 있으며, 이 경우 카카오채널로 안내드립니다.</p>
+    <p>분석지는 입금 확인 후 평균 6시간, 최대 12시간 이내에 주문서에 기재된 이메일로 발송됩니다. 부적은 기원부적의 경우 입금 확인 즉시, 나만의 부적의 경우 입금 확인 후 평균 6시간 · 최대 12시간 이내에 같은 이메일로 발송됩니다. 작명·택일 상품은 접수 확인 후 평균 1~2일(이름 감명) 또는 3~7일(성인 개명·신생아·상호 작명, 택일) 이내에 같은 이메일로 발송됩니다. 천재지변 등 부득이한 사유가 있는 경우 지연될 수 있으며, 이 경우 카카오채널로 안내드립니다.</p>
     <h4>제5조 (청약철회 및 환불)</h4>
     <ol>
       <li>기원부적은 즉시 제공되는 완성 디지털 파일로, 결제(입금 확인) 및 다운로드·발송이 개시된 후에는 청약철회 및 환불이 불가합니다. 단, 미열람·미다운로드 상태이거나 파일 오류·오발송 등 회사의 귀책이 있는 경우에는 재발송 또는 100% 환불합니다.</li>

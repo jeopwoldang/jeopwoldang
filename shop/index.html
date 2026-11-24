@@ -522,7 +522,8 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   transition:border-color .35s, box-shadow .35s, transform .35s;
 }
-.ncard:nth-child(4),.ncard:nth-child(5){grid-column:span 3}
+.ncard:nth-child(4){grid-column:2/span 2}
+.ncard:nth-child(5){grid-column:4/span 2}
 .ncard:hover{border-color:rgba(242,216,155,.42);box-shadow:0 30px 62px -34px rgba(0,0,0,1), inset 0 1px 0 rgba(255,255,255,.12);transform:translateY(-3px)}
 .ncard__media{position:relative;display:block;border:0;padding:0;overflow:hidden;background:#140E2B;aspect-ratio:1/1}
 .ncard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,.8,.28,1)}
@@ -1338,7 +1339,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
 
 <!-- ===== 상단 공지 ===== -->
 <div class="topbar">
-  <b>蝶月堂 11월 한정</b><span class="dot">·</span>2027 정미년 신년운세 <b>19,800원</b><span class="topbar__extra"><span class="dot">·</span>12월 1일부터 정가 29,800원</span>
+  <b>蝶月堂 11월 한정</b><span class="dot">·</span>2027 정미년 신년운세 <b>19,800원</b><span class="topbar__extra"><span class="dot">·</span>12월 1일부터 정가 34,900원</span>
 </div>
 
 <!-- ===== 헤더 ===== -->
@@ -2073,7 +2074,7 @@ const PRODUCTS = [
     meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)']] },
 
   { id:'new2027', cat:'saju', type:'saju', persons:1, timeRequired:false,
-    name:'2027 정미년 신년운세', price:19800, orig:29800, badge:'11월 한정', photo:'assets/card_newyear.jpg',
+    name:'2027 정미년 신년운세', price:19800, orig:34900, badge:'11월 한정', photo:'assets/card_newyear.jpg',
     cover:{hanja:'丁未', en:'2027 NEW YEAR', top:'NEW YEAR · 2027', sub:'정미년 신년운세', variant:'sun'},
     short:'정미년 한 해의 흐름을 달마다 깊게 짚어 담은 1인 전용 신년 리포트',
     desc:'2027 정미년, 나에게 오는 한 해의 흐름을 달마다 깊게 풀어 풍부하게 담았습니다. 1인 전용 상품으로 추가 질문은 포함되지 않습니다.',

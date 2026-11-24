@@ -2161,6 +2161,11 @@ function setCover(cover){
     b.setAttribute('aria-pressed', String(b.dataset.cover === cover)));
   const now = $('#pdCoverNow');
   if(now) now.innerHTML = `선택 · <b>${cover} 표지</b> — 속지 바탕은 그대로, 테두리·장식 포인트만 이 색에 맞춥니다`;
+  const add = $('#pdAdd');
+  const cp = pdId ? byId(pdId) : null;
+  if(add && cp && cp.type === 'diary'){
+    add.innerHTML = `장바구니 담기 · ${won(tierKind(pdId) ? cp.price : cp.price * pdQty)} · ${cover} 표지`;
+  }
 }
 
 /* ---------- 상태 ---------- */

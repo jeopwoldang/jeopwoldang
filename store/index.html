@@ -1593,7 +1593,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
 <!-- ===== 상단 공지 ===== -->
 <div class="topbar">
-  <a class="topbar__link" href="#products" data-topbar-go aria-label="2027 정미년 신년운세 19,800원 상품 보러 가기">
+  <a class="topbar__link" href="/2027/" aria-label="2027 정미년 신년운세 19,800원 전용 페이지로 이동">
     <span class="topbar__txt"><b>蝶月堂 11월 한정</b><span class="dot">·</span>2027 정미년 신년운세 <b>19,800원</b><span class="topbar__extra"><span class="dot">·</span>12월 1일부터 정가 34,900원</span></span>
     <span class="topbar__go">바로가기 <em aria-hidden="true">›</em></span>
   </a>
@@ -2906,20 +2906,6 @@ document.addEventListener('click', e => {
   if(t.dataset.tab){ renderTermsTab(t.dataset.tab); return; }
 });
 $('#cartOpen').addEventListener('click', openCart);
-
-/* 상단 띠 배너 바로가기 → 2027 신년운세 슬라이드로 부드럽게 이동 */
-document.addEventListener('click', e => {
-  const a = e.target.closest && e.target.closest('[data-topbar-go]');
-  if(!a) return;
-  e.preventDefault();
-  if(typeof goSlide === 'function') goSlide(0, true);      // 대표 상품 첫 슬라이드 = 2027 신년운세
-  const box = $('#products');
-  if(!box) return;
-  const hn = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hnav')) || 64;
-  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  window.scrollTo({top: Math.max(0, box.getBoundingClientRect().top + window.scrollY - hn - 12),
-                   behavior: reduce ? 'auto' : 'smooth'});
-});
 
 /* 헤더 메뉴(종합사주 · 신년운세 · 자미두수 → 대표 상품 슬라이드, 2027 다이어리 → 단독 섹션) */
 document.addEventListener('click', e => {

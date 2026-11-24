@@ -1197,6 +1197,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     L.push('');
     items.forEach((i, n) => {
       L.push(`${n + 1}. ${itemLabel(i)} × ${i.qty}`);
+      if (i.type === 'diary' && i.cover) L.push(`   · 표지: ${i.cover} 표지 · 이 표지 테마에 맞춘 속지로 보내드립니다.`);
       if (i.type === 'ziwei') L.push('   · 열두 궁위와 14주성·사화를 중심으로 정리한 약 120페이지 A4 PDF입니다. 인쇄하셔도, 화면으로 보셔도 좋습니다.');
       else if (i.type === 'saju' && i.id === 'new2027') L.push('   · 2027 정미년 한 해의 흐름을 달마다 깊게 풀어낸 약 60페이지 A4 PDF입니다.');
       else if (i.type === 'saju') L.push('   · 사주 명식과 10년 대운, 올해의 흐름을 담은 약 120페이지 A4 PDF입니다.');
@@ -1206,7 +1207,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
         ? '   · 내 사주 기준으로 1~12월 365일 날짜마다 풀리는 날·조심할 날·이동수를 표기한 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에서 바로 여세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.'
         : i.option && i.option.indexOf('원국') === 0
         ? '   · 사주 원국 8칸과 오행 밸런스를 채운 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에서 바로 여세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.'
-        : '   · 표지 2종·내 사주 원국·1~12월 일진 플래너·스티커 24종을 담은 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에 넣어 쓰세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.');
+        : '   · 선택하신 표지 1종과 그 테마에 맞춘 속지, 내 사주 원국, 1~12월 일진 플래너, 스티커 24종을 담은 A4 가로 16페이지 PDF입니다. 굿노트·노타빌리티에 넣어 쓰세요. 스티커 24종은 굿노트 「요소」에 등록해 쓰는 개별 투명 PNG 24개(ZIP)로 함께 첨부했습니다.');
       else if (i.type === 'naming') L.push(i.id === 'name-read'
         ? '   · 지금 쓰시는 이름을 사주 원국과 성명학으로 풀이한 이름 감명 진단서 PDF를 첨부했습니다.'
         : i.id === 'date-pick'

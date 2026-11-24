@@ -574,6 +574,27 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .pd__thumb{width:64px;height:80px;border-radius:8px;overflow:hidden;border:1px solid rgba(216,192,255,.25);background:#F4EBD8;padding:0;opacity:.7;transition:opacity .2s,border-color .2s}
 .pd__thumb img{width:100%;height:100%;object-fit:cover}
 .pd__thumb:hover,.pd__thumb.is-on{opacity:1;border-color:rgba(242,216,155,.75)}
+/* 다이어리 표지 선택 (3종 중 택 1) */
+.pd__cover{margin:14px 0 2px;padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(216,192,255,.16)}
+.pd__cover > span{display:block;font-size:11px;letter-spacing:.14em;color:var(--gold-d);margin-bottom:9px}
+.dcard__cover{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(216,192,255,.16)}
+.dcard__coverlab{font-size:10.5px;letter-spacing:.14em;color:var(--gold-d)}
+.dcard__coverlab em{font-style:normal;letter-spacing:0;color:var(--mut);font-size:10.5px;margin-left:5px}
+.dcard__cover .opt{margin-bottom:0}
+.dcard__cover .optb{font-size:11.5px;padding:4px 10px}
+.covgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.covbtn{display:flex;flex-direction:column;gap:6px;padding:0;border-radius:10px;background:transparent;text-align:center}
+.covbtn__img{display:block;border-radius:8px;overflow:hidden;border:1px solid rgba(216,192,255,.25);opacity:.72;transition:opacity .2s,border-color .2s,box-shadow .2s}
+.covbtn__img img{display:block;width:100%;aspect-ratio:1.414/1;object-fit:cover}
+.covbtn__nm{font-size:10.5px;line-height:1.3;color:var(--mut);letter-spacing:.01em}
+.covbtn[aria-pressed="true"] .covbtn__img{opacity:1;border-color:rgba(242,216,155,.85);box-shadow:0 0 0 1px rgba(242,216,155,.55),0 8px 20px -14px rgba(242,216,155,.9)}
+.covbtn[aria-pressed="true"] .covbtn__nm{color:#F2D89B}
+.covhint{margin:9px 0 0;font-size:11px;color:var(--mut);line-height:1.55}
+.covhint b{color:#F2D89B;font-weight:600}
+.oitem__cover{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:7px}
+.oitem__coverlab{font-size:10.5px;letter-spacing:.12em;color:var(--gold-d)}
+.oitem__cover .ptoggle button{font-size:10.5px;padding:3px 8px}
+
 .pd__gal--wide{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .pd__gal--wide .pd__thumb{width:100%;height:auto;aspect-ratio:1.414/1;border-radius:10px}
 
@@ -1396,7 +1417,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
         <span class="fcard__cat">Goodnotes &amp; Notability · A4 PDF 16페이지</span>
         <h3 class="fcard__name" data-open="diary-basic" data-open-diary>2027 사주 개운 다이어리</h3>
         <p class="fcard__lines">내 사주 원국과 2027년 1~12월 일진을 담아 아이패드에서 쓰는 16페이지 다이어리</p>
-        <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b></p>
+        <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b> · 표지 3종 중 택 1</p>
         <div class="fcard__foot">
           <div class="fcard__price">
             <div class="opt" role="group" aria-label="옵션 선택">
@@ -1411,6 +1432,14 @@ body:has(#doneView.is-open) .toast{bottom:112px}
             </div>
           </div>
           <button class="addbtn" data-add-diary>담기</button>
+        </div>
+        <div class="dcard__cover">
+          <span class="dcard__coverlab">표지<em>3종 중 택 1</em></span>
+          <div class="opt" role="group" aria-label="표지 선택">
+            <button class="optb" data-cover="자개 달빛" aria-pressed="true">자개 달빛</button>
+            <button class="optb" data-cover="연보라 클래식" aria-pressed="false">연보라 클래식</button>
+            <button class="optb" data-cover="붉은 양 · 달과 나비" aria-pressed="false">붉은 양 · 달과 나비</button>
+          </div>
         </div>
         <div class="dcard__cta">
           <button class="btn btn--gold" data-open="diary-basic" data-open-diary>자세히 보기 · 구매하기 <span class="ar">›</span></button>
@@ -1609,7 +1638,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       </details>
       <details>
         <summary>2027 사주 개운 다이어리는 어떻게 쓰나요?</summary>
-        <p>아이패드 굿노트·노타빌리티에서 여는 <b>A4 가로 16페이지 PDF</b>입니다. 표지 2종(자개 달빛 · 연보라 클래식) 중 마음에 드는 표지로 시작해 사주 원국을 채운 뒤 1월부터 12월까지 월별 일진 플래너에 기록하시면 됩니다. 사주 원국 8칸은 직접 손글씨로 쓰시거나 <b>원국 기입형</b>으로 신청하시면 접월당이 명식을 보고 여덟 칸과 오행 밸런스 게이지를 채워 드립니다. <b>프리미엄 맞춤 일진형</b>은 여기에 더해 내 사주 기준으로 365일 날짜마다 🌸 풀리는 날 · ⚠️ 조심할 날 · ✈️ 이동·변동수 있는 날을 배지로 찍어 드립니다. 16페이지 스티커는 올가미로 오려 속지에 붙여 쓰시면 됩니다. 스티커 24종은 개별 투명 PNG 파일로도 함께 보내드리니, 굿노트 「요소」에 등록해 두면 필요한 날짜 칸에 바로 끌어다 붙일 수 있습니다.</p>
+        <p>아이패드 굿노트·노타빌리티에서 여는 <b>A4 가로 16페이지 PDF</b>입니다. 표지 3종(자개 달빛 · 연보라 클래식 · 붉은 양 · 달과 나비) 중 하나를 고르시면 고른 표지 테마에 맞춰 속지 컬러 세트를 구성해 보내드립니다. 사주 원국을 채운 뒤 1월부터 12월까지 월별 일진 플래너에 기록하시면 됩니다. 사주 원국 8칸은 직접 손글씨로 쓰시거나 <b>원국 기입형</b>으로 신청하시면 접월당이 명식을 보고 여덟 칸과 오행 밸런스 게이지를 채워 드립니다. <b>프리미엄 맞춤 일진형</b>은 여기에 더해 내 사주 기준으로 365일 날짜마다 🌸 풀리는 날 · ⚠️ 조심할 날 · ✈️ 이동·변동수 있는 날을 배지로 찍어 드립니다. 16페이지 스티커는 올가미로 오려 속지에 붙여 쓰시면 됩니다. 스티커 24종은 개별 투명 PNG 파일로도 함께 보내드리니, 굿노트 「요소」에 등록해 두면 필요한 날짜 칸에 바로 끌어다 붙일 수 있습니다.</p>
       </details>
       <details>
         <summary>작명·택일은 얼마나 걸리나요?</summary>
@@ -1941,10 +1970,10 @@ const PRODUCTS = [
 ];
 
 /* ---------- 2027 사주 개운 굿노트 다이어리 (PDF) ----------
-   최종 16페이지 정식판 — 표지 2종 · 내 사주 원국 · 2027년 1~12월 일진 플래너 · 스티커 24종.
+   최종 16페이지 정식판 — 표지 3종 중 택 1 · 내 사주 원국 · 2027년 1~12월 일진 플래너 · 스티커 24종.
    기본형(19,800원)은 완성된 파일을, 원국 기입형(29,000원)은 접월당이 사주팔자 8칸과
    오행 밸런스를 직접 채워 발송합니다. */
-const DIARY_PHOTOS = ['assets/diary_p1.jpg?v=2', 'assets/diary_p2.jpg?v=2', 'assets/diary_p3.jpg?v=2', 'assets/diary_p4.jpg?v=2', 'assets/diary_p5.jpg?v=2', 'assets/diary_p6.jpg?v=2'];
+const DIARY_PHOTOS = ['assets/diary_p1.jpg?v=2', 'assets/diary_p2.jpg?v=2', 'assets/diary_cover_red.jpg?v=1', 'assets/diary_p3.jpg?v=2', 'assets/diary_p4.jpg?v=2', 'assets/diary_p5.jpg?v=2', 'assets/diary_p6.jpg?v=2'];
 /* 프리미엄 맞춤 일진형 — 맨 앞에 1월 맞춤 일진 샘플(예시 사주)을 보여 준다 */
 const DIARY_PREMIUM_PHOTOS = ['assets/diary_p7.jpg?v=3', ...DIARY_PHOTOS];
 
@@ -1953,17 +1982,17 @@ PRODUCTS.push({
   optLabel:'기본형 · 16페이지 PDF',
   name:'2027 사주 개운 굿노트 다이어리 · 기본형', price:19800, badge:'NEW',
   photo:'assets/card_diary.jpg?v=2', photos:DIARY_PHOTOS,
-  short:'표지 2종 · 내 사주 원국 · 2027년 1~12월 일진 플래너 · 개운 스티커 24종을 담은 16페이지 아이패드 다이어리',
-  desc:'아이패드 굿노트·노타빌리티에 넣어 쓰는 A4 가로 16페이지 PDF 다이어리입니다. 자개 달빛 표지 A와 연보라 클래식 표지 B를 모두 담아 마음에 드는 표지로 시작할 수 있고, 내 사주 원국 8칸과 오행 밸런스 게이지, 2027년 1월부터 12월까지 한 달에 한 장씩 담은 일진 플래너(60갑자 일진·음력·24절기·손 없는 날·공휴일 표시), 동양풍 사주 스티커 24종으로 구성했습니다. 스티커 24종은 PDF 속 스티커 시트와 함께, 굿노트 「요소」에 하나씩 등록해 바로 붙여 쓰는 개별 투명 PNG 파일(24개 ZIP)로도 같이 보내드립니다.',
+  short:'표지 3종 중 택 1 · 내 사주 원국 · 2027년 1~12월 일진 플래너 · 개운 스티커 24종을 담은 16페이지 아이패드 다이어리',
+  desc:'아이패드 굿노트·노타빌리티에 넣어 쓰는 A4 가로 16페이지 PDF 다이어리입니다. 표지 3종(자개 달빛 · 연보라 클래식 · 붉은 양 · 달과 나비) 중 하나를 고르시면, 고른 표지 테마에 맞춰 속지 컬러 세트를 함께 구성해 보내드립니다. 내 사주 원국 8칸과 오행 밸런스 게이지, 2027년 1월부터 12월까지 한 달에 한 장씩 담은 일진 플래너(60갑자 일진·음력·24절기·손 없는 날·공휴일 표시), 동양풍 사주 스티커 24종으로 구성했습니다. 스티커 24종은 PDF 속 스티커 시트와 함께, 굿노트 「요소」에 하나씩 등록해 바로 붙여 쓰는 개별 투명 PNG 파일(24개 ZIP)로도 같이 보내드립니다.',
   bullets:[
-    'A4 가로 16페이지 PDF (표지 2종 · 내 사주 원국 · 1~12월 일진 플래너 · 스티커 시트)',
+    'A4 가로 16페이지 PDF (표지 3종 중 택 1 · 내 사주 원국 · 1~12월 일진 플래너 · 스티커 시트)',
     '사주팔자 8칸 카드 + 오행 밸런스 게이지 + 올해의 키워드·조심할 달',
     '월별 일진 플래너 12장 — 60갑자 일진·음력·24절기(절입 시각)·손 없는 날·공휴일 표시',
     '동양풍 사주 스티커 24종 (일러스트 · 오행 씰 · 문구 씰 · 빈 라벨)',
     '굿노트 「요소」 등록용 개별 투명 PNG 스티커 24종을 ZIP으로 함께 제공',
     '굿노트·노타빌리티에서 바로 여는 A4 가로 PDF · 입금 확인 즉시 메일 발송',
   ],
-  meta:[['구성','PDF 1개 · A4 가로 16페이지'],['사용','굿노트 · 노타빌리티 (태블릿)'],['발송','입금 확인 즉시 이메일'],['수록','표지 2종 · 1~12월 일진 플래너 · 스티커 24종'],['함께 제공','개별 투명 PNG 스티커 24종 (요소 등록용)']],
+  meta:[['구성','PDF 1개 · A4 가로 16페이지'],['사용','굿노트 · 노타빌리티 (태블릿)'],['발송','입금 확인 즉시 이메일'],['수록','표지 3종 중 택 1 (고른 표지 테마에 맞춘 속지) · 1~12월 일진 플래너 · 스티커 24종'],['함께 제공','개별 투명 PNG 스티커 24종 (요소 등록용)']],
   notice:'※ 지금 발송되는 PDF는 2027년 1월부터 12월까지 12개월 일진 플래너와 스티커 24종이 모두 들어 있는 16페이지 정식판입니다.',
 });
 
@@ -1976,6 +2005,7 @@ PRODUCTS.push({
   short:'접월당이 생년월일시로 사주팔자 8칸과 오행 밸런스를 직접 채워 보내는 16페이지 다이어리',
   desc:'주문서에 적어주신 생년월일·태어난 시간으로 사주 명식을 세우고, 다이어리 3페이지의 사주 원국 8칸(년·월·일·시)과 오행 밸런스 게이지, 올해의 키워드와 조심할 달을 접월당이 직접 채워 넣어 보내드립니다. 채워진 16페이지 PDF를 받아 태블릿에서 바로 쓰시면 됩니다. 스티커 24종은 굿노트 「요소」에 바로 등록해 쓰는 개별 투명 PNG 파일(24개 ZIP)로도 함께 보내드립니다.',
   bullets:[
+    '표지 3종 중 택 1 — 고른 표지 테마에 맞춘 속지 컬러 세트',
     '기본형 16페이지 전체 + 사주 원국 1회 기입',
     '굿노트 「요소」 등록용 개별 투명 PNG 스티커 24종을 ZIP으로 함께 제공',
     '년·월·일·시 8칸과 오행 5색 점, 오행 밸런스 게이지까지 직접 채움',
@@ -1996,6 +2026,7 @@ PRODUCTS.push({
   short:'내 사주 기준으로 2027년 1~12월 365일 하루하루에 풀리는 날·조심할 날·이동수를 찍어 보내는 16페이지 다이어리',
   desc:'원국 기입형에 더해, 접월당이 내 사주 일간·일지와 용신·희신·기신을 그날의 60갑자 일진과 하루 단위로 대조해 1월부터 12월까지 365일 모든 날짜 칸에 맞춤 기운 표식을 찍어 보내드립니다. 🌸 풀리는 날(용신·희신·천을귀인·합이 드는 날), ⚠️ 조심할 날(일지와 충·형이 걸리는 날), ✈️ 이동·변동수 있는 날(역마)을 날짜 위에 배지로 표시해, 아침에 오늘 칸만 봐도 그날 어떻게 움직이면 좋을지 바로 알 수 있습니다. 스티커 24종은 굿노트 「요소」에 하나씩 등록해 바로 붙여 쓰는 개별 투명 PNG 파일(24개 ZIP)로도 함께 보내드립니다.',
   bullets:[
+    '표지 3종 중 택 1 — 고른 표지 테마에 맞춘 속지 컬러 세트',
     '원국 기입형 16페이지 전체 + 1~12월 365일 일별 맞춤 기운 표기',
     '🌸 풀리는 날 · ⚠️ 조심할 날 · ✈️ 이동·변동수 있는 날 — 날짜 칸마다 배지 표시',
     '굿노트 「요소」 등록용 개별 투명 PNG 스티커 24종을 ZIP으로 함께 제공',
@@ -2113,12 +2144,34 @@ const byId = id => PRODUCTS.find(p => p.id === id);
 const dispName = p => (p ? p.name : '');
 const catLabel = c => c === 'saju' ? '종합사주' : c === 'ziwei' ? '자미두수' : c === 'diary' ? '2027 다이어리' : c === 'naming' ? '작명·택일' : '상품';
 
+/* ---------- 다이어리 표지 선택 (3종 중 택 1) ----------
+   고른 표지 테마에 맞춰 속지 컬러 세트를 구성해 보내므로, 장바구니 줄마다 표지를 함께 보관한다. */
+const DIARY_COVERS = ['자개 달빛', '연보라 클래식', '붉은 양 · 달과 나비'];
+const DIARY_COVER_IMG = ['assets/diary_p1.jpg?v=2', 'assets/diary_p2.jpg?v=2', 'assets/diary_cover_red.jpg?v=1'];
+let diaryCover = DIARY_COVERS[0];
+/* 표지가 다르면 장바구니에서 다른 줄로 담는다 */
+const lineKeyOf = l => (l && l.cover) ? `${l.id}|${l.cover}` : (l ? l.id : '');
+const findLine = key => cart.find(l => lineKeyOf(l) === key) || cart.find(l => l.id === key);
+function setCover(cover){
+  if(!DIARY_COVERS.includes(cover)) return;
+  diaryCover = cover;
+  $$('[data-card="diary"] [data-cover], #pdOverlay [data-cover]').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.cover === cover)));
+  const now = $('#pdCoverNow');
+  if(now) now.innerHTML = `선택 · <b>${cover} 표지</b> — 이 테마에 맞춰 속지 컬러를 구성합니다`;
+}
+
 /* ---------- 상태 ---------- */
 let cart = loadCart();
 function loadCart(){
   try{
     const raw = JSON.parse(localStorage.getItem('jwd_cart') || '[]');
-    return raw.filter(l => byId(l.id)).map(l => ({id:l.id, qty:Math.max(1, Math.min(9, l.qty|0 || 1))}));
+    return raw.filter(l => byId(l.id)).map(l => {
+      const p = byId(l.id);
+      const cover = p.type === 'diary' ? (DIARY_COVERS.includes(l.cover) ? l.cover : DIARY_COVERS[0]) : '';
+      const qty = Math.max(1, Math.min(9, l.qty|0 || 1));
+      return cover ? {id:l.id, qty, cover} : {id:l.id, qty};
+    });
   }catch(e){ return [] }
 }
 function saveCart(){ try{ localStorage.setItem('jwd_cart', JSON.stringify(cart)); }catch(e){} }
@@ -2171,7 +2224,7 @@ const TIER_NAME = { saju:'종합 사주 분석지', ziwei:'자미두수 분석�
 const TIER_NOTE = {
   saju:'2인 선택 시 두 분의 명식과 궁합을 함께 봅니다',
   ziwei:'2인 선택 시 두 분의 명반을 함께 봅니다',
-  diary:'원국 기입형·프리미엄은 접월당이 사주팔자 8칸을, 프리미엄은 365일 맞춤 일진까지 채워 보냅니다',
+  diary:'표지는 3종 중 택 1 — 고른 표지 테마에 맞춰 속지를 구성합니다. 원국 기입형·프리미엄은 접월당이 사주팔자 8칸을, 프리미엄은 365일 맞춤 일진까지 채워 보냅니다',
 };
 const tierKind = id => TIER_OF[id] || null;
 const tierLabel = (id, n) => { const k = tierKind(id); return k ? ((TIER_LABEL[k] || ['1인','2인'])[n - 1] || String(n)) : String(n); };
@@ -2274,20 +2327,21 @@ function setSajuPersons(n){ setPersons('saju', n); }
 function setZiweiPersons(n){ setPersons('ziwei', n); }
 
 /* ---------- 장바구니 ---------- */
-function addToCart(id, qty=1){
+function addToCart(id, qty=1, cover){
   const p = byId(id); if(!p) return;
-  const line = cart.find(l => l.id === id);
+  const cv = p.type === 'diary' ? (DIARY_COVERS.includes(cover) ? cover : diaryCover) : '';
+  const line = cart.find(l => l.id === id && (l.cover || '') === cv);
   if(line) line.qty = Math.min(9, line.qty + qty);
-  else cart.push({id, qty});
+  else cart.push(cv ? {id, qty, cover:cv} : {id, qty});
   saveCart(); renderCart(); updateCount();
-  const nm = dispName(p);
+  const nm = dispName(p) + (cv ? ` · ${cv} 표지` : '');
   toast(`${nm}${eul(nm)} 장바구니에 담았습니다`);
 }
 function setQty(id, qty){
-  const line = cart.find(l => l.id === id);
+  const line = findLine(id);
   if(!line) return;
   line.qty = Math.max(0, Math.min(9, qty));
-  if(line.qty === 0) cart = cart.filter(l => l.id !== id);
+  if(line.qty === 0) cart = cart.filter(l => l !== line);
   saveCart(); renderCart(); updateCount();
   if($('#checkout').classList.contains('is-open')) renderOrderForm();
 }
@@ -2307,24 +2361,24 @@ function renderCart(){
   body.innerHTML = cart.map(l => {
     const p = byId(l.id);
     const opt = p.type === 'diary'
-      ? (p.id === 'diary-premium' ? '프리미엄 맞춤 일진형 · 365일 맞춤 표기 후 평균 6시간(최대 12시간) 내 발송' : p.birth ? '원국 기입형 · 기입 후 평균 6시간(최대 12시간) 내 발송' : '기본형 · 입금 확인 즉시 메일 발송')
+      ? `${l.cover || DIARY_COVERS[0]} 표지 · ` + (p.id === 'diary-premium' ? '프리미엄 맞춤 일진형 · 365일 맞춤 표기 후 평균 6시간(최대 12시간) 내 발송' : p.birth ? '원국 기입형 · 기입 후 평균 6시간(최대 12시간) 내 발송' : '기본형 · 입금 확인 즉시 메일 발송')
       : p.type === 'naming' ? `${p.optLabel} · 접수 확인 후 순차 발송`
       : 'A4 PDF · 평균 6시간 · 최대 12시간 내 발송';
     return `<div class="citem">
       <div class="citem__thumb">${mediaHTML(p, true)}</div>
       <div>
-        <div class="citem__name">${dispName(p)}</div>
+        <div class="citem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''}</div>
         <div class="citem__opt">${opt}</div>
         <div class="citem__row">
           <span class="mini-qty">
-            <button data-qty="${p.id}" data-delta="-1" aria-label="수량 줄이기">−</button>
+            <button data-qty="${lineKeyOf(l)}" data-delta="-1" aria-label="수량 줄이기">−</button>
             <span>${l.qty}</span>
-            <button data-qty="${p.id}" data-delta="1" aria-label="수량 늘리기">+</button>
+            <button data-qty="${lineKeyOf(l)}" data-delta="1" aria-label="수량 늘리기">+</button>
           </span>
           <b class="citem__price">${won(p.price * l.qty)}</b>
         </div>
       </div>
-      <button class="citem__del" data-del="${p.id}">삭제</button>
+      <button class="citem__del" data-del="${lineKeyOf(l)}">삭제</button>
     </div>`;
   }).join('');
   foot.innerHTML = `
@@ -2364,6 +2418,15 @@ function paintProduct(){
           <b>${won(p.price)}</b>
           ${p.orig ? `<em>${Math.round((1 - p.price / p.orig) * 100)}%</em>` : ''}
         </div>
+        ${p.type === 'diary' ? `<div class="pd__cover">
+          <span>표지 선택 · 3종 중 택 1</span>
+          <div class="covgrid">${DIARY_COVERS.map((c, i) => `<button type="button" class="covbtn" data-cover="${c}" aria-pressed="${diaryCover === c}" aria-label="${c} 표지 선택">
+            <span class="covbtn__img"><img src="${DIARY_COVER_IMG[i]}" alt="${c} 표지" loading="lazy"></span>
+            <span class="covbtn__nm">${c}</span>
+          </button>`).join('')}</div>
+          <p class="covhint" id="pdCoverNow">선택 · <b>${diaryCover} 표지</b> — 이 테마에 맞춰 속지 컬러를 구성합니다</p>
+        </div>` : ''}
+
         <ul class="pd__list">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
         <div class="pd__meta">${p.meta.map(([k,v]) => `<div><b>${k}</b><span>${v}</span></div>`).join('')}</div>
         <p class="pd__desc">${p.desc}</p>
@@ -2378,7 +2441,7 @@ function paintProduct(){
         <span id="pdQty" style="min-width:34px">${tierLabel(pdId, pdQty)}</span>
         <button data-pdq="1" aria-label="수량 늘리기" style="width:38px;height:42px"${pdQty >= (tierKind(pdId) ? (TIER_COUNT[tierKind(pdId)] || 2) : 9) ? ' disabled' : ''}>+</button>
       </span>
-      <button class="btn btn--gold" style="flex:1" id="pdAdd">장바구니 담기 · ${won(tierKind(pdId) ? p.price : p.price * pdQty)}</button>
+      <button class="btn btn--gold" style="flex:1" id="pdAdd">장바구니 담기 · ${won(tierKind(pdId) ? p.price : p.price * pdQty)}${p.type === 'diary' ? ` · ${diaryCover} 표지` : ''}</button>
     </div>`;
 }
 
@@ -2394,13 +2457,15 @@ function openCart(){ renderCart(); openOverlay('#cartOverlay'); }
 
 /* ---------- 클릭 위임 ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person]');
+  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line]');
   if(!t) return;
 
   if(t.dataset.person && t.dataset.line){ switchPersons(t.dataset.person, Number(t.dataset.n), t.dataset.line); return; }
 
   if(t.dataset.slide !== undefined){ goSlide(sIdx + Number(t.dataset.slide), true); return; }
   if(t.dataset.goto !== undefined){ goSlide(Number(t.dataset.goto), true); return; }
+  if(t.dataset.coverLine){ switchCover(t.dataset.coverLine, t.dataset.cover); return; }
+  if(t.dataset.cover){ setCover(t.dataset.cover); return; }
   if(t.dataset.gal){
     const img = $('#pdOverlay .pd__media img');
     if(img) img.src = t.dataset.gal;
@@ -2463,7 +2528,7 @@ document.addEventListener('click', e => {
   if(t.id === 'goCheckout'){ startCheckout(); return; }
   if(t.dataset.open){ openProduct(t.dataset.open); return; }
   if(t.dataset.add){ addToCart(t.dataset.add, 1); return; }
-  if(t.dataset.qty){ setQty(t.dataset.qty, (cart.find(l => l.id === t.dataset.qty)?.qty || 0) + Number(t.dataset.delta)); return; }
+  if(t.dataset.qty){ const line = findLine(t.dataset.qty); setQty(t.dataset.qty, (line ? line.qty : 0) + Number(t.dataset.delta)); return; }
   if(t.dataset.del){ setQty(t.dataset.del, 0); return; }
   if(t.dataset.close !== undefined){ closeAll(); return; }
   if(t.dataset.openTerms){ closeAll(); openTerms(t.dataset.openTerms); return; }
@@ -2672,17 +2737,18 @@ function writeBirthState(){
 /* 장바구니 항목의 1인 ↔ 2인 전환: 상품명·단가·TOTAL·결제 금액·출생정보 블록을 즉시 갱신 */
 function switchPersons(kind, n, lineId){
   const want = Math.min(TIER_COUNT[kind] || 2, Math.max(1, Math.round(Number(n)) || 1));
-  const idx = cart.findIndex(l => l.id === lineId);
+  const idx = cart.findIndex(l => lineKeyOf(l) === lineId || l.id === lineId);
   if(idx < 0) return;
   const targetId = TIER_IDS[kind] && TIER_IDS[kind][want];
   if(!targetId || cart[idx].id === targetId) return;
   const qty = cart[idx].qty;
-  const dup = cart.findIndex((l, i) => i !== idx && l.id === targetId);
+  const cover = cart[idx].cover || '';
+  const dup = cart.findIndex((l, i) => i !== idx && l.id === targetId && (l.cover || '') === cover);
   if(dup >= 0){
     cart[dup].qty = Math.min(9, cart[dup].qty + qty);
     cart.splice(idx, 1);
   }else{
-    cart[idx] = { id: targetId, qty };
+    cart[idx] = cover ? { id: targetId, qty, cover } : { id: targetId, qty };
   }
   saveCart(); renderCart(); updateCount();
   setPersons(kind, want);
@@ -2694,6 +2760,25 @@ function switchPersons(kind, n, lineId){
     ? `${lab[1]}으로 변경했습니다${kind === 'diary' ? ' · 원국을 채워 보내드립니다' : kind === 'ziwei' ? ' · 두 번째 분의 정보를 입력해 주세요' : ' · 상대방 정보를 입력해 주세요'}`
     : `${lab[0]}으로 변경했습니다`);
 }
+/* 장바구니 줄의 표지 바꾸기 — 같은 표지가 이미 있으면 수량을 합친다 */
+function switchCover(key, cover){
+  const idx = cart.findIndex(l => lineKeyOf(l) === key);
+  if(idx < 0 || !DIARY_COVERS.includes(cover)) return;
+  const line = cart[idx];
+  if((line.cover || DIARY_COVERS[0]) === cover) return;
+  diaryCover = cover;
+  const dup = cart.findIndex((l, i) => i !== idx && l.id === line.id && l.cover === cover);
+  if(dup >= 0){
+    cart[dup].qty = Math.min(9, cart[dup].qty + line.qty);
+    cart.splice(idx, 1);
+  }else{
+    cart[idx] = { ...line, cover };
+  }
+  saveCart(); renderCart(); updateCount(); renderOrderForm();
+  setCover(cover);
+  if(pdId && byId(pdId) && byId(pdId).type === 'diary' && $('#pdOverlay').classList.contains('is-open')) paintProduct();
+  toast(`표지를 ${cover} 표지로 바꿨습니다 · 속지도 이 테마에 맞춰 구성됩니다`);
+}
 function renderOrderForm(){
   const onePersonIds = ['saju1','ziwei1'];
   const hasOne = cart.some(l => onePersonIds.includes(l.id));
@@ -2704,14 +2789,21 @@ function renderOrderForm(){
     const cur = tk ? Math.max(1, Object.values(TIER_IDS[tk]).indexOf(l.id) + 1) : 1;
     return `<div class="oitem">
       <div class="oitem__top">
-        <span class="oitem__name">${dispName(p)} <span class="oitem__qty">× ${l.qty}</span></span>
+        <span class="oitem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''} <span class="oitem__qty">× ${l.qty}</span></span>
         <b class="oitem__price">${won(p.price * l.qty)}</b>
       </div>${tk ? `
       <div class="oitem__foot">
         <span class="ptoggle" role="group" aria-label="${dispName(p).replace(/\s*·.*$/, '')} 옵션 선택">
-          ${(TIER_LABEL[tk] || ['1인', '2인']).map((lb, i) => `<button type="button" data-person="${tk}" data-n="${i + 1}" data-line="${l.id}" aria-pressed="${cur === i + 1}">${lb}</button>`).join('')}
+          ${(TIER_LABEL[tk] || ['1인', '2인']).map((lb, i) => `<button type="button" data-person="${tk}" data-n="${i + 1}" data-line="${lineKeyOf(l)}" aria-pressed="${cur === i + 1}">${lb}</button>`).join('')}
         </span>
         <span class="oitem__note">${TIER_NOTE[tk] || ''}</span>
+      </div>` : ''}${p.type === 'diary' ? `
+      <div class="oitem__foot oitem__cover">
+        <span class="oitem__coverlab">표지 · 3종 중 택 1</span>
+        <span class="ptoggle" role="group" aria-label="표지 선택">
+          ${DIARY_COVERS.map(c => `<button type="button" data-cover-line="${lineKeyOf(l)}" data-cover="${c}" aria-pressed="${(l.cover || DIARY_COVERS[0]) === c}">${c}</button>`).join('')}
+        </span>
+        <span class="oitem__note">선택한 표지 테마에 맞춰 속지 컬러 세트를 구성해 보냅니다</span>
       </div>` : ''}
     </div>`;
   }).join('') + (hasOne ? `
@@ -2815,7 +2907,7 @@ function validateOrder(){
 function collectOrder(){
   const items = cart.map(l => {
     const p = byId(l.id);
-    return { id:p.id, name:dispName(p), qty:l.qty, price:p.price, amount:p.price * l.qty, type:p.type, option:p.variant || '' };
+    return { id:p.id, name:dispName(p), qty:l.qty, price:p.price, amount:p.price * l.qty, type:p.type, option:p.variant || '', cover:l.cover || '' };
   });
   const births = [];
   $$('#birthArea [data-birth]').forEach(fg => {
@@ -2870,7 +2962,7 @@ function buildMessage(o, no){
   lines.push(`결제방법: ${o.payMethod === 'bank' ? '무통장 입금(케이뱅크)' : '카드·간편결제(페이앱)'}`);
   lines.push('');
   lines.push('■ 주문 상품');
-  o.items.forEach(i => lines.push(`- ${i.name} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`));
+  o.items.forEach(i => lines.push(`- ${i.name}${i.cover ? ` (${i.cover} 표지)` : ''} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`));
   lines.push(`합계: ${o.total.toLocaleString('ko-KR')}원`);
   if(o.births.length){
     lines.push('');
@@ -2901,7 +2993,7 @@ function buildOrderRecord(o, no){
   const items = o.items.map(i => {
     const p = byId(i.id) || {};
     return {
-      id:i.id, name:i.name, option:itemOption(p),
+      id:i.id, name:i.name, option:itemOption(p) + (i.cover ? ` · ${i.cover} 표지` : ''), cover:i.cover || '',
       qty:i.qty, price:i.price, amount:i.amount,
       type:p.type || i.type || '', cat:p.cat || '',
     };
@@ -2977,7 +3069,7 @@ function payGoodname(o, no){
   /* 결제현황에서 주문번호로 바로 찾을 수 있게 상품명 앞에 주문번호를 둡니다. */
   const first = o.items[0];
   const rest = o.items.length - 1;
-  let label = first ? first.name : '접월당 주문';
+  let label = first ? first.name + (first.cover ? ` · ${first.cover} 표지` : '') : '접월당 주문';
   if(rest > 0) label += ` 외 ${rest}건`;
   if(label.length > 34) label = label.slice(0, 33) + '…';
   return `${no} · ${label}`;
@@ -2997,7 +3089,7 @@ async function startPayApp(o, no){
     goodname: payGoodname(o, no),
     price: String(o.total),
     recvphone: o.phone.replace(/\D/g, ''),
-    memo: `주문번호 ${no}`,
+    memo: `주문번호 ${no}` + ((o.items || []).filter(i => i.cover).map(i => ` · 표지 ${i.cover}`)[0] || ''),
     var1: no,
     var2: 'store',
     redirectpay: '1',                     // 결제요청 문자 대신 결제창으로 바로 이동
@@ -3104,7 +3196,7 @@ const DOCS = {
     <h4>제2조 (상품의 내용)</h4>
     <ol>
       <li>사주분석지·자미두수 분석지는 이용자가 제공한 출생 정보를 바탕으로 회사가 맞춤 제작한 PDF 문서입니다.</li>
-      <li>2027 사주 개운 굿노트 다이어리는 태블릿(굿노트·노타빌리티)용 A4 가로 16페이지 PDF입니다. 기본형은 표지 2종·내 사주 원국·2027년 1~12월 일진 플래너·스티커 24종으로 구성됩니다. 원국 기입형은 회사가 사주팔자 8칸과 오행 균형을 직접 채워 발송합니다. 프리미엄 맞춤 일진형은 여기에 더해 회사가 2027년 1~12월 365일의 날짜별 기운(풀리는 날·조심할 날·이동·변동수 있는 날)을 사주에 맞춰 표기해 발송합니다. 스티커 24종은 시트 형태와 함께, 굿노트 「요소」 등록용 개별 투명 PNG 파일(ZIP)로도 함께 제공됩니다.</li>
+      <li>2027 사주 개운 굿노트 다이어리는 태블릿(굿노트·노타빌리티)용 A4 가로 16페이지 PDF입니다. 기본형은 표지 3종(자개 달빛·연보라 클래식·붉은 양·달과 나비) 중 선택한 1종과 그 표지 테마에 맞춘 속지, 내 사주 원국, 2027년 1~12월 일진 플래너, 스티커 24종으로 구성됩니다. 이용자는 주문 시 표지 1종을 선택하며, 발송되는 속지는 선택한 표지 테마의 컬러 세트로 구성됩니다. 원국 기입형은 회사가 사주팔자 8칸과 오행 균형을 직접 채워 발송합니다. 프리미엄 맞춤 일진형은 여기에 더해 회사가 2027년 1~12월 365일의 날짜별 기운(풀리는 날·조심할 날·이동·변동수 있는 날)을 사주에 맞춰 표기해 발송합니다. 스티커 24종은 시트 형태와 함께, 굿노트 「요소」 등록용 개별 투명 PNG 파일(ZIP)로도 함께 제공됩니다.</li>
       <li>작명·택일 상품은 이용자가 제공한 출생 정보를 바탕으로 회사가 맞춤 제작한 PDF(이름 감명 진단서·정밀 작명서·상호 작명서·택일서)입니다.</li>
       <li>모든 상품은 실물 배송이 없는 디지털 콘텐츠이며, 결제 확인 후 상품별로 안내된 납기 내에 이메일로 발송됩니다.</li>
     </ol>

@@ -136,6 +136,23 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 }
 .topbar b{color:var(--gold);font-weight:600}
 .topbar .dot{opacity:.45;margin:0 9px}
+.topbar__link{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;max-width:100%;
+  color:inherit;
+}
+.topbar__txt{white-space:nowrap}
+.topbar__go{
+  display:inline-flex;align-items:center;gap:4px;flex:none;
+  padding:4px 9px;border-radius:999px;
+  font-size:10.5px;font-weight:600;letter-spacing:.02em;color:#FBEFD0;
+  border:1px solid rgba(242,216,155,.55);
+  background:linear-gradient(135deg,rgba(242,216,155,.2),rgba(140,100,220,.16));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.topbar__link:hover .topbar__go,
+.topbar__link:focus-visible .topbar__go{background:linear-gradient(135deg,rgba(242,216,155,.32),rgba(140,100,220,.24));border-color:rgba(242,216,155,.85);transform:translateY(-1px)}
+.topbar__go em{font-style:normal;font-size:1.05em;line-height:1;transform:translateY(-1px)}
 
 /* ---------- 헤더 ---------- */
 .hdr{
@@ -275,6 +292,9 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .credo__ico{width:22px;height:22px;display:grid;place-items:center;flex:none}
 .credo__ico svg{width:19px;height:19px;fill:none;stroke:var(--gold);stroke-width:1.3;stroke-linejoin:round;filter:drop-shadow(0 0 9px rgba(242,216,155,.4))}
 .credo__txt{font-family:var(--serif);font-size:16px;letter-spacing:.06em;color:#F7E8C8;line-height:1.4;white-space:nowrap;text-shadow:0 1px 14px rgba(8,3,24,.7)}
+
+/* ---------- 모바일 상단 자격 뱃지 (히어로 위쪽, ≤768px) ---------- */
+.hero__pill{display:none}
 
 /* ---------- 섹션 ---------- */
 .sec{padding:78px 0;position:relative}
@@ -1022,6 +1042,38 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 body:has(.checkout.is-open) .toast{bottom:118px}
 body:has(#doneView.is-open) .toast{bottom:112px}
 
+/* ---------- 환불 안내 요약 ---------- */
+.rsum{
+  position:relative;max-width:1040px;margin:0 auto;
+  padding:32px 36px 24px;border-radius:24px;
+  background:linear-gradient(168deg,rgba(62,47,116,.52),rgba(31,21,64,.8));
+  border:1px solid rgba(242,216,155,.36);
+  box-shadow:0 34px 70px -46px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.09);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.rsum::before{content:"";position:absolute;left:34px;right:34px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(242,216,155,.8),transparent)}
+.rsum__head{margin-bottom:20px}
+.rsum__head .h2{font-size:clamp(23px,2.4vw,30px);margin-top:10px}
+.rsum__desc{font-size:13px;line-height:1.75;color:var(--mut);margin-top:8px}
+.rsum__list{border-radius:14px;overflow:hidden;border:1px solid rgba(242,216,155,.16);background:rgba(12,7,28,.3)}
+.rsum__list li{display:grid;grid-template-columns:46px 174px 1fr;align-items:center;gap:12px;padding:14px 18px}
+.rsum__list li + li{border-top:1px solid rgba(242,216,155,.12)}
+.rsum__no{font-family:var(--disp);font-size:15px;letter-spacing:.08em;color:var(--gold-d);opacity:.85}
+.rsum__tag{font-family:var(--serif);font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#FBEFD0;white-space:nowrap}
+.rsum__txt{font-size:13.5px;line-height:1.7;color:#D6C9F0;letter-spacing:.005em}
+.rsum__txt b{color:#F6E3B8;font-weight:600}
+.rsum__foot{margin-top:18px;padding-top:16px;border-top:1px dashed rgba(242,216,155,.22);display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap}
+.rsum__more{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;border-radius:999px;
+  font-size:12.8px;letter-spacing:.02em;color:var(--gold);
+  border:1px solid rgba(242,216,155,.45);
+  background:linear-gradient(135deg,rgba(242,216,155,.14),rgba(140,100,220,.14));
+  transition:background .25s,border-color .25s,transform .25s;
+}
+.rsum__more:hover{background:linear-gradient(135deg,rgba(242,216,155,.24),rgba(140,100,220,.22));border-color:rgba(242,216,155,.72);transform:translateY(-1px)}
+.rsum__more span{font-size:1.1em;line-height:1;transform:translateY(-1px)}
+
 /* ---------- 반응형 ---------- */
 @media (max-width:1180px){
   .tgrid{grid-template-columns:repeat(4,1fr)}
@@ -1076,8 +1128,10 @@ body:has(#doneView.is-open) .toast{bottom:112px}
 @media (max-width:620px){
   body{font-size:15px}
   .wrap{padding:0 18px}
-  .topbar{font-size:11px;padding:8px 14px}
+  .topbar{font-size:11px;padding:8px 12px}
   .topbar .dot{margin:0 6px}
+  .topbar__link{gap:8px}
+  .topbar__go{padding:3px 8px;font-size:10px}
   .topbar__extra{display:none}
   .brand__mark{width:33px;height:33px}
   .brand__txt b{font-size:18px}
@@ -1428,6 +1482,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
   .mnav__list a{padding:11px 2px}
 }
 @media (max-width:768px){
+  .topbar{padding-left:10px;padding-right:10px}
   .nav{display:none}
   .hbtn{display:grid;width:44px;height:44px}
   .hdr__in{flex-wrap:nowrap;min-height:0;padding:9px 20px;gap:12px}
@@ -1436,6 +1491,49 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
   .brand__sub{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .cartbtn{margin-left:0;width:44px;height:44px}
   .cartbtn svg{width:20px;height:20px}
+}
+/* 모바일: 자격 뱃지를 히어로 상단(인물 머리 위 중앙)으로 올리고 하단 중복 뱃지는 감춤 */
+@media (max-width:768px){
+  .hero__pill{
+    position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:5;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:max-content;max-width:calc(100% - 36px);
+    padding:9px 17px;border-radius:999px;
+    background:linear-gradient(180deg,rgba(58,44,110,.7),rgba(38,27,82,.64));
+    border:1px solid rgba(242,216,155,.34);
+    box-shadow:0 18px 40px -26px rgba(3,0,14,.95), inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+    font-family:var(--serif);font-size:12.5px;letter-spacing:.03em;line-height:1.35;
+    color:#F7E8C8;white-space:nowrap;text-shadow:0 1px 14px rgba(8,3,24,.75);
+  }
+  .hero__pill .credo__ico{width:16px;height:16px}
+  .hero__pill .credo__ico svg{width:15px;height:15px}
+  .credo{display:none}
+  .hero__in{padding-top:330px;padding-bottom:44px}
+}
+/* 621~768px: 히어로 이미지가 430px 높이라 그 아래에서 카피가 시작하도록 */
+@media (min-width:621px) and (max-width:768px){
+  .hero__in{padding-top:466px;padding-bottom:64px}
+}
+/* 환불 안내 요약 — 모바일 */
+@media (max-width:768px){
+  .rsum{padding:24px 20px 18px;border-radius:18px}
+  .rsum::before{left:20px;right:20px}
+  .rsum__head{margin-bottom:16px}
+  .rsum__head .h2{font-size:22px;margin-top:8px}
+  .rsum__desc{font-size:12.3px;line-height:1.7;margin-top:6px}
+  .rsum__list li{grid-template-columns:28px 1fr;gap:2px 10px;padding:13px 14px;align-items:start}
+  .rsum__no{grid-row:1 / span 2;font-size:13px;padding-top:1px}
+  .rsum__tag{font-size:12.5px;line-height:1.5}
+  .rsum__txt{font-size:12.3px;line-height:1.65}
+  .rsum__foot{margin-top:15px;padding-top:14px;justify-content:center}
+  .rsum__more{width:100%;justify-content:center;padding:12px 16px;font-size:12.5px}
+}
+@media (max-width:400px){
+  .topbar{font-size:10.2px;letter-spacing:.01em}
+  .topbar .dot{margin:0 4px}
+  .topbar__link{gap:6px}
+  .topbar__go{font-size:9.4px;padding:3px 6px;gap:3px}
 }
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
@@ -1465,7 +1563,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
 <!-- ===== 상단 공지 ===== -->
 <div class="topbar">
-  <b>蝶月堂 11월 한정</b><span class="dot">·</span>2027 정미년 신년운세 <b>19,800원</b><span class="topbar__extra"><span class="dot">·</span>12월 1일부터 정가 34,900원</span>
+  <a class="topbar__link" href="#products" data-topbar-go aria-label="2027 정미년 신년운세 19,800원 상품 보러 가기">
+    <span class="topbar__txt"><b>蝶月堂 11월 한정</b><span class="dot">·</span>2027 정미년 신년운세 <b>19,800원</b><span class="topbar__extra"><span class="dot">·</span>12월 1일부터 정가 34,900원</span></span>
+    <span class="topbar__go">바로가기 <em aria-hidden="true">›</em></span>
+  </a>
 </div>
 
 <!-- ===== 헤더 ===== -->
@@ -1534,6 +1635,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 <section class="hero">
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="hero__veil" aria-hidden="true"></div>
+  <p class="hero__pill"><span class="credo__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16"/></svg></span><span>11년 경력 사주명리사 직접 상담</span></p>
   <div class="wrap hero__in">
     <div class="hero__copy">
       <p class="hero__kicker"><span class="rule"></span><span class="hero__bfly" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#bfly"/></svg></span>나비가 머무는 달빛의 상담소<span class="rule"></span></p>
@@ -1800,6 +1902,44 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <div class="step__no">03</div>
         <h3>분석 · 발송</h3>
         <p>입금 확인과 동시에 제작을 시작해, 분석지·다이어리는 평균 6시간 · 최대 12시간 내에, 작명·택일은 접수 확인 후 상품별 안내된 납기(1~2일 · 3~7일) 내에 PDF를 이메일로 보내드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 환불 안내 요약 ===== -->
+<section class="sec" id="refund-guide" style="padding-top:0">
+  <div class="wrap">
+    <div class="rsum" data-rev>
+      <div class="rsum__head">
+        <span class="kicker">Refund Policy</span>
+        <h2 class="h2">환불, 한눈에 <em>확인</em>하세요</h2>
+        <p class="rsum__desc">제작 단계에 따라 처리 기준이 다릅니다. 결제 전에 꼭 확인해 주세요.</p>
+      </div>
+      <ol class="rsum__list">
+        <li>
+          <span class="rsum__no">01</span>
+          <span class="rsum__tag">제작 시작 전</span>
+          <p class="rsum__txt">작업 착수 전 취소 시 <b>100% 환불</b></p>
+        </li>
+        <li>
+          <span class="rsum__no">02</span>
+          <span class="rsum__tag">제작 진행 중</span>
+          <p class="rsum__txt">발송 전 취소 시 진행 단계에 따라 부분 환불 <b>(분석지 50% · 작명 차등)</b></p>
+        </li>
+        <li>
+          <span class="rsum__no">03</span>
+          <span class="rsum__tag">PDF 발송 후</span>
+          <p class="rsum__txt">맞춤 디지털 파일 발송 완료 후에는 <b>단순 변심 환불 불가</b></p>
+        </li>
+        <li>
+          <span class="rsum__no">04</span>
+          <span class="rsum__tag">오탈자 · 누락 · 판매자 귀책</span>
+          <p class="rsum__txt">즉시 무료 보완 또는 <b>100% 책임 환불</b></p>
+        </li>
+      </ol>
+      <div class="rsum__foot">
+        <button type="button" class="rsum__more" data-open-terms="refund">세부 환불규정 전문 보기 <span aria-hidden="true">›</span></button>
       </div>
     </div>
   </div>
@@ -2734,6 +2874,20 @@ document.addEventListener('click', e => {
   if(t.dataset.tab){ renderTermsTab(t.dataset.tab); return; }
 });
 $('#cartOpen').addEventListener('click', openCart);
+
+/* 상단 띠 배너 바로가기 → 2027 신년운세 슬라이드로 부드럽게 이동 */
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('[data-topbar-go]');
+  if(!a) return;
+  e.preventDefault();
+  if(typeof goSlide === 'function') goSlide(0, true);      // 대표 상품 첫 슬라이드 = 2027 신년운세
+  const box = $('#products');
+  if(!box) return;
+  const hn = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hnav')) || 64;
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  window.scrollTo({top: Math.max(0, box.getBoundingClientRect().top + window.scrollY - hn - 12),
+                   behavior: reduce ? 'auto' : 'smooth'});
+});
 
 /* 헤더 메뉴(종합사주 · 신년운세 · 자미두수 → 대표 상품 슬라이드, 2027 다이어리 → 단독 섹션) */
 document.addEventListener('click', e => {

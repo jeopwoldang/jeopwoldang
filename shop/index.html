@@ -1341,12 +1341,57 @@ body:has(#doneView.is-open) .toast{bottom:112px}
 .hbtn{
   display:none;width:46px;height:46px;border-radius:50%;flex-shrink:0;
   place-items:center;position:relative;
-  border:1px solid rgba(216,192,255,.28);background:rgba(255,255,255,.07);
-  box-shadow:0 12px 26px -20px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.1);
+  border:1px solid rgba(242,216,155,.46);
+  background:
+    radial-gradient(115% 115% at 32% 10%, rgba(255,246,226,.19), rgba(255,246,226,0) 58%),
+    linear-gradient(158deg, rgba(242,216,155,.17) 0%, rgba(255,255,255,.055) 52%, rgba(242,216,155,.10) 100%);
+  box-shadow:
+    0 12px 26px -20px rgba(0,0,0,.9),
+    0 0 0 1px rgba(242,216,155,.07),
+    inset 0 1px 0 rgba(255,248,232,.26),
+    inset 0 -11px 20px -16px rgba(242,216,155,.6);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   transition:border-color .25s, background .25s, box-shadow .25s;
 }
-.hbtn:hover,.hbtn[aria-expanded="true"]{border-color:rgba(242,216,155,.6);background:rgba(242,216,155,.14)}
+.hbtn:hover,.hbtn[aria-expanded="true"]{
+  border-color:rgba(242,216,155,.82);
+  background:
+    radial-gradient(115% 115% at 32% 10%, rgba(255,246,226,.28), rgba(255,246,226,0) 60%),
+    linear-gradient(158deg, rgba(242,216,155,.28) 0%, rgba(255,255,255,.09) 52%, rgba(242,216,155,.17) 100%);
+  box-shadow:
+    0 12px 26px -18px rgba(0,0,0,.9),
+    0 0 16px -4px rgba(242,216,155,.34),
+    inset 0 1px 0 rgba(255,248,232,.4);
+}
+/* ☰ 우상단 골드 ! 뱃지 — 메뉴가 있다는 것을 알리는 첫 진입용 신호 */
+.hbtn__dot{
+  position:absolute;top:-3px;right:-3px;
+  width:16px;height:16px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:var(--sans);font-size:10.5px;font-weight:800;line-height:1;
+  letter-spacing:0;text-indent:.3px;color:#191233;
+  background:linear-gradient(142deg,#FDF3D9 0%,#EDD3A1 38%,#D3A96C 74%,#B98C4C 100%);
+  border:1px solid rgba(25,17,50,.66);
+  box-shadow:0 3px 9px -3px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.7);
+  pointer-events:none;
+  animation:hbtnDot 2.9s cubic-bezier(.4,0,.2,1) infinite;
+  transition:opacity .3s ease, transform .3s ease;
+}
+.hbtn__dot::after{
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  border:1px solid rgba(242,216,155,.5);
+  animation:hbtnDotRing 2.9s ease-out infinite;
+}
+@keyframes hbtnDot{
+  0%,100%{box-shadow:0 3px 9px -3px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.7), 0 0 0 0 rgba(242,216,155,.3)}
+  50%{box-shadow:0 3px 9px -3px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.7), 0 0 11px 1px rgba(242,216,155,.5)}
+}
+@keyframes hbtnDotRing{
+  0%{opacity:.55;transform:scale(1)}
+  70%,100%{opacity:0;transform:scale(1.95)}
+}
+.hbtn.is-seen .hbtn__dot{opacity:0;transform:scale(.55);animation:none}
+.hbtn.is-seen .hbtn__dot::after{display:none}
 .hbtn__bars{position:relative;display:block;width:19px;height:13.4px}
 .hbtn__bars i{
   position:absolute;left:0;height:1.6px;border-radius:2px;
@@ -1452,6 +1497,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
   [data-rev]{opacity:1!important;transform:none!important;transition:none}
+  .hbtn__dot,.hbtn__dot::after{animation:none!important}
 }
 </style>
 </head>
@@ -1508,6 +1554,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
     </button>
     <button class="hbtn" id="mNavOpen" type="button" aria-label="메뉴 열기" aria-controls="mNav" aria-expanded="false">
       <span class="hbtn__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="hbtn__dot" aria-hidden="true">!</span>
     </button>
 
     <!-- 모바일 메뉴 -->
@@ -3641,6 +3688,7 @@ if(mnav && mnavBtn){
     if(mnavScrim) mnavScrim.classList.toggle('is-open', v);
     mnavBtn.setAttribute('aria-expanded', v ? 'true' : 'false');
     mnavBtn.setAttribute('aria-label', v ? '메뉴 닫기' : '메뉴 열기');
+    if(v) mnavBtn.classList.add('is-seen');           // 메뉴를 한 번 열면 ! 뱃지는 조용히 사라진다
     document.body.classList.toggle('mnav-lock', v);
     if(v && mnavPanel) mnavPanel.focus({preventScroll:true});
   };

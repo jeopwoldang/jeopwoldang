@@ -1454,9 +1454,9 @@ body:has(#doneView.is-open) .toast{bottom:112px}
     <div class="tshop" id="tShop" data-rev>
       <article class="tcard2" id="wishCard">
         <button class="tcard2__media" data-open="tal-wish-health" aria-label="기원부적 상세 보기">
-          <img src="assets/talisman/tal-sample.jpg?v=2" alt="접월당 기원부적 샘플" width="1000" height="1000" loading="lazy" draggable="false" data-protect="tal">
+          <img id="wishCardImg" src="assets/talisman/wish/01-health.jpg" alt="접월당 기원부적(건강운) — 도용 방지 워터마크가 적용된 화면용 이미지" width="620" height="620" loading="lazy" draggable="false" data-protect="tal">
           <span class="tguard" aria-hidden="true"></span>
-          <span class="tcard2__badge">선택형 · 14가지 기원</span>
+          <span class="tcard2__badge">선택형 · 13가지 기원</span>
         </button>
         <div class="tcard2__body">
           <span class="tcard2__cat">Wish Talisman</span>
@@ -1566,7 +1566,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       </details>
       <details>
         <summary>기원부적은 어떻게 고르나요?</summary>
-        <p>건강·재물·취업·사업·직장상사·직장부하·합격·집판매·집값올림·인연·재회·시험·결혼·액막이까지 14가지 기원 중 지금 필요한 하나를 고르시면 됩니다. 같은 부적에 선택한 기원의 뜻을 담아 보내드리고, 어떤 자리에 간직하면 좋은지는 파일 안의 사용 안내 페이지에 담았습니다.</p>
+        <p>건강·재물·취업·사업·인간관계·합격·집매매·가정·인연·재회·결혼·시험·액막이까지 13가지 기원 중 지금 필요한 하나를 고르시면 됩니다. 같은 부적에 선택한 기원의 뜻을 담아 보내드리고, 어떤 자리에 간직하면 좋은지는 파일 안의 사용 안내 페이지에 담았습니다.</p>
       </details>
       <details>
         <summary>나만의 부적은 어떻게 만들어지나요?</summary>
@@ -1821,38 +1821,36 @@ const CFG = {
 };
 
 /* ---------- 인쇄 부적 ----------
-   기원부적(선택형 9,900원)은 14가지 기원 중 하나를 골라 담고,
+   기원부적(선택형 9,900원)은 13가지 기원 중 하나를 골라 담고,
    나만의 부적(사주 맞춤 29,000원)은 주문서에서 출생 정보를 받습니다.
    장바구니·주문서에는 '기원부적 · 재물운'처럼 선택한 기원이 함께 찍힙니다. */
 const WISH_THEMES = [
-  { key:'health', label:'건강운',     hanja:'康', group:'life',  tag:'몸의 리듬을 지키는 자리',
-    desc:'소나무와 약초, 흐르는 물결을 한 원 안에 담았습니다. 인쇄해 지갑이나 베개 밑에 고이 간직하며 몸의 리듬을 되찾는 그림입니다.' },
-  { key:'wealth', label:'재물운',     hanja:'財', group:'money', tag:'엽전과 금괴 — 들어오는 돈이 머무는 자리',
-    desc:'금빛 엽전과 금괴, 모란을 한 장에 담았습니다. 들어오는 돈이 머물고 새는 곳이 막히는 자리를 만드는 부적입니다.' },
-  { key:'job',    label:'취업운',     hanja:'職', group:'money', tag:'문을 여는 열쇠 — 첫 출근을 기다리는 사람에게',
-    desc:'금빛 열쇠와 매화를 그렸습니다. 서류와 면접, 첫 출근을 기다리는 사람의 자리에 두는 부적입니다.' },
-  { key:'biz',    label:'사업운',     hanja:'商', group:'money', tag:'여의구름과 금괴 — 판을 키우는 사람의 자리',
-    desc:'여의구름과 모란, 금괴를 함께 담았습니다. 판을 키우고 흐름을 타야 하는 사람의 자리에 두는 부적입니다.' },
-  { key:'boss',   label:'직장상사운', hanja:'上', group:'money', tag:'대나무와 산 — 위를 향해 흔들리지 않게',
-    desc:'곧게 선 대나무와 산을 그렸습니다. 위를 향한 자리에서 흔들리지 않도록 두는 부적입니다.' },
-  { key:'team',   label:'직장부하운', hanja:'下', group:'money', tag:'연꽃과 물결 — 함께 서는 자리',
-    desc:'연꽃과 물결, 매듭을 그렸습니다. 사람을 이끌고 함께 서야 하는 자리에 두는 부적입니다.' },
-  { key:'pass',   label:'합격운',     hanja:'格', group:'study', tag:'두루마리와 붓 — 마지막 한 장까지',
-    desc:'두루마리와 붓, 매화를 한 장에 담았습니다. 시험·면접·서류의 마지막 한 걸음을 위한 그림입니다.' },
-  { key:'house',  label:'집판매운',   hanja:'宅', group:'life',  tag:'기와와 문살 — 좋은 사람에게로 넘어가는 집',
-    desc:'기와지붕과 문살, 매듭을 그렸습니다. 집이 좋은 사람에게로 넘어가기를 바라는 자리에 두는 부적입니다.' },
-  { key:'value',  label:'집값올림운', hanja:'價', group:'life',  tag:'산과 소나무 — 집의 값을 지키는 자리',
-    desc:'솟은 봉우리와 오래된 소나무를 그렸습니다. 집의 값을 지키고 올리고 싶은 자리에 두는 부적입니다.' },
-  { key:'love',   label:'인연운',     hanja:'緣', group:'love',  tag:'벚꽃과 홍실 — 이어지는 인연',
-    desc:'벚꽃 아래 두 나비가 홍실로 이어지는 그림입니다. 접월당의 나비 문장을 가운데 두었습니다.' },
-  { key:'return', label:'재회운',     hanja:'回', group:'love',  tag:'돌아오는 물길 — 다시 만나는 자리',
-    desc:'크게 돌아 다시 흐르는 물길과 홍실을 그렸습니다. 끊어진 인연이 돌아오기를 바라는 자리에 두는 부적입니다.' },
-  { key:'exam',   label:'시험운',     hanja:'試', group:'study', tag:'초롱불과 매화 — 답을 꺼내는 순간',
-    desc:'밝혀 둔 초롱불과 매화를 그렸습니다. 시험장에서 답을 꺼내는 순간을 위한 부적입니다.' },
-  { key:'marry',  label:'결혼운',     hanja:'婚', group:'love',  tag:'보름달과 홍실 매듭 — 한 지붕 아래로',
-    desc:'보름달과 홍실 매듭, 한 쌍의 나비를 그렸습니다. 한 지붕 아래로 모이기를 바라는 자리에 두는 부적입니다.' },
-  { key:'guard',  label:'액막이용',   hanja:'辟', group:'life',  tag:'태극 매듭 — 문을 지키는 자리',
-    desc:'여의구름과 태극 수호 매듭이 나쁜 기운을 돌려보내는 그림입니다. 현관과 문가에 두는 부적입니다.' },
+  { key:'health',   label:'건강운',     hanja:'康', group:'life',  tag:'몸의 리듬을 지키는 자리',
+    desc:'불로초와 거북, 소나무와 흐르는 물을 한 장에 담았습니다. 오래도록 병 없이 지내기를 바라며 지갑이나 베개 밑에 고이 간직하는 부적입니다.' },
+  { key:'wealth',   label:'재물운',     hanja:'財', group:'money', tag:'들어오는 돈이 머무는 자리',
+    desc:'금빛 엽전과 금괴, 모란을 가득 담았습니다. 재물이 새지 않고 모여드는 자리를 만드는 부적입니다.' },
+  { key:'job',      label:'취업운',     hanja:'職', group:'money', tag:'높이 솟아오르는 자리',
+    desc:'해를 향해 힘차게 솟구치는 매를 그렸습니다. 서류와 면접, 첫 출근을 기다리는 사람의 자리에 두는 부적입니다.' },
+  { key:'biz',      label:'사업운',     hanja:'商', group:'money', tag:'판을 키우는 사람의 자리',
+    desc:'구름과 불꽃 속에서 승천하는 용을 그렸습니다. 사업이 커지고 이름이 드높기를 바라는 자리에 두는 부적입니다.' },
+  { key:'relation', label:'인간관계운', hanja:'和', group:'money', tag:'사람과 사람을 잇는 자리',
+    desc:'길게 늘어진 매듭과 두 줄의 실을 그렸습니다. 사람과 연결되고 화합하며 신뢰가 쌓이기를 바라는 자리에 두는 부적입니다.' },
+  { key:'pass',     label:'합격운',     hanja:'格', group:'study', tag:'용문을 넘는 자리',
+    desc:'물보라를 헤치고 용문을 오르는 잉어 두 마리를 그렸습니다. 마지막 관문을 통과하기를 바라는 자리에 두는 부적입니다.' },
+  { key:'house',    label:'집매매운',   hanja:'宅', group:'life',  tag:'집이 좋은 사람에게로',
+    desc:'한옥과 커다란 열쇠를 나란히 그렸습니다. 집이 좋은 사람에게로 넘어가고 거래가 이루어지기를 바라는 자리에 두는 부적입니다.' },
+  { key:'family',   label:'가정운',     hanja:'家', group:'life',  tag:'한 지붕 아래 화목',
+    desc:'터진 석류와 그 위에 앉은 한 쌍의 새를 그렸습니다. 집안이 번성하고 화목하기를 바라는 자리에 두는 부적입니다.' },
+  { key:'love',     label:'인연운',     hanja:'緣', group:'love',  tag:'이어지는 인연',
+    desc:'홍실이 두 나비를 이어 주는 그림입니다. 새로운 만남이 좋은 인연으로 이어지기를 바라는 자리에 두는 부적입니다.' },
+  { key:'return',   label:'재회운',     hanja:'回', group:'love',  tag:'다시 만나는 자리',
+    desc:'보름달 아래에서 마주 보는 한 쌍의 원앙을 그렸습니다. 끊어진 인연이 다시 이어지기를 바라는 자리에 두는 부적입니다.' },
+  { key:'marry',    label:'결혼운',     hanja:'婚', group:'love',  tag:'백년해로의 자리',
+    desc:'짝을 맞춰 나는 한 쌍의 기러기와 혼례 매듭을 그렸습니다. 오래도록 해로하기를 바라는 자리에 두는 부적입니다.' },
+  { key:'exam',     label:'시험운',     hanja:'學', group:'study', tag:'답을 꺼내는 순간',
+    desc:'펼친 책과 붓, 밝혀 둔 등불을 그렸습니다. 배움이 깊어지고 시험장에서 힘을 내기를 바라는 자리에 두는 부적입니다.' },
+  { key:'guard',    label:'액막이용',   hanja:'辟', group:'life',  tag:'문을 지키는 자리',
+    desc:'귀면문과 수호의 매듭, 불꽃 같은 구름을 그렸습니다. 나쁜 기운을 물리치고 집을 지키는 자리에 두는 부적입니다.' },
 ];
 
 /* 사용자가 보낸 부적 샘플(3034 해설지 · 3032 인쇄 구성컷 · 3033 사용 안내)에서
@@ -1863,7 +1861,8 @@ const TAL_IMG_GUIDE  = 'assets/talisman/tal-sample-guide.jpg?v=2';
 
 const TALISMANS = WISH_THEMES.map((t, i) => ({
   id:'tal-wish-' + t.key, no:String(i + 1).padStart(2, '0'), hanja:t.hanja,
-  name:'기원부적', variant:t.label, group:t.group, image:TAL_IMG_SAMPLE,
+  name:'기원부적', variant:t.label, group:t.group,
+  image:'assets/talisman/wish/' + String(i + 1).padStart(2, '0') + '-' + t.key + '.jpg',
   tag:t.tag, desc:t.desc,
 }));
 TALISMANS.push({
@@ -2206,6 +2205,8 @@ function syncWish(){
   if(!p) return;
   const now = $('#wishNow');
   if(now) now.innerHTML = `선택 · <b>${p.variant}</b> — ${p.short || ''}`;
+  const thumb = $('#wishCardImg');
+  if(thumb && p.image){ thumb.src = p.image; thumb.alt = `접월당 기원부적(${p.variant}) — 도용 방지 워터마크가 적용된 화면용 이미지`; }
   const add = $('#wishAdd');
   if(add) add.dataset.add = p.id;
   $$('#wishCard [data-open]').forEach(el => { el.dataset.open = p.id; });

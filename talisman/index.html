@@ -1320,7 +1320,7 @@ body.has-mbar{padding-bottom:78px}
   .reveal{animation:none; opacity:1; transform:none}
 }
 
-/* ===== 중복 통폐합 컴팩트 블록 (부적 2종 · 14종 · 3단계 · 드롭다운) ===== */
+/* ===== 중복 통폐합 컴팩트 블록 (부적 2종 · 13종 · 3단계 · 드롭다운) ===== */
 /* 상품 2종 — 가로 압축 카드 */
 .picks{display:grid; gap:9px; margin-bottom:14px}
 @media (min-width:620px){ .picks{grid-template-columns:1fr 1fr; gap:10px} }
@@ -1345,7 +1345,7 @@ body.has-mbar{padding-bottom:78px}
 .pick__go{display:inline-flex; align-items:center; gap:4px; margin-top:7px; font-size:11.5px; font-weight:700; color:var(--navy)}
 .pick__go svg{width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round}
 
-/* 기원 14종 — 페이지에서 한 번만 */
+/* 기원 13종 — 페이지에서 한 번만 */
 .wishpick{margin-top:4px; padding:13px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72)}
 .wishpick__head{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:9px}
 .wishpick__head b{font-family:var(--serif); font-size:15px; letter-spacing:-.02em; color:var(--ink)}
@@ -1515,7 +1515,7 @@ section{padding:28px 0}
   </div>
 </section>
 
-<!-- ============ 부적 2종 & 기원 14종 ============ -->
+<!-- ============ 부적 2종 & 기원 13종 ============ -->
 <section id="products" aria-labelledby="prodTitle">
   <div class="wrap">
     <div class="section-head reveal">
@@ -1531,7 +1531,7 @@ section{padding:28px 0}
           <span class="tguard" aria-hidden="true"></span>
         </span>
         <div class="pick__body">
-          <span class="pick__cat">WISH · 14가지 기원</span>
+          <span class="pick__cat">WISH · 13가지 기원</span>
           <h3 class="pick__name">기원부적 <em>9,900원</em></h3>
           <p class="pick__desc">지금 마음에 걸리는 기원 하나를 골라 그 뜻을 담습니다. 완성된 부적이라 입금 확인 즉시 보내드립니다.</p>
           <span class="pick__go">신청하기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg></span>
@@ -1554,10 +1554,10 @@ section{padding:28px 0}
 
     <div class="wishpick reveal">
       <div class="wishpick__head">
-        <b>기원, 열네 가지</b>
+        <b>기원, 열세 가지</b>
         <span>그림을 누르면 바로 선택되어 신청서에 담깁니다</span>
       </div>
-      <div class="tgal" id="tgal" role="group" aria-label="기원 14종 선택"></div>
+      <div class="tgal" id="tgal" role="group" aria-label="기원 13종 선택"></div>
       <p class="nowbar" id="wishNow"></p>
       <a class="cta-main wishpick__cta" href="#apply" id="wishCta" data-pick="wish">
         <span id="wishCtaLabel">이 기원으로 신청하기</span>
@@ -1612,7 +1612,7 @@ section{padding:28px 0}
               <span class="plan-in">
                 <b>기원부적</b>
                 <em>9,900원</em>
-                <span class="save">14가지 기원 · 입금 확인 즉시</span>
+                <span class="save">13가지 기원 · 입금 확인 즉시</span>
               </span>
             </label>
             <label class="plan">
@@ -1926,7 +1926,7 @@ section{padding:28px 0}
 <script>
 /* ============================================================
    蝶月堂 — 인쇄용 디지털 부적 (talisman/)
-   - 상품: 기원부적(선택형) 14종 9,900원 · 나만의 부적(사주 맞춤) 29,000원
+   - 상품: 기원부적(선택형) 13종 9,900원 · 나만의 부적(사주 맞춤) 29,000원
    - 결제: 계좌이체(무통장입금) 전용
    - 주문 저장: jwd-orders.js → Supabase public.orders (스토어·관리자센터 공용)
    - CFG.TEST_MODE=true 인 동안 실제 메일 발송 없음 (기존 shop/store와 동일)
@@ -1942,36 +1942,34 @@ section{padding:28px 0}
     BANK_OWNER: '접월당'
   };
 
-  /* ---------- 14가지 기원 ---------- */
+  /* ---------- 13가지 기원 ---------- */
   var WISH = [
     { key: 'health', label: '건강운', hanja: '康', tag: '몸의 리듬을 지키는 자리',
-      desc: '소나무와 약초, 흐르는 물결을 한 원 안에 담았습니다. 인쇄해 지갑이나 베개 밑에 고이 간직하며 몸의 리듬을 되찾는 그림입니다.' },
+      desc: '불로초와 거북, 소나무와 흐르는 물을 한 장에 담았습니다. 오래도록 병 없이 지내기를 바라며 지갑이나 베개 밑에 고이 간직하는 부적입니다.' },
     { key: 'wealth', label: '재물운', hanja: '財', tag: '들어오는 돈이 머무는 자리',
-      desc: '금빛 엽전과 금괴, 모란을 한 장에 담았습니다. 들어오는 돈이 머물고 새는 곳이 막히는 자리를 만드는 부적입니다.' },
-    { key: 'job', label: '취업운', hanja: '職', tag: '문을 여는 열쇠 — 첫 출근을 기다리는 사람에게',
-      desc: '금빛 열쇠와 매화를 그렸습니다. 서류와 면접, 첫 출근을 기다리는 사람의 자리에 두는 부적입니다.' },
+      desc: '금빛 엽전과 금괴, 모란을 가득 담았습니다. 재물이 새지 않고 모여드는 자리를 만드는 부적입니다.' },
+    { key: 'job', label: '취업운', hanja: '職', tag: '높이 솟아오르는 자리',
+      desc: '해를 향해 힘차게 솟구치는 매를 그렸습니다. 서류와 면접, 첫 출근을 기다리는 사람의 자리에 두는 부적입니다.' },
     { key: 'biz', label: '사업운', hanja: '商', tag: '판을 키우는 사람의 자리',
-      desc: '여의구름과 모란, 금괴를 함께 담았습니다. 판을 키우고 흐름을 타야 하는 사람의 자리에 두는 부적입니다.' },
-    { key: 'boss', label: '직장상사운', hanja: '上', tag: '위를 향해 흔들리지 않게',
-      desc: '곧게 선 대나무와 산을 그렸습니다. 위를 향한 자리에서 흔들리지 않도록 두는 부적입니다.' },
-    { key: 'team', label: '직장부하운', hanja: '下', tag: '함께 서는 자리',
-      desc: '연꽃과 물결, 매듭을 그렸습니다. 사람을 이끌고 함께 서야 하는 자리에 두는 부적입니다.' },
-    { key: 'pass', label: '합격운', hanja: '格', tag: '두루마리와 붓 — 마지막 한 장까지',
-      desc: '두루마리와 붓, 매화를 한 장에 담았습니다. 시험·면접·서류의 마지막 한 걸음을 위한 그림입니다.' },
-    { key: 'house', label: '집판매운', hanja: '宅', tag: '좋은 사람에게로 넘어가는 집',
-      desc: '기와지붕과 문살, 매듭을 그렸습니다. 집이 좋은 사람에게로 넘어가기를 바라는 자리에 두는 부적입니다.' },
-    { key: 'value', label: '집값올림운', hanja: '價', tag: '집의 값을 지키는 자리',
-      desc: '솟은 봉우리와 오래된 소나무를 그렸습니다. 집의 값을 지키고 올리고 싶은 자리에 두는 부적입니다.' },
+      desc: '구름과 불꽃 속에서 승천하는 용을 그렸습니다. 사업이 커지고 이름이 드높기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'relation', label: '인간관계운', hanja: '和', tag: '사람과 사람을 잇는 자리',
+      desc: '길게 늘어진 매듭과 두 줄의 실을 그렸습니다. 사람과 연결되고 화합하며 신뢰가 쌓이기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'pass', label: '합격운', hanja: '格', tag: '용문을 넘는 자리',
+      desc: '물보라를 헤치고 용문을 오르는 잉어 두 마리를 그렸습니다. 마지막 관문을 통과하기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'house', label: '집매매운', hanja: '宅', tag: '집이 좋은 사람에게로',
+      desc: '한옥과 커다란 열쇠를 나란히 그렸습니다. 집이 좋은 사람에게로 넘어가고 거래가 이루어지기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'family', label: '가정운', hanja: '家', tag: '한 지붕 아래 화목',
+      desc: '터진 석류와 그 위에 앉은 한 쌍의 새를 그렸습니다. 집안이 번성하고 화목하기를 바라는 자리에 두는 부적입니다.' },
     { key: 'love', label: '인연운', hanja: '緣', tag: '이어지는 인연',
-      desc: '벚꽃 아래 두 나비가 홍실로 이어지는 그림입니다. 접월당의 나비 문장을 가운데 두었습니다.' },
-    { key: 'return', label: '재회운', hanja: '回', tag: '돌아오는 물길 — 다시 만나는 자리',
-      desc: '크게 돌아 다시 흐르는 물길과 홍실을 그렸습니다. 끊어진 인연이 돌아오기를 바라는 자리에 두는 부적입니다.' },
-    { key: 'exam', label: '시험운', hanja: '試', tag: '초롱불과 매화 — 답을 꺼내는 순간',
-      desc: '밝혀 둔 초롱불과 매화를 그렸습니다. 시험장에서 답을 꺼내는 순간을 위한 부적입니다.' },
-    { key: 'marry', label: '결혼운', hanja: '婚', tag: '보름달과 홍실 매듭 — 한 지붕 아래로',
-      desc: '보름달과 홍실 매듭, 한 쌍의 나비를 그렸습니다. 한 지붕 아래로 모이기를 바라는 자리에 두는 부적입니다.' },
-    { key: 'guard', label: '액막이용', hanja: '辟', tag: '태극 매듭 — 문을 지키는 자리',
-      desc: '여의구름과 태극 수호 매듭이 나쁜 기운을 돌려보내는 그림입니다. 현관과 문가에 두는 부적입니다.' }
+      desc: '홍실이 두 나비를 이어 주는 그림입니다. 새로운 만남이 좋은 인연으로 이어지기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'return', label: '재회운', hanja: '回', tag: '다시 만나는 자리',
+      desc: '보름달 아래에서 마주 보는 한 쌍의 원앙을 그렸습니다. 끊어진 인연이 다시 이어지기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'marry', label: '결혼운', hanja: '婚', tag: '백년해로의 자리',
+      desc: '짝을 맞춰 나는 한 쌍의 기러기와 혼례 매듭을 그렸습니다. 오래도록 해로하기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'exam', label: '시험운', hanja: '學', tag: '답을 꺼내는 순간',
+      desc: '펼친 책과 붓, 밝혀 둔 등불을 그렸습니다. 배움이 깊어지고 시험장에서 힘을 내기를 바라는 자리에 두는 부적입니다.' },
+    { key: 'guard', label: '액막이용', hanja: '辟', tag: '문을 지키는 자리',
+      desc: '귀면문과 수호의 매듭, 불꽃 같은 구름을 그렸습니다. 나쁜 기운을 물리치고 집을 지키는 자리에 두는 부적입니다.' }
   ].map(function (w, i) {
     w.no = String(i + 1).padStart(2, '0');
     w.art = 'assets/talisman/wish/' + w.no + '-' + w.key + '.jpg';
@@ -2595,7 +2593,7 @@ section{padding:28px 0}
 <p>본 약관은 접월당(이하 "회사")이 운영하는 인쇄 부적 판매 페이지에서 제공하는 디지털 콘텐츠(기원부적·나만의 부적)의 이용과 관련하여 회사와 이용자 간의 권리·의무를 정합니다.</p>\
 <h4>제2조 (상품의 내용)</h4>\
 <ol>\
-<li>기원부적은 14가지 기원 중 이용자가 선택한 한 가지의 뜻을 담아 회사가 제작한 이미지 파일(PDF·PNG)입니다.</li>\
+<li>기원부적은 13가지 기원 중 이용자가 선택한 한 가지의 뜻을 담아 회사가 제작한 이미지 파일(PDF·PNG)입니다.</li>\
 <li>나만의 부적은 이용자가 제공한 생년월일·출생시간을 바탕으로 사주 오행을 읽어 회사가 1:1로 제작한 이미지 파일(PDF·PNG)입니다.</li>\
 <li>모든 상품은 실물 배송이 없는 디지털 콘텐츠이며, A4 300dpi 인쇄용 PDF 3페이지로 이메일 발송됩니다. 기원부적은 입금 확인 즉시(이미 완성된 파일), 나만의 부적은 입금 확인 후 평균 6시간 · 최대 12시간 내에 발송됩니다.</li>\
 </ol>\

@@ -1334,6 +1334,118 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .dcard__cta{margin-top:10px}
   .dcard__cta .btn{padding:12px 10px;font-size:13px;gap:5px;white-space:normal}
 }
+/* ================= 모바일 햄버거 메뉴 ================= */
+.hbtn{
+  display:none;width:46px;height:46px;border-radius:50%;flex-shrink:0;
+  place-items:center;position:relative;
+  border:1px solid rgba(216,192,255,.28);background:rgba(255,255,255,.07);
+  box-shadow:0 12px 26px -20px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:border-color .25s, background .25s, box-shadow .25s;
+}
+.hbtn:hover,.hbtn[aria-expanded="true"]{border-color:rgba(242,216,155,.6);background:rgba(242,216,155,.14)}
+.hbtn__bars{position:relative;display:block;width:19px;height:13.4px}
+.hbtn__bars i{
+  position:absolute;left:0;height:1.6px;border-radius:2px;
+  background:linear-gradient(90deg,#FBEFD2,#E3C48F);
+  transition:transform .34s cubic-bezier(.22,.7,.3,1), width .34s, opacity .2s;
+}
+.hbtn__bars i:nth-child(1){top:0;width:100%}
+.hbtn__bars i:nth-child(2){top:5.9px;width:72%}
+.hbtn__bars i:nth-child(3){top:11.8px;width:100%}
+.hbtn[aria-expanded="true"] .hbtn__bars i:nth-child(1){width:100%;transform:translateY(5.9px) rotate(45deg)}
+.hbtn[aria-expanded="true"] .hbtn__bars i:nth-child(2){opacity:0;width:0}
+.hbtn[aria-expanded="true"] .hbtn__bars i:nth-child(3){transform:translateY(-5.9px) rotate(-45deg)}
+
+.mnav__scrim{
+  position:fixed;inset:0;z-index:49;
+  background:radial-gradient(120% 90% at 100% 0%, rgba(20,12,42,.5), rgba(9,6,20,.72));
+  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);
+  opacity:0;visibility:hidden;transition:opacity .32s, visibility .32s;
+}
+.mnav__scrim.is-open{opacity:1;visibility:visible}
+
+.mnav{position:absolute;top:100%;left:0;right:0;z-index:2;visibility:hidden;pointer-events:none}
+.mnav.is-open{visibility:visible;pointer-events:auto}
+.mnav__panel{
+  position:relative;padding:14px 22px 24px;
+  max-height:calc(100dvh - var(--hnav) - 44px);overflow-y:auto;overscroll-behavior:contain;
+  background:
+    radial-gradient(120% 62% at 100% 0%, rgba(242,216,155,.1), transparent 62%),
+    linear-gradient(180deg, rgba(38,26,76,.985), rgba(26,18,55,.99));
+  border-top:1px solid rgba(242,216,155,.34);
+  border-bottom:1px solid rgba(242,216,155,.16);
+  box-shadow:0 40px 80px -34px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.07);
+  backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+  transform:translateY(-16px);opacity:0;
+  transition:transform .36s cubic-bezier(.22,.7,.3,1), opacity .24s ease;
+}
+.mnav.is-open .mnav__panel{transform:translateY(0);opacity:1}
+.mnav__head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 0 4px}
+.mnav__title{font-family:var(--disp);font-size:11px;letter-spacing:.32em;color:rgba(242,216,155,.7)}
+.mnav__x{
+  display:inline-flex;align-items:center;gap:6px;
+  height:32px;padding:0 12px 0 13px;border-radius:999px;
+  font-size:11px;letter-spacing:.1em;color:#CFC2E8;
+  border:1px solid rgba(216,192,255,.24);background:rgba(255,255,255,.05);
+  transition:border-color .2s, background .2s, color .2s, transform .2s;
+}
+.mnav__x:active{transform:scale(.96)}
+.mnav__x:hover{border-color:rgba(242,216,155,.5);color:#FFF6E2}
+.mnav__x svg{width:11px;height:11px;stroke:#D9C8A0;fill:none;stroke-width:1.8;stroke-linecap:round}
+.mnav__head + .mnav__kick{margin-top:6px}
+.mnav__kick{margin:13px 0 3px;font-size:10px;letter-spacing:.26em;color:rgba(216,192,255,.52)}
+.mnav__list{display:flex;flex-direction:column}
+.mnav__list a{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:13px 2px;font-family:var(--serif);font-size:16px;letter-spacing:.02em;color:#E8DEF9;
+  border-bottom:1px solid rgba(216,192,255,.11);
+  opacity:0;transform:translateY(-7px);
+  transition:opacity .26s ease, transform .26s ease, color .2s;
+}
+.mnav__list a::after{
+  content:"";width:5.5px;height:5.5px;flex-shrink:0;
+  border-top:1px solid rgba(242,216,155,.45);border-right:1px solid rgba(242,216,155,.45);
+  transform:rotate(45deg);transition:border-color .2s, transform .2s;
+}
+.mnav__list a:hover,.mnav__list a:active{color:#FFF6E2}
+.mnav__list a:hover::after,.mnav__list a:active::after{border-color:rgba(242,216,155,.95);transform:rotate(45deg) translate(1px,-1px)}
+.mnav.is-open .mnav__list a{opacity:1;transform:none}
+.mnav.is-open .mnav__list a:nth-child(1){transition-delay:.06s}
+.mnav.is-open .mnav__list a:nth-child(2){transition-delay:.10s}
+.mnav.is-open .mnav__list a:nth-child(3){transition-delay:.14s}
+.mnav.is-open .mnav__list a:nth-child(4){transition-delay:.18s}
+.mnav.is-open .mnav__list a:nth-child(5){transition-delay:.22s}
+.mnav.is-open .mnav__list a:nth-child(6){transition-delay:.26s}
+.mnav__cta{
+  display:flex;align-items:center;justify-content:center;gap:9px;margin-top:20px;
+  padding:14px 18px;border-radius:12px;
+  font-size:14.5px;font-weight:600;letter-spacing:.01em;color:#2A1B44;
+  background:linear-gradient(135deg,#FBEDCB,#E5C795 55%,#D3AF75);
+  box-shadow:0 20px 38px -24px rgba(242,216,155,.85), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.mnav__cta::after{content:"";width:5px;height:5px;border-top:1.5px solid #4a3512;border-right:1.5px solid #4a3512;transform:rotate(45deg)}
+body.mnav-lock{overflow:hidden}
+details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
+
+@media (min-width:769px){
+  .mnav,.mnav__scrim{display:none!important}
+}
+@media (max-width:768px) and (max-height:700px){
+  .mnav__panel{padding-bottom:16px}
+  .mnav__cta{margin-top:12px;padding:12px 16px}
+  .mnav__list a{padding:11px 2px}
+}
+@media (max-width:768px){
+  .nav{display:none}
+  .hbtn{display:grid;width:44px;height:44px}
+  .hdr__in{flex-wrap:nowrap;min-height:0;padding:9px 20px;gap:12px}
+  .brand{flex:0 1 auto;min-width:0;margin-right:auto}
+  .brand__txt{min-width:0}
+  .brand__sub{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cartbtn{margin-left:0;width:44px;height:44px}
+  .cartbtn svg{width:20px;height:20px}
+}
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
   [data-rev]{opacity:1!important;transform:none!important;transition:none}
@@ -1391,8 +1503,39 @@ body:has(#doneView.is-open) .toast{bottom:112px}
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" stroke-linecap="round"/></svg>
       <span class="cartbtn__n" id="cartCount" data-empty="true">0</span>
     </button>
+    <button class="hbtn" id="mNavOpen" type="button" aria-label="메뉴 열기" aria-controls="mNav" aria-expanded="false">
+      <span class="hbtn__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+
+    <!-- 모바일 메뉴 -->
+    <div class="mnav" id="mNav">
+      <div class="mnav__panel" role="dialog" aria-modal="true" aria-labelledby="mNavTitle" tabindex="-1">
+        <div class="mnav__head">
+          <span class="mnav__title" id="mNavTitle">MENU</span>
+          <button class="mnav__x" type="button" data-mnav-close aria-label="메뉴 닫기">
+            <span>닫기</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <p class="mnav__kick">상품</p>
+        <nav class="mnav__list" aria-label="상품 메뉴">
+          <a href="#products" data-mnav>전체 상품</a>
+          <a href="#products" data-mnav data-mnav-slide="0">사주 · 자미두수</a>
+          <a href="#naming" data-mnav>작명 · 택일</a>
+          <a href="#diary" data-mnav>2027 다이어리</a>
+          <a href="#talisman" data-mnav>부적</a>
+        </nav>
+        <p class="mnav__kick">안내</p>
+        <nav class="mnav__list" aria-label="이용 안내 메뉴">
+          <a href="#how" data-mnav>진행 방법 · FAQ</a>
+          <a href="#refund" data-mnav>환불규정</a>
+        </nav>
+        <a class="mnav__cta" href="#consult" data-mnav>상담 신청하기</a>
+      </div>
+    </div>
   </div>
 </header>
+<div class="mnav__scrim" id="mNavScrim"></div>
 
 <main id="top">
 
@@ -1785,7 +1928,7 @@ body:has(#doneView.is-open) .toast{bottom:112px}
         <summary>작명·택일은 얼마나 걸리나요?</summary>
         <p>이름 감명은 접수 확인 후 평균 1~2일, 성인 개명·신생아·상호 작명과 택일은 평균 3~7일 이내에 주문서에 적어주신 이메일로 보내드립니다. 사주 원국과 한자 획수를 직접 대조해 쓰는 작업이라 하루 이상 걸리며, 접수 순서대로 제작합니다.</p>
       </details>
-      <details>
+      <details id="refund">
         <summary>환불이 가능한가요?</summary>
         <p>사주분석지·자미두수 분석지·2027 신년운세·나만의 부적은 입금 확인과 동시에 분석·제작이 시작되며, 발송 전 중도 취소 시 진행 작업비 50%를 공제한 나머지 50%만 환불됩니다. 발송 완료 후에는 개인적 불만족·단순 변심·정보 오기재 등으로 인한 환불이 일체 불가합니다. 기원부적은 즉시 제공되는 완성 파일로, 결제(입금 확인) 및 다운로드·발송이 개시된 후에는 환불이 불가하며, 미열람·미다운로드 상태이거나 파일 오류·오발송 등 판매자 귀책인 경우에만 재발송 또는 100% 환불해 드립니다. 다이어리 기본형은 입금 확인 즉시 파일이 발송되어 발송 후 환불이 불가하며, 원국 기입형·프리미엄 맞춤 일진형은 제작 착수 후 발송 전 취소 시 작업비 50% 공제 후 50%만 환불됩니다. 작명·택일은 작업 시작 전 취소 시 100% 전액 환불, 작업 진행 단계에 따라 완료율 20~80%를 공제한 나머지 환불(출생 정보 확인·사주 분석 20% · 작명·택일 방향 설정 40% · 후보 1차 검토 60% · 음양오행·수리·길일 대조 80%), 최종 선정 및 결과물(PDF) 완료 후에는 환불 0%로 단순 변심·개인 사유로 인한 환불이 불가합니다(판매자 귀책 시 100% 환불). 자세한 내용은 <button type="button" class="linklike" data-open-terms="refund">환불 규정</button>을 확인해 주세요.</p>
       </details>
@@ -3482,6 +3625,53 @@ const hdr = $('#hdr');
 const onScroll = () => hdr.classList.toggle('is-stuck', window.scrollY > 12);
 onScroll();
 window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ---------- 모바일 햄버거 메뉴 ---------- */
+const mnav = $('#mNav'), mnavBtn = $('#mNavOpen'), mnavScrim = $('#mNavScrim');
+if(mnav && mnavBtn){
+  const mnavPanel = mnav.querySelector('.mnav__panel');
+  let mnavOn = false;
+  const mnavSet = v => {
+    if(mnavOn === v) return;
+    mnavOn = v;
+    mnav.classList.toggle('is-open', v);
+    if(mnavScrim) mnavScrim.classList.toggle('is-open', v);
+    mnavBtn.setAttribute('aria-expanded', v ? 'true' : 'false');
+    mnavBtn.setAttribute('aria-label', v ? '메뉴 닫기' : '메뉴 열기');
+    document.body.classList.toggle('mnav-lock', v);
+    if(v && mnavPanel) mnavPanel.focus({preventScroll:true});
+  };
+  mnavBtn.addEventListener('click', () => mnavSet(!mnavOn));
+  if(mnavScrim) mnavScrim.addEventListener('click', () => mnavSet(false));
+  mnav.addEventListener('click', e => {
+    if(e.target.closest('[data-mnav-close]')){ mnavSet(false); return; }
+    const a = e.target.closest('a[data-mnav]');
+    if(!a) return;
+    e.preventDefault();
+    const sel = a.getAttribute('href');
+    const target = sel && document.querySelector(sel);
+    mnavSet(false);                                  // 항목을 누르면 메뉴는 먼저 닫는다
+    if(!target) return;
+    if(sel === '#refund'){                           // 환불규정은 FAQ 안의 해당 항목을 펼쳐서 보여준다
+      const d = target.closest('details');
+      if(d) d.open = true;
+    }
+    if(a.dataset.mnavSlide !== undefined && typeof goSlide === 'function'){
+      goSlide(Number(a.dataset.mnavSlide), true);    // 사주 · 자미두수 → 대표 상품 슬라이드도 맞춤
+    }
+    /* transform(등장 애니메이션)에 흔들리지 않도록 레이아웃 기준 위치로 계산해 부드럽게 이동 */
+    const hn = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hnav')) || 64;
+    let y = 0;
+    for(let el = target; el; el = el.offsetParent) y += el.offsetTop;
+    const pad = sel === '#refund' ? 20 : 14;
+    window.scrollTo({top: Math.max(0, y - hn - pad), behavior:'smooth'});
+  });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && mnavOn) mnavSet(false); });
+  const mqWide = window.matchMedia('(min-width:769px)');
+  const onWide = e => { if(e.matches) mnavSet(false); };
+  (mqWide.addEventListener ? mqWide.addEventListener('change', onWide) : mqWide.addListener(onWide));
+  $('#cartOpen').addEventListener('click', () => mnavSet(false));
+}
 
 /* 고정 헤더의 실제 높이를 --hnav 에 반영 (모바일에서 메뉴가 두 줄이 되어도 앵커가 가려지지 않게) */
 function syncHeaderH(){

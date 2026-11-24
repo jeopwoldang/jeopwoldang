@@ -1074,6 +1074,25 @@ body:has(#doneView.is-open) .toast{bottom:112px}
 .rsum__more:hover{background:linear-gradient(135deg,rgba(242,216,155,.24),rgba(140,100,220,.22));border-color:rgba(242,216,155,.72);transform:translateY(-1px)}
 .rsum__more span{font-size:1.1em;line-height:1;transform:translateY(-1px)}
 
+/* ---------- 정가 취소선 + 판매가 + % 배지 ---------- */
+.pcut{
+  display:inline-block;font-style:normal;white-space:nowrap;
+  font-family:var(--disp);font-size:11px;font-weight:700;line-height:1.5;letter-spacing:.02em;
+  color:#2A1B44;padding:1px 6px;border-radius:5px;
+  background:linear-gradient(135deg,#FBEDCB,#E3C48F);
+  box-shadow:0 4px 10px -6px rgba(224,178,100,.85);
+}
+.fcard__price--row{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:1px 8px}
+.fcard__price--row s{font-size:11.5px}
+.fcard__price--row .sale{flex-basis:100%;margin-top:2px}
+.prow{flex-wrap:wrap;row-gap:2px}
+.prow__top,.prow__deal{display:inline-flex;align-items:baseline;gap:6px;min-width:0}
+.prow s{font-size:10.5px;color:#8B7CAD;letter-spacing:0}
+.prow.is-on s{color:#A795C9}
+.prow .pcut{font-size:9.5px;padding:0 5px;border-radius:4px}
+.tcard2__row{display:flex;align-items:baseline;flex-wrap:wrap;gap:1px 7px}
+.tcard2__row s{font-size:11px;color:var(--mut)}
+
 /* ---------- 반응형 ---------- */
 @media (max-width:1180px){
   .tgrid{grid-template-columns:repeat(4,1fr)}
@@ -1535,6 +1554,17 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
   .topbar__link{gap:6px}
   .topbar__go{font-size:9.4px;padding:3px 6px;gap:3px}
 }
+@media (max-width:420px){
+  .prow{font-size:11.5px;gap:4px 6px}
+  .prow b{font-size:13px}
+  .prow.is-on b{font-size:15.5px}
+  .prow s{font-size:9.5px}
+  .prow .pcut{font-size:9px;padding:0 4px}
+  .prow__deal{flex:1 0 100%;gap:5px}
+  .prow__top{flex:0 0 auto}
+  .fcard__price--row s{font-size:10.5px}
+  .fcard__price--row{gap:1px 6px}
+}
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
   [data-rev]{opacity:1!important;transform:none!important;transition:none}
@@ -1721,9 +1751,9 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               <button class="optb" data-persons="3" aria-pressed="false">프리미엄</button>
             </div>
             <div class="prices">
-              <span class="prow is-on" data-persons="1">기본형 <b>19,800원</b></span>
-              <span class="prow" data-persons="2">원국 기입형 <b>29,000원</b></span>
-              <span class="prow" data-persons="3">프리미엄 맞춤 일진형 <b>49,000원</b></span>
+              <span class="prow is-on" data-persons="1"><span class="prow__top">기본형 <s>22,000원</s></span><span class="prow__deal"><b>19,800원</b><em class="pcut">10%</em></span></span>
+              <span class="prow" data-persons="2"><span class="prow__top">원국 기입형 <s>32,000원</s></span><span class="prow__deal"><b>29,000원</b><em class="pcut">10%</em></span></span>
+              <span class="prow" data-persons="3"><span class="prow__top">프리미엄 맞춤 일진형 <s>54,000원</s></span><span class="prow__deal"><b>49,000원</b><em class="pcut">10%</em></span></span>
             </div>
           </div>
           <button class="addbtn" data-add-diary>담기</button>
@@ -1767,7 +1797,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">지금 쓰는 이름, 그대로 써도 될까요?</p>
           <p class="fcard__spec">이름 감명 진단서 PDF · 접수 후 평균 1~2일</p>
           <div class="fcard__foot">
-            <div class="fcard__price"><b>80,000원</b></div>
+            <div class="fcard__price fcard__price--row"><s>89,000원</s><b>80,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-read">담기</button>
           </div>
           <div class="ncard__cta">
@@ -1785,7 +1815,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">한 번 정하면 되돌리기 어려운 날, 사주로 뽑는 길일</p>
           <p class="fcard__spec">최선 1일 + 차선 1일 (총 2안) PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="fcard__price"><b>200,000원</b></div>
+            <div class="fcard__price fcard__price--row"><s>220,000원</s><b>200,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="date-pick">담기</button>
           </div>
           <div class="ncard__cta">
@@ -1803,7 +1833,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">평생 쓰는 이름, 사주에 맞춰 추천 3안으로</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="fcard__price"><b>500,000원</b></div>
+            <div class="fcard__price fcard__price--row"><s>550,000원</s><b>500,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-adult">담기</button>
           </div>
           <div class="ncard__cta">
@@ -1821,7 +1851,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">사업의 첫인상이 되는 상호, 사주와 업종을 함께</p>
           <p class="fcard__spec">추천 상호 3안 + 상호 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="fcard__price"><b>500,000원</b></div>
+            <div class="fcard__price fcard__price--row"><s>550,000원</s><b>500,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-shop">담기</button>
           </div>
           <div class="ncard__cta">
@@ -1839,7 +1869,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">태어난 시간까지 반영한 사주로 짓는 첫 이름</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="fcard__price"><b>1,100,000원</b></div>
+            <div class="fcard__price fcard__price--row"><s>1,220,000원</s><b>1,100,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-baby">담기</button>
           </div>
           <div class="ncard__cta">
@@ -2261,7 +2291,7 @@ const CFG = {
 /* ---------- 분석지 ---------- */
 const PRODUCTS = [
   { id:'saju1', cat:'saju', type:'saju', persons:1, timeRequired:false,
-    name:'종합 사주분석지 · 1인', price:39800, badge:'BEST', photo:'assets/card_saju.jpg',
+    name:'종합 사주분석지 · 1인', price:39800, orig:44000, off:10, badge:'BEST', photo:'assets/card_saju.jpg',
     cover:{hanja:'四柱', en:'SAJU READING', top:'SAJU · 1 PERSON', sub:'1:1 종합 사주분석'},
     short:'연·월·일·시 여덟 글자로 읽는 10년 대운과 월별 흐름',
     desc:'태어난 연·월·일·시로 사주 명식을 세우고, 기운의 세기와 균형·10년 대운·올해의 월별 흐름까지 담은 1인 맞춤 분석지입니다.',
@@ -2270,7 +2300,7 @@ const PRODUCTS = [
     notice:'※ 1인 상품은 본인 개인 질문만 가능하며, 타인 사주·궁합 질문은 불가합니다. (궁합·2인 비교는 2인을 선택해 주세요.)' },
 
   { id:'saju2', cat:'saju', type:'saju', persons:2, timeRequired:false,
-    name:'종합 사주분석지 · 2인', price:70000, photo:'assets/card_saju.jpg',
+    name:'종합 사주분석지 · 2인', price:70000, orig:78000, off:10, photo:'assets/card_saju.jpg',
     cover:{hanja:'緣', en:'SAJU FOR TWO', top:'SAJU · 2 PERSONS', sub:'2인 궁합 · 동업 분석'},
     short:'두 사람의 명식을 나란히 놓고 보는 궁합·동업 분석',
     desc:'두 사람의 사주를 각각 풀고, 궁합·동업·관계의 결을 함께 짚는 2인 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
@@ -2286,7 +2316,7 @@ const PRODUCTS = [
     meta:[['분량','약 60페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','미포함']] },
 
   { id:'ziwei1', cat:'ziwei', type:'ziwei', persons:1, timeRequired:true,
-    name:'자미두수 명반 정밀 분석지 · 1인', price:49800, badge:'NEW', photo:'assets/card_ziwei.jpg',
+    name:'자미두수 명반 정밀 분석지 · 1인', price:49800, orig:55000, off:10, badge:'NEW', photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI DOU SHU', top:'ZIWEI · 12 PALACES', sub:'12궁 명반 정밀 분석', variant:'wheel'},
     short:'12궁 명반과 14주성·사화로 읽는 영역별 정밀 분석',
     desc:'대략적인 태어난 시간(시진)으로 명반을 그려 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 읽는 정밀 분석지입니다.',
@@ -2295,7 +2325,7 @@ const PRODUCTS = [
     notice:'※ 1인 상품은 본인 개인 질문만 가능하며, 타인 명반·궁합 질문은 불가합니다. (궁합·2인 비교는 2인을 선택해 주세요.)' },
 
   { id:'ziwei2', cat:'ziwei', type:'ziwei', persons:2, timeRequired:true,
-    name:'자미두수 명반 정밀 분석지 · 2인', price:90000, photo:'assets/card_ziwei.jpg',
+    name:'자미두수 명반 정밀 분석지 · 2인', price:90000, orig:100000, off:10, photo:'assets/card_ziwei.jpg',
     cover:{hanja:'紫微', en:'ZIWEI FOR TWO', top:'ZIWEI · 2 PERSONS', sub:'2인 명반 · 궁합·관계 분석', variant:'wheel'},
     short:'두 사람의 12궁 명반을 나란히 놓고 읽는 궁합·관계 정밀 분석',
     desc:'두 사람의 대략적인 태어난 시간(시진)으로 명반을 각각 그려, 명궁을 중심으로 열두 궁위와 열네 주성·살성, 사화(화록·화권·화과·화기)의 배치를 나란히 읽는 2인 정밀 분석지입니다. 두 분 모두에게 같은 분석지를 보내드립니다.',
@@ -2314,7 +2344,7 @@ const DIARY_PREMIUM_PHOTOS = ['assets/diary_p7.jpg?v=4', ...DIARY_PHOTOS];
 PRODUCTS.push({
   id:'diary-basic', cat:'diary', type:'diary', persons:1, birth:false,
   optLabel:'기본형 · 16페이지 PDF',
-  name:'2027 사주 개운 굿노트 다이어리 · 기본형', price:19800, badge:'NEW',
+  name:'2027 사주 개운 굿노트 다이어리 · 기본형', price:19800, orig:22000, off:10, badge:'NEW',
   photo:'assets/card_diary.jpg?v=3', photos:DIARY_PHOTOS,
   short:'표지 3종 중 택 1 · 내 사주 원국 · 2027년 1~12월 일진 플래너 · 개운 스티커 24종을 담은 16페이지 아이패드 다이어리',
   desc:'아이패드 굿노트·노타빌리티에 넣어 쓰는 A4 가로 16페이지 PDF 다이어리입니다. 표지 3종(자개 달빛 · 연보라 클래식 · 붉은 양 · 달과 나비) 중 하나를 고르시면, 속지 바탕은 필기용 그대로 두고 테두리와 장식 포인트만 고른 표지 색에 맞춰 보내드립니다. 내 사주 원국 8칸과 오행 밸런스 게이지, 2027년 1월부터 12월까지 한 달에 한 장씩 담은 일진 플래너(60갑자 일진·음력·24절기·손 없는 날·공휴일 표시), 동양풍 사주 스티커 24종으로 구성했습니다. 스티커 24종은 PDF 속 스티커 시트와 함께, 굿노트 「요소」에 하나씩 등록해 바로 붙여 쓰는 개별 투명 PNG 파일(24개 ZIP)로도 같이 보내드립니다.',
@@ -2333,7 +2363,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'diary-saju', cat:'diary', type:'diary', persons:1, birth:true,
   optLabel:'원국 기입형 · 사주 1회 기입', birthKind:'다이어리 원국',
-  name:'2027 사주 개운 굿노트 다이어리 · 원국 기입형', price:29000, badge:'1:1 기입',
+  name:'2027 사주 개운 굿노트 다이어리 · 원국 기입형', price:29000, orig:32000, off:10, badge:'1:1 기입',
   blockName:'2027 사주 개운 다이어리 · 원국 기입',
   photo:'assets/card_diary.jpg?v=3', photos:DIARY_PHOTOS,
   short:'접월당이 생년월일시로 사주팔자 8칸과 오행 밸런스를 직접 채워 보내는 16페이지 다이어리',
@@ -2354,7 +2384,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'diary-premium', cat:'diary', type:'diary', persons:1, birth:true,
   optLabel:'프리미엄 맞춤 일진형 · 365일 맞춤 표기', birthKind:'다이어리 프리미엄 일진',
-  name:'2027 사주 개운 굿노트 다이어리 · 프리미엄 맞춤 일진형', price:49000, badge:'PREMIUM',
+  name:'2027 사주 개운 굿노트 다이어리 · 프리미엄 맞춤 일진형', price:49000, orig:54000, off:10, badge:'PREMIUM',
   blockName:'2027 사주 개운 다이어리 · 프리미엄 맞춤 일진',
   photo:'assets/card_diary.jpg?v=3', photos:DIARY_PREMIUM_PHOTOS,
   short:'내 사주 기준으로 2027년 1~12월 365일 하루하루에 풀리는 날·조심할 날·이동수를 찍어 보내는 16페이지 다이어리',
@@ -2376,7 +2406,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'name-read', cat:'naming', type:'naming', persons:1, birth:true,
   kindLabel:'이름 감명', blockName:'이름 감명', optLabel:'이름 감명 진단서 PDF',
-  name:'정통 사주 기반 이름 감명', price:80000, badge:'01 · 감명',
+  name:'정통 사주 기반 이름 감명', price:80000, orig:89000, off:10, badge:'01 · 감명',
   photo:'assets/card_naming_read.jpg?v=2', square:true,
   short:'지금 쓰는 이름, 그대로 써도 될까요? 사주 원국과 성명학으로 짚어 드리는 1:1 이름 감명',
   desc:'현재 쓰고 계신 이름을 사주 원국과 성명학(수리·음양·자원오행)으로 함께 풀이해, 이름의 강점과 걸리는 부분을 정확히 짚어 드립니다. 그대로 쓰셔도 되는 이름이면 왜 괜찮은지, 바꾸는 게 좋으면 어느 글자에서 기운이 걸리는지 근거와 함께 PDF로 정리해 드립니다. 개명을 결심하기 전에 먼저 진단받아 보시는 상품입니다.',
@@ -2393,7 +2423,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'name-adult', cat:'naming', type:'naming', persons:1, birth:true,
   kindLabel:'성인 개명 작명', blockName:'성인 개명 작명', optLabel:'추천 3안 · 정밀 작명서 PDF',
-  name:'사주 맞춤 성인 개명 작명 (추천 3안)', price:500000, badge:'03 · 성인 개명',
+  name:'사주 맞춤 성인 개명 작명 (추천 3안)', price:500000, orig:550000, off:10, badge:'03 · 성인 개명',
   photo:'assets/card_naming_adult.jpg?v=2', square:true,
   short:'평생 쓰는 이름이라면 사주에 맞춰 새로. 추천 3안과 정밀 작명서로 개명까지 한 번에',
   desc:'생년월일시로 사주 원국과 용신을 세운 뒤, 부족한 기운을 채우면서 부르기 좋고 뜻이 좋은 이름을 3안으로 추천해 드립니다. 각 안의 사주 적합도·수리·자원오행·뜻과 한자를 담은 정밀 작명서 PDF를 드리며, 개명 신청에 참고하실 수 있도록 한자와 획수 정보도 함께 표기합니다.',
@@ -2411,7 +2441,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'name-baby', cat:'naming', type:'naming', persons:1, birth:true,
   kindLabel:'신생아 작명', blockName:'신생아 작명', optLabel:'추천 3안 · 정밀 작명서 PDF',
-  name:'사주 용신 맞춤 신생아 작명 (추천 3안)', price:1100000, badge:'05 · 신생아',
+  name:'사주 용신 맞춤 신생아 작명 (추천 3안)', price:1100000, orig:1220000, off:10, badge:'05 · 신생아',
   photo:'assets/card_naming_baby.jpg?v=2', square:true,
   short:'태어난 시간까지 반영한 사주로 짓는 아이의 첫 이름, 추천 3안과 정밀 작명서 PDF',
   desc:'태어난 시간까지 반영한 사주에서 용신과 희용신을 잡고, 아이의 후천운을 보완하는 이름을 3안으로 지어 드립니다. 출생신고에 바로 쓰실 수 있도록 한글·한자·획수·수리·뜻을 정리한 정밀 작명서 PDF로 보내드리고, 3안을 나란히 비교해 드려 가족이 함께 보고 고르실 수 있습니다.',
@@ -2429,7 +2459,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'name-shop', cat:'naming', type:'naming', persons:1, birth:true,
   kindLabel:'상호 작명', blockName:'상호 작명', optLabel:'추천 상호 3안 · 상호 작명서 PDF',
-  name:'대표자 사주·업종 맞춤 사업 상호 작명 (추천 3안)', price:500000, badge:'04 · 상호',
+  name:'대표자 사주·업종 맞춤 사업 상호 작명 (추천 3안)', price:500000, orig:550000, off:10, badge:'04 · 상호',
   photo:'assets/card_naming_shop.jpg?v=2', square:true,
   short:'사업의 첫인상이 되는 상호, 대표자 사주와 업종을 함께 보고 짓는 맞춤 작명',
   desc:'대표자 생년월일시로 사주 원국을 세운 뒤, 업종과 취급 아이템에 맞는 상호를 3안으로 지어 드립니다. 상호마다 사주 적합도와 업종 궁합, 수리·음령오행, 부르기·기억하기 쉬운 정도를 함께 풀어낸 상호 작명서 PDF를 드리며, 사업자등록·간판·로고 작업에 바로 활용하실 수 있는 형태로 정리합니다.',
@@ -2447,7 +2477,7 @@ PRODUCTS.push({
 PRODUCTS.push({
   id:'date-pick', cat:'naming', type:'naming', persons:1, birth:true,
   kindLabel:'길일 택일', blockName:'길일 택일', optLabel:'최선 1일 + 차선 1일 · 택일서 PDF',
-  name:'개업·이사·결혼·계약 정통 길일 택일 (총 2안)', price:200000, badge:'02 · 택일',
+  name:'개업·이사·결혼·계약 정통 길일 택일 (총 2안)', price:200000, orig:220000, off:10, badge:'02 · 택일',
   photo:'assets/card_naming_date.jpg?v=2', square:true,
   short:'한 번 정하면 되돌리기 어려운 날, 사주로 뽑는 정통 길일 (출산 택일 제외)',
   desc:'개업·이사·결혼·계약처럼 한 번 정하면 되돌리기 어려운 일정을 위해, 신청하신 분(과 상대방)의 사주를 기준으로 겹치지 않는 길일을 뽑습니다. 최선의 날 1일과 차선일 1일, 총 2안을 드리고 각 날짜를 고른 이유와 좋은 시간대까지 PDF로 정리해 드립니다. 신생아 출산 택일(제왕절개·유도분만 날짜)은 진행하지 않습니다.',
@@ -2464,6 +2494,8 @@ PRODUCTS.push({
 });
 
 const won = n => n.toLocaleString('ko-KR') + '원';
+/* 정가 대비 할인율(%) — 1원도 가격을 바꾸지 않고 표기만 계산한다 */
+const pct = p => (p && p.orig && p.orig > p.price) ? (p.off || Math.round((1 - p.price / p.orig) * 100)) : 0;
 /* 받침에 맞는 목적격 조사 */
 function eul(word){
   const ch = String(word).trim().slice(-1);
@@ -2576,8 +2608,8 @@ function personPick(ids){
                 <button class="optb" data-persons="2" aria-pressed="false">${lab[1]}</button>
               </div>
               <div class="prices">
-                <span class="prow is-on" data-persons="1">${lab[0]} <b>${won(byId(ids[0]).price)}</b></span>
-                <span class="prow" data-persons="2">${lab[1]} <b>${won(byId(ids[1]).price)}</b></span>
+                <span class="prow is-on" data-persons="1"><span class="prow__top">${lab[0]} <s>${won(byId(ids[0]).orig)}</s></span><span class="prow__deal"><b>${won(byId(ids[0]).price)}</b><em class="pcut">${pct(byId(ids[0]))}%</em></span></span>
+                <span class="prow" data-persons="2"><span class="prow__top">${lab[1]} <s>${won(byId(ids[1]).orig)}</s></span><span class="prow__deal"><b>${won(byId(ids[1]).price)}</b><em class="pcut">${pct(byId(ids[1]))}%</em></span></span>
               </div>
             </div>`;
 }
@@ -2589,8 +2621,8 @@ function fslideHTML(f){
   const price = f.dual
     ? personPick(f.ids)
     : (first.orig
-        ? `<div class="fcard__price fcard__price--row"><s>${won(first.orig)}</s><b>${won(first.price)}</b><span class="sale">${Math.round((1 - first.price / first.orig) * 100)}% 할인 · ${f.sale || '11월 한정'}</span></div>`
-        : `<div class="fcard__price"><b>${won(first.price)}</b></div>`);
+        ? `<div class="fcard__price fcard__price--row"><s>${won(first.orig)}</s><b>${won(first.price)}</b><em class="pcut">${pct(first)}%</em><span class="sale">${f.sale || '11월 한정'}</span></div>`
+        : `<div class="fcard__price fcard__price--row"><s>${won(first.orig)}</s><b>${won(first.price)}</b><em class="pcut">${pct(first)}%</em></div>`);
   return `<article class="fslide" id="${f.key}"${f.dual ? ` data-card="${f.key}"` : ''} aria-roledescription="슬라이드" aria-label="${f.name}">
     <button class="fslide__media" ${openAttr} aria-label="${f.name} 상세 보기">
       <img src="${f.img}" alt="${f.alt || f.name}" width="1448" height="1086" loading="lazy">
@@ -2755,7 +2787,7 @@ function paintProduct(){
           ${tk ? `<span class="pd__tier">${tierLabel(pdId, pdQty)}</span>` : ''}
           ${p.orig ? `<s>${won(p.orig)}</s>` : ''}
           <b>${won(p.price)}</b>
-          ${p.orig ? `<em>${Math.round((1 - p.price / p.orig) * 100)}%</em>` : ''}
+          ${p.orig ? `<em class="pcut">${pct(p)}%</em>` : ''}
         </div>
         ${p.type === 'diary' ? `<div class="pd__cover">
           <span>표지 선택 · 3종 중 택 1</span>

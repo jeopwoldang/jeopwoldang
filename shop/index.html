@@ -1650,7 +1650,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
 <!-- ===== 상단 공지 ===== -->
 <div class="topbar">
-  <a class="topbar__link" href="/2027/" aria-label="2027 정미년 신년운세 19,800원 전용 페이지로 이동">
+  <a class="topbar__link" href="/2027/" data-open="new2027" aria-label="2027 정미년 신년운세 19,800원 상품 상세 보기">
     <span class="topbar__txt"><b>蝶月堂 11월 한정</b><span class="dot">·</span>2027 정미년 신년운세 <b>19,800원</b><span class="topbar__extra"><span class="dot">·</span>12월 1일부터 정가 34,900원</span></span>
     <span class="topbar__go">바로가기 <em aria-hidden="true">›</em></span>
   </a>
@@ -3129,7 +3129,7 @@ document.addEventListener('click', e => {
     closeAll(); openCart(); return;
   }
   if(t.id === 'goCheckout'){ startCheckout(); return; }
-  if(t.dataset.open){ openProduct(t.dataset.open); return; }
+  if(t.dataset.open){ e.preventDefault(); openProduct(t.dataset.open); return; }   /* 배너 등 링크도 페이지 이동 없이 상세 모달만 */
   if(t.dataset.add){ addToCart(t.dataset.add, 1); return; }
   if(t.dataset.qty){ const line = findLine(t.dataset.qty); setQty(t.dataset.qty, (line ? line.qty : 0) + Number(t.dataset.delta)); return; }
   if(t.dataset.del){ setQty(t.dataset.del, 0); return; }

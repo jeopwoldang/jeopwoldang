@@ -542,6 +542,8 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .dcard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform 1s cubic-bezier(.22,.8,.28,1)}
 .dcard:hover .dcard__media img{transform:scale(1.04)}
 .dcard__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, rgba(25,17,48,0) 62%, rgba(26,18,50,.34) 88%, rgba(28,19,54,.6) 100%)}
+/* 밝은 표지(연보라·붉은 양)일 때는 오른쪽 그라데이션을 옅게 — 흰 표지에 검은 띠가 남지 않도록 */
+.dcard__media.media--light::after{background:linear-gradient(90deg, rgba(25,17,48,0) 76%, rgba(26,18,50,.12) 92%, rgba(28,19,54,.24) 100%)}
 .dcard__body{position:relative;z-index:2;display:flex;flex-direction:column;padding:26px 30px 26px;background:transparent}
 .dcard__body .fcard__lines{min-height:0}
 .dcard .fcard__foot{padding-top:16px}
@@ -2641,6 +2643,8 @@ function applyCoverImg(){
     if(ci.getAttribute('src') !== src) ci.src = src;
     ci.alt = `${diaryCover} 표지의 2027 사주 개운 굿노트 다이어리 16페이지 정식판`;
   }
+  const cm = $('[data-card="diary"] .dcard__media');
+  if(cm) cm.classList.toggle('media--light', DIARY_COVERS.indexOf(diaryCover) > 0);   /* 밝은 표지는 오른쪽 그라데이션을 옅게 */
   const p = pdId ? byId(pdId) : null;
   const mi = $('#pdOverlay .pd__media img');
   if(mi && p && p.type === 'diary'){

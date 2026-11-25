@@ -2830,7 +2830,12 @@ function setPersons(kind, n){
   else sajuPersons = v;
   const root = document.querySelector(`[data-card="${kind}"]`);
   if(!root) return;
-  root.querySelectorAll('.optb').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.persons) === v)));
+  root.querySelectorAll('.optb').forEach(b => {
+    if(b.dataset.persons === undefined) return;                 /* 표지 버튼(data-cover)은 건드리지 않는다 */
+    b.setAttribute('aria-pressed', String(Number(b.dataset.persons) === v));
+  });
+  root.querySelectorAll('[data-cover]').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.cover === diaryCover)));
   root.querySelectorAll('.prow').forEach(r => r.classList.toggle('is-on', Number(r.dataset.persons) === v));
   root.querySelectorAll(`[data-open-${kind}]`).forEach(el => el.dataset.open = TIER_IDS[kind][v]);
 }

@@ -2881,7 +2881,7 @@ function renderCart(){
       : p.type === 'naming' ? `${p.optLabel} · 접수 확인 후 순차 발송`
       : 'A4 PDF · 평균 6시간 · 최대 12시간 내 발송';
     return `<div class="citem">
-      <div class="citem__thumb">${mediaHTML(p, true)}</div>
+      <div class="citem__thumb">${mediaHTML(l.cover ? Object.assign({}, p, {photo: coverCardImg(l.cover)}) : p, true)}</div>
       <div>
         <div class="citem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''}</div>
         <div class="citem__opt">${opt}</div>

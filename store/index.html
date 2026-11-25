@@ -880,6 +880,22 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .mini-qty button:disabled{opacity:.3;cursor:default}
 .mini-qty button:disabled:hover{background:transparent}
 .mini-qty span{min-width:22px;text-align:center;font-size:12px;color:#F2ECFD}
+/* 상품 모달 하단 푸터 — 스테퍼는 절대 줄어들지 않고 담기 버튼이 남는 폭을 쓴다 */
+.pd__foot{display:flex;align-items:center;gap:10px}
+.pd__foot .pd__step{flex:0 0 auto;height:44px}
+.pd__foot .pd__step button{width:34px;height:42px;font-size:15px}
+.pd__foot .pd__step span{min-width:0;padding:0 9px;font-size:12.5px;white-space:nowrap;letter-spacing:-.01em}
+.pd__foot .pd__add{flex:1 1 0;min-width:0;height:44px;padding:0 10px;font-size:13px;letter-spacing:0}
+@media (max-width:360px){
+  .pd__foot{gap:8px}
+  .pd__foot .pd__step button{width:30px}
+  .pd__foot .pd__step span{padding:0 6px;font-size:12px}
+  .pd__foot .pd__add{font-size:12.5px;padding:0 8px}
+}
+@media (max-width:310px){
+  .pd__foot{flex-wrap:wrap;justify-content:space-between}
+  .pd__foot .pd__add{flex:1 0 100%}
+}
 .citem__price{font-size:13px;font-weight:600;color:#F3DFB6}
 .citem__del{font-size:11px;color:#8F80B2;border-bottom:1px solid rgba(143,128,178,.5);align-self:flex-start;margin-top:4px}
 .citem__del:hover{color:#FF9E97;border-color:#FF9E97}
@@ -2541,7 +2557,7 @@ function setCover(cover){
   const add = $('#pdAdd');
   const cp = pdId ? byId(pdId) : null;
   if(add && cp && cp.type === 'diary'){
-    add.innerHTML = `장바구니 담기 · ${won(tierKind(pdId) ? cp.price : cp.price * pdQty)} · ${cover} 표지`;
+    add.textContent = `장바구니 담기 · ${won(tierKind(pdId) ? cp.price : cp.price * pdQty)}`;
   }
 }
 
@@ -2819,13 +2835,13 @@ function paintProduct(){
       </div>
     </div>`;
   $('#pdFoot').innerHTML = `
-    <div style="display:flex;align-items:center;gap:14px">
-      <span class="qty mini-qty" style="height:44px">
-        <button data-pdq="-1" aria-label="수량 줄이기" style="width:38px;height:42px"${pdQty <= 1 ? ' disabled' : ''}>−</button>
-        <span id="pdQty" style="min-width:34px">${tierLabel(pdId, pdQty)}</span>
-        <button data-pdq="1" aria-label="수량 늘리기" style="width:38px;height:42px"${pdQty >= (tierKind(pdId) ? (TIER_COUNT[tierKind(pdId)] || 2) : 9) ? ' disabled' : ''}>+</button>
+    <div class="pd__foot">
+      <span class="qty mini-qty pd__step">
+        <button data-pdq="-1" aria-label="수량 줄이기"${pdQty <= 1 ? ' disabled' : ''}>−</button>
+        <span id="pdQty">${tierLabel(pdId, pdQty)}</span>
+        <button data-pdq="1" aria-label="수량 늘리기"${pdQty >= (tierKind(pdId) ? (TIER_COUNT[tierKind(pdId)] || 2) : 9) ? ' disabled' : ''}>+</button>
       </span>
-      <button class="btn btn--gold" style="flex:1" id="pdAdd">장바구니 담기 · ${won(tierKind(pdId) ? p.price : p.price * pdQty)}${p.type === 'diary' ? ` · ${diaryCover} 표지` : ''}</button>
+      <button class="btn btn--gold pd__add" id="pdAdd">장바구니 담기 · ${won(tierKind(pdId) ? p.price : p.price * pdQty)}</button>
     </div>`;
 }
 

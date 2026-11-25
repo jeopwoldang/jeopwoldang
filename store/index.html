@@ -2987,7 +2987,10 @@ document.addEventListener('click', e => {
   if(t.dataset.cover){ setCover(t.dataset.cover); return; }
   if(t.dataset.gal){
     const img = $('#pdOverlay .pd__media img');
-    if(img) img.src = t.dataset.gal;
+    if(img){
+      img.src = t.dataset.gal;
+      img.alt = t.getAttribute('aria-label') || img.alt;   /* 지금 보이는 이미지와 alt를 맞춤 */
+    }
     $$('#pdOverlay .pd__thumb').forEach(b => b.classList.toggle('is-on', b === t));
     return;
   }

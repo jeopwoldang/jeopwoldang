@@ -1596,6 +1596,86 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
   .fcard__price--row s{font-size:10.5px}
   .fcard__price--row{gap:1px 6px}
 }
+/* ================= 상품 별점 · 후기 ================= */
+.ratechip{
+  display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:6px;margin:7px 0 0;
+  font-family:var(--sans);font-size:11.5px;font-weight:600;line-height:1;letter-spacing:-.01em;
+  color:var(--gold-l);padding:5px 10px;border-radius:999px;
+  border:1px solid rgba(242,216,155,.34);
+  background:linear-gradient(150deg,rgba(242,216,155,.17),rgba(242,216,155,.045));
+  box-shadow:inset 0 1px 0 rgba(255,248,232,.18);
+}
+.ratechip[hidden]{display:none}
+.ratechip i{font-style:normal;color:#F6DFA8;font-size:11.5px;letter-spacing:.09em}
+.ratechip b{font-weight:700;color:#FFF4D9;font-size:12px}
+.ratechip span{color:var(--tx2);font-weight:500;font-size:10.5px}
+.fslide__body .ratechip{margin-top:8px}
+.dcard__body .ratechip,.ncard__body .ratechip{margin-top:8px}
+
+.pdrev{margin-top:24px;border-top:1px solid rgba(216,192,255,.16);padding-top:20px}
+.pdrev__head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pdrev__title{margin:0;font-family:var(--serif);font-size:15.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.pdrev__score{display:flex;align-items:center;gap:9px}
+.pdrev__avg{font-family:var(--disp);font-size:29px;line-height:1;color:var(--gold-l)}
+.pdrev__stars{color:#F2D89B;font-size:12.5px;letter-spacing:.12em;line-height:1.2}
+.pdrev__count{display:block;font-size:10.8px;color:var(--mut);letter-spacing:.01em}
+.pdrev__rule{
+  display:flex;align-items:flex-start;gap:6px;margin:12px 0 0;
+  padding:8px 11px;border-radius:9px;font-size:11.4px;line-height:1.65;color:var(--tx2);
+  border:1px solid rgba(242,216,155,.24);background:rgba(242,216,155,.07);
+}
+.pdrev__rule b{color:var(--gold-l);font-weight:700}
+.pdrev__rule svg{width:13px;height:13px;flex:0 0 auto;margin-top:2px;stroke:var(--gold-d);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.pdrev__empty{margin:12px 0 0;font-size:12.4px;line-height:1.8;color:var(--mut)}
+.pdrev__list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.pdrev__item{padding:12px 14px;border-radius:14px;border:1px solid rgba(216,192,255,.14);background:rgba(255,255,255,.035)}
+.pdrev__top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.pdrev__who{font-size:12.3px;font-weight:700;color:var(--tx)}
+.pdrev__st{color:#F2D89B;font-size:11px;letter-spacing:.1em}
+.pdrev__bdg{font-size:9.8px;font-weight:700;letter-spacing:.01em;padding:2.5px 6px;border-radius:5px;color:var(--gold-l);border:1px solid rgba(242,216,155,.4);background:rgba(242,216,155,.1)}
+.pdrev__date{margin-left:auto;font-size:10.3px;color:var(--mut)}
+.pdrev__txt{margin:6px 0 0;font-size:12.4px;line-height:1.85;color:var(--tx2);white-space:pre-wrap;word-break:break-word}
+.pdrev__more{margin-top:10px;font-size:11.5px;color:var(--gold-d);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pdrev__write{margin-top:15px}
+.pdrev__btn{font-size:12px;padding:9px 14px}
+.pdrev__steps{display:flex;align-items:center;gap:7px;margin:12px 0 0;font-size:11px}
+.pdrev__step{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;border:1px solid rgba(216,192,255,.18);color:var(--mut);background:rgba(255,255,255,.03)}
+.pdrev__step.is-on{color:var(--gold-l);border-color:rgba(242,216,155,.45);background:rgba(242,216,155,.12)}
+.pdrev__arrow{color:var(--mut);font-size:12px}
+.pdrev__ok{display:flex;align-items:flex-start;gap:8px;margin:0;padding:9px 12px;border-radius:10px;font-size:12px;color:#C7F0D8;border:1px solid rgba(159,227,184,.4);background:rgba(159,227,184,.1)}
+.pdrev__ok svg{width:14px;height:14px;stroke:#9FE3B8;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto;margin-top:2px}
+.pdrev__ok span{display:flex;flex-direction:column;gap:1px;line-height:1.45}
+.pdrev__ord{font-size:10.5px;color:rgba(199,240,216,.78);letter-spacing:.01em}
+.pdrev__form{margin-top:12px;display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;border:1px solid rgba(216,192,255,.16);background:rgba(255,255,255,.03)}
+.pdrev__form[hidden],#pdRevFlow[hidden]{display:none!important}
+.pdrev__row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pdrev__f label{display:block;margin-bottom:5px;font-size:10.8px;color:var(--tx2);letter-spacing:.02em}
+.pdrev__f label em{font-style:normal;color:var(--mut)}
+.pdrev__f input,.pdrev__f textarea{
+  width:100%;padding:10px 12px;border-radius:10px;font-family:var(--sans);font-size:12.5px;
+  border:1px solid rgba(216,192,255,.22);background:rgba(15,9,34,.55);color:var(--tx);
+}
+.pdrev__f textarea{min-height:92px;resize:vertical;line-height:1.75}
+.pdrev__f input::placeholder,.pdrev__f textarea::placeholder{color:rgba(158,143,194,.75)}
+.pdrev__f input:focus,.pdrev__f textarea:focus{outline:none;border-color:rgba(242,216,155,.6);box-shadow:0 0 0 3px rgba(242,216,155,.12)}
+.pdrev__stars{display:flex;gap:5px}
+.pdrev__star{
+  width:35px;height:35px;border-radius:9px;cursor:pointer;font-size:17px;line-height:1;
+  border:1px solid rgba(216,192,255,.2);background:rgba(255,255,255,.03);color:rgba(242,216,155,.3);
+  transition:color .18s,border-color .18s,background .18s;
+}
+.pdrev__star.is-on{color:#F6DFA8;border-color:rgba(242,216,155,.58);background:rgba(242,216,155,.14)}
+.pdrev__hint{margin:0;font-size:10.8px;line-height:1.7;color:var(--mut)}
+.pdrev__hint b{color:var(--tx2);font-weight:600}
+.pdrev__msg{display:none;margin:0;font-size:11.6px;line-height:1.7}
+.pdrev__msg.is-on{display:block}
+.pdrev__msg.is-ok{color:#9FE3B8}
+.pdrev__msg.is-err{color:var(--err)}
+.pdrev__saving{opacity:.6;pointer-events:none}
+@media (max-width:640px){
+  .pdrev__row{grid-template-columns:1fr}
+  .pdrev__avg{font-size:26px}
+}
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
   [data-rev]{opacity:1!important;transform:none!important;transition:none}
@@ -1771,6 +1851,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
       </button>
       <div class="dcard__body">
         <span class="fcard__cat">Goodnotes &amp; Notability · A4 PDF 16페이지</span>
+        <span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span>
         <h3 class="fcard__name" data-open="diary-basic" data-open-diary>2027 사주 개운 다이어리</h3>
         <p class="fcard__lines">365일을 내 사주로 관리하는 다이어리 — 일진·손 없는 날·절기까지 한 장에</p>
         <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b> · 표지 3종 중 택 1</p>
@@ -1824,6 +1905,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">01 · 감명 · Name Reading</span>
+          <span class="ratechip" data-rate-for="name-read" hidden></span>
           <h3 class="fcard__name" data-open="name-read">정통 사주 기반 이름 감명</h3>
           <p class="fcard__lines">지금 쓰는 이름, 그대로 써도 될까요?</p>
           <p class="fcard__spec">이름 감명 진단서 PDF · 접수 후 평균 1~2일</p>
@@ -1842,6 +1924,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">02 · 택일 · Auspicious Date</span>
+          <span class="ratechip" data-rate-for="date-pick" hidden></span>
           <h3 class="fcard__name" data-open="date-pick">개업·이사·결혼·계약 정통 길일 택일</h3>
           <p class="fcard__lines">개업·이사·결혼날, 아직 못 정했다면 사주로</p>
           <p class="fcard__spec">최선 1일 + 차선 1일 (총 2안) PDF · 평균 3~7일</p>
@@ -1860,6 +1943,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">03 · 성인 개명 · Adult Naming</span>
+          <span class="ratechip" data-rate-for="name-adult" hidden></span>
           <h3 class="fcard__name" data-open="name-adult">사주 맞춤 성인 개명 작명</h3>
           <p class="fcard__lines">평생 쓰는 이름, 지금 바꿀까 고민된다면</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
@@ -1878,6 +1962,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">04 · 상호 · Business Naming</span>
+          <span class="ratechip" data-rate-for="name-shop" hidden></span>
           <h3 class="fcard__name" data-open="name-shop">대표자 사주·업종 맞춤 사업 상호 작명</h3>
           <p class="fcard__lines">손님이 기억하는 상호, 사주와 업종을 함께 보고</p>
           <p class="fcard__spec">추천 상호 3안 + 상호 작명서 PDF · 평균 3~7일</p>
@@ -1896,6 +1981,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">05 · 신생아 · Baby Naming</span>
+          <span class="ratechip" data-rate-for="name-baby" hidden></span>
           <h3 class="fcard__name" data-open="name-baby">사주 용신 맞춤 신생아 작명</h3>
           <p class="fcard__lines">아이의 첫 이름, 태어난 시간까지 반영해 3안으로</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
@@ -2659,6 +2745,7 @@ function fslideHTML(f){
     </button>
     <div class="fslide__body">
       <span class="fcard__cat">${f.cat}</span>
+      <span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span>
       <h3 class="fcard__name" ${openAttr}>${f.name}</h3>
       <p class="fcard__lines">${f.lines.join('<br>')}</p>
       ${f.spec ? `<p class="fcard__spec">${f.spec}</p>` : ''}
@@ -2794,6 +2881,7 @@ function openProduct(id){
   const tk = tierKind(id);
   pdId = id;
   pdQty = tk ? Math.max(1, Object.values(TIER_IDS[tk]).indexOf(id) + 1) : 1;
+  REVIEW.showAll = false;
   paintProduct();
   openOverlay('#pdOverlay');
 }
@@ -2833,7 +2921,8 @@ function paintProduct(){
         ${p.notice ? `<p class="pd__notice">${p.notice}</p>` : ''}
         ${p.photos ? `<div class="pd__gal${p.type === 'diary' ? ' pd__gal--wide' : ''}">${p.photos.map((src, i) => `<button class="pd__thumb" data-gal="${src}" aria-label="미리보기 ${i + 1}"><img src="${src}" alt=""></button>`).join('')}</div>` : ''}
       </div>
-    </div>`;
+    </div>
+    <div id="pdReviewBox">${reviewSectionHTML(reviewFamilyIds(pdId))}</div>`;
   $('#pdFoot').innerHTML = `
     <div class="pd__foot">
       <span class="qty mini-qty pd__step">
@@ -3717,11 +3806,317 @@ function toast(msg){
   toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
 }
 
+/* ============================================================
+   상품 별점 · 후기 (구매자 확인형 + 관리자 승인 노출)
+   - 손님은 성함·연락처로 구매 확인 후 후기를 남기고(pending),
+     관리자센터에서 승인한 후기만 사이트에 보입니다(approved).
+   - 읽기/쓰기는 Supabase RLS + RPC(submit_review)가 서버에서 검사합니다.
+   ============================================================ */
+const REVIEW_SRC = { verified:'실구매자', experience:'체험단', kakao:'카톡 후기', none:'' };
+/* 한 상품군(1인·2인, 다이어리 3종)은 후기를 함께 보여 준다 */
+const REVIEW_FAMILY = {
+  saju1:'f-saju', saju2:'f-saju',
+  ziwei1:'f-ziwei', ziwei2:'f-ziwei',
+  'diary-basic':'f-diary', 'diary-saju':'f-diary', 'diary-premium':'f-diary',
+};
+const REVIEW = { rows:null, loading:null, showAll:false, rating:5 };
+const reviewFamily = id => REVIEW_FAMILY[id] || id;
+function reviewFamilyIds(id){
+  const fam = reviewFamily(id);
+  const ids = PRODUCTS.map(p => p.id).filter(x => reviewFamily(x) === fam);
+  return ids.length ? ids : [id];
+}
+function rvEsc(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function rvOf(ids){
+  const fam = new Set(ids.map(reviewFamily));
+  return (REVIEW.rows || []).filter(r => fam.has(reviewFamily(r.product_id)));
+}
+function rvSummary(ids){
+  const list = rvOf(ids);
+  if(!list.length) return null;
+  const sum = list.reduce((n, r) => n + (Number(r.rating) || 0), 0);
+  return { count:list.length, avg:Math.round(sum / list.length * 10) / 10 };
+}
+function rvStars(n){
+  const full = Math.max(0, Math.min(5, Math.round(Number(n) || 0)));
+  return '★'.repeat(full) + '☆'.repeat(5 - full);
+}
+function rvDate(iso){
+  const d = new Date(iso);
+  if(isNaN(d)) return '';
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+}
+function rvItemHTML(r){
+  const bdg = REVIEW_SRC[r.source] ? `<span class="pdrev__bdg">${REVIEW_SRC[r.source]}</span>` : '';
+  return `<li class="pdrev__item">
+    <div class="pdrev__top">
+      <span class="pdrev__who">${rvEsc(r.author_name)}</span>
+      <span class="pdrev__st" aria-label="별점 ${r.rating}점">${rvStars(r.rating)}</span>
+      ${bdg}
+      <span class="pdrev__date">${rvDate(r.created_at)}</span>
+    </div>
+    <p class="pdrev__txt">${rvEsc(r.content)}</p>
+  </li>`;
+}
+function reviewSectionHTML(ids){
+  const s = rvSummary(ids);
+  const all = rvOf(ids);
+  const shown = REVIEW.showAll ? all : all.slice(0, 5);
+  const more = all.length > 5
+    ? `<button type="button" class="pdrev__more" id="pdRevMore" data-more="${REVIEW.showAll ? '0' : '1'}">${REVIEW.showAll ? '접기' : `후기 ${all.length - 5}개 더 보기`}</button>`
+    : '';
+  return `<section class="pdrev" aria-label="구매 후기">
+    <div class="pdrev__head">
+      <h4 class="pdrev__title">구매 후기</h4>
+      ${s ? `<div class="pdrev__score">
+        <span class="pdrev__avg">${s.avg.toFixed(1)}</span>
+        <div><div class="pdrev__stars" aria-label="평균 별점 ${s.avg}점">${rvStars(s.avg)}</div>
+        <span class="pdrev__count">후기 ${s.count}개</span></div>
+      </div>` : `<span class="pdrev__count">아직 등록된 후기가 없습니다</span>`}
+    </div>
+    <p class="pdrev__rule">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l3 5-8 11L4 9l3-5Z"/><path d="M4 9h16"/></svg>
+      <span><b>실제 구매자만 후기를 남길 수 있습니다.</b> 주문하실 때 적은 성함·연락처로 구매 내역을 확인한 뒤, 관리자 확인 후에 공개됩니다.</span>
+    </p>
+    ${all.length
+      ? `<ul class="pdrev__list">${shown.map(rvItemHTML).join('')}</ul>${more}`
+      : `<p class="pdrev__empty">이 상품의 첫 후기를 남겨 주세요. 실제 구매자만 남길 수 있고, 관리자 확인 뒤 공개됩니다.</p>`}
+    <div class="pdrev__write">
+      <button type="button" class="btn btn--ghost pdrev__btn" id="pdRevOpen" aria-expanded="false" aria-controls="pdRevFlow">후기 작성</button>
+      <div id="pdRevFlow" hidden>
+        <div class="pdrev__steps">
+          <span class="pdrev__step is-on" id="pdRevS1">1 구매자 확인</span>
+          <span class="pdrev__arrow" aria-hidden="true">›</span>
+          <span class="pdrev__step" id="pdRevS2">2 후기 작성</span>
+        </div>
+
+        <form class="pdrev__form" id="rvVerifyForm" novalidate>
+          <p class="pdrev__hint">주문서에 적은 <b>성함과 연락처</b>로 이 상품의 구매 내역을 확인합니다. 확인되면 후기 작성이 열립니다.</p>
+          <div class="pdrev__row">
+            <div class="pdrev__f"><label for="rvName">주문자 성함</label><input id="rvName" name="rvName" type="text" autocomplete="name" maxlength="30" placeholder="주문서에 적은 이름"></div>
+            <div class="pdrev__f"><label for="rvPhone">연락처</label><input id="rvPhone" name="rvPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="20" placeholder="010-0000-0000"></div>
+          </div>
+          <p class="pdrev__msg" id="rvMsg1" role="status"></p>
+          <div><button type="submit" class="btn btn--gold pdrev__btn" id="rvVerifyBtn">구매 확인</button></div>
+        </form>
+
+        <form class="pdrev__form" id="rvWriteForm" novalidate hidden>
+          <p class="pdrev__ok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+            <span>구매 확인 완료<span class="pdrev__ord" id="rvOrderHint">주문 확인됨</span></span>
+          </p>
+          <div class="pdrev__f"><label for="rvNick">공개 닉네임 <em>(필수 · 실명은 공개되지 않습니다)</em></label><input id="rvNick" name="rvNick" type="text" maxlength="20" placeholder="예) 달빛소녀 · 김*연"></div>
+          <div class="pdrev__f"><label>별점</label>
+            <div class="pdrev__stars" id="rvStars" role="group" aria-label="별점 선택">
+              ${[1,2,3,4,5].map(n => `<button type="button" class="pdrev__star${n <= REVIEW.rating ? ' is-on' : ''}" data-star="${n}" aria-label="${n}점" aria-pressed="${n <= REVIEW.rating}">★</button>`).join('')}
+            </div>
+          </div>
+          <div class="pdrev__f"><label for="rvText">후기</label><textarea id="rvText" name="rvText" maxlength="1000" placeholder="받으신 분석지·다이어리에서 어떤 점이 도움이 되셨는지 적어 주세요."></textarea></div>
+          <p class="pdrev__hint">후기에는 입력하신 닉네임만 표시됩니다. 관리자 확인 후 등록됩니다.</p>
+          <p class="pdrev__msg" id="rvMsg2" role="status"></p>
+          <div><button type="submit" class="btn btn--gold pdrev__btn" id="rvSubmit">후기 등록</button></div>
+        </form>
+      </div>
+      <p class="pdrev__msg" id="rvDone" role="status"></p>
+    </div>
+  </section>`;
+}
+function fillRateChips(){
+  $$('[data-rate-for]').forEach(el => {
+    const ids = String(el.dataset.rateFor || '').split(',').map(s => s.trim()).filter(Boolean);
+    const s = ids.length ? rvSummary(ids) : null;
+    if(!s){ el.hidden = true; el.innerHTML = ''; return; }
+    el.hidden = false;
+    el.innerHTML = `<i aria-hidden="true">${rvStars(s.avg)}</i><b>${s.avg.toFixed(1)}</b><span>후기 ${s.count}</span>`;
+  });
+}
+function refreshReviewSection(){
+  const box = $('#pdReviewBox');
+  if(!box || !pdId) return;
+  const flow = $('#pdRevFlow');
+  if(flow && !flow.hidden) return;   // 작성 중인 입력은 지우지 않는다
+  box.innerHTML = reviewSectionHTML(reviewFamilyIds(pdId));
+}
+async function loadReviews(force){
+  if(REVIEW.loading && !force) return REVIEW.loading;
+  if(REVIEW.rows && !force){ fillRateChips(); return REVIEW.rows; }
+  REVIEW.loading = JWDOrders.rest('product_reviews?select=product_id,author_name,rating,content,source,created_at&status=eq.approved&order=created_at.desc&limit=500')
+    .then(rows => {
+      REVIEW.rows = Array.isArray(rows) ? rows : [];
+      fillRateChips();
+      refreshReviewSection();
+      return REVIEW.rows;
+    })
+    .catch(e => { console.warn('[reviews] 후기를 불러오지 못했습니다.', e); REVIEW.rows = []; fillRateChips(); return []; })
+    .then(rows => { REVIEW.loading = null; return rows; });
+  return REVIEW.loading;
+}
+function setReviewRating(n){
+  REVIEW.rating = Math.max(1, Math.min(5, Number(n) || 5));
+  $$('#rvStars [data-star]').forEach(b => {
+    const on = Number(b.dataset.star) <= REVIEW.rating;
+    b.classList.toggle('is-on', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+}
+function rvMsg(text, kind, sel){
+  const el = $(sel || '#rvMsg1');
+  if(!el) return;
+  el.textContent = text;
+  el.classList.remove('is-err', 'is-ok');
+  el.classList.add('is-on', kind === 'ok' ? 'is-ok' : 'is-err');
+}
+const RV_ERROR = {
+  not_found:'입력하신 성함·연락처로 이 상품의 구매 내역을 찾지 못했습니다. 주문서에 적은 이름과 연락처 그대로 적어 주세요. (입금 확인 전 주문은 아직 후기를 남길 수 없습니다.)',
+  duplicate:'이 주문으로 이미 후기를 남기셨습니다. 관리자 확인을 기다려 주세요.',
+  rate_limited:'확인 요청이 잠시 몰렸습니다. 잠시 후 다시 시도해 주세요.',
+  verify_expired:'구매 확인이 만료되었습니다. 성함·연락처로 다시 확인해 주세요.',
+  content_short:'후기를 5자 이상 적어 주세요.',
+  content_long:'후기는 1,000자까지 쓸 수 있습니다.',
+  phone:'연락처를 정확히 입력해 주세요.',
+  name:'성함을 정확히 적어 주세요.',
+  rating:'별점을 선택해 주세요.',
+  nickname:'공개할 닉네임을 적어 주세요. (20자까지)',
+  product:'상품 정보를 확인하지 못했습니다. 페이지를 새로고침해 주세요.',
+};
+/* 1단계 — 구매자 확인 (서버 RPC가 주문과 대조) */
+async function verifyReviewBuyer(form){
+  const name = ($('#rvName').value || '').trim();
+  const phone = ($('#rvPhone').value || '').trim();
+  if(!name){ rvMsg('주문하실 때 적은 성함을 입력해 주세요.', 'err'); $('#rvName').focus(); return; }
+  if(phone.replace(/\D/g, '').length < 9){ rvMsg('연락처를 정확히 입력해 주세요.', 'err'); $('#rvPhone').focus(); return; }
+  const btn = $('#rvVerifyBtn');
+  const label = btn.textContent;
+  form.classList.add('pdrev__saving');
+  btn.disabled = true; btn.textContent = '구매 내역 확인 중…';
+  rvMsg('', 'ok');
+  try {
+    const out = await JWDOrders.rest('rpc/verify_review_buyer', {
+      method:'POST',
+      body: JSON.stringify({ p_buyer_name:name, p_buyer_phone:phone, p_product_id:pdId }),
+    });
+    const res = Array.isArray(out) ? out[0] : out;
+    if(res && res.ok){
+      REVIEW.token = res.token || null;
+      REVIEW.verified = true;
+      form.hidden = true;
+      $('#rvWriteForm').hidden = false;
+      $('#pdRevS1').classList.remove('is-on');
+      $('#pdRevS2').classList.add('is-on');
+      const hint = $('#rvOrderHint');
+      if(hint) hint.textContent = res.order_hint ? `주문 ${res.order_hint}` : '구매 내역 확인됨';
+      setReviewRating(REVIEW.rating);
+      $('#rvNick').focus();
+    } else {
+      rvMsg(RV_ERROR[(res && res.error)] || '구매 내역을 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.', 'err');
+    }
+  } catch (e) {
+    console.warn('[reviews] 구매 확인 실패', e);
+    rvMsg('구매 내역을 확인하지 못했습니다. 네트워크를 확인하고 잠시 후 다시 시도해 주세요.', 'err');
+  } finally {
+    form.classList.remove('pdrev__saving');
+    btn.disabled = false; btn.textContent = label;
+  }
+}
+/* 2단계 — 후기 작성 (닉네임 필수) */
+async function submitReview(form){
+  const name = ($('#rvName').value || '').trim();
+  const phone = ($('#rvPhone').value || '').trim();
+  const nick = ($('#rvNick').value || '').trim();
+  const content = ($('#rvText').value || '').trim();
+  if(!nick){ rvMsg('후기에 표시할 닉네임을 적어 주세요.', 'err', '#rvMsg2'); $('#rvNick').focus(); return; }
+  if(content.length < 5){ rvMsg('후기를 5자 이상 적어 주세요.', 'err', '#rvMsg2'); $('#rvText').focus(); return; }
+  if(!REVIEW.token){ rvMsg(RV_ERROR.verify_expired, 'err', '#rvMsg2'); return; }
+  const btn = $('#rvSubmit');
+  const label = btn.textContent;
+  form.classList.add('pdrev__saving');
+  btn.disabled = true; btn.textContent = '등록 중…';
+  rvMsg('', 'ok', '#rvMsg2');
+  try {
+    const out = await JWDOrders.rest('rpc/submit_review', {
+      method:'POST',
+      body: JSON.stringify({
+        p_buyer_name:name, p_buyer_phone:phone, p_product_id:pdId,
+        p_rating:REVIEW.rating, p_content:content, p_nickname:nick, p_token:REVIEW.token,
+      }),
+    });
+    const res = Array.isArray(out) ? out[0] : out;
+    if(res && res.ok){
+      const flow = $('#pdRevFlow');
+      if(flow) flow.hidden = true;
+      $('#pdRevOpen').setAttribute('aria-expanded', 'false');
+      form.reset();
+      REVIEW.rating = 5;
+      REVIEW.token = null;
+      REVIEW.verified = false;
+      const vf = $('#rvVerifyForm');
+      if(vf) vf.hidden = false;
+      const wf = $('#rvWriteForm');
+      if(wf) wf.hidden = true;
+      const s1 = $('#pdRevS1'), s2 = $('#pdRevS2');
+      if(s1) s1.classList.add('is-on');
+      if(s2) s2.classList.remove('is-on');
+      toast('후기를 접수했습니다 · 관리자 확인 후 등록');
+      rvMsg('후기를 접수했습니다. 관리자 확인 후 사이트에 공개됩니다. 감사합니다.', 'ok', '#rvDone');
+    } else {
+      const code = res && res.error;
+      if(code === 'verify_expired' || code === 'not_found' || code === 'duplicate'){
+        REVIEW.token = null;
+        const wf = $('#rvWriteForm');
+        if(wf) wf.hidden = true;
+        const vf = $('#rvVerifyForm');
+        if(vf) vf.hidden = false;
+        const s1 = $('#pdRevS1'), s2 = $('#pdRevS2');
+        if(s1) s1.classList.add('is-on');
+        if(s2) s2.classList.remove('is-on');
+        rvMsg(RV_ERROR[code] || '다시 구매 확인을 해 주세요.', 'err', '#rvMsg1');
+      } else {
+        rvMsg(RV_ERROR[code] || '후기를 등록하지 못했습니다. 잠시 후 다시 시도해 주세요.', 'err', '#rvMsg2');
+      }
+    }
+  } catch (e) {
+    console.warn('[reviews] 등록 실패', e);
+    rvMsg('후기를 등록하지 못했습니다. 네트워크를 확인하고 잠시 후 다시 시도해 주세요.', 'err', '#rvMsg2');
+  } finally {
+    form.classList.remove('pdrev__saving');
+    btn.disabled = false; btn.textContent = label;
+  }
+}
+/* 후기 영역 이벤트 (모달이 다시 그려져도 위임으로 동작) */
+document.addEventListener('click', e => {
+  const st = e.target.closest('#rvStars [data-star]');
+  if(st){ setReviewRating(st.dataset.star); return; }
+  if(e.target.closest('#pdRevOpen')){
+    const flow = $('#pdRevFlow');
+    if(!flow) return;
+    flow.hidden = !flow.hidden;
+    $('#pdRevOpen').setAttribute('aria-expanded', String(!flow.hidden));
+    if(!flow.hidden){
+      const writing = REVIEW.verified && !$('#rvWriteForm').hidden;
+      if(!writing) $('#rvName').focus();
+      setReviewRating(REVIEW.rating);
+    }
+    return;
+  }
+  if(e.target.closest('#pdRevMore')){
+    REVIEW.showAll = !REVIEW.showAll;
+    refreshReviewSection();
+  }
+});
+document.addEventListener('submit', e => {
+  if(!e.target) return;
+  if(e.target.id === 'rvVerifyForm'){ e.preventDefault(); verifyReviewBuyer(e.target); }
+  else if(e.target.id === 'rvWriteForm'){ e.preventDefault(); submitReview(e.target); }
+});
+
 /* ---------- 초기화 ---------- */
 initCarousel();
 renderFeatured();
 renderCart();
 updateCount();
+loadReviews();
 
 /* 헤더 스크롤 상태 */
 const hdr = $('#hdr');

@@ -545,6 +545,66 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 }
 .toast.is-on{opacity:1;transform:translate(-50%,0)}
 @media (max-width:700px){ .toast{bottom:16px;font-size:12.5px;padding:10px 15px} }
+
+/* ============================================================
+   화면 전환 (주문 관리 · 후기 관리)
+   ============================================================ */
+.views{display:flex;gap:6px;margin:16px 0 0;border-bottom:1px solid var(--line)}
+.view{
+  position:relative;padding:11px 16px 13px;font-size:13.5px;font-weight:600;color:var(--sub);
+  border-bottom:2px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center;gap:7px;
+  transition:color .16s,border-color .16s;
+}
+.view:hover{color:var(--ink-2)}
+.view.is-on{color:var(--acc);border-bottom-color:var(--acc)}
+.view__n{
+  font-size:10.5px;font-weight:700;line-height:1.5;padding:0 6px;border-radius:999px;
+  background:var(--red-bg);color:var(--red-tx);border:1px solid var(--red-bd);font-variant-numeric:tabular-nums;
+}
+
+/* ============================================================
+   후기 관리
+   ============================================================ */
+.rvlist{display:flex;flex-direction:column}
+.rv{padding:15px 16px;border-bottom:1px solid var(--line-2);display:flex;flex-direction:column;gap:8px}
+.rv:last-child{border-bottom:0}
+.rv__top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rv__prod{font-size:12.5px;font-weight:600;color:var(--ink)}
+.rv__src{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:5px;border:1px solid var(--line);background:#FAFAFC;color:var(--ink-2)}
+.rv__src--verified{color:var(--acc);border-color:var(--acc-bd);background:var(--acc-bg)}
+.rv__date{margin-left:auto;font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums}
+.rv__mid{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.rv__who{font-size:13px;font-weight:700;color:var(--ink)}
+.rv__stars{color:#C9A227;font-size:12px;letter-spacing:.09em}
+.rv__rate{font-size:11.5px;color:var(--sub);font-variant-numeric:tabular-nums}
+.rv__txt{margin:0;font-size:13px;line-height:1.75;color:var(--ink-2);white-space:pre-wrap;word-break:break-word}
+.rv__ver{font-size:11px;color:var(--mut);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rv__ver b{color:var(--ink-2);font-weight:600}
+.rv__act{display:flex;gap:6px;flex-wrap:wrap}
+.rv__act .btn{padding:6px 11px;font-size:12px}
+.rv__empty{padding:44px 22px;text-align:center;color:var(--mut);font-size:13px;line-height:1.8}
+@media (max-width:700px){
+  .rv__date{margin-left:0;flex:1 0 100%}
+  .views{margin-top:14px}
+  .view{padding:10px 12px 12px;font-size:13px}
+}
+/* 후기 직접 등록 모달 */
+.modal__card.rvm{width:min(560px,calc(100vw - 28px))}
+.rvm__body{padding:18px 22px 6px;overflow-y:auto;display:flex;flex-direction:column;gap:13px}
+.rvm__f label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.rvm__f label em{font-style:normal;font-weight:500;color:var(--mut)}
+.rvm__f input,.rvm__f select,.rvm__f textarea{
+  width:100%;padding:9px 11px;border-radius:9px;font-size:13px;font-family:var(--sans);
+  border:1px solid var(--line);background:#FBFBFC;color:var(--ink);
+}
+.rvm__f textarea{min-height:110px;resize:vertical;line-height:1.7}
+.rvm__f input:focus,.rvm__f select:focus,.rvm__f textarea:focus{outline:none;border-color:var(--acc-bd);background:#FFFFFF;box-shadow:0 0 0 3px rgba(91,67,151,.10)}
+.rvm__row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rvm__chk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2)}
+.rvm__chk input{width:auto}
+.rvm__hint{margin:0;font-size:11.5px;line-height:1.7;color:var(--mut)}
+.rvm__foot{display:flex;gap:8px;justify-content:flex-end;padding:14px 22px 18px;border-top:1px solid var(--line);flex-shrink:0}
+@media (max-width:560px){ .rvm__row{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -633,6 +693,12 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       <span class="mode__right" id="modeRight">JWD ORDERS · v1</span>
     </div>
 
+    <div class="views" role="tablist" aria-label="관리자 화면 전환">
+      <button type="button" class="view is-on" data-view="orders" role="tab" aria-selected="true">주문 관리</button>
+      <button type="button" class="view" data-view="reviews" role="tab" aria-selected="false">후기 관리 <span class="view__n" id="revPendingN" hidden>0</span></button>
+    </div>
+
+    <div id="viewOrders">
     <section class="kpis" id="kpis" aria-label="요약 지표"></section>
 
     <section class="panel" aria-label="주문 목록">
@@ -650,6 +716,30 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       <div class="rows" id="rows"></div>
       <div class="empty" id="empty" hidden></div>
     </section>
+    </div>
+
+    <!-- ================= 후기 관리 ================= -->
+    <div id="viewReviews" hidden>
+      <section class="kpis" id="rvKpis" aria-label="후기 요약"></section>
+
+      <section class="panel" aria-label="상품 후기 목록">
+        <div class="panel__head">
+          <div class="tabs" id="rvTabs" role="tablist" aria-label="후기 상태 필터"></div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <div class="search" id="rvSearchBox">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              <input id="rvQ" type="search" placeholder="상품 · 작성자 · 후기 내용 검색" aria-label="후기 검색">
+              <button type="button" id="rvQClear" aria-label="검색어 지우기">✕</button>
+            </div>
+            <button class="btn btn--gold btn--sm" type="button" id="rvNew">
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>후기 직접 등록
+            </button>
+          </div>
+        </div>
+        <div class="rvlist" id="rvList"></div>
+        <div class="rv__empty" id="rvEmpty" hidden></div>
+      </section>
+    </div>
 
     <footer class="ftr">
       <b>접월당 蝶月堂 관리자센터</b> · 대표 심송이 · 사업자등록번호 344-61-00750 · 통신판매업신고 제 2026-서울강남-06334 호<br>
@@ -662,6 +752,56 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       </div>
     </footer>
   </main>
+
+  <!-- 후기 직접 등록 모달 -->
+  <div class="modal" id="rvModal" role="dialog" aria-modal="true" aria-labelledby="rvmTitle" aria-hidden="true">
+    <div class="modal__scrim" data-rvclose="1"></div>
+    <div class="modal__card rvm">
+      <header class="dt__head">
+        <div>
+          <div class="dt__no" id="rvmTitle">후기 직접 등록</div>
+          <div class="dt__meta">체험단 · 블로그 · 카톡으로 받은 후기를 직접 넣고, 바로 노출하거나 승인 대기로 둘 수 있습니다.</div>
+        </div>
+        <div class="dt__right"><button class="x" type="button" data-rvclose="1" aria-label="닫기">✕</button></div>
+      </header>
+      <div class="rvm__body">
+        <div class="rvm__f">
+          <label for="rvmProduct">상품</label>
+          <select id="rvmProduct"></select>
+        </div>
+        <div class="rvm__row">
+          <div class="rvm__f"><label for="rvmAuthor">작성자 표시명</label><input id="rvmAuthor" type="text" maxlength="20" placeholder="예) 김*연 · 달빛소녀"></div>
+          <div class="rvm__f"><label for="rvmRating">별점</label>
+            <select id="rvmRating">
+              <option value="5">★★★★★ 5점</option>
+              <option value="4">★★★★☆ 4점</option>
+              <option value="3">★★★☆☆ 3점</option>
+              <option value="2">★★☆☆☆ 2점</option>
+              <option value="1">★☆☆☆☆ 1점</option>
+            </select>
+          </div>
+        </div>
+        <div class="rvm__f"><label for="rvmContent">후기 내용</label><textarea id="rvmContent" maxlength="1000" placeholder="받으신 분이 남긴 후기를 그대로 적어 주세요."></textarea></div>
+        <div class="rvm__row">
+          <div class="rvm__f"><label for="rvmSource">후기 구분 배지</label>
+            <select id="rvmSource">
+              <option value="verified">실구매자</option>
+              <option value="experience">체험단</option>
+              <option value="kakao">카톡 후기</option>
+              <option value="none">표시 안 함</option>
+            </select>
+          </div>
+          <div class="rvm__f"><label for="rvmDate">작성일 <em>(선택)</em></label><input type="date" id="rvmDate"></div>
+        </div>
+        <label class="rvm__chk"><input type="checkbox" id="rvmApprove" checked> 바로 노출(승인) 상태로 등록</label>
+        <p class="rvm__hint">구매 확인을 거치지 않고 등록하는 후기입니다. 작성일을 비우면 오늘 날짜로 저장됩니다. 손님이 구매 확인으로 남긴 후기는 자동으로 <b>실구매자</b> 배지가 붙습니다.</p>
+      </div>
+      <footer class="rvm__foot">
+        <button class="btn btn--ghost btn--sm" type="button" data-rvclose="1">취소</button>
+        <button class="btn btn--gold btn--sm" type="button" id="rvmSave">후기 등록</button>
+      </footer>
+    </div>
+  </div>
 
   <!-- 상세 모달 -->
   <div class="modal" id="detail" role="dialog" aria-modal="true" aria-labelledby="dtNo" aria-hidden="true">
@@ -1378,6 +1518,285 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   }
 
   /* ============================================================
+     후기 관리 (product_reviews · review_verifications)
+     ============================================================ */
+  const RV_PRODUCTS = [
+    ['saju1', '종합 사주분석지 · 1인'],
+    ['saju2', '종합 사주분석지 · 2인'],
+    ['new2027', '2027 정미년 신년운세'],
+    ['ziwei1', '자미두수 명반 정밀 분석지 · 1인'],
+    ['ziwei2', '자미두수 명반 정밀 분석지 · 2인'],
+    ['diary-basic', '2027 사주 개운 굿노트 다이어리 · 기본형'],
+    ['diary-saju', '2027 사주 개운 굿노트 다이어리 · 원국 기입형'],
+    ['diary-premium', '2027 사주 개운 굿노트 다이어리 · 프리미엄 맞춤 일진형'],
+    ['name-read', '정통 사주 기반 이름 감명'],
+    ['name-adult', '사주 맞춤 성인 개명 작명'],
+    ['name-baby', '사주 용신 맞춤 신생아 작명'],
+    ['name-shop', '대표자 사주·업종 맞춤 사업 상호 작명'],
+    ['date-pick', '개업·이사·결혼·계약 정통 길일 택일'],
+  ];
+  const RV_SRC = { verified: '실구매자', experience: '체험단', kakao: '카톡 후기', none: '' };
+  const RV_ST = { pending: '승인 대기', approved: '노출 중', rejected: '숨김' };
+  const RV_ST_CLASS = { pending: 'st--wait', approved: 'st--sent', rejected: 'st--cancel' };
+  const rvProdName = id => (RV_PRODUCTS.find(p => p[0] === id) || [id, id])[1];
+
+  let reviews = [];
+  let verifications = {};
+  let rvFilter = '전체';
+  let rvQuery = '';
+  let rvBusy = false;
+
+  function maskPhone(p) {
+    const d = String(p || '').replace(/\D/g, '');
+    if (d.length < 7) return d;
+    return `${d.slice(0, 3)}-****-${d.slice(-4)}`;
+  }
+  function starText(n) {
+    const k = Math.max(0, Math.min(5, Math.round(Number(n) || 0)));
+    return '★'.repeat(k) + '☆'.repeat(5 - k);
+  }
+  function rvPendingCount() { return reviews.filter(r => r.status === 'pending').length; }
+  function paintPendingBadge() {
+    const n = rvPendingCount();
+    const el = $('#revPendingN');
+    if (!el) return;
+    el.hidden = n === 0;
+    el.textContent = String(n);
+  }
+
+  async function rvLoad(silent) {
+    try {
+      const [rows, vers] = await Promise.all([
+        JWDOrders.rest('product_reviews?select=*&order=created_at.desc&limit=500'),
+        JWDOrders.rest('review_verifications?select=*'),
+      ]);
+      reviews = Array.isArray(rows) ? rows : [];
+      verifications = {};
+      (Array.isArray(vers) ? vers : []).forEach(v => { verifications[v.review_id] = v; });
+    } catch (e) {
+      console.warn('[admin] 후기를 불러오지 못했습니다', e);
+      if (e && (e.status === 401 || e.status === 403)) {
+        lock();
+        $('#lockErr').textContent = '로그인 세션이 만료되었습니다. 다시 로그인해 주세요.';
+        $('#lockErr').classList.add('is-on');
+        return;
+      }
+      if (!silent) toast('후기를 불러오지 못했습니다');
+    }
+    paintPendingBadge();
+    renderReviews();
+  }
+
+  function rvMatched() {
+    const q = rvQuery.trim().toLowerCase();
+    return reviews.filter(r => {
+      if (rvFilter !== '전체' && RV_ST[r.status] !== rvFilter) return false;
+      if (!q) return true;
+      const v = verifications[r.id] || {};
+      const hay = [r.author_name, r.content, rvProdName(r.product_id), RV_SRC[r.source] || '', v.order_id || '', v.buyer_name || ''].join(' ').toLowerCase();
+      return hay.includes(q);
+    });
+  }
+
+  function rvRowHTML(r) {
+    const v = verifications[r.id] || {};
+    const srcLbl = RV_SRC[r.source] || '';
+    const ver = v.order_id || v.buyer_name
+      ? `<div class="rv__ver">구매 확인 · 주문 <b>${esc(v.order_id || '—')}</b> · ${esc(v.buyer_name || '—')} / ${esc(maskPhone(v.buyer_phone))} <span style="color:var(--mut)">· ${fmtDT(v.verified_at)}</span></div>`
+      : `<div class="rv__ver">구매 확인 없이 관리자가 직접 등록한 후기</div>`;
+    return `<article class="rv" data-rvid="${esc(r.id)}">
+      <div class="rv__top">
+        <span class="badge ${RV_ST_CLASS[r.status] || 'st--wait'}">${RV_ST[r.status] || r.status}</span>
+        <span class="rv__prod">${esc(rvProdName(r.product_id))}</span>
+        ${srcLbl ? `<span class="rv__src${r.source === 'verified' ? ' rv__src--verified' : ''}">${esc(srcLbl)}</span>` : ''}
+        <span class="rv__date">${fmtDT(r.created_at)}</span>
+      </div>
+      <div class="rv__mid">
+        <span class="rv__who">${esc(r.author_name)}</span>
+        <span class="rv__stars" aria-label="별점 ${r.rating}점">${starText(r.rating)}</span>
+        <span class="rv__rate">${r.rating}.0</span>
+      </div>
+      <p class="rv__txt">${esc(r.content)}</p>
+      ${ver}
+      <div class="rv__act">
+        ${r.status !== 'approved' ? `<button class="btn btn--gold btn--sm" type="button" data-rvact="approve" data-rvid="${esc(r.id)}">승인 · 노출</button>` : ''}
+        ${r.status !== 'rejected' ? `<button class="btn btn--ghost btn--sm" type="button" data-rvact="hide" data-rvid="${esc(r.id)}">숨김</button>` : ''}
+        <button class="btn btn--ghost btn--sm" type="button" data-rvact="delete" data-rvid="${esc(r.id)}" style="color:var(--err);border-color:#F1C9C9">삭제</button>
+      </div>
+    </article>`;
+  }
+
+  function renderReviews() {
+    if (!$('#rvList')) return;
+    const counts = { '전체': reviews.length };
+    counts['승인 대기'] = reviews.filter(r => r.status === 'pending').length;
+    counts['노출 중'] = reviews.filter(r => r.status === 'approved').length;
+    counts['숨김'] = reviews.filter(r => r.status === 'rejected').length;
+    const list = ['전체', '승인 대기', '노출 중', '숨김'];
+    $('#rvTabs').innerHTML = list.map(s =>
+      `<button type="button" class="tab${rvFilter === s ? ' is-on' : ''}" data-rvtab="${esc(s)}" role="tab" aria-selected="${rvFilter === s}">${esc(s)}<span>${counts[s]}</span></button>`
+    ).join('');
+
+    const approved = reviews.filter(r => r.status === 'approved');
+    const avg = approved.length ? approved.reduce((n, r) => n + (Number(r.rating) || 0), 0) / approved.length : 0;
+    $('#rvKpis').innerHTML = [
+      `<article class="kpi"><div class="kpi__top">${icoToday}<span class="kpi__lab">전체 후기</span></div><div class="kpi__val">${reviews.length}<small>건</small></div><div class="kpi__sub">승인 대기 ${counts['승인 대기']}건</div></article>`,
+      `<article class="kpi"><div class="kpi__top">${icoWait}<span class="kpi__lab">승인 대기</span></div><div class="kpi__val">${counts['승인 대기']}<small>건</small></div><div class="kpi__sub">${counts['승인 대기'] ? '확인 후 노출해 주세요' : '대기 중인 후기가 없습니다'}</div></article>`,
+      `<article class="kpi"><div class="kpi__top">${icoMake}<span class="kpi__lab">노출 중</span></div><div class="kpi__val">${counts['노출 중']}<small>건</small></div><div class="kpi__sub">사이트에 보이는 후기</div></article>`,
+      `<article class="kpi kpi--gold"><div class="kpi__top">${icoMoney}<span class="kpi__lab">평균 별점</span></div><div class="kpi__val">${avg ? avg.toFixed(1) : '—'}<small>점</small></div><div class="kpi__sub">노출 중 ${approved.length}건 기준</div></article>`,
+    ].join('');
+
+    const rows = rvMatched();
+    $('#rvList').innerHTML = rows.map(rvRowHTML).join('');
+    $('#rvEmpty').hidden = rows.length > 0;
+    if (!rows.length) {
+      $('#rvEmpty').innerHTML = reviews.length
+        ? '<b>조건에 맞는 후기가 없습니다</b><br>필터를 ‘전체’로 바꾸거나 검색어를 지워 보세요.'
+        : '<b>아직 등록된 후기가 없습니다</b><br>손님이 구매 확인으로 남긴 후기는 여기서 승인하면 사이트에 노출됩니다.<br>체험단·카톡 후기는 위의 <b>후기 직접 등록</b>으로 넣을 수 있습니다.';
+    }
+    paintPendingBadge();
+  }
+
+  async function rvSetStatus(id, status) {
+    if (rvBusy) return;
+    rvBusy = true;
+    try {
+      const body = { status, approved_at: status === 'approved' ? new Date().toISOString() : null };
+      await JWDOrders.rest('product_reviews?id=eq.' + encodeURIComponent(id), {
+        method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify(body),
+      });
+      const r = reviews.find(x => x.id === id);
+      if (r) { r.status = status; r.approved_at = body.approved_at; }
+      renderReviews();
+      toast(status === 'approved' ? '후기를 승인해 사이트에 노출했습니다' : '후기를 숨겼습니다');
+    } catch (e) {
+      console.warn(e);
+      toast('저장하지 못했습니다');
+      rvLoad(true);
+    } finally { rvBusy = false; }
+  }
+
+  async function rvDelete(id) {
+    const r = reviews.find(x => x.id === id);
+    if (!r) return;
+    if (!window.confirm(`‘${r.author_name}’ 님의 후기를 삭제할까요?\n\n· ${rvProdName(r.product_id)}\n· 삭제한 후기는 되돌릴 수 없습니다.`)) return;
+    try {
+      await JWDOrders.rest('product_reviews?id=eq.' + encodeURIComponent(id), {
+        method: 'DELETE', headers: { Prefer: 'return=minimal' },
+      });
+      reviews = reviews.filter(x => x.id !== id);
+      delete verifications[id];
+      renderReviews();
+      toast('후기를 삭제했습니다');
+    } catch (e) {
+      console.warn(e);
+      toast('삭제하지 못했습니다');
+    }
+  }
+
+  function openRvModal() {
+    const sel = $('#rvmProduct');
+    sel.innerHTML = RV_PRODUCTS.map(([id, name]) => `<option value="${esc(id)}">${esc(name)}</option>`).join('');
+    $('#rvmAuthor').value = '';
+    $('#rvmRating').value = '5';
+    $('#rvmContent').value = '';
+    $('#rvmSource').value = 'experience';
+    $('#rvmDate').value = '';
+    $('#rvmApprove').checked = true;
+    $('#rvModal').classList.add('is-open');
+    $('#rvModal').setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lock');
+    setTimeout(() => $('#rvmAuthor').focus(), 80);
+  }
+  function closeRvModal() {
+    $('#rvModal').classList.remove('is-open');
+    $('#rvModal').setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lock');
+  }
+
+  async function rvSave() {
+    const product = $('#rvmProduct').value;
+    const author = $('#rvmAuthor').value.trim();
+    const rating = Number($('#rvmRating').value) || 5;
+    const content = $('#rvmContent').value.trim();
+    const source = $('#rvmSource').value;
+    const date = $('#rvmDate').value;
+    const approve = $('#rvmApprove').checked;
+    if (!author) { toast('작성자 표시명을 입력해 주세요'); $('#rvmAuthor').focus(); return; }
+    if (content.length < 2) { toast('후기 내용을 입력해 주세요'); $('#rvmContent').focus(); return; }
+    const btn = $('#rvmSave');
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = '등록 중…';
+    const body = {
+      product_id: product, author_name: author, rating, content, source,
+      status: approve ? 'approved' : 'pending',
+      approved_at: approve ? new Date().toISOString() : null,
+    };
+    if (date) body.created_at = new Date(date + 'T12:00:00+09:00').toISOString();
+    try {
+      const rows = await JWDOrders.rest('product_reviews', {
+        method: 'POST', headers: { Prefer: 'return=representation' }, body: JSON.stringify(body),
+      });
+      const row = Array.isArray(rows) ? rows[0] : rows;
+      if (row && row.id) reviews.unshift(row);
+      closeRvModal();
+      renderReviews();
+      toast(approve ? '후기를 등록하고 바로 노출했습니다' : '후기를 승인 대기로 등록했습니다');
+    } catch (e) {
+      console.warn(e);
+      toast('후기를 등록하지 못했습니다');
+    } finally {
+      btn.disabled = false; btn.textContent = label;
+    }
+  }
+
+  function switchView(view) {
+    const isRev = view === 'reviews';
+    $$('.view').forEach(b => {
+      const on = b.dataset.view === view;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-selected', String(on));
+    });
+    $('#viewOrders').hidden = isRev;
+    $('#viewReviews').hidden = !isRev;
+    if (isRev) renderReviews();
+  }
+
+  /* 이벤트 — 후기 */
+  $$('.view').forEach(b => b.addEventListener('click', () => switchView(b.dataset.view)));
+  $('#rvTabs').addEventListener('click', e => {
+    const b = e.target.closest('[data-rvtab]');
+    if (!b) return;
+    rvFilter = b.dataset.rvtab;
+    renderReviews();
+  });
+  $('#rvQ').addEventListener('input', () => {
+    rvQuery = $('#rvQ').value;
+    $('#rvSearchBox').classList.toggle('has-val', !!rvQuery);
+    renderReviews();
+  });
+  $('#rvQClear').addEventListener('click', () => {
+    $('#rvQ').value = ''; rvQuery = '';
+    $('#rvSearchBox').classList.remove('has-val');
+    renderReviews();
+    $('#rvQ').focus();
+  });
+  $('#rvNew').addEventListener('click', openRvModal);
+  $('#rvmSave').addEventListener('click', rvSave);
+  $('#rvModal').addEventListener('click', e => { if (e.target.closest('[data-rvclose]')) closeRvModal(); });
+  $('#rvList').addEventListener('click', e => {
+    const b = e.target.closest('[data-rvact]');
+    if (!b) return;
+    const id = b.dataset.rvid;
+    if (b.dataset.rvact === 'approve') rvSetStatus(id, 'approved');
+    else if (b.dataset.rvact === 'hide') rvSetStatus(id, 'rejected');
+    else if (b.dataset.rvact === 'delete') rvDelete(id);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && $('#rvModal').classList.contains('is-open')) closeRvModal();
+  });
+
+  /* ============================================================
      이벤트
      ============================================================ */
   $('#tabs').addEventListener('click', e => {
@@ -1568,6 +1987,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   function startApp() {
     paintMode();
     boot();
+    if (sbOn()) rvLoad(true);
   }
 
   /* 최초 진입 */

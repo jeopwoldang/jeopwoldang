@@ -194,6 +194,10 @@ window.JWDOrders = (function () {
     hasSession() { return !!readSession(); },
     sessionUser() { const s = readSession(); return s ? s.user : null; },
 
+    /* ----- 저수준 REST (상품 후기 product_reviews 등 다른 테이블에서 함께 사용) ----- */
+    async token() { return currentToken(); },
+    async rest(path, opt) { return sbFetch(path, opt); },
+
     async signIn(email, password) {
       if (!isSb()) throw new Error('Supabase 설정(SUPABASE_URL / SUPABASE_ANON_KEY)이 비어 있습니다.');
       const tok = await sbAuth('token?grant_type=password', { email: email, password: password });

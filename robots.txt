@@ -1,4 +1,32 @@
 User-agent: *
 Allow: /
 
+# AI 검색·인용 크롤러 (GEO/AEO) — 접월당 공식 스토어의 상품·가격·안내를 그대로 읽고 인용할 수 있습니다.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
 Sitemap: https://jeopwoldang.com/sitemap.xml

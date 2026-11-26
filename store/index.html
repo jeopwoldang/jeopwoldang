@@ -394,7 +394,7 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .fcard__spec,.tcard2__spec{display:block;margin:9px 0 12px;font-size:11.5px;line-height:1.62;letter-spacing:-.01em;color:#E3CB9C;word-break:keep-all}
 .fcard__spec b,.tcard2__spec b{font-weight:600;color:#F6E3B8;white-space:nowrap}
 .fcard__foot{margin-top:auto;padding-top:18px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(216,192,255,.16)}
-.ratewrap{flex:0 0 100%;display:flex;margin:0 0 -2px}
+.ratewrap{display:flex;margin:0}
 .ratewrap[hidden]{display:none}
 .fcard__price{flex:1;min-width:120px;display:flex;flex-direction:column;gap:2px}
 .fcard__price s{font-size:12px;color:var(--mut)}
@@ -1605,26 +1605,23 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 }
 /* ================= 상품 별점 · 후기 ================= */
 .ratechip{
-  display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:6px;margin:0;
-  font-family:var(--sans);font-size:11.5px;font-weight:600;line-height:1;letter-spacing:-.01em;
-  color:var(--gold-l);padding:5px 10px;border-radius:999px;
-  border:1px solid rgba(242,216,155,.34);
-  background:linear-gradient(150deg,rgba(242,216,155,.17),rgba(242,216,155,.045));
-  box-shadow:inset 0 1px 0 rgba(255,248,232,.18);
+  display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:4.5px;margin:0;
+  font-family:var(--sans);font-size:10.5px;font-weight:600;line-height:1;letter-spacing:-.01em;
+  color:var(--gold-l);padding:3px 8px;border-radius:999px;
+  border:1px solid rgba(242,216,155,.32);
+  background:linear-gradient(150deg,rgba(242,216,155,.14),rgba(242,216,155,.035));
+  box-shadow:inset 0 1px 0 rgba(255,248,232,.15);
 }
 .ratechip[hidden]{display:none}
-.ratechip i{font-style:normal;color:#F6DFA8;font-size:11.5px;letter-spacing:.09em}
-.ratechip b{font-weight:700;color:#FFF4D9;font-size:12px}
-.ratechip span{color:var(--tx2);font-weight:500;font-size:10.5px}
+.ratechip i{font-style:normal;color:#F6DFA8;font-size:9.2px;letter-spacing:.055em}
+.ratechip b{font-weight:700;color:#FFF4D9;font-size:10.8px}
+.ratechip span{color:var(--tx2);font-weight:500;font-size:9.4px}
 .ratewrap .ratechip{margin:0}
-.fslide .fcard__foot>.ratewrap{margin-bottom:1px}
-.dcard .fcard__foot>.ratewrap{margin-bottom:2px}
-.ncard .fcard__foot>.ratewrap{margin-bottom:3px}
-/* 옵션 선택 버튼이 있는 카드: 별점 배지를 옵션 아래·가격 바로 위에 */
-.fcard__price>.ratewrap{flex:0 0 auto;margin:0}
-.fcard__price>.ratewrap>.ratechip{margin:0}
-.fcard__price>.opt{margin-bottom:9px}
-.fcard__price>.ratewrap+.prices{margin-top:7px}
+/* 별점 배지 — 카드 하단 CTA 버튼 바로 위, 버튼 폭에 맞춘 슬림 배지 */
+.fslide__cta>.ratewrap,.dcard__cta>.ratewrap,.ncard__cta>.ratewrap{margin:0 0 7px}
+@media (max-width:620px){
+  .fslide__cta>.ratewrap,.dcard__cta>.ratewrap,.ncard__cta>.ratewrap{margin-bottom:6px}
+}
 
 .pdrev{margin-top:24px;border-top:1px solid rgba(216,192,255,.16);padding-top:20px}
 .pdrev__head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -2810,7 +2807,6 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               <button class="optb" data-persons="2" aria-pressed="false">원국 기입형</button>
               <button class="optb" data-persons="3" aria-pressed="false">프리미엄</button>
             </div>
-            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span></div>
             <div class="prices">
               <span class="prow is-on" data-persons="1"><span class="prow__top">기본형 <s>22,000원</s></span><span class="prow__deal"><b>19,800원</b><em class="pcut">10%</em></span></span>
               <span class="prow" data-persons="2"><span class="prow__top">원국 기입형 <s>32,000원</s></span><span class="prow__deal"><b>29,000원</b><em class="pcut">10%</em></span></span>
@@ -2829,6 +2825,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <span class="dcard__covernote">속지 바탕은 그대로, 테두리·장식 포인트만 표지 색에 맞춥니다</span>
         </div>
         <div class="dcard__cta">
+          <div class="ratewrap" hidden><span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span></div>
           <button class="btn btn--gold" data-open="diary-basic" data-open-diary>자세히 보기 · 구매하기 <span class="ar">›</span></button>
         </div>
       </div>
@@ -2858,11 +2855,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">지금 쓰는 이름, 그대로 써도 될까요?</p>
           <p class="fcard__spec">이름 감명 진단서 PDF · 접수 후 평균 1~2일</p>
           <div class="fcard__foot">
-            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-read" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>89,000원</s><b>80,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-read">담기</button>
           </div>
           <div class="ncard__cta">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-read" hidden></span></div>
             <button class="btn btn--gold" data-open="name-read">자세히 보기 · 구매하기 <span class="ar">›</span></button>
           </div>
         </div>
@@ -2877,11 +2874,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">개업·이사·결혼날, 아직 못 정했다면 사주로</p>
           <p class="fcard__spec">최선 1일 + 차선 1일 (총 2안) PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="date-pick" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>220,000원</s><b>200,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="date-pick">담기</button>
           </div>
           <div class="ncard__cta">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="date-pick" hidden></span></div>
             <button class="btn btn--gold" data-open="date-pick">자세히 보기 · 구매하기 <span class="ar">›</span></button>
           </div>
         </div>
@@ -2896,11 +2893,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">평생 쓰는 이름, 지금 바꿀까 고민된다면</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-adult" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>550,000원</s><b>500,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-adult">담기</button>
           </div>
           <div class="ncard__cta">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-adult" hidden></span></div>
             <button class="btn btn--gold" data-open="name-adult">자세히 보기 · 구매하기 <span class="ar">›</span></button>
           </div>
         </div>
@@ -2915,11 +2912,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">손님이 기억하는 상호, 사주와 업종을 함께 보고</p>
           <p class="fcard__spec">추천 상호 3안 + 상호 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-shop" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>550,000원</s><b>500,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-shop">담기</button>
           </div>
           <div class="ncard__cta">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-shop" hidden></span></div>
             <button class="btn btn--gold" data-open="name-shop">자세히 보기 · 구매하기 <span class="ar">›</span></button>
           </div>
         </div>
@@ -2934,11 +2931,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <p class="fcard__lines">아이의 첫 이름, 태어난 시간까지 반영해 3안으로</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
-            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-baby" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>1,220,000원</s><b>1,100,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-baby">담기</button>
           </div>
           <div class="ncard__cta">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-baby" hidden></span></div>
             <button class="btn btn--gold" data-open="name-baby">자세히 보기 · 구매하기 <span class="ar">›</span></button>
           </div>
         </div>
@@ -3710,7 +3707,6 @@ function personPick(ids){
                 <button class="optb" data-persons="1" aria-pressed="true">${lab[0]}</button>
                 <button class="optb" data-persons="2" aria-pressed="false">${lab[1]}</button>
               </div>
-              <div class="ratewrap" hidden><span class="ratechip" data-rate-for="${ids.join(',')}" hidden></span></div>
               <div class="prices">
                 <span class="prow is-on" data-persons="1"><span class="prow__top">${lab[0]} <s>${won(byId(ids[0]).orig)}</s></span><span class="prow__deal"><b>${won(byId(ids[0]).price)}</b><em class="pcut">${pct(byId(ids[0]))}%</em></span></span>
                 <span class="prow" data-persons="2"><span class="prow__top">${lab[1]} <s>${won(byId(ids[1]).orig)}</s></span><span class="prow__deal"><b>${won(byId(ids[1]).price)}</b><em class="pcut">${pct(byId(ids[1]))}%</em></span></span>
@@ -3738,11 +3734,11 @@ function fslideHTML(f){
       <p class="fcard__lines">${f.lines.join('<br>')}</p>
       ${f.spec ? `<p class="fcard__spec">${f.spec}</p>` : ''}
       <div class="fcard__foot">
-        ${f.dual ? '' : `<div class="ratewrap" hidden><span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span></div>`}
         ${price}
         <button class="addbtn" ${f.dual ? `data-add-${f.key}` : `data-add="${first.id}"`}>담기</button>
       </div>
       <div class="fslide__cta">
+        <div class="ratewrap" hidden><span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span></div>
         <button class="btn btn--gold" ${openAttr}>자세히 보기 · 구매하기 <span class="ar">›</span></button>
       </div>
     </div>

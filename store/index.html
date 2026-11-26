@@ -394,6 +394,8 @@ section[id],div[id].anchor,.fcard[id]{scroll-margin-top:calc(var(--hnav) + 14px)
 .fcard__spec,.tcard2__spec{display:block;margin:9px 0 12px;font-size:11.5px;line-height:1.62;letter-spacing:-.01em;color:#E3CB9C;word-break:keep-all}
 .fcard__spec b,.tcard2__spec b{font-weight:600;color:#F6E3B8;white-space:nowrap}
 .fcard__foot{margin-top:auto;padding-top:18px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(216,192,255,.16)}
+.ratewrap{flex:0 0 100%;display:flex;margin:0 0 -2px}
+.ratewrap[hidden]{display:none}
 .fcard__price{flex:1;min-width:120px;display:flex;flex-direction:column;gap:2px}
 .fcard__price s{font-size:12px;color:var(--mut)}
 .fcard__price b{font-family:var(--serif);font-weight:600;font-size:21px;color:#FDF8FF;letter-spacing:.01em}
@@ -1603,7 +1605,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 }
 /* ================= 상품 별점 · 후기 ================= */
 .ratechip{
-  display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:6px;margin:7px 0 0;
+  display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:6px;margin:0;
   font-family:var(--sans);font-size:11.5px;font-weight:600;line-height:1;letter-spacing:-.01em;
   color:var(--gold-l);padding:5px 10px;border-radius:999px;
   border:1px solid rgba(242,216,155,.34);
@@ -1614,8 +1616,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 .ratechip i{font-style:normal;color:#F6DFA8;font-size:11.5px;letter-spacing:.09em}
 .ratechip b{font-weight:700;color:#FFF4D9;font-size:12px}
 .ratechip span{color:var(--tx2);font-weight:500;font-size:10.5px}
-.fslide__body .ratechip{margin-top:8px}
-.dcard__body .ratechip,.ncard__body .ratechip{margin-top:8px}
+.ratewrap .ratechip{margin:0}
+.fslide .fcard__foot>.ratewrap{margin-bottom:1px}
+.dcard .fcard__foot>.ratewrap{margin-bottom:2px}
+.ncard .fcard__foot>.ratewrap{margin-bottom:3px}
 
 .pdrev{margin-top:24px;border-top:1px solid rgba(216,192,255,.16);padding-top:20px}
 .pdrev__head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -2791,11 +2795,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
       </button>
       <div class="dcard__body">
         <span class="fcard__cat">Goodnotes &amp; Notability · A4 PDF 16페이지</span>
-        <span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span>
         <h3 class="fcard__name" data-open="diary-basic" data-open-diary>2027 사주 개운 다이어리</h3>
         <p class="fcard__lines">365일을 내 사주로 관리하는 다이어리 — 일진·손 없는 날·절기까지 한 장에</p>
         <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b> · 표지 3종 중 택 1</p>
         <div class="fcard__foot">
+          <div class="ratewrap" hidden><span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span></div>
           <div class="fcard__price">
             <div class="opt" role="group" aria-label="옵션 선택">
               <button class="optb" data-persons="1" aria-pressed="true">기본형</button>
@@ -2845,11 +2849,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">01 · 감명 · Name Reading</span>
-          <span class="ratechip" data-rate-for="name-read" hidden></span>
           <h3 class="fcard__name" data-open="name-read">정통 사주 기반 이름 감명</h3>
           <p class="fcard__lines">지금 쓰는 이름, 그대로 써도 될까요?</p>
           <p class="fcard__spec">이름 감명 진단서 PDF · 접수 후 평균 1~2일</p>
           <div class="fcard__foot">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-read" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>89,000원</s><b>80,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-read">담기</button>
           </div>
@@ -2864,11 +2868,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">02 · 택일 · Auspicious Date</span>
-          <span class="ratechip" data-rate-for="date-pick" hidden></span>
           <h3 class="fcard__name" data-open="date-pick">개업·이사·결혼·계약 정통 길일 택일</h3>
           <p class="fcard__lines">개업·이사·결혼날, 아직 못 정했다면 사주로</p>
           <p class="fcard__spec">최선 1일 + 차선 1일 (총 2안) PDF · 평균 3~7일</p>
           <div class="fcard__foot">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="date-pick" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>220,000원</s><b>200,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="date-pick">담기</button>
           </div>
@@ -2883,11 +2887,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">03 · 성인 개명 · Adult Naming</span>
-          <span class="ratechip" data-rate-for="name-adult" hidden></span>
           <h3 class="fcard__name" data-open="name-adult">사주 맞춤 성인 개명 작명</h3>
           <p class="fcard__lines">평생 쓰는 이름, 지금 바꿀까 고민된다면</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-adult" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>550,000원</s><b>500,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-adult">담기</button>
           </div>
@@ -2902,11 +2906,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">04 · 상호 · Business Naming</span>
-          <span class="ratechip" data-rate-for="name-shop" hidden></span>
           <h3 class="fcard__name" data-open="name-shop">대표자 사주·업종 맞춤 사업 상호 작명</h3>
           <p class="fcard__lines">손님이 기억하는 상호, 사주와 업종을 함께 보고</p>
           <p class="fcard__spec">추천 상호 3안 + 상호 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-shop" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>550,000원</s><b>500,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-shop">담기</button>
           </div>
@@ -2921,11 +2925,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         </button>
         <div class="ncard__body">
           <span class="fcard__cat">05 · 신생아 · Baby Naming</span>
-          <span class="ratechip" data-rate-for="name-baby" hidden></span>
           <h3 class="fcard__name" data-open="name-baby">사주 용신 맞춤 신생아 작명</h3>
           <p class="fcard__lines">아이의 첫 이름, 태어난 시간까지 반영해 3안으로</p>
           <p class="fcard__spec">추천 이름 3안 + 정밀 작명서 PDF · 평균 3~7일</p>
           <div class="fcard__foot">
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="name-baby" hidden></span></div>
             <div class="fcard__price fcard__price--row"><s>1,220,000원</s><b>1,100,000원</b><em class="pcut">10%</em></div>
             <button class="addbtn" data-add="name-baby">담기</button>
           </div>
@@ -3724,11 +3728,11 @@ function fslideHTML(f){
     </button>
     <div class="fslide__body">
       <span class="fcard__cat">${f.cat}</span>
-      <span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span>
       <h3 class="fcard__name" ${openAttr}>${f.name}</h3>
       <p class="fcard__lines">${f.lines.join('<br>')}</p>
       ${f.spec ? `<p class="fcard__spec">${f.spec}</p>` : ''}
       <div class="fcard__foot">
+        <div class="ratewrap" hidden><span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span></div>
         ${price}
         <button class="addbtn" ${f.dual ? `data-add-${f.key}` : `data-add="${first.id}"`}>담기</button>
       </div>
@@ -4916,8 +4920,10 @@ function fillRateChips(){
   $$('[data-rate-for]').forEach(el => {
     const ids = String(el.dataset.rateFor || '').split(',').map(s => s.trim()).filter(Boolean);
     const s = ids.length ? rvSummary(ids) : null;
-    if(!s){ el.hidden = true; el.innerHTML = ''; return; }
+    const wrap = el.closest('.ratewrap');
+    if(!s){ el.hidden = true; el.innerHTML = ''; if(wrap) wrap.hidden = true; return; }
     el.hidden = false;
+    if(wrap) wrap.hidden = false;
     el.innerHTML = `<i aria-hidden="true">${rvStars(s.avg)}</i><b>${s.avg.toFixed(1)}</b><span>후기 ${s.count}</span>`;
   });
 }

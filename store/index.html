@@ -3338,6 +3338,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
 <!-- 주문 저장 어댑터 (admin.html과 공용) — jwd-orders.js의 JWD_CFG.API_URL 한 곳으로 백엔드 전환 -->
 <script src="jwd-orders.js"></script>
+<script src="jwd-track.js" defer></script>
 <script>
 /* ============================================================
    蝶月堂 공식 스토어 — v3 (Moonlight edition)
@@ -3806,6 +3807,7 @@ function setZiweiPersons(n){ setPersons('ziwei', n); }
 /* ---------- 장바구니 ---------- */
 function addToCart(id, qty=1, cover){
   const p = byId(id); if(!p) return;
+  try{ JWDTRACK.add(id); }catch(e){}          /* 방문 통계: 장바구니 담기 */
   const cv = p.type === 'diary' ? (DIARY_COVERS.includes(cover) ? cover : diaryCover) : '';
   const line = cart.find(l => l.id === id && (l.cover || '') === cv);
   if(line) line.qty = Math.min(9, line.qty + qty);
@@ -3868,6 +3870,7 @@ function renderCart(){
 let pdQty = 1, pdId = null;
 function openProduct(id){
   const p = byId(id); if(!p) return;
+  try{ JWDTRACK.view(id); }catch(e){}          /* 방문 통계: 상품 상세 클릭 */
   const tk = tierKind(id);
   pdId = id;
   pdQty = tk ? Math.max(1, Object.values(TIER_IDS[tk]).indexOf(id) + 1) : 1;
@@ -4055,6 +4058,9 @@ document.addEventListener('click', e => {
 /* ---------- 주문서 ---------- */
 function startCheckout(){
   if(!cart.length){ toast('장바구니가 비어 있습니다'); return; }
+  /* 방문 통계: 결제 시도 (장바구니 줄마다 상품 기준 1건) */
+  const seen = {};
+  cart.forEach(l => { if(!seen[l.id]){ seen[l.id] = 1; try{ JWDTRACK.checkout(l.id); }catch(e){} } });
   closeAll();
   birthStash = {};                                     // 새 주문서는 빈 상태로 시작
   renderOrderForm();

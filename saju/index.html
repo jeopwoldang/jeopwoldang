@@ -1607,6 +1607,7 @@ input.input::placeholder{color:#b3ab9d}
   <span class="tk">✓</span><span id="toastText">계좌번호가 복사되었습니다</span>
 </div>
 
+<script src="/store/jwd-track.js" defer></script>
 <script>
 
 (function(){
@@ -1872,6 +1873,7 @@ input.input::placeholder{color:#b3ab9d}
 
     /* 요약 */
     renderSummary(plan, people, mail.value);
+    try{ JWDTRACK.checkout(key === "2" ? 'saju2' : 'saju1'); }catch(err){}   /* 방문 통계: 신청(결제) 시도 */
     var delayReset = $("sendDelayNote");
     if (delayReset) delayReset.hidden = true;
 
@@ -2058,6 +2060,7 @@ input.input::placeholder{color:#b3ab9d}
 
   /* ---------- 히어로 CTA ---------- */
   $("heroCta").addEventListener("click", function(e){
+    try{ JWDTRACK.view(currentPlanKey() === "2" ? 'saju2' : 'saju1'); }catch(err){}   /* 방문 통계: 상품 상세(신청서) 보기 */
     e.preventDefault();
     $("apply").scrollIntoView({behavior:"smooth", block:"start"});
   });

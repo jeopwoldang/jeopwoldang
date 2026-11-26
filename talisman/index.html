@@ -2169,6 +2169,7 @@ section{padding:28px 0}
 
 <!-- 주문 저장 어댑터 (스토어·관리자센터와 같은 Supabase orders 테이블) -->
 <script src="jwd-orders.js"></script>
+<script src="/store/jwd-track.js" defer></script>
 <script>
 /* ============================================================
    蝶月堂 — 인쇄용 디지털 부적 (talisman/)
@@ -2311,6 +2312,10 @@ section{padding:28px 0}
     }
   }
 
+  function trackProduct(kind) {
+    /* 방문 통계: 부적 상품 상세(신청서) 보기 — product_id는 주문 기록과 동일한 tal-wish / tal-custom */
+    try { JWDTRACK.view(kind === 'custom' ? 'tal-custom' : 'tal-wish'); } catch (err) { }
+  }
   function selectProduct(kind, opts) {
     if (!PRODUCTS[kind]) return;
     state.product = kind;
@@ -2333,7 +2338,7 @@ section{padding:28px 0}
   }
 
   $$('input[name="product"]', form).forEach(function (r) {
-    r.addEventListener('change', function () { selectProduct(this.value); });
+    r.addEventListener('change', function () { selectProduct(this.value); trackProduct(this.value); });
   });
 
   /* ---------- 시/분 옵션 ---------- */
@@ -2474,6 +2479,7 @@ section{padding:28px 0}
     if (pick) {
       if (pick.tagName === 'A') e.preventDefault();
       selectProduct(pick.dataset.pick, { scroll: true });
+      trackProduct(pick.dataset.pick);
       return;
     }
     var pol = e.target.closest('[data-policy]');
@@ -2495,6 +2501,7 @@ section{padding:28px 0}
     if (!card) return;
     e.preventDefault();
     selectProduct(card.dataset.pick, { scroll: true });
+    trackProduct(card.dataset.pick);
   });
 
   /* ---------- 검증 ---------- */
@@ -2666,6 +2673,7 @@ section{padding:28px 0}
     }
 
     var rec = readRecord();
+    try { JWDTRACK.checkout(state.product === 'custom' ? 'tal-custom' : 'tal-wish'); } catch (err) { }   /* 방문 통계: 신청(결제) 시도 */
     var btn = $('submitBtn');
     var original = btn.innerHTML;
     btn.disabled = true;

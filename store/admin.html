@@ -605,6 +605,31 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 .rvm__hint{margin:0;font-size:11.5px;line-height:1.7;color:var(--mut)}
 .rvm__foot{display:flex;gap:8px;justify-content:flex-end;padding:14px 22px 18px;border-top:1px solid var(--line);flex-shrink:0}
 @media (max-width:560px){ .rvm__row{grid-template-columns:1fr} }
+
+/* ---------- 방문·클릭 통계 ---------- */
+.stpanel__title{font-size:13.5px;font-weight:700;color:var(--ink);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.stpanel__title span{font-size:11.5px;font-weight:500;color:var(--mut)}
+.sttools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stnote{font-size:11.5px;color:var(--mut);font-variant-numeric:tabular-nums}
+.stscroll{overflow-x:auto}
+.stbl{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+.stbl th,.stbl td{padding:9px 14px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.stbl th:first-child,.stbl td:first-child{text-align:left}
+.stbl thead th{font-size:10.5px;letter-spacing:.06em;font-weight:600;color:var(--mut);background:#FBFBFC;border-top:1px solid var(--line);position:sticky;top:0}
+.stbl tbody tr:hover{background:#FAFAFC}
+.stbl tbody tr:last-child td{border-bottom:none}
+.stbl td.num{font-weight:600;color:var(--ink)}
+.stbl td.num.zero{font-weight:500;color:var(--mut)}
+.stbl td.today{color:var(--acc)}
+.stbl .nm{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--ink)}
+.stbl .idc{font-size:10.5px;color:var(--mut);margin-left:6px;font-weight:500}
+.stempty{padding:24px 18px;text-align:center;font-size:12.5px;line-height:1.8;color:var(--mut)}
+.stkpi--hint{font-size:11.5px;color:var(--mut);line-height:1.7;margin:-6px 0 16px}
+@media (max-width:560px){
+  .stbl th,.stbl td{padding:8px 10px}
+  .stbl .nm{max-width:150px}
+  .stnote{width:100%}
+}
 </style>
 </head>
 <body>
@@ -696,6 +721,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     <div class="views" role="tablist" aria-label="관리자 화면 전환">
       <button type="button" class="view is-on" data-view="orders" role="tab" aria-selected="true">주문 관리</button>
       <button type="button" class="view" data-view="reviews" role="tab" aria-selected="false">후기 관리 <span class="view__n" id="revPendingN" hidden>0</span></button>
+      <button type="button" class="view" data-view="stats" role="tab" aria-selected="false">방문·클릭 통계</button>
     </div>
 
     <div id="viewOrders">
@@ -738,6 +764,55 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
         </div>
         <div class="rvlist" id="rvList"></div>
         <div class="rv__empty" id="rvEmpty" hidden></div>
+      </section>
+    </div>
+
+    <!-- ================= 방문·클릭 통계 ================= -->
+    <div id="viewStats" hidden>
+      <section class="kpis" id="stKpis" aria-label="방문 요약"></section>
+      <p class="stkpi--hint" id="stHint">방문자·페이지뷰·상품 클릭은 자사몰(/store/ · /2027/ · /ziwei/ · /talisman/ · /saju/)에서 자동으로 쌓입니다. 날짜·월은 모두 한국 시간(KST) 기준입니다.</p>
+
+      <section class="panel" aria-label="일별 방문·클릭">
+        <div class="panel__head">
+          <div class="stpanel__title">일별 방문 · 클릭 <span>KST 기준 최근 30일</span></div>
+          <div class="sttools">
+            <span class="stnote" id="stUpdated">—</span>
+            <button class="btn btn--ghost btn--sm" type="button" id="stNotrack" aria-pressed="false">내 기기 방문 제외: —</button>
+            <button class="btn btn--ghost btn--sm" type="button" id="stReload">
+              <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>새로고침
+            </button>
+          </div>
+        </div>
+        <div class="stscroll">
+          <table class="stbl" id="stDaily">
+            <thead><tr><th>날짜</th><th>순방문자</th><th>페이지뷰</th><th>상품클릭</th><th>담기</th><th>결제시도</th></tr></thead>
+            <tbody><tr><td colspan="6" class="stempty">불러오는 중…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="월별 방문·클릭">
+        <div class="panel__head">
+          <div class="stpanel__title">월별 방문 · 클릭 <span>KST 기준 · 전체 기간</span></div>
+        </div>
+        <div class="stscroll">
+          <table class="stbl" id="stMonthly">
+            <thead><tr><th>연-월</th><th>순방문자</th><th>페이지뷰</th><th>상품클릭</th><th>담기</th><th>결제시도</th></tr></thead>
+            <tbody><tr><td colspan="6" class="stempty">불러오는 중…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="상품별 클릭 순위">
+        <div class="panel__head">
+          <div class="stpanel__title">상품별 클릭 · 관심 순위 <span>상세보기 클릭 높은 순</span></div>
+        </div>
+        <div class="stscroll">
+          <table class="stbl" id="stProducts">
+            <thead><tr><th>상품</th><th>상세보기 클릭</th><th>담기</th><th>결제시도</th></tr></thead>
+            <tbody><tr><td colspan="4" class="stempty">불러오는 중…</td></tr></tbody>
+          </table>
+        </div>
       </section>
     </div>
 
@@ -1750,20 +1825,193 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     }
   }
 
+  /* ============================================================
+     방문·클릭 통계 (Supabase site_events · KST 집계 뷰 3종)
+     - site_stats_daily / site_stats_monthly / site_stats_products
+     - anon 은 INSERT 만, 로그인한 관리자(authenticated)만 SELECT
+     ============================================================ */
+  const ST_NAMES = {
+    'saju1': '종합 사주분석지 · 1인',
+    'saju2': '종합 사주분석지 · 2인',
+    'new2027': '2027 정미년 신년운세',
+    'ziwei1': '자미두수 명반 정밀 분석지 · 1인',
+    'ziwei2': '자미두수 명반 정밀 분석지 · 2인',
+    'diary-basic': '2027 사주 개운 굿노트 다이어리 · 기본형',
+    'diary-saju': '2027 사주 개운 굿노트 다이어리 · 원국 기입형',
+    'diary-premium': '2027 사주 굿노트 다이어리 · 프리미엄 맞춤 일진형',
+    'name-read': '정통 사주 기반 이름 감명',
+    'name-adult': '사주 맞춤 성인 개명 작명',
+    'name-baby': '사주 용신 맞춤 신생아 작명',
+    'name-shop': '대표자 사주·업종 맞춤 사업 상호 작명',
+    'date-pick': '개업·이사·결혼·계약 정통 길일 택일',
+    'tal-wish': '기원부적 (인쇄용 PDF)',
+    'tal-custom': '나만의 부적 (사주 맞춤)',
+  };
+  const ST_NOTRACK = 'jwd_notrack';        // '1' = 이 기기는 집계 제외
+  const ST_SEED = 'jwd_notrack_seeded';    // 관리자 페이지 첫 방문에서 한 번만 자동 설정
+
+  const stKst = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' });
+  const stDay = off => stKst.format(new Date(Date.now() + (Number(off) || 0) * 86400000));
+  const stNum = (v, cls) => {
+    const n = Number(v) || 0;
+    return `<td class="num${n === 0 ? ' zero' : ''}${cls ? ' ' + cls : ''}">${n.toLocaleString('ko-KR')}</td>`;
+  };
+
+  let stData = { daily: [], monthly: [], products: [] };
+  let stBusy = false;
+
+  function stFlagGet(k) { try { return localStorage.getItem(k) === '1'; } catch (e) { return false; } }
+  function stFlagSet(k, on) { try { on ? localStorage.setItem(k, '1') : localStorage.removeItem(k); } catch (e) { } }
+
+  /* 관리자 페이지를 처음 연 기기는 자동으로 집계에서 제외 (이후 토글에서 직접 바꿀 수 있음) */
+  function stSeedNotrack() {
+    if (stFlagGet(ST_SEED)) return;
+    stFlagSet(ST_NOTRACK, true);
+    stFlagSet(ST_SEED, true);
+  }
+  function paintNotrack() {
+    const b = $('#stNotrack');
+    if (!b) return;
+    const on = stFlagGet(ST_NOTRACK);
+    b.textContent = '내 기기 방문 제외: ' + (on ? 'ON' : 'OFF');
+    b.classList.toggle('btn--gold', on);
+    b.classList.toggle('btn--ghost', !on);
+    b.setAttribute('aria-pressed', String(on));
+    b.title = on
+      ? '이 브라우저에서 연 자사몰 방문은 통계에 잡히지 않습니다'
+      : '이 브라우저의 자사몰 방문도 통계에 포함됩니다';
+  }
+
+  function stEmptyRows(cols, msg) {
+    return `<tr><td colspan="${cols}" class="stempty">${msg}</td></tr>`;
+  }
+
+  function stProductName(r) {
+    if (ST_NAMES[r.product_id]) return ST_NAMES[r.product_id];
+    return r.product_name || r.product_id || '(상품 미지정)';
+  }
+
+  function renderStats() {
+    const today = stDay(0), yesterday = stDay(-1), month = today.slice(0, 7);
+    const tr = stData.daily.find(r => r.day === today) || {};
+    const yr = stData.daily.find(r => r.day === yesterday) || {};
+    const mr = stData.monthly.find(r => r.month === month) || {};
+
+    /* --- 요약 카드 --- */
+    const card = (ico, lab, val, unit, sub, gold) =>
+      `<article class="kpi${gold ? ' kpi--gold' : ''}"><div class="kpi__top">${ico}<span class="kpi__lab">${lab}</span></div>
+       <div class="kpi__val">${(Number(val) || 0).toLocaleString('ko-KR')}<small>${unit}</small></div>
+       <div class="kpi__sub">${sub}</div></article>`;
+    $('#stKpis').innerHTML = [
+      card(icoToday, '오늘 순방문자', tr.uv, '명', `어제 ${(Number(yr.uv) || 0).toLocaleString('ko-KR')}명 · 오늘 페이지뷰 ${(Number(tr.pv) || 0).toLocaleString('ko-KR')}회`),
+      card(icoMake, '오늘 페이지뷰', tr.pv, '회', `어제 ${(Number(yr.pv) || 0).toLocaleString('ko-KR')}회`),
+      card(icoWait, '이번 달 순방문자', mr.uv, '명', `${month.replace('-', '. ')} 기준 · 이번 달 페이지뷰 ${(Number(mr.pv) || 0).toLocaleString('ko-KR')}회`, true),
+      card(icoMoney, '오늘 상품 클릭', tr.product_clicks, '회', `담기 ${(Number(tr.cart_adds) || 0).toLocaleString('ko-KR')} · 결제시도 ${(Number(tr.checkouts) || 0).toLocaleString('ko-KR')}`),
+    ].join('');
+
+    /* --- 일별 (KST · 최근 30일, 빈 날은 0) --- */
+    const dmap = {};
+    stData.daily.forEach(r => { dmap[r.day] = r; });
+    const WD = ['일', '월', '화', '수', '목', '금', '토'];
+    const dRows = [];
+    for (let i = 29; i >= 0; i--) {
+      const d = stDay(-i);
+      const r = dmap[d] || {};
+      const wd = WD[new Date(d + 'T00:00:00+09:00').getDay()];
+      const isToday = d === today;
+      const lab = `${d.slice(0, 4)}. ${d.slice(5, 7)}. ${d.slice(8, 10)}. (${wd})${isToday ? ' <b style="color:var(--acc)">오늘</b>' : ''}`;
+      const cls = isToday ? ' today' : '';
+      dRows.push(`<tr><td class="${isToday ? 'today' : ''}">${lab}</td>` +
+        stNum(r.uv, cls) + stNum(r.pv, cls) + stNum(r.product_clicks, cls) + stNum(r.cart_adds, cls) + stNum(r.checkouts, cls) + '</tr>');
+    }
+    $('#stDaily tbody').innerHTML = dRows.join('');
+
+    /* --- 월별 --- */
+    $('#stMonthly tbody').innerHTML = stData.monthly.length
+      ? stData.monthly.map(r => `<tr><td>${esc(String(r.month || '').replace('-', '. '))}</td>` +
+          stNum(r.uv) + stNum(r.pv) + stNum(r.product_clicks) + stNum(r.cart_adds) + stNum(r.checkouts) + '</tr>').join('')
+      : stEmptyRows(6, '아직 집계된 방문이 없습니다.<br>자사몰을 열면 그 순간부터 쌓입니다.');
+
+    /* --- 상품별 (상세보기 클릭 높은 순) --- */
+    const plist = stData.products.slice().sort((a, b) =>
+      (Number(b.views) || 0) - (Number(a.views) || 0) ||
+      (Number(b.cart_adds) || 0) - (Number(a.cart_adds) || 0) ||
+      (Number(b.checkouts) || 0) - (Number(a.checkouts) || 0));
+    $('#stProducts tbody').innerHTML = plist.length
+      ? plist.map(r => `<tr><td><div class="nm">${esc(stProductName(r))}</div><div class="idc">${esc(r.product_id || '')}</div></td>` +
+          stNum(r.views) + stNum(r.cart_adds) + stNum(r.checkouts) + '</tr>').join('')
+      : stEmptyRows(4, '아직 상품 클릭이 없습니다.<br>상품 상세를 열거나 담으면 여기에 쌓입니다.');
+  }
+
+  async function stLoad(silent) {
+    if (!sbOn()) {
+      $('#stKpis').innerHTML = '';
+      $('#stDaily tbody').innerHTML = stEmptyRows(6, '이 브라우저는 서버(Supabase)에 연결되지 않아 통계를 볼 수 없습니다.');
+      $('#stMonthly tbody').innerHTML = stEmptyRows(6, '—');
+      $('#stProducts tbody').innerHTML = stEmptyRows(4, '—');
+      return;
+    }
+    if (stBusy) return;
+    stBusy = true;
+    const btn = $('#stReload');
+    if (btn) btn.disabled = true;
+    try {
+      const [daily, monthly, products] = await Promise.all([
+        JWDOrders.rest('site_stats_daily?select=*&order=day.desc&limit=90'),
+        JWDOrders.rest('site_stats_monthly?select=*&order=month.desc&limit=24'),
+        JWDOrders.rest('site_stats_products?select=*'),
+      ]);
+      stData.daily = Array.isArray(daily) ? daily : [];
+      stData.monthly = Array.isArray(monthly) ? monthly : [];
+      stData.products = Array.isArray(products) ? products : [];
+      renderStats();
+      $('#stUpdated').textContent = '업데이트 ' + fmtDT(new Date().toISOString());
+    } catch (e) {
+      console.warn('[admin] 방문 통계를 불러오지 못했습니다', e);
+      if (e && (e.status === 401 || e.status === 403)) {
+        lock();
+        $('#lockErr').textContent = '로그인 세션이 만료되었습니다. 다시 로그인해 주세요.';
+        $('#lockErr').classList.add('is-on');
+        return;
+      }
+      if (!silent) toast('방문 통계를 불러오지 못했습니다');
+      const tb = $('#stDaily tbody');
+      if (tb) tb.innerHTML = stEmptyRows(6, '통계를 불러오지 못했습니다. 잠시 후 새로고침을 눌러 주세요.');
+    } finally {
+      stBusy = false;
+      if (btn) btn.disabled = false;
+    }
+  }
+
   function switchView(view) {
     const isRev = view === 'reviews';
+    const isStats = view === 'stats';
     $$('.view').forEach(b => {
       const on = b.dataset.view === view;
       b.classList.toggle('is-on', on);
       b.setAttribute('aria-selected', String(on));
     });
-    $('#viewOrders').hidden = isRev;
+    $('#viewOrders').hidden = isRev || isStats;
     $('#viewReviews').hidden = !isRev;
+    $('#viewStats').hidden = !isStats;
     if (isRev) renderReviews();
+    if (isStats) { paintNotrack(); stLoad(); }
   }
 
   /* 이벤트 — 후기 */
   $$('.view').forEach(b => b.addEventListener('click', () => switchView(b.dataset.view)));
+
+  /* 이벤트 — 방문 통계 */
+  stSeedNotrack();
+  paintNotrack();
+  $('#stReload').addEventListener('click', () => stLoad());
+  $('#stNotrack').addEventListener('click', () => {
+    const on = !stFlagGet(ST_NOTRACK);
+    stFlagSet(ST_NOTRACK, on);
+    stFlagSet(ST_SEED, true);
+    paintNotrack();
+    toast(on ? '이 기기는 이후 자사몰 방문이 집계에서 빠집니다' : '이 기기의 자사몰 방문도 다시 집계됩니다');
+  });
   $('#rvTabs').addEventListener('click', e => {
     const b = e.target.closest('[data-rvtab]');
     if (!b) return;

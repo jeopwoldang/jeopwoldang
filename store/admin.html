@@ -1924,7 +1924,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       dRows.push(`<tr><td class="${isToday ? 'today' : ''}">${lab}</td>` +
         stNum(r.uv, cls) + stNum(r.pv, cls) + stNum(r.product_clicks, cls) + stNum(r.cart_adds, cls) + stNum(r.checkouts, cls) + '</tr>');
     }
-    $('#stDaily tbody').innerHTML = dRows.join('');
+    $('#stDaily tbody').innerHTML = dRows.reverse().join('');   /* 오늘을 맨 위로 */
 
     /* --- 월별 --- */
     $('#stMonthly tbody').innerHTML = stData.monthly.length

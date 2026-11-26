@@ -1620,6 +1620,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 .fslide .fcard__foot>.ratewrap{margin-bottom:1px}
 .dcard .fcard__foot>.ratewrap{margin-bottom:2px}
 .ncard .fcard__foot>.ratewrap{margin-bottom:3px}
+/* 옵션 선택 버튼이 있는 카드: 별점 배지를 옵션 아래·가격 바로 위에 */
+.fcard__price>.ratewrap{flex:0 0 auto;margin:0}
+.fcard__price>.ratewrap>.ratechip{margin:0}
+.fcard__price>.opt{margin-bottom:9px}
+.fcard__price>.ratewrap+.prices{margin-top:7px}
 
 .pdrev{margin-top:24px;border-top:1px solid rgba(216,192,255,.16);padding-top:20px}
 .pdrev__head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -2799,13 +2804,13 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <p class="fcard__lines">365일을 내 사주로 관리하는 다이어리 — 일진·손 없는 날·절기까지 한 장에</p>
         <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b> · 표지 3종 중 택 1</p>
         <div class="fcard__foot">
-          <div class="ratewrap" hidden><span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span></div>
           <div class="fcard__price">
             <div class="opt" role="group" aria-label="옵션 선택">
               <button class="optb" data-persons="1" aria-pressed="true">기본형</button>
               <button class="optb" data-persons="2" aria-pressed="false">원국 기입형</button>
               <button class="optb" data-persons="3" aria-pressed="false">프리미엄</button>
             </div>
+            <div class="ratewrap" hidden><span class="ratechip" data-rate-for="diary-basic,diary-saju,diary-premium" hidden></span></div>
             <div class="prices">
               <span class="prow is-on" data-persons="1"><span class="prow__top">기본형 <s>22,000원</s></span><span class="prow__deal"><b>19,800원</b><em class="pcut">10%</em></span></span>
               <span class="prow" data-persons="2"><span class="prow__top">원국 기입형 <s>32,000원</s></span><span class="prow__deal"><b>29,000원</b><em class="pcut">10%</em></span></span>
@@ -3705,6 +3710,7 @@ function personPick(ids){
                 <button class="optb" data-persons="1" aria-pressed="true">${lab[0]}</button>
                 <button class="optb" data-persons="2" aria-pressed="false">${lab[1]}</button>
               </div>
+              <div class="ratewrap" hidden><span class="ratechip" data-rate-for="${ids.join(',')}" hidden></span></div>
               <div class="prices">
                 <span class="prow is-on" data-persons="1"><span class="prow__top">${lab[0]} <s>${won(byId(ids[0]).orig)}</s></span><span class="prow__deal"><b>${won(byId(ids[0]).price)}</b><em class="pcut">${pct(byId(ids[0]))}%</em></span></span>
                 <span class="prow" data-persons="2"><span class="prow__top">${lab[1]} <s>${won(byId(ids[1]).orig)}</s></span><span class="prow__deal"><b>${won(byId(ids[1]).price)}</b><em class="pcut">${pct(byId(ids[1]))}%</em></span></span>
@@ -3732,7 +3738,7 @@ function fslideHTML(f){
       <p class="fcard__lines">${f.lines.join('<br>')}</p>
       ${f.spec ? `<p class="fcard__spec">${f.spec}</p>` : ''}
       <div class="fcard__foot">
-        <div class="ratewrap" hidden><span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span></div>
+        ${f.dual ? '' : `<div class="ratewrap" hidden><span class="ratechip" data-rate-for="${f.ids.join(',')}" hidden></span></div>`}
         ${price}
         <button class="addbtn" ${f.dual ? `data-add-${f.key}` : `data-add="${first.id}"`}>담기</button>
       </div>

@@ -1377,7 +1377,11 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   function itemLabel(i) {
     const nm = i.name || '';
     const op = i.option || '';
-    return op && !nm.includes(op) ? `${nm} (${op})` : nm;
+    const tn = i.tablet === 'galaxy' ? '갤럭시탭' : '아이패드';
+    const dv = i.device === 'tablet' ? ` · 태블릿용(${tn})`
+             : i.device === 'bundle' ? ` · 모바일+태블릿 세트(${tn})`
+             : i.device === 'mobile' ? ' · 모바일용' : '';
+    return (op && !nm.includes(op) ? `${nm} (${op})` : nm) + dv;
   }
 
   function rowHTML(o) {

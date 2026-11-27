@@ -1830,7 +1830,8 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 .devgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .devbtn{position:relative;display:flex;flex-direction:column;gap:3px;align-items:flex-start;padding:11px 12px;border-radius:12px;border:1px solid rgba(216,192,255,.22);background:rgba(255,255,255,.03);text-align:left;color:#E8DFFA;transition:border-color .18s,background .18s,transform .18s}
 .devbtn:hover{border-color:rgba(242,216,155,.55);transform:translateY(-1px)}
-.devbtn b{font-size:13.5px;color:#FBF3E2;font-weight:800}
+.devbtn b{font-size:13px;color:#FBF3E2;font-weight:700;letter-spacing:-.01em}
+.devbtn .devbtn__pr{font-family:var(--serif);font-size:15px;font-weight:800;color:#F2D89B;letter-spacing:0}
 .devbtn em{font-style:normal;font-size:11px;color:var(--mut);line-height:1.4}
 .devbtn[aria-pressed="true"]{border-color:rgba(242,216,155,.9);background:linear-gradient(135deg,rgba(251,237,203,.18),rgba(227,196,143,.08));box-shadow:0 10px 22px -18px rgba(242,216,155,.95)}
 .devbtn[aria-pressed="true"] b{color:#F7DFAE}
@@ -1856,8 +1857,9 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 .digsub__b[aria-pressed="true"]{background:linear-gradient(135deg,#FBEDCB,#E3C48F);color:#2A1B44;font-weight:800;border-color:transparent}
 #digital.dig-wall [data-card="diary"]{display:none}
 #digital.dig-diary .dcard--wall{display:none}
-.mnav__list a.mnav__sub{padding-left:22px;font-size:12.5px;color:#BFAEE2}
-.mnav__list a.mnav__sub::before{content:"└";margin-right:7px;color:rgba(242,216,155,.65);font-size:11px}
+.mnav__list a.mnav__sub{padding-left:24px;font-size:13.5px;color:#BFAEE2;justify-content:flex-start;gap:8px}
+.mnav__list a.mnav__sub::before{content:"└";margin:0;color:rgba(242,216,155,.6);font-size:11px}
+.mnav__list a.mnav__sub::after{margin-left:auto}
 @media (max-width:560px){ .devgrid{grid-template-columns:1fr} .devbtn{padding:10px 12px} }
 </style>
 
@@ -5099,7 +5101,7 @@ function devPicker(){
   return `<div class="pd__dev" id="pdDevBox">
           <span class="pd__devlab">1. 기기 선택</span>
           <div class="devgrid">${DEV_KEYS.map(k => { const x = DEV[k]; return `<button type="button" class="devbtn" data-dev="${k}" aria-pressed="${pdDev === k}">
-            <b>${x.label} · ${won(x.price)}</b><em>${x.files}</em>
+            <b>${x.label}</b><b class="devbtn__pr">${won(x.price)}</b><em>${x.files}</em>
             ${x.rec ? '<span class="devbtn__rec">추천</span>' : ''}
           </button>`; }).join('')}</div>
           ${needTab ? `<div class="tabrow" role="group" aria-label="태블릿 종류 선택">
@@ -5181,7 +5183,7 @@ function addWallSelection(pid){
   });
   saveCart(); renderCart(); updateCount();
   const names = [...counts.entries()].map(([k, n]) => `${wallLabel(k)}${n > 1 ? ` ${n}장` : ''}`).join(', ');
-  toast(`배경화면 ${names} · ${DEV[dv].label}${tb ? ' · ' + TABLET[tb].label : ''} ${keys.length}묶음 담았습니다`);
+  toast(`배경화면 ${names} · ${DEV[dv].label}${tb ? ' · ' + TABLET[tb].label : ''} 담았습니다${keys.length > 1 ? ` (${keys.length}종)` : ''}`);
 }
 
 /* ---------- 다른 상품 둘러보기 (상세 모달 하단 · 최대 4개) ---------- */

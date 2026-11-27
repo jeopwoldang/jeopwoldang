@@ -662,6 +662,7 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
 .covbtn[aria-pressed="true"] .covbtn__nm{color:#F2D89B}
 .covhint{margin:9px 0 0;font-size:11px;color:var(--mut);line-height:1.55}
 .covhint b{color:#F2D89B;font-weight:600}
+.covhint--guide{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(216,192,255,.18);color:#CBBDE7}
 /* 2027 오행 개운 배경화면 — 5종 중 택 1 */
 .covgrid--wall{grid-template-columns:repeat(5,1fr);gap:7px}
 .covbtn--wall .covbtn__img img{aspect-ratio:9/16}
@@ -4269,6 +4270,7 @@ function paintProduct(){
             <span class="covbtn__nm">${w.name}</span>
           </button>`).join('')}</div>
           <p class="covhint" id="pdWallNow">선택 · <b>${wallOf(wallElem).full}</b> — ${wallOf(wallElem).line}</p>
+          <p class="covhint covhint--guide">사주분석지나 만세력에서 나에게 부족한 오행(목·화·토·금·수)을 확인해 고르시거나, 직관적으로 끌리는 기운을 담으세요.</p>
         </div>` : ''}
 
         <ul class="pd__list">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>임시 확인 · 390px</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  html,body{margin:0;padding:0;background:#0d0918;overflow:hidden}
+  #phone{position:absolute;left:0;top:0;width:390px;height:844px;overflow:hidden}
+  #phone iframe{width:390px;height:844px;border:0;display:block}
+</style>
+</head>
+<body>
+<div id="phone"><iframe id="f" src="/store/#digital" scrolling="no"></iframe></div>
+<script>
+  /* 검증용 임시 페이지 — 390×844 뷰포트로 자사몰을 띄우고, 지정한 위치로만 스크롤한다.
+     상품을 담거나 주문하지 않는다. 확인이 끝나면 이 파일은 삭제한다. */
+  var f = document.getElementById('f');
+  var q = new URLSearchParams(location.search);
+  f.addEventListener('load', function(){
+    var d = f.contentDocument;
+    if(!d) return;
+    var target = q.get('to');
+    setTimeout(function(){
+      if(target === 'modal'){
+        try{ f.contentWindow.openProduct('wall-zodiac-minhwa'); }catch(e){}
+        return;
+      }
+      var el = target ? d.querySelector(target) : d.getElementById('digital');
+      if(el) el.scrollIntoView({block:'start'});
+      var off = Number(q.get('off') || 0);
+      if(off) f.contentWindow.scrollBy(0, off);
+    }, 900);
+  });
+</script>
+</body>
+</html>

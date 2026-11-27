@@ -625,6 +625,12 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 .stbl .idc{font-size:10.5px;color:var(--mut);margin-left:6px;font-weight:500}
 .stempty{padding:24px 18px;text-align:center;font-size:12.5px;line-height:1.8;color:var(--mut)}
 .stkpi--hint{font-size:11.5px;color:var(--mut);line-height:1.7;margin:-6px 0 16px}
+.stbl .utmdirect{display:inline-block;font-size:11px;font-weight:600;color:var(--mut);background:#F5F5F7;border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.stbl td.lft{text-align:left}
+.stbl td.lft .nm{max-width:190px}
+.stbl .utmsub{font-size:11px;color:var(--mut)}
+.sthint{margin:0;padding:2px 14px 16px;font-size:11.5px;line-height:1.85;color:var(--mut)}
+.sthint code{font-size:10.5px;background:#F6F4FA;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--acc);word-break:break-all}
 @media (max-width:560px){
   .stbl th,.stbl td{padding:8px 10px}
   .stbl .nm{max-width:150px}
@@ -770,7 +776,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     <!-- ================= 방문·클릭 통계 ================= -->
     <div id="viewStats" hidden>
       <section class="kpis" id="stKpis" aria-label="방문 요약"></section>
-      <p class="stkpi--hint" id="stHint">방문자·페이지뷰·상품 클릭은 자사몰(/store/ · /2027/ · /ziwei/ · /talisman/ · /saju/)에서 자동으로 쌓입니다. 날짜·월은 모두 한국 시간(KST) 기준입니다.</p>
+      <p class="stkpi--hint" id="stHint">방문자·페이지뷰·상품 클릭은 자사몰(/store/ · /2027/ · /ziwei/ · /talisman/ · /saju/)에서 자동으로 쌓입니다. 날짜·월은 모두 한국 시간(KST) 기준이며, 링크에 UTM 을 붙이면 어느 채널에서 왔는지까지 잡힙니다.</p>
 
       <section class="panel" aria-label="일별 방문·클릭">
         <div class="panel__head">
@@ -813,6 +819,19 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
             <tbody><tr><td colspan="4" class="stempty">불러오는 중…</td></tr></tbody>
           </table>
         </div>
+      </section>
+
+      <section class="panel" aria-label="유입 경로 UTM 채널별 통계">
+        <div class="panel__head">
+          <div class="stpanel__title">유입 경로 (UTM) · 채널별 통계 <span>매체·유형·캠페인별 · KST 전체 기간</span></div>
+        </div>
+        <div class="stscroll">
+          <table class="stbl" id="stUtm">
+            <thead><tr><th>유입 매체</th><th>유형</th><th>캠페인</th><th>순방문자</th><th>페이지뷰</th><th>상품클릭</th><th>담기</th><th>결제시도</th></tr></thead>
+            <tbody><tr><td colspan="8" class="stempty">불러오는 중…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="sthint">인스타·블로그·카톡·문자에 링크를 올릴 때 <code>?utm_source=instagram&amp;utm_medium=social&amp;utm_campaign=2027newyear</code> 처럼 붙이면 그 채널로 묶여 집계됩니다. 태그 없이 들어온 방문·검색 유입은 <b>직접 접속</b>으로 표시됩니다.</p>
       </section>
     </div>
 
@@ -1826,8 +1845,8 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
   }
 
   /* ============================================================
-     방문·클릭 통계 (Supabase site_events · KST 집계 뷰 3종)
-     - site_stats_daily / site_stats_monthly / site_stats_products
+     방문·클릭 통계 (Supabase site_events · KST 집계 뷰 4종)
+     - site_stats_daily / site_stats_monthly / site_stats_products / site_stats_utm
      - anon 은 INSERT 만, 로그인한 관리자(authenticated)만 SELECT
      ============================================================ */
   const ST_NAMES = {
@@ -1857,7 +1876,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     return `<td class="num${n === 0 ? ' zero' : ''}${cls ? ' ' + cls : ''}">${n.toLocaleString('ko-KR')}</td>`;
   };
 
-  let stData = { daily: [], monthly: [], products: [] };
+  let stData = { daily: [], monthly: [], products: [], utm: [] };
   let stBusy = false;
 
   function stFlagGet(k) { try { return localStorage.getItem(k) === '1'; } catch (e) { return false; } }
@@ -1941,6 +1960,26 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       ? plist.map(r => `<tr><td><div class="nm">${esc(stProductName(r))}</div><div class="idc">${esc(r.product_id || '')}</div></td>` +
           stNum(r.views) + stNum(r.cart_adds) + stNum(r.checkouts) + '</tr>').join('')
       : stEmptyRows(4, '아직 상품 클릭이 없습니다.<br>상품 상세를 열거나 담으면 여기에 쌓입니다.');
+
+    /* --- 유입 경로 (UTM · 매체·유형·캠페인별) --- */
+    const ulist = stData.utm.slice().sort((a, b) =>
+      (Number(b.uv) || 0) - (Number(a.uv) || 0) ||
+      (Number(b.pv) || 0) - (Number(a.pv) || 0) ||
+      (Number(b.checkouts) || 0) - (Number(a.checkouts) || 0));
+    $('#stUtm tbody').innerHTML = ulist.length
+      ? ulist.map(r => {
+          const src = r.utm_source || '', med = r.utm_medium || '', cmp = r.utm_campaign || '';
+          const none = !src && !med && !cmp;
+          const srcCell = none
+            ? '<span class="utmdirect">직접 접속 · 유입 없음</span>'
+            : (src ? esc(src) : '<span class="utmsub">(매체 미지정)</span>');
+          return '<tr class="' + (none ? 'utm-none' : '') + '">' +
+            `<td class="lft"><div class="nm">${srcCell}</div></td>` +
+            `<td class="lft utmsub">${med ? esc(med) : '—'}</td>` +
+            `<td class="lft utmsub">${cmp ? esc(cmp) : '—'}</td>` +
+            stNum(r.uv) + stNum(r.pv) + stNum(r.product_clicks) + stNum(r.cart_adds) + stNum(r.checkouts) + '</tr>';
+        }).join('')
+      : stEmptyRows(8, '아직 채널이 잡힌 방문이 없습니다.<br>인스타·블로그 링크에 UTM 을 붙여 들어오면 여기에 채널별로 쌓입니다.');
   }
 
   async function stLoad(silent) {
@@ -1949,6 +1988,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       $('#stDaily tbody').innerHTML = stEmptyRows(6, '이 브라우저는 서버(Supabase)에 연결되지 않아 통계를 볼 수 없습니다.');
       $('#stMonthly tbody').innerHTML = stEmptyRows(6, '—');
       $('#stProducts tbody').innerHTML = stEmptyRows(4, '—');
+      $('#stUtm tbody').innerHTML = stEmptyRows(8, '—');
       return;
     }
     if (stBusy) return;
@@ -1956,14 +1996,16 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     const btn = $('#stReload');
     if (btn) btn.disabled = true;
     try {
-      const [daily, monthly, products] = await Promise.all([
+      const [daily, monthly, products, utm] = await Promise.all([
         JWDOrders.rest('site_stats_daily?select=*&order=day.desc&limit=90'),
         JWDOrders.rest('site_stats_monthly?select=*&order=month.desc&limit=24'),
         JWDOrders.rest('site_stats_products?select=*'),
+        JWDOrders.rest('site_stats_utm?select=*'),
       ]);
       stData.daily = Array.isArray(daily) ? daily : [];
       stData.monthly = Array.isArray(monthly) ? monthly : [];
       stData.products = Array.isArray(products) ? products : [];
+      stData.utm = Array.isArray(utm) ? utm : [];
       renderStats();
       $('#stUpdated').textContent = '업데이트 ' + fmtDT(new Date().toISOString());
     } catch (e) {
@@ -1977,6 +2019,8 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       if (!silent) toast('방문 통계를 불러오지 못했습니다');
       const tb = $('#stDaily tbody');
       if (tb) tb.innerHTML = stEmptyRows(6, '통계를 불러오지 못했습니다. 잠시 후 새로고침을 눌러 주세요.');
+      const ub = $('#stUtm tbody');
+      if (ub) ub.innerHTML = stEmptyRows(8, '—');
     } finally {
       stBusy = false;
       if (btn) btn.disabled = false;

@@ -701,6 +701,14 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
 .relcard__nm{display:block;padding:0 9px;font-size:11.5px;line-height:1.45;color:#EDE6FA;word-break:keep-all}
 .relcard__pr{display:block;padding:0 9px 10px;font-family:var(--serif);font-size:12.5px;color:var(--gold)}
 @media (max-width:640px){.pd__relgrid{grid-template-columns:repeat(2,1fr)}}
+/* 다운로드 모달 — 파일 한 줄 */
+.dlfile{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid rgba(216,192,255,.13)}
+.dlfile:last-child{border-bottom:0}
+.dlfile__txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px}
+.dlfile__nm{font-size:13px;line-height:1.5;color:#EDE6FA;word-break:keep-all}
+.dlfile__note{font-size:11.5px;line-height:1.5;color:var(--mut)}
+.dlfile__btn{flex:0 0 auto;padding:10px 20px;font-size:13px;white-space:nowrap}
+@media (max-width:520px){.dlfile{gap:10px}.dlfile__btn{padding:9px 14px;font-size:12.5px}}
 /* 디지털 굿즈 이용 안내(다운로드·저작권) — 문구는 토씨까지 그대로 노출 */
 .legal{border:1px solid rgba(242,216,155,.26);background:rgba(242,216,155,.05);border-radius:12px;padding:14px 16px;margin-top:14px}
 .legal+.legal{margin-top:10px}
@@ -3142,7 +3150,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <span class="fcard__cat">Goodnotes &amp; Notability · A4 PDF 16페이지</span>
         <h3 class="fcard__name" data-open="diary-basic" data-open-diary>2027 사주 개운 다이어리</h3>
         <p class="fcard__lines">365일을 내 사주로 관리하는 다이어리 — 일진·손 없는 날·절기까지 한 장에</p>
-        <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b> · 표지 3종 중 택 1</p>
+        <p class="fcard__spec">A4 가로 16페이지 · 1~12월 일진 · 스티커 24종 + 개별 PNG · <b>기본형 ~ 프리미엄 맞춤 일진</b> · 표지 3종 중 택 1<br><b>기본형은 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
           <div class="fcard__price">
             <div class="opt" role="group" aria-label="옵션 선택">
@@ -3183,7 +3191,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <span class="fcard__cat">9:16 고화질 PNG · 오행 5종 중 택 1</span>
         <h3 class="fcard__name" data-open="wall-ohaeng">2027 오행 개운 배경화면</h3>
         <p class="fcard__lines">하루에 수십 번 여는 잠금화면·홈화면에<br>내 사주에 부족한 오행 기운을<br>제일 예쁘게 채우는 방법</p>
-        <p class="fcard__spec">목·화·토·금·수 5종 중 1종 · 941×1672 PNG · <b>입금·결제 확인 즉시 메일 발송</b></p>
+        <p class="fcard__spec">목·화·토·금·수 5종 중 1종 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
           <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
           <button class="addbtn" data-add-wall>담기</button>
@@ -3216,7 +3224,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <span class="fcard__cat">9:16 고화질 PNG · 12띠 중 택 1</span>
         <h3 class="fcard__name" data-open="wall-zodiac-minhwa">2027 12지신 민화 배경화면</h3>
         <p class="fcard__lines">하루에 수십 번 여는 잠금화면에<br>내 띠의 동물이 나비를 쫓는<br>민화 한 장을</p>
-        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 중 1종 · 941×1672 PNG · <b>입금·결제 확인 즉시 메일 발송</b></p>
+        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 중 1종 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
           <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
           <button class="addbtn" data-add-wall="wall-zodiac-minhwa">담기</button>
@@ -3256,7 +3264,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <span class="fcard__cat">9:16 고화질 PNG · 12띠 중 택 1</span>
         <h3 class="fcard__name" data-open="wall-zodiac-night">2027 달빛 12지신 배경화면</h3>
         <p class="fcard__lines">초승달이 뜬 밤, 들꽃밭에 앉은<br>내 띠의 동물과 빛나는 나비를<br>한 장에</p>
-        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 중 1종 · 941×1672 PNG · <b>입금·결제 확인 즉시 메일 발송</b></p>
+        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 중 1종 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
           <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
           <button class="addbtn" data-add-wall="wall-zodiac-night">담기</button>
@@ -5687,12 +5695,12 @@ function dlFormHTML(pre){
 }
 function dlResultHTML(o){
   const files = (o.files || []).map(f => `
-    <div class="citem" style="align-items:center">
-      <div style="flex:1;min-width:0">
-        <div class="citem__name">${f.label}</div>
-        <div class="citem__opt">${f.note || 'PNG 원본 · 9:16 (941×1672)'}</div>
+    <div class="dlfile">
+      <div class="dlfile__txt">
+        <span class="dlfile__nm">${f.label}</span>
+        <span class="dlfile__note">${f.note || 'PNG 원본 · 9:16 (941×1672)'}</span>
       </div>
-      <button class="btn btn--gold" type="button" data-dl-file="${f.key}" style="white-space:nowrap">다운로드</button>
+      <button class="btn btn--gold dlfile__btn" type="button" data-dl-file="${f.key}">다운로드</button>
     </div>`).join('');
   return `<div class="fgroup" style="margin-bottom:12px">
     <div class="fgroup__title"><i></i>${o.id}</div>

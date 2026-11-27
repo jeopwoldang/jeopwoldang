@@ -53,7 +53,8 @@
     'date-pick': '개업·이사·결혼·계약 정통 길일 택일',
     'tal-wish': '기원부적 (인쇄용 PDF)',
     'tal-custom': '나만의 부적 (사주 맞춤)',
-    'wall-ohaeng': '2027 오행 개운 스마트폰 배경화면'
+    'wall-ohaeng': '2027 오행 개운 스마트폰 배경화면',
+    'wall-zodiac-minhwa': '2027 나비 쫓는 12지신 민화 스마트폰 배경화면'
   };
 
   function ls(fn) { try { return fn(localStorage); } catch (e) { return null; } }

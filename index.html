@@ -866,12 +866,18 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
    상세 모달을 연 상태에서도 상단 헤더(햄버거 메뉴)를 쓸 수 있도록
    모달은 헤더 아래에서 열립니다(헤더 z-index 50 > 오버레이 45). */
 .ov{
-  position:fixed;left:0;right:0;bottom:0;top:var(--hnav);z-index:45;display:none;
+  /* --ovtop: 오버레이를 열 때 JS가 재는 '실제 헤더 아래끝'(상단 안내띠까지 포함).
+     --hnav 는 스티키 오프셋이라 페이지 맨 위(안내띠가 보일 때)에는 그보다 아래에서 시작해야 한다. */
+  position:fixed;left:0;right:0;bottom:0;top:var(--ovtop, var(--hnav));z-index:45;display:none;
   background:rgba(11,6,26,.66);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   padding:24px;
 }
 .ov.is-open{display:grid;place-items:center}
+/* 장바구니 서랍은 오버레이 박스(=헤더 아래 ~ 화면 끝)를 그대로 채운다.
+   오버레이가 위치 기준이므로 top:0/bottom:0 으로 두고 높이는 auto — 높이를 따로 주면
+   헤더 높이만큼 두 번 밀려 아래쪽(합계·주문 버튼)이 화면 밖으로 잘린다. */
+#cartOverlay{padding:0}
 .sheet{
   display:flex;flex-direction:column;width:min(960px,100%);max-height:min(88vh,880px);
   background:
@@ -881,7 +887,7 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
   box-shadow:0 60px 130px -50px rgba(0,0,0,.98), 0 0 0 1px rgba(255,255,255,.025), inset 0 1px 0 rgba(242,216,155,.1);
 }
 .sheet--right{
-  position:fixed;right:0;top:var(--hnav);bottom:0;height:calc(100% - var(--hnav));width:min(440px,100%);
+  position:absolute;right:0;top:0;bottom:0;height:auto;width:min(440px,100%);
   max-height:none;border-radius:22px 0 0 22px;border-right:0;
 }
 .sheet__head{
@@ -895,7 +901,7 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
   transition:background .2s,color .2s,border-color .2s;
 }
 .sheet__close:hover{background:rgba(242,216,155,.14);color:#FBEFD0;border-color:rgba(242,216,155,.5)}
-.sheet__body{padding:24px 22px;overflow-y:auto;flex:1;overscroll-behavior:contain}
+.sheet__body{padding:24px 22px;overflow-y:auto;flex:1 1 auto;min-height:0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .sheet__foot{padding:16px 22px 20px;border-top:1px solid rgba(242,216,155,.14);background:rgba(255,255,255,.022);flex-shrink:0}
 
 /* 상품 상세 */
@@ -1002,6 +1008,40 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
 .empty{text-align:center;padding:60px 10px}
 .empty p{font-family:var(--serif);font-size:17px;color:#FBF7FF}
 .empty span{display:block;margin-top:8px;font-size:12.5px;color:var(--mut)}
+/* 장바구니: 안내 전문은 목록과 함께 스크롤되는 접이식 박스에 둔다(하단 고정 푸터는 합계·주문 버튼만) */
+.cartnote{margin-top:16px}
+.cartnote details{border:1px solid rgba(216,192,255,.22);border-radius:12px;background:rgba(255,255,255,.03)}
+.cartnote summary{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;
+  padding:12px 14px;font-size:12px;line-height:1.5;color:#E6D9FF;list-style:none;
+}
+.cartnote summary::-webkit-details-marker{display:none}
+.cartnote summary b{font-weight:500;color:#F0E6FF}
+.cartnote summary .cartnote__more{font-size:11px;color:var(--gold);white-space:nowrap}
+.cartnote details[open] summary .cartnote__more{font-size:0}
+.cartnote details[open] summary .cartnote__more::after{content:"접기";font-size:11px;color:var(--gold)}
+.cartnote__in{padding:0 12px 12px}
+.cartnote .paydl{margin-top:2px}
+.cartnote .legal{font-size:11.5px}
+.cartnote .legal__body{font-size:11.5px;line-height:1.8}
+/* 하단 고정 푸터: 합계 + 한 줄 요약 + 주문 버튼 (넘치는 안내문구는 위 접이식 박스로) */
+.cartfoot__line{margin:0 0 12px;font-size:11px;line-height:1.6;color:var(--mut);letter-spacing:-.01em}
+#cartFoot{max-height:56dvh;overflow-y:auto;overscroll-behavior:contain}
+
+/* 배경화면 여러 장 담기 — 슬롯(1번째·2번째…)을 눌러 장마다 그림을 고른다 */
+.wallslots{display:flex;gap:6px;margin:0 0 12px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.wallslots::-webkit-scrollbar{display:none}
+.wallslot{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
+  padding:7px 11px;border-radius:999px;border:1px solid rgba(216,192,255,.26);
+  background:rgba(255,255,255,.05);color:#CBBDE7;font-size:11.5px;white-space:nowrap;
+  transition:background .18s,border-color .18s,color .18s;
+}
+.wallslot__n{font-size:10.5px;letter-spacing:.02em;opacity:.8}
+.wallslot b{font-family:var(--serif);font-size:13px;color:#EFE7FA;font-weight:600}
+.wallslot[aria-pressed="true"]{background:linear-gradient(135deg,rgba(252,237,203,.22),rgba(140,100,220,.2));border-color:rgba(242,216,155,.8);color:#F6E3B8}
+.wallslot[aria-pressed="true"] b{color:#F2D89B}
+.wallview__slot{display:inline-block;margin:0 0 6px;padding:2px 8px;border-radius:999px;background:rgba(242,216,155,.16);border:1px solid rgba(242,216,155,.45);font-size:10.5px!important;color:#F2D89B!important;letter-spacing:.02em}
 
 /* 약관 */
 .tabs{display:flex;gap:4px;padding:0 22px;border-bottom:1px solid rgba(216,192,255,.16);flex-shrink:0;overflow-x:auto;background:rgba(255,255,255,.02)}
@@ -1358,8 +1398,8 @@ body:has(#doneView.is-open) .toast{bottom:112px}
   .biz .row--contact .sep{display:none}
   .copy{font-size:10px}
   .ov{padding:0}
-  .sheet{width:100%;max-height:calc(100dvh - var(--hnav));height:calc(100dvh - var(--hnav));border-radius:0;border:0}
-  .sheet--right{width:100%;border-radius:0}
+  .sheet{width:100%;max-height:calc(100dvh - var(--ovtop, var(--hnav)));height:calc(100dvh - var(--ovtop, var(--hnav)));border-radius:0;border:0}
+  .sheet--right{width:100%;border-radius:0;height:auto;max-height:none}
   .sheet__body{padding:20px 18px}
   .pd__name{font-size:22px}
   .pd__price b{font-size:24px}
@@ -4587,7 +4627,17 @@ function setCover(cover){
 function setWall(key, pid='wall-ohaeng'){
   if(!isElemOf(pid, key)) return;
   const st = setOf(pid), w = wallOf(key, pid);
+  const pr = byId(pid);
   setPick(pid, w.key);
+  /* 2장 이상 담는 중이면 지금 슬롯의 그림만 바꾸고 목록·미리보기를 그 자리에서 갱신 */
+  if(pr && pr.type === 'wall' && pdId === pid && pdQty >= 2 && $('#pdOverlay').classList.contains('is-open')){
+    ensureWallSlots(pid, pdQty);
+    wallSlots[wallSlot] = w.key;
+    paintWallPicker();
+    const nowSlot = $(st.now);
+    if(nowSlot) nowSlot.innerHTML = `선택 · <b>${w.full}</b> — ${w.tag}`;
+    return;
+  }
   $$(`[data-card="${st.card}"] [data-wall-pick]`).forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.wallPick === w.key)));
   const now = $(st.now);
@@ -4891,35 +4941,89 @@ function renderCart(){
     </div>`;
   }).join('');
   const hasDl = cart.some(l => isDownloadable(byId(l.id)));
+  /* 안내 전문은 상품 목록과 함께 스크롤되는 접이식 박스에 둔다(모바일에서 상품 목록을 덮지 않게) */
+  body.innerHTML += `
+    <div class="cartnote">
+      <details>
+        <summary><b>${hasDl ? '📥 다운로드 안내 · ⚠️ 이용 제한 안내' : '📦 발송 안내'}</b><span class="cartnote__more">전문 보기</span></summary>
+        <div class="cartnote__in">
+          <p class="cartfoot__line">배송비 없음 · 배경화면·다이어리 기본형은 페이앱 결제 후 사이트에서 바로 다운로드, 그 밖의 상품은 이메일로 발송됩니다.</p>
+          ${hasDl ? payNoticeHTML() + legalAllHTML() : ''}
+        </div>
+      </details>
+    </div>`;
+  /* 하단 고정 푸터 — 합계·한 줄 요약·주문 버튼만 */
   foot.innerHTML = `
     <div class="sum"><span>Total</span><b>${won(cartTotal())}</b></div>
-    <p style="font-size:11px;color:var(--mut);margin:0 0 14px">배송비 없음 · 배경화면·다이어리 기본형은 페이앱 결제 후 사이트에서 바로 다운로드, 그 밖의 상품은 이메일로 발송됩니다.</p>
-    ${hasDl ? payNoticeHTML() + legalAllHTML() : ''}
+    <p class="cartfoot__line">${hasDl ? '배송비 없음 · 페이앱 결제 시 3일·10회 즉시 다운로드' : '배송비 없음 · 결제 후 이메일로 발송'}</p>
     <button class="btn btn--gold btn--block" id="goCheckout">주문서 작성하기</button>`;
 }
 
-/* 배경화면 상세 — 오행 5종 / 12지신 민화·달빛 12종 중 1종 선택 */
+/* 배경화면 상세 — 오행 5종 / 12지신 민화·달빛·수채화 12종 선택
+   1장이면 1종을 고르고, 2장 이상이면 슬롯(1번째·2번째…)마다 따로 고른다. */
+function ensureWallSlots(pid, n){
+  if(!Array.isArray(wallSlots)) wallSlots = [];
+  const cur = pickOf(pid);
+  for(let i = 0; i < n; i++) if(!isElemOf(pid, wallSlots[i])) wallSlots[i] = cur;
+  wallSlots.length = n;
+  wallSlot = Math.max(0, Math.min(n - 1, wallSlot | 0));
+  return wallSlots;
+}
 function wallPicker(p){
   const st = setOf(p.id);
   const items = elemsOf(p.id);
-  const cur = wallOf(pickOf(p.id), p.id);
-  return `<div class="pd__wall">
-          <span class="pd__walllab">${st.pick}</span>
+  const multi = pdQty >= 2;
+  const slots = multi ? ensureWallSlots(p.id, pdQty) : [pickOf(p.id)];
+  const idx = multi ? wallSlot : 0;
+  const curKey = slots[idx] || pickOf(p.id);
+  const cur = wallOf(curKey, p.id);
+  const slotsHTML = multi ? `<div class="wallslots" role="tablist" aria-label="${st.word} 선택 순서">
+            ${slots.map((k, i) => { const w = wallOf(k, p.id); return `<button type="button" class="wallslot" role="tab" data-slot="${i}" aria-selected="${i === idx}" aria-pressed="${i === idx}" aria-label="${i + 1}번째 ${st.word} 선택">
+              <span class="wallslot__n">${i + 1}번째</span><b>${w.name}</b></button>`; }).join('')}
+          </div>` : '';
+  return `<div class="pd__wall" id="pdWall">
+          <span class="pd__walllab">${multi ? `${st.word} ${pdQty}장 선택 — 슬롯을 누른 뒤 그림을 고르세요` : st.pick}</span>
+          ${slotsHTML}
           <div class="wallview">
             <div class="wallview__img"><img id="wallViewImg" src="${cur.img}" alt="${cur.full} ${st.word} 배경화면 미리보기" loading="lazy"></div>
             <div class="wallview__txt">
+              ${multi ? `<span class="wallview__slot">${idx + 1}번째 장</span>` : ''}
               <b id="wallViewName">${cur.full}</b>
               <span id="wallViewTag">${cur.tag}</span>
               <em id="wallViewDesc">${cur.desc}</em>
             </div>
           </div>
-          <div class="covgrid ${st.grid === 'zodiac' ? 'covgrid--zodiac' : 'covgrid--wall'}" style="margin-top:12px">${items.map(w => `<button type="button" class="covbtn ${st.grid === 'zodiac' ? 'covbtn--zodiac' : 'covbtn--wall'}" data-wall="${w.key}" aria-pressed="${pickOf(p.id) === w.key}" aria-label="${w.full} 배경화면 선택">
+          <div class="covgrid ${st.grid === 'zodiac' ? 'covgrid--zodiac' : 'covgrid--wall'}" style="margin-top:12px">${items.map(w => `<button type="button" class="covbtn ${st.grid === 'zodiac' ? 'covbtn--zodiac' : 'covbtn--wall'}" data-wall="${w.key}" aria-pressed="${curKey === w.key}" aria-label="${w.full} 배경화면 선택">
             <span class="covbtn__img"><img src="${w.sm}" alt="${w.full} 미리보기" loading="lazy"></span>
             <span class="covbtn__nm">${w.name}</span>
           </button>`).join('')}</div>
-          <p class="covhint" id="pdWallNow">선택 · <b>${cur.full}</b> — ${cur.line}</p>
-          <p class="covhint covhint--guide">${st.guide}</p>
+          <p class="covhint" id="pdWallNow">${multi ? `${idx + 1}번째 장 · ` : '선택 · '}<b>${cur.full}</b> — ${cur.line}</p>
+          <p class="covhint covhint--guide">${st.guide}${multi ? ' 여러 장을 담으면 그림마다 따로 담기고, 같은 그림을 고른 장은 수량으로 합쳐집니다.' : ''}</p>
         </div>`;
+}
+/* 슬롯·미리보기만 다시 그린다(스크롤 위치 유지) */
+function paintWallPicker(){
+  const box = $('#pdWall'); if(!box) return;
+  const p = byId(pdId); if(!p) return;
+  const sc = box.closest('.sheet__body'), top = sc ? sc.scrollTop : 0;
+  box.outerHTML = wallPicker(p);
+  if(sc) sc.scrollTop = top;
+}
+/* 고른 배경화면 장들을 한 번에 담는다 — 같은 그림은 수량으로 합치고 다른 그림은 줄을 나눈다 */
+function addWallSelection(pid){
+  const p = byId(pid); if(!p) return;
+  const keys = (pdQty >= 2 ? ensureWallSlots(pid, pdQty) : [pickOf(pid)]).slice();
+  const counts = new Map();
+  keys.forEach(k => { const key = isElemOf(pid, k) ? k : elemsOf(pid)[0].key; counts.set(key, (counts.get(key) || 0) + 1); });
+  try{ JWDTRACK.add(pid); }catch(e){}
+  counts.forEach((n, k) => {
+    const line = cart.find(l => l.id === pid && (l.elem || '') === k);
+    if(line) line.qty = Math.min(9, line.qty + n);
+    else cart.push({ id: pid, qty: n, elem: k });
+  });
+  saveCart(); renderCart(); updateCount();
+  const names = [...counts.entries()].map(([k, n]) => `${wallLabel(k)}${n > 1 ? ` ${n}장` : ''}`).join(', ');
+  toast(`배경화면 ${names} ${keys.length}장을 장바구니에 담았습니다`);
 }
 
 /* ---------- 다른 상품 둘러보기 (상세 모달 하단 · 최대 4개) ---------- */
@@ -4968,15 +5072,20 @@ function relatedHTML(id){
 
 /* ---------- 상품 상세 ---------- */
 let pdQty = 1, pdId = null;
+/* 배경화면 여러 장 담기 — 슬롯별 선택 그림(키)과 지금 고치는 슬롯 번호 */
+let wallSlots = [], wallSlot = 0;
 function openProduct(id){
   const p = byId(id); if(!p) return;
   try{ JWDTRACK.view(id); }catch(e){}          /* 방문 통계: 상품 상세 클릭 */
   const tk = tierKind(id);
   pdId = id;
   pdQty = tk ? Math.max(1, Object.values(TIER_IDS[tk]).indexOf(id) + 1) : 1;
+  wallSlots = []; wallSlot = 0;
   REVIEW.showAll = false;
   paintProduct();
   openOverlay('#pdOverlay');
+  /* 다른 상품(다른 상품 둘러보기·카드)에서 넘어왔을 때도 새 상품 맨 위부터 보이게 */
+  const pdScroll = $('#pdBody'); if(pdScroll) pdScroll.scrollTop = 0;
 }
 function paintProduct(){
   const p = byId(pdId); if(!p) return;
@@ -5032,7 +5141,15 @@ function paintProduct(){
 }
 
 /* ---------- 오버레이 ---------- */
-function openOverlay(sel){ closeAll(); $(sel).classList.add('is-open'); document.body.classList.add('lock'); }
+function openOverlay(sel){
+  closeAll();
+  document.body.classList.add('lock');
+  /* 헤더(상단 안내띠 포함)의 실제 아래끝을 재서 오버레이를 그 아래부터 연다 */
+  const hdr = document.querySelector('.hdr');
+  const top = hdr ? Math.max(0, Math.round(hdr.getBoundingClientRect().bottom)) : 0;
+  document.documentElement.style.setProperty('--ovtop', top + 'px');
+  $(sel).classList.add('is-open');
+}
 function closeAll(){
   $$('.ov').forEach(o => o.classList.remove('is-open'));
   document.body.classList.remove('lock');
@@ -5043,7 +5160,7 @@ function openCart(){ renderCart(); openOverlay('#cartOverlay'); }
 
 /* ---------- 클릭 위임 ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-add-wall],[data-wall],[data-wall-pick],[data-elem-line],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line]');
+  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-add-wall],[data-wall],[data-wall-pick],[data-slot],[data-elem-line],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line]');
   if(!t) return;
 
   if(t.dataset.person && t.dataset.line){ switchPersons(t.dataset.person, Number(t.dataset.n), t.dataset.line); return; }
@@ -5052,6 +5169,7 @@ document.addEventListener('click', e => {
   if(t.dataset.goto !== undefined){ goSlide(Number(t.dataset.goto), true); return; }
   if(t.dataset.coverLine){ switchCover(t.dataset.coverLine, t.dataset.cover); return; }
   if(t.dataset.cover){ setCover(t.dataset.cover); return; }
+  if(t.dataset.slot !== undefined){ wallSlot = Number(t.dataset.slot) || 0; paintWallPicker(); return; }
   if(t.dataset.wallPick){ const pid = t.dataset.pickFor || 'wall-ohaeng'; setWall(t.dataset.wallPick, pid); openProduct(pid); return; }
   if(t.dataset.wall){ setWall(t.dataset.wall, pdId || 'wall-ohaeng'); return; }
   if(t.dataset.elemLine){ switchElem(t.dataset.elemLine, t.dataset.elem); return; }
@@ -5097,7 +5215,11 @@ document.addEventListener('click', e => {
       pdId = TIER_IDS[tk][pdQty];          // 1 → 1인 상품, 2 → 2인 상품
       setPersons(tk, pdQty);               // 슬라이드 카드의 1인/2인 토글도 맞춰 줌
     }
+    const pdNow = byId(pdId);
+    if(pdNow && pdNow.type === 'wall') ensureWallSlots(pdId, pdQty);   // 장마다 고를 슬롯 확보
+    const pdScroll = $('#pdBody'), keepTop = pdScroll ? pdScroll.scrollTop : 0;
     paintProduct();
+    if(pdScroll) pdScroll.scrollTop = keepTop;   // 수량을 바꿔도 보던 위치 유지
     return;
   }
   if(t.dataset.addSaju !== undefined){
@@ -5120,7 +5242,7 @@ document.addEventListener('click', e => {
   if(t.id === 'pdAdd'){
     const tk = tierKind(pdId);
     const cur = byId(pdId);
-    if(cur && cur.type === 'wall') addToCart(pdId, pdQty, null, pickOf(pdId));
+    if(cur && cur.type === 'wall') addWallSelection(pdId);   // 장마다 고른 그림을 그대로 담는다
     else addToCart(pdId, tk ? 1 : pdQty);   // 1·2인은 각각 별도 상품(39,800/70,000)으로 담김
     closeAll(); openCart(); return;
   }

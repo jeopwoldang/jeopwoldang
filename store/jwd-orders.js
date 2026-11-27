@@ -9,7 +9,9 @@
    ▶ Supabase 모드
      - 테이블: public.orders
        (id, created_at, status, history, is_test, items, total_amount,
-        payment_method, customer, births, memo, agreed)
+        payment_method, customer, births, memo, agreed,
+        pay_state, paid_at, download_token, download_expires_at,
+        download_max_count, download_count)
      - 주문 생성(손님, anon): POST /rest/v1/orders  · Prefer: return=minimal
        (anon 롤은 INSERT 만 허용 — SELECT 불가이므로 return=minimal 필수)
      - 조회/수정/삭제(관리자, authenticated): Authorization: Bearer <access_token>
@@ -23,7 +25,7 @@ window.JWD_CFG = {
   API_URL: '',                    // (예비) 커스텀 REST API 주소
   ORDERS_KEY: 'jwd_orders_v1',    // localStorage 키 (관리자센터와 공유)
   SESSION_KEY: 'jwd_sb_session',  // Supabase Auth 세션 저장 키
-  STATUSES: ['입금대기', '입금확인', '제작·분석중', '발송완료', '취소·환불'],
+  STATUSES: ['입금대기', '결제완료', '입금확인', '제작·분석중', '발송완료', '취소·환불'],
 };
 
 window.JWDOrders = (function () {
@@ -128,6 +130,13 @@ window.JWDOrders = (function () {
       agreed: o.agree !== false && o.agreed !== false,
     };
     if (o.orderedAt || o.created_at) row.created_at = o.orderedAt || o.created_at;
+    /* 디지털 굿즈 3일 다운로드 (값이 있을 때만 실어 보냄) */
+    if (o.pay_state !== undefined) row.pay_state = o.pay_state;
+    if (o.paid_at !== undefined) row.paid_at = o.paid_at;
+    if (o.download_token !== undefined) row.download_token = o.download_token;
+    if (o.download_expires_at !== undefined) row.download_expires_at = o.download_expires_at;
+    if (o.download_max_count !== undefined) row.download_max_count = Number(o.download_max_count) || 10;
+    if (o.download_count !== undefined) row.download_count = Number(o.download_count) || 0;
     return row;
   }
   function fromRow(r) {
@@ -150,6 +159,12 @@ window.JWDOrders = (function () {
       memo: r.memo || '',
       source: 'server',
       agree: r.agreed !== false,
+      payState: r.pay_state == null ? null : Number(r.pay_state),
+      paidAt: r.paid_at || null,
+      downloadToken: r.download_token || '',
+      downloadExpiresAt: r.download_expires_at || null,
+      downloadMax: r.download_max_count == null ? 10 : Number(r.download_max_count),
+      downloadCount: r.download_count == null ? 0 : Number(r.download_count),
     };
   }
 
@@ -267,6 +282,12 @@ window.JWDOrders = (function () {
         if (fields.total !== undefined) row.total_amount = Number(fields.total) || 0;
         if (fields.payMethod !== undefined) row.payment_method = fields.payMethod;
         if (fields.agree !== undefined) row.agreed = !!fields.agree;
+        if (fields.payState !== undefined) row.pay_state = fields.payState;
+        if (fields.paidAt !== undefined) row.paid_at = fields.paidAt;
+        if (fields.downloadToken !== undefined) row.download_token = fields.downloadToken;
+        if (fields.downloadExpiresAt !== undefined) row.download_expires_at = fields.downloadExpiresAt;
+        if (fields.downloadMax !== undefined) row.download_max_count = Number(fields.downloadMax) || 10;
+        if (fields.downloadCount !== undefined) row.download_count = Number(fields.downloadCount) || 0;
         await sbFetch('orders?id=eq.' + encodeURIComponent(id), {
           method: 'PATCH',
           headers: { Prefer: 'return=minimal' },

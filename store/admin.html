@@ -920,6 +920,17 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
             <div class="hist" id="dtHistory"></div>
           </section>
 
+          <section class="ds ds--dl" id="dtDownload" hidden>
+            <div class="ds__h">
+              <h3>디지털 굿즈 3일 다운로드</h3>
+              <span class="sp"></span>
+              <button class="mini" type="button" id="btnDlCopy">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>링크 복사
+              </button>
+            </div>
+            <div id="dtDlBody"></div>
+          </section>
+
           <section class="ds ds--cust">
             <div class="ds__h">
               <h3>고객 정보</h3>
@@ -1012,10 +1023,49 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     get API_URL() { return (window.JWD_CFG && window.JWD_CFG.API_URL) || ''; },
     get SB_URL() { return (window.JWD_CFG && window.JWD_CFG.SUPABASE_URL) || ''; },
   };
-  const STATUSES = ['입금대기', '입금확인', '제작·분석중', '발송완료', '취소·환불'];
-  const ST_CLASS = { '입금대기': 'st--wait', '입금확인': 'st--paid', '제작·분석중': 'st--making', '발송완료': 'st--sent', '취소·환불': 'st--cancel' };
-  const DONE_SET = ['입금확인', '제작·분석중', '발송완료'];
+  const STATUSES = ['입금대기', '결제완료', '입금확인', '제작·분석중', '발송완료', '취소·환불'];
+  const ST_CLASS = { '입금대기': 'st--wait', '결제완료': 'st--paid', '입금확인': 'st--paid', '제작·분석중': 'st--making', '발송완료': 'st--sent', '취소·환불': 'st--cancel' };
+  const DONE_SET = ['결제완료', '입금확인', '제작·분석중', '발송완료'];
   const KAKAO = 'https://pf.kakao.com/_ubiBX';
+
+  /* ============================================================
+     디지털 굿즈 3일 다운로드 (결제·입금 확인 시 자동 발급)
+     - 기성 파일 5종만 즉시 다운로드 대상. 맞춤형(원국·프리미엄 등)은 이메일 발송.
+     ============================================================ */
+  const DL_GOODS = ['wall-ohaeng', 'wall-zodiac-minhwa', 'wall-zodiac-night', 'wall-zodiac-watercolor', 'diary-basic'];
+  const DL_DAYS = 3, DL_MAX = 10;
+  const DL_STORE = 'https://jeopwoldang.com/store/';
+  const hasDlGoods = o => (o.items || []).some(i => DL_GOODS.includes(i.id));
+  const dlToken = () => {
+    const a = new Uint8Array(18);
+    (self.crypto || window.crypto).getRandomValues(a);
+    return Array.from(a, b => b.toString(16).padStart(2, '0')).join('');
+  };
+  const dlLink = o => o.downloadToken
+    ? `${DL_STORE}?order_download=${encodeURIComponent(o.id)}&t=${encodeURIComponent(o.downloadToken)}`
+    : '';
+  const dlLeft = iso => {
+    const ms = new Date(iso).getTime() - Date.now();
+    if (!(ms > 0)) return '만료';
+    const h = Math.floor(ms / 3600000), d = Math.floor(h / 24);
+    return d > 0 ? `${d}일 ${h % 24}시간 남음` : `${h}시간 남음`;
+  };
+  /* 3일 다운로드 기간 발급 — reset=true면 기간·횟수를 새로 연다 */
+  async function issueDownload(o, reset) {
+    const patch = {
+      downloadToken: o.downloadToken || dlToken(),
+      downloadExpiresAt: new Date(Date.now() + DL_DAYS * 86400000).toISOString(),
+      downloadMax: DL_MAX,
+    };
+    if (reset || o.downloadCount == null) patch.downloadCount = 0;
+    const ok = await save(patch, o.id);
+    if (ok) {
+      const i = orders.findIndex(x => x.id === o.id);
+      if (i >= 0) orders[i] = Object.assign({}, orders[i], patch);
+      if (currentId === o.id) fillDetail();
+    }
+    return ok;
+  }
 
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
@@ -1453,6 +1503,22 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       L.push('');
       L.push('후기를 남기신 뒤 링크를 카카오채널로 보내주시면 확인 후 3영업일 이내에 참가비 10,000원을 계좌로 환급해 드립니다.');
     }
+    const dlItems = items.filter(i => DL_GOODS.includes(i.id));
+    if (dlItems.length) {
+      L.push('');
+      L.push('■ 디지털 굿즈 다운로드 안내');
+      dlItems.forEach(i => L.push(`- ${itemLabel(i)}${i.elem ? ` (${i.elem})` : ''}${i.cover ? ` (${i.cover} 표지)` : ''}`));
+      if (dlLink(o)) {
+        L.push(`다운로드 링크: ${dlLink(o)}`);
+        L.push(`주문번호 ${o.id} · 결제(입금) 확인 후 3일(72시간) 이내, 최대 ${o.downloadMax || DL_MAX}회까지 받으실 수 있습니다.`);
+      } else {
+        L.push(`스토어 「디지털 굿즈 다운로드 / 내 주문 조회」(https://jeopwoldang.com/store/)에서 주문번호 ${o.id}와 연락처 뒤 4자리를 넣으시면 바로 받으실 수 있습니다.`);
+      }
+      L.push('다운로드 가능 기간은 결제 완료 후 3일(72시간)이며, 기간 내 최대 10회까지 다운로드할 수 있습니다.');
+      L.push('다운로드한 파일은 구매자 본인의 개인적인 용도로만 사용 가능하며, 무단 복제·재배포·재판매·도용은 금지됩니다.');
+      L.push('© 접월당(蝶月堂). All rights reserved.');
+      L.push('아래 파일은 메일 첨부 대신 위 링크에서 바로 내려받으시면 됩니다.');
+    }
     if (askables.length) {
       L.push('');
       L.push('분석지를 받으신 날부터 10일간 카카오채널(접월당)로 추가 질문을 받습니다.');
@@ -1528,6 +1594,32 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
         </div>`).join('')
       : `<div class="bnone">이 주문에는 출생 정보가 없습니다</div>`;
 
+    const dlBox = $('#dtDownload');
+    if (dlBox) {
+      if (!hasDlGoods(o)) {
+        dlBox.hidden = true;
+        $('#dtDlBody').innerHTML = '';
+      } else {
+        dlBox.hidden = false;
+        const exp = o.downloadExpiresAt;
+        const live = exp && new Date(exp).getTime() > Date.now();
+        const n = o.downloadCount || 0, max = o.downloadMax || DL_MAX;
+        $('#dtDlBody').innerHTML = exp
+          ? `<div class="kv">
+               <div class="kv__i"><span>다운로드 링크</span><b style="word-break:break-all;font-size:11.5px" id="dtDlUrl">${esc(dlLink(o))}</b></div>
+               <div class="kv__i"><span>만료</span><b>${fmtDT(exp)} · ${live ? dlLeft(exp) : '<em style="color:#E58">만료됨</em>'}</b></div>
+               <div class="kv__i"><span>다운로드 횟수</span><b>${n}/${max}회</b></div>
+             </div>
+             <div class="memo__row" style="margin-top:10px">
+               <button class="btn btn--gold btn--sm" type="button" data-dl-reset="${esc(o.id)}">기간 다시 열기 (3일·횟수 초기화)</button>
+             </div>`
+          : `<p style="font-size:12px;line-height:1.8;color:var(--mut);margin:0 0 10px">
+               결제완료·입금확인으로 바꾸면 결제 후 3일(최대 ${DL_MAX}회) 다운로드가 자동으로 열립니다.<br>
+               손님은 스토어의 「디지털 굿즈 다운로드 / 내 주문 조회」에서 주문번호 + 연락처 뒤 4자리로 받을 수 있습니다.</p>
+             <button class="btn btn--gold btn--sm" type="button" data-dl-open="${esc(o.id)}">지금 3일 다운로드 열기</button>`;
+      }
+    }
+
     const d = mailDraft(o);
     $('#dtMailTo').value = d.to;
     $('#dtSubject').value = d.subject;
@@ -1558,7 +1650,15 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     if (!o || o.status === status) return;
     const hist = (o.history || []).slice();
     hist.push({ status, at: new Date().toISOString() });
-    const ok = await save({ status, history: hist }, id);
+    const fields = { status, history: hist };
+    /* 결제완료·입금확인 → 기성 디지털 굿즈는 3일 다운로드 자동 발급 */
+    if ((status === '결제완료' || status === '입금확인') && hasDlGoods(o) && !o.downloadToken) {
+      fields.downloadToken = dlToken();
+      fields.downloadExpiresAt = new Date(Date.now() + DL_DAYS * 86400000).toISOString();
+      fields.downloadMax = DL_MAX;
+      fields.downloadCount = 0;
+    }
+    const ok = await save(fields, id);
     if (ok) {
       toast(`${id} · ${status}(으)로 변경했습니다`);
       render();
@@ -1632,6 +1732,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     ['wall-ohaeng', '2027 오행 개운 스마트폰 배경화면'],
     ['wall-zodiac-minhwa', '2027 나비 쫓는 12지신 민화 스마트폰 배경화면'],
     ['wall-zodiac-night', '2027 달빛 아래 나비 12지신 스마트폰 배경화면'],
+    ['wall-zodiac-watercolor', '2027 수채화 밤·달빛 12지신 스마트폰 배경화면'],
   ];
   const RV_SRC = { verified: '실구매자', experience: '체험단', kakao: '카톡 후기', none: '' };
   const RV_ST = { pending: '승인 대기', approved: '노출 중', rejected: '숨김' };
@@ -1872,6 +1973,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     'wall-ohaeng': '2027 오행 개운 스마트폰 배경화면',
     'wall-zodiac-minhwa': '2027 나비 쫓는 12지신 민화 스마트폰 배경화면',
     'wall-zodiac-night': '2027 달빛 아래 나비 12지신 스마트폰 배경화면',
+    'wall-zodiac-watercolor': '2027 수채화 밤·달빛 12지신 스마트폰 배경화면',
   };
   const ST_NOTRACK = 'jwd_notrack';        // '1' = 이 기기는 집계 제외
   const ST_SEED = 'jwd_notrack_seeded';    // 관리자 페이지 첫 방문에서 한 번만 자동 설정
@@ -2134,10 +2236,29 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     setStatus(sel.dataset.status, sel.value);
   });
 
-  $('#detail').addEventListener('click', e => {
+  $('#detail').addEventListener('click', async e => {
     if (e.target.closest('[data-close]')) { closeDetail(); return; }
     const st = e.target.closest('[data-set]');
     if (st) { setStatus(st.dataset.id, st.dataset.set); return; }
+    const dlOpen = e.target.closest('[data-dl-open]');
+    if (dlOpen) {
+      const o = orders.find(x => x.id === dlOpen.dataset.dlOpen);
+      if (o && await issueDownload(o, true)) toast('3일 다운로드를 열었습니다 · ' + o.id);
+      return;
+    }
+    const dlReset = e.target.closest('[data-dl-reset]');
+    if (dlReset) {
+      const o = orders.find(x => x.id === dlReset.dataset.dlReset);
+      if (o && await issueDownload(o, true)) toast('다운로드 기간을 3일로 다시 열었습니다 · ' + o.id);
+      return;
+    }
+    if (e.target.closest('#btnDlCopy')) {
+      const o = orders.find(x => x.id === currentId);
+      if (!o) return;
+      if (!dlLink(o)) { toast('아직 다운로드가 열리지 않았습니다'); return; }
+      copyText(dlLink(o), '다운로드 링크를 복사했습니다');
+      return;
+    }
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && $('#detail').classList.contains('is-open')) closeDetail();

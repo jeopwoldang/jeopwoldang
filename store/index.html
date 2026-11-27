@@ -5225,7 +5225,7 @@ function relatedHTML(id){
       <button type="button" class="relcard" data-open="${p.id}" aria-label="${dispName(p)} 상세 보기">
         <span class="relcard__img">${p.photo ? `<img src="${p.photo}" alt="" loading="lazy">` : '<span class="relcard__noimg" aria-hidden="true">蝶</span>'}</span>
         <span class="relcard__nm">${dispName(p)}</span>
-        <span class="relcard__pr">${won(p.price)}</span>
+        <span class="relcard__pr">${won(p.price)}${p.type === 'wall' ? '~' : ''}</span>
       </button>`).join('')}</div>
   </div>`;
 }

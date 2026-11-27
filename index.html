@@ -1209,6 +1209,8 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
 .toast.show{opacity:1;transform:translate(-50%,0)}
 body:has(.checkout.is-open) .toast{bottom:118px}
 body:has(#doneView.is-open) .toast{bottom:112px}
+/* 장바구니가 열려 있을 때는 토스트가 합계·주문 버튼을 가리지 않게 그 위로 */
+body:has(#cartOverlay.is-open) .toast{bottom:calc(180px + env(safe-area-inset-bottom))}
 
 /* ---------- 환불 안내 요약 ---------- */
 .rsum{

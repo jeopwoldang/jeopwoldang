@@ -4894,7 +4894,7 @@ function renderCart(){
   foot.innerHTML = `
     <div class="sum"><span>Total</span><b>${won(cartTotal())}</b></div>
     <p style="font-size:11px;color:var(--mut);margin:0 0 14px">배송비 없음 · 배경화면·다이어리 기본형은 페이앱 결제 후 사이트에서 바로 다운로드, 그 밖의 상품은 이메일로 발송됩니다.</p>
-    ${hasDl ? payNoticeHTML() : ''}
+    ${hasDl ? payNoticeHTML() + legalAllHTML() : ''}
     <button class="btn btn--gold btn--block" id="goCheckout">주문서 작성하기</button>`;
 }
 

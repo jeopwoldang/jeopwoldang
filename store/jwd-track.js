@@ -55,7 +55,8 @@
     'tal-custom': '나만의 부적 (사주 맞춤)',
     'wall-ohaeng': '2027 오행 개운 스마트폰 배경화면',
     'wall-zodiac-minhwa': '2027 나비 쫓는 12지신 민화 스마트폰 배경화면',
-    'wall-zodiac-night': '2027 달빛 아래 나비 12지신 스마트폰 배경화면'
+    'wall-zodiac-night': '2027 달빛 아래 나비 12지신 스마트폰 배경화면',
+    'wall-zodiac-watercolor': '2027 수채화 밤·달빛 12지신 스마트폰 배경화면'
   };
 
   function ls(fn) { try { return fn(localStorage); } catch (e) { return null; } }

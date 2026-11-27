@@ -1825,6 +1825,42 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
   [data-rev]{opacity:1!important;transform:none!important;transition:none}
   .hbtn__dot,.hbtn__dot::after{animation:none!important}
 }
+
+/* ---------- 기기 선택(모바일 / 태블릿 / 세트) ---------- */
+.pd__dev{margin:16px 0 6px;padding:14px;border:1px solid rgba(216,192,255,.2);border-radius:14px;background:rgba(255,255,255,.04)}
+.pd__devlab{display:block;font-size:12.5px;font-weight:700;color:#F2D89B;letter-spacing:.04em;margin-bottom:9px}
+.devgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.devbtn{position:relative;display:flex;flex-direction:column;gap:3px;align-items:flex-start;padding:11px 12px;border-radius:12px;border:1px solid rgba(216,192,255,.22);background:rgba(255,255,255,.03);text-align:left;color:#E8DFFA;transition:border-color .18s,background .18s,transform .18s}
+.devbtn:hover{border-color:rgba(242,216,155,.55);transform:translateY(-1px)}
+.devbtn b{font-size:13.5px;color:#FBF3E2;font-weight:800}
+.devbtn em{font-style:normal;font-size:11px;color:var(--mut);line-height:1.4}
+.devbtn[aria-pressed="true"]{border-color:rgba(242,216,155,.9);background:linear-gradient(135deg,rgba(251,237,203,.18),rgba(227,196,143,.08));box-shadow:0 10px 22px -18px rgba(242,216,155,.95)}
+.devbtn[aria-pressed="true"] b{color:#F7DFAE}
+.devbtn__rec{position:absolute;top:-8px;right:8px;font-size:10px;font-weight:800;letter-spacing:.02em;padding:2px 7px;border-radius:999px;background:linear-gradient(135deg,#FBEDCB,#E3C48F);color:#2A1B44}
+.tabrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:11px;padding-top:11px;border-top:1px dashed rgba(216,192,255,.18)}
+.tabrow__lab{font-size:11.5px;font-weight:700;color:#CBBDE7;margin-right:2px}
+.tabbtn{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 12px;border-radius:11px;border:1px solid rgba(216,192,255,.22);background:rgba(255,255,255,.03);color:#E8DFFA;text-align:left;transition:border-color .18s,background .18s}
+.tabbtn b{font-size:12.5px;font-weight:700;color:#FBF3E2}
+.tabbtn em{font-style:normal;font-size:10.5px;color:var(--mut)}
+.tabbtn[aria-pressed="true"]{border-color:rgba(242,216,155,.9);background:linear-gradient(135deg,rgba(251,237,203,.18),rgba(227,196,143,.08))}
+.tabbtn[aria-pressed="true"] b{color:#F7DFAE}
+.devnote{margin:9px 0 0;font-size:11px;color:var(--mut);line-height:1.6}
+.devnote b{color:#F2D89B;font-weight:600}
+.fcard__devp{flex-basis:100%;font-size:11px;line-height:1.55;color:#CBBDE7;letter-spacing:0}
+.fcard__devp b{color:#F2D89B;font-weight:700}
+.devchip{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;font-size:10.5px;font-weight:600;color:#C8BAE6;border:1px solid rgba(216,192,255,.24);background:rgba(255,255,255,.05);transition:background .18s,color .18s,border-color .18s}
+.devchip[aria-pressed="true"]{background:linear-gradient(135deg,#FCEDCB,#E3C48F);color:#2A1B44;border-color:transparent;font-weight:800}
+.devwrap{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:7px}
+.devwrap__lab{font-size:10.5px;color:var(--mut);margin-right:1px}
+/* 디지털 굿즈 하위 분류 */
+.digsub{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}
+.digsub__b{display:inline-flex;align-items:center;gap:5px;padding:8px 15px;border-radius:999px;font-size:12px;font-weight:600;color:#CBBDE7;border:1px solid rgba(216,192,255,.22);background:rgba(255,255,255,.045);transition:background .2s,color .2s,border-color .2s}
+.digsub__b[aria-pressed="true"]{background:linear-gradient(135deg,#FBEDCB,#E3C48F);color:#2A1B44;font-weight:800;border-color:transparent}
+#digital.dig-wall [data-card="diary"]{display:none}
+#digital.dig-diary .dcard--wall{display:none}
+.mnav__list a.mnav__sub{padding-left:22px;font-size:12.5px;color:#BFAEE2}
+.mnav__list a.mnav__sub::before{content:"└";margin-right:7px;color:rgba(242,216,155,.65);font-size:11px}
+@media (max-width:560px){ .devgrid{grid-template-columns:1fr} .devbtn{padding:10px 12px} }
 </style>
 
 <!-- Schema.org 구조화 데이터 (GEO/AEO) — 접월당 · 판매 상품 · FAQ -->
@@ -2649,8 +2685,8 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "item": {
             "@type": "Product",
             "@id": "https://jeopwoldang.com/store/#wall-ohaeng",
-            "name": "2027 오행 개운 스마트폰 배경화면",
-            "description": "목(木)·화(火)·토(土)·금(金)·수(水) 다섯 오행을 수묵담채로 그린 9:16 스마트폰 배경화면. 5종 가운데 원하는 기운을 필요한 만큼 골라 장당 2,900원(세트 할인 없음)이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후·실물 배송 없음).",
+            "name": "2027 오행 개운 배경화면",
+            "description": "목(木)·화(火)·토(土)·금(金)·수(水) 다섯 오행을 수묵담채로 그린 9:16 스마트폰 배경화면. 5종 가운데 원하는 기운을 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후·실물 배송 없음).",
             "image": "https://jeopwoldang.com/store/assets/wallpaper/card_wallpaper.jpg",
             "category": "디지털 굿즈",
             "brand": {
@@ -2658,8 +2694,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               "name": "접월당"
             },
             "offers": {
-              "@type": "Offer",
-              "price": 2900,
+              "@type": "AggregateOffer",
+              "lowPrice": 2900,
+              "highPrice": 5900,
+              "offerCount": 3,
               "priceCurrency": "KRW",
               "availability": "https://schema.org/InStock",
               "url": "https://jeopwoldang.com/store/#digital",
@@ -2671,7 +2709,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               {
                 "@type": "PropertyValue",
                 "name": "구성",
-                "value": "목·화·토·금·수 5종 · 원하는 만큼 선택(장당 2,900원) · 941×1672 PNG"
+                "value": "목·화·토·금·수 5종 · 원하는 만큼 선택 · 모바일 941×1672 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10)"
               },
               {
                 "@type": "PropertyValue",
@@ -2687,8 +2725,8 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "item": {
             "@type": "Product",
             "@id": "https://jeopwoldang.com/store/#wall-zodiac-minhwa",
-            "name": "2027 나비 쫓는 12지신 민화 스마트폰 배경화면",
-            "description": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 나비를 쫓는 모습을 한지 바탕의 민화로 그린 9:16 스마트폰 배경화면. 12띠 가운데 원하는 띠를 필요한 만큼 골라 장당 2,900원(세트 할인 없음)이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후·실물 배송 없음).",
+            "name": "2027 나비 쫓는 12지신 민화 배경화면",
+            "description": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 나비를 쫓는 모습을 한지 바탕의 민화로 그린 9:16 스마트폰 배경화면. 12띠 가운데 원하는 띠를 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후·실물 배송 없음).",
             "image": "https://jeopwoldang.com/store/assets/wallpaper-minhwa/card_zodiac_minhwa.jpg",
             "category": "디지털 굿즈",
             "brand": {
@@ -2696,8 +2734,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               "name": "접월당"
             },
             "offers": {
-              "@type": "Offer",
-              "price": 2900,
+              "@type": "AggregateOffer",
+              "lowPrice": 2900,
+              "highPrice": 5900,
+              "offerCount": 3,
               "priceCurrency": "KRW",
               "availability": "https://schema.org/InStock",
               "url": "https://jeopwoldang.com/store/#digital",
@@ -2709,7 +2749,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               {
                 "@type": "PropertyValue",
                 "name": "구성",
-                "value": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택(장당 2,900원) · 941×1672 PNG"
+                "value": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 모바일 941×1672 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10)"
               },
               {
                 "@type": "PropertyValue",
@@ -2725,8 +2765,8 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "item": {
             "@type": "Product",
             "@id": "https://jeopwoldang.com/store/#wall-zodiac-night",
-            "name": "2027 달빛 아래 나비 12지신 스마트폰 배경화면",
-            "description": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 초승달이 뜬 별밤 들꽃밭에서 빛나는 나비를 바라보는 모습을 그린 9:16 스마트폰 배경화면. 12띠 가운데 원하는 띠를 필요한 만큼 골라 장당 2,900원(세트 할인 없음)이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후·실물 배송 없음).",
+            "name": "2027 달빛 아래 나비 12지신 배경화면",
+            "description": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 초승달이 뜬 별밤 들꽃밭에서 빛나는 나비를 바라보는 모습을 그린 9:16 스마트폰 배경화면. 12띠 가운데 원하는 띠를 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후·실물 배송 없음).",
             "image": "https://jeopwoldang.com/store/assets/wallpaper-night/card_zodiac_night.jpg",
             "category": "디지털 굿즈",
             "brand": {
@@ -2734,8 +2774,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               "name": "접월당"
             },
             "offers": {
-              "@type": "Offer",
-              "price": 2900,
+              "@type": "AggregateOffer",
+              "lowPrice": 2900,
+              "highPrice": 5900,
+              "offerCount": 3,
               "priceCurrency": "KRW",
               "availability": "https://schema.org/InStock",
               "url": "https://jeopwoldang.com/store/#digital",
@@ -2747,7 +2789,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               {
                 "@type": "PropertyValue",
                 "name": "구성",
-                "value": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택(장당 2,900원) · 941×1672 PNG"
+                "value": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 모바일 941×1672 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10)"
               },
               {
                 "@type": "PropertyValue",
@@ -2763,8 +2805,8 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "item": {
             "@type": "Product",
             "@id": "https://jeopwoldang.com/store/#wall-zodiac-watercolor",
-            "name": "2027 수채화 밤·달빛 12지신 스마트폰 배경화면",
-            "description": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 보랏빛 수채화 밤하늘과 라벤더 들꽃밭에서 빛나는 나비를 바라보는 9:16 스마트폰 배경화면. 12띠 가운데 원하는 띠를 필요한 만큼 골라 장당 2,900원(세트 할인 없음)이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후).",
+            "name": "2027 수채화 밤·달빛 12지신 배경화면",
+            "description": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 보랏빛 수채화 밤하늘과 라벤더 들꽃밭에서 빛나는 나비를 바라보는 9:16 스마트폰 배경화면. 12띠 가운데 원하는 띠를 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원이며, 시계 자리를 비워 둔 941×1672 PNG 파일을 페이앱 결제 완료 즉시 사이트에서 내려받습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후).",
             "image": "https://jeopwoldang.com/store/assets/wallpaper-watercolor/card_zodiac_watercolor.jpg",
             "category": "디지털 굿즈",
             "brand": {
@@ -2772,8 +2814,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               "name": "접월당"
             },
             "offers": {
-              "@type": "Offer",
-              "price": 2900,
+              "@type": "AggregateOffer",
+              "lowPrice": 2900,
+              "highPrice": 5900,
+              "offerCount": 3,
               "priceCurrency": "KRW",
               "availability": "https://schema.org/InStock",
               "url": "https://jeopwoldang.com/store/#digital",
@@ -2785,7 +2829,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
               {
                 "@type": "PropertyValue",
                 "name": "구성",
-                "value": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택(장당 2,900원) · 941×1672 PNG"
+                "value": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 모바일 941×1672 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10)"
               },
               {
                 "@type": "PropertyValue",
@@ -2862,7 +2906,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "name": "오행 개운 배경화면은 어떤 상품인가요?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "목(木)·화(火)·토(土)·금(金)·수(水) 다섯 오행을 수묵담채로 그린 9:16 스마트폰 배경화면입니다. 5종 가운데 원하는 기운을 필요한 만큼 골라 장당 2,900원(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 오행마다 941×1672 PNG 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 위쪽은 시계가 올라앉을 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않고, 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다. 내 사주에 부족한 오행은 종합 사주분석지나 2027 신년운세에서 확인하실 수 있습니다."
+            "text": "목(木)·화(火)·토(土)·금(金)·수(水) 다섯 오행을 수묵담채로 그린 9:16 스마트폰 배경화면입니다. 5종 가운데 원하는 기운을 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 오행마다 941×1672 PNG 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 위쪽은 시계가 올라앉을 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않고, 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다. 내 사주에 부족한 오행은 종합 사주분석지나 2027 신년운세에서 확인하실 수 있습니다."
           }
         },
         {
@@ -2870,7 +2914,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "name": "12지신 민화 배경화면은 어떤 상품인가요?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 나비를 쫓는 모습을 한지 바탕에 먹선과 홍매·송백으로 그린 9:16 스마트폰 배경화면입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 장당 2,900원(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 941×1672 PNG 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다."
+            "text": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 나비를 쫓는 모습을 한지 바탕에 먹선과 홍매·송백으로 그린 9:16 스마트폰 배경화면입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 941×1672 PNG 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다."
           }
         },
         {
@@ -2878,7 +2922,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "name": "수채화 12지신 배경화면은 어떤 상품인가요?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 보랏빛 수채화 밤하늘과 라벤더 들꽃밭에서 빛나는 나비를 바라보는 9:16 스마트폰 배경화면입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 장당 2,900원(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 941×1672 PNG 원본을 내려받으실 수 있습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다."
+            "text": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 보랏빛 수채화 밤하늘과 라벤더 들꽃밭에서 빛나는 나비를 바라보는 9:16 스마트폰 배경화면입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 941×1672 PNG 원본을 내려받으실 수 있습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다."
           }
         },
         {
@@ -2894,7 +2938,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           "name": "달빛 아래 나비 12지신 배경화면은 어떤 상품인가요?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 초승달이 뜬 별밤 들꽃밭에서 빛나는 나비를 바라보는 9:16 스마트폰 배경화면입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 장당 2,900원(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 941×1672 PNG 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다."
+            "text": "쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 초승달이 뜬 별밤 들꽃밭에서 빛나는 나비를 바라보는 9:16 스마트폰 배경화면입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 941×1672 PNG 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다."
           }
         },
         {
@@ -3019,6 +3063,9 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <a href="#products" data-mnav data-mnav-slide="0">신년운세</a>
           <a href="#ziwei" data-mnav data-mnav-cat="ziwei">자미두수</a>
           <a href="#digital" data-mnav data-mnav-cat="digital">디지털 굿즈</a>
+          <a href="#digital" class="mnav__sub" data-mnav data-mnav-cat="digital" data-mnav-dig="all">전체</a>
+          <a href="#digital" class="mnav__sub" data-mnav data-mnav-cat="digital" data-mnav-dig="wall">모바일·태블릿 배경화면</a>
+          <a href="#diary" class="mnav__sub" data-mnav data-mnav-cat="digital" data-mnav-dig="diary">굿노트 다이어리</a>
           <a href="#naming" data-mnav data-mnav-cat="naming">작명 · 택일</a>
         </nav>
         <p class="mnav__kick">SERVICE</p>
@@ -3101,10 +3148,10 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <li>2027 사주 개운 굿노트 다이어리 · 원국 기입형 — 29,000원 (정가 32,000원). 내 사주 원국을 기입한 A4 가로 16페이지 PDF, 평균 6시간 · 최대 12시간 내 이메일 발송.</li>
           <li>2027 사주 개운 굿노트 다이어리 · 프리미엄 맞춤 일진형 — 49,000원 (정가 54,000원). 내 사주 기준 365일 맞춤 일진 표기 A4 가로 16페이지 PDF, 평균 6시간 · 최대 12시간 내 이메일 발송.</li>
           <li><a href="/talisman/">인쇄용 디지털 부적</a> — 기원부적 9,900원, 사주 맞춤 나만의 부적 29,000원.</li>
-          <li><a href="#digital">2027 오행 개운 스마트폰 배경화면</a> — 목(木)·화(火)·토(土)·금(金)·수(水) 5종 · 원하는 만큼 선택, 장당 2,900원. 세트 할인 없음, 고른 기운마다 9:16(941×1672) PNG 1장, 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
-          <li><a href="#digital">2027 나비 쫓는 12지신 민화 스마트폰 배경화면</a> — 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택, 장당 2,900원. 세트 할인 없음, 고른 띠마다 9:16(941×1672) PNG 1장, 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
-          <li><a href="#digital">2027 달빛 아래 나비 12지신 스마트폰 배경화면</a> — 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택, 장당 2,900원. 세트 할인 없음, 고른 띠마다 9:16(941×1672) PNG 1장, 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
-          <li><a href="#digital">2027 수채화 밤·달빛 12지신 스마트폰 배경화면</a> — 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택, 장당 2,900원. 세트 할인 없음, 고른 띠마다 9:16(941×1672) PNG 1장, 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
+          <li><a href="#digital">2027 오행 개운 배경화면</a> — 목(木)·화(火)·토(土)·금(金)·수(水) 5종 · 원하는 만큼 선택. 모바일 2,900원(9:16 941×1672 PNG 1장) · 태블릿 4,900원(아이패드 4:3 / 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장), 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
+          <li><a href="#digital">2027 나비 쫓는 12지신 민화 배경화면</a> — 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택. 모바일 2,900원(9:16 941×1672 PNG 1장) · 태블릿 4,900원(아이패드 4:3 / 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장), 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
+          <li><a href="#digital">2027 달빛 아래 나비 12지신 배경화면</a> — 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택. 모바일 2,900원(9:16 941×1672 PNG 1장) · 태블릿 4,900원(아이패드 4:3 / 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장), 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
+          <li><a href="#digital">2027 수채화 밤·달빛 12지신 배경화면</a> — 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택. 모바일 2,900원(9:16 941×1672 PNG 1장) · 태블릿 4,900원(아이패드 4:3 / 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장), 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내·최대 10회).</li>
         </ul>
         <p><b>실시간 1:1 채팅·전화 사주 상담</b> — 카카오채널 ‘접월당’(https://pf.kakao.com/_ubiBX)에서 진행합니다. 채팅 상담 10분 10,000원 · 20분 18,000원 · 30분 25,000원, 전화 상담 10분 15,000원 · 20분 25,000원 · 30분 30,000원이며, 상담 시간을 정해 정해진 시간 동안 상담가가 바로 답합니다.</p>
         <p>이름 감명, 성인 개명, 상호 작명, 신생아 작명, 길일 택일은 아래 작명·택일 상품 안내를 참고해 주세요.</p>
@@ -3184,7 +3231,13 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <span class="kicker">Digital Goods</span>
         <h2 class="h2"><span class="h2__emo" aria-hidden="true">🌙</span>디지털 <em>굿즈</em></h2>
       </div>
-      <p class="lead">매일 마주하는 두 자리에 내 사주를 담았습니다. <b>아이패드 굿노트 다이어리</b>는 내 원국과 2027년 일진을 담은 A4 가로 16페이지 PDF로 365일을 함께하고, <b>오행 개운 배경화면</b>은 목·화·토·금·수 다섯 기운 가운데 지금 내게 필요한 기운을, <b>12지신 배경화면</b>은 내 띠의 동물이 나비를 쫓는 민화, 초승달이 뜬 별밤 들꽃밭, 보랏빛 수채화 밤 세 그림 가운데 골라 장당 2,900원에 원하는 만큼 담아 잠금화면 위에 <b>9:16 아트워크</b>로 올립니다. 배경화면과 다이어리 기본형은 <b>페이앱 결제 완료 즉시 이 사이트에서 바로 다운로드</b>하실 수 있습니다(다운로드 가능 기간 3일·최대 10회).</p>
+      <p class="lead">매일 마주하는 두 자리에 내 사주를 담았습니다. <b>아이패드 굿노트 다이어리</b>는 내 원국과 2027년 일진을 담은 A4 가로 16페이지 PDF로 365일을 함께하고, <b>오행 개운 배경화면</b>은 목·화·토·금·수 다섯 기운 가운데 지금 내게 필요한 기운을, <b>12지신 배경화면</b>은 내 띠의 동물이 나비를 쫓는 민화, 초승달이 뜬 별밤 들꽃밭, 보랏빛 수채화 밤 세 그림 가운데 골라 원하는 만큼 담습니다. <b>모바일 2,900원</b>(9:16 세로 1장) · <b>태블릿 4,900원</b>(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · <b>모바일+태블릿 세트 5,900원</b>(3장) 가운데 고르시면 됩니다. 배경화면과 다이어리 기본형은 <b>페이앱 결제 완료 즉시 이 사이트에서 바로 다운로드</b>하실 수 있습니다(다운로드 가능 기간 3일·최대 10회).</p>
+    </div>
+
+    <div class="digsub" role="group" aria-label="디지털 굿즈 하위 분류" data-rev>
+      <button type="button" class="digsub__b" data-dig="all" aria-pressed="true">전체</button>
+      <button type="button" class="digsub__b" data-dig="wall" aria-pressed="false">모바일·태블릿 배경화면</button>
+      <button type="button" class="digsub__b" data-dig="diary" aria-pressed="false">굿노트 다이어리</button>
     </div>
 
     <article class="dcard" id="diary" data-rev data-card="diary">
@@ -3229,17 +3282,17 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
     </article>
 
     <article class="dcard dcard--wall" data-rev data-card="wall">
-      <button class="dcard__media" data-open="wall-ohaeng" aria-label="2027 오행 개운 스마트폰 배경화면 상세 보기">
+      <button class="dcard__media" data-open="wall-ohaeng" aria-label="2027 오행 개운 배경화면 상세 보기">
         <img src="/store/assets/wallpaper/card_wallpaper.jpg?v=3" alt="목·화·토·금·수 다섯 오행으로 그린 2027 개운 배경화면 — 수(水)를 크게, 나머지 네 기운을 함께" width="1448" height="1086" loading="lazy">
         <span class="fbadge">NEW · 디지털 굿즈</span>
       </button>
       <div class="dcard__body">
-        <span class="fcard__cat">9:16 고화질 PNG · 오행 5종 · 장당 2,900원</span>
+        <span class="fcard__cat">모바일 · 태블릿(아이패드/갤럭시탭) · 세트</span>
         <h3 class="fcard__name" data-open="wall-ohaeng">2027 오행 개운 배경화면</h3>
         <p class="fcard__lines">하루에 수십 번 여는 잠금화면·홈화면에<br>내 사주에 부족한 오행 기운을<br>제일 예쁘게 채우는 방법</p>
-        <p class="fcard__spec">목·화·토·금·수 5종 · 원하는 만큼 선택 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
+        <p class="fcard__spec">목·화·토·금·수 5종 · 원하는 만큼 선택 · 모바일 9:16 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10) · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
-          <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
+          <div class="fcard__price fcard__price--row"><b>2,900원</b><span class="fcard__devp">모바일 <b>2,900</b> · 태블릿(세로+가로 2장) <b>4,900</b> · 세트(3장) <b>5,900</b>원</span></div>
           <button class="addbtn" data-add-wall>담기</button>
         </div>
         <div class="dcard__cover">
@@ -3262,17 +3315,17 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
 
     <article class="dcard dcard--wall" data-rev data-card="wall-zodiac">
-      <button class="dcard__media" data-open="wall-zodiac-minhwa" aria-label="2027 나비 쫓는 12지신 민화 스마트폰 배경화면 상세 보기">
+      <button class="dcard__media" data-open="wall-zodiac-minhwa" aria-label="2027 나비 쫓는 12지신 민화 배경화면 상세 보기">
         <img src="/store/assets/wallpaper-minhwa/card_zodiac_minhwa.jpg?v=1" alt="쥐부터 돼지까지 열두 띠가 나비를 쫓는 민화풍 2027 12지신 배경화면 12종" width="1448" height="1086" loading="lazy">
         <span class="fbadge">NEW · 디지털 굿즈</span>
       </button>
       <div class="dcard__body">
-        <span class="fcard__cat">9:16 고화질 PNG · 12띠 · 장당 2,900원</span>
+        <span class="fcard__cat">모바일 · 태블릿(아이패드/갤럭시탭) · 세트</span>
         <h3 class="fcard__name" data-open="wall-zodiac-minhwa">2027 12지신 민화 배경화면</h3>
         <p class="fcard__lines">하루에 수십 번 여는 잠금화면에<br>내 띠의 동물이 나비를 쫓는<br>민화 한 장을</p>
-        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
+        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 모바일 9:16 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10) · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
-          <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
+          <div class="fcard__price fcard__price--row"><b>2,900원</b><span class="fcard__devp">모바일 <b>2,900</b> · 태블릿(세로+가로 2장) <b>4,900</b> · 세트(3장) <b>5,900</b>원</span></div>
           <button class="addbtn" data-add-wall="wall-zodiac-minhwa">담기</button>
         </div>
         <div class="dcard__cover">
@@ -3302,17 +3355,17 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
 
     <article class="dcard dcard--wall dcard--night" data-rev data-card="wall-zodiac-night">
-      <button class="dcard__media" data-open="wall-zodiac-night" aria-label="2027 달빛 아래 나비 12지신 스마트폰 배경화면 상세 보기">
+      <button class="dcard__media" data-open="wall-zodiac-night" aria-label="2027 달빛 아래 나비 12지신 배경화면 상세 보기">
         <img src="/store/assets/wallpaper-night/card_zodiac_night.jpg?v=1" alt="초승달이 뜬 별밤 들꽃밭에 앉은 열두 띠 동물과 빛나는 나비 — 2027 달빛 12지신 배경화면 12종" width="1448" height="1086" loading="lazy">
         <span class="fbadge">NEW · 디지털 굿즈</span>
       </button>
       <div class="dcard__body">
-        <span class="fcard__cat">9:16 고화질 PNG · 12띠 · 장당 2,900원</span>
+        <span class="fcard__cat">모바일 · 태블릿(아이패드/갤럭시탭) · 세트</span>
         <h3 class="fcard__name" data-open="wall-zodiac-night">2027 달빛 12지신 배경화면</h3>
         <p class="fcard__lines">초승달이 뜬 밤, 들꽃밭에 앉은<br>내 띠의 동물과 빛나는 나비를<br>한 장에</p>
-        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
+        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 모바일 9:16 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10) · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
-          <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
+          <div class="fcard__price fcard__price--row"><b>2,900원</b><span class="fcard__devp">모바일 <b>2,900</b> · 태블릿(세로+가로 2장) <b>4,900</b> · 세트(3장) <b>5,900</b>원</span></div>
           <button class="addbtn" data-add-wall="wall-zodiac-night">담기</button>
         </div>
         <div class="dcard__cover">
@@ -3341,17 +3394,17 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
     </article>
 
     <article class="dcard dcard--wall dcard--watercolor" data-rev data-card="wall-zodiac-watercolor">
-      <button class="dcard__media" data-open="wall-zodiac-watercolor" aria-label="2027 수채화 밤·달빛 12지신 스마트폰 배경화면 상세 보기">
+      <button class="dcard__media" data-open="wall-zodiac-watercolor" aria-label="2027 수채화 밤·달빛 12지신 배경화면 상세 보기">
         <img src="/store/assets/wallpaper-watercolor/card_zodiac_watercolor.jpg?v=1" alt="보랏빛 수채화 밤하늘, 초승달과 라벤더 들꽃밭에 앉은 열두 띠 동물과 빛나는 나비 — 2027 수채화 12지신 배경화면 12종" width="1448" height="1086" loading="lazy">
         <span class="fbadge">NEW · 디지털 굿즈</span>
       </button>
       <div class="dcard__body">
-        <span class="fcard__cat">9:16 고화질 PNG · 12띠 · 장당 2,900원</span>
+        <span class="fcard__cat">모바일 · 태블릿(아이패드/갤럭시탭) · 세트</span>
         <h3 class="fcard__name" data-open="wall-zodiac-watercolor">2027 수채화 12지신 배경화면</h3>
         <p class="fcard__lines">보랏빛 수채화 밤, 라벤더 들꽃밭에 앉은<br>내 띠의 동물과 빛나는 나비를<br>한 장에</p>
-        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 941×1672 PNG · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
+        <p class="fcard__spec">쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 · 원하는 만큼 선택 · 모바일 9:16 PNG / 태블릿 세로+가로 JPG(아이패드 4:3 · 갤럭시탭 16:10) · <b>페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)</b></p>
         <div class="fcard__foot">
-          <div class="fcard__price fcard__price--row"><b>2,900원</b></div>
+          <div class="fcard__price fcard__price--row"><b>2,900원</b><span class="fcard__devp">모바일 <b>2,900</b> · 태블릿(세로+가로 2장) <b>4,900</b> · 세트(3장) <b>5,900</b>원</span></div>
           <button class="addbtn" data-add-wall="wall-zodiac-watercolor">담기</button>
         </div>
         <div class="dcard__cover">
@@ -3637,15 +3690,15 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
       </details>
       <details>
         <summary>오행 개운 배경화면은 어떤 상품인가요?</summary>
-        <p>목(木)·화(火)·토(土)·금(金)·수(水) 다섯 오행을 접월당의 수묵담채로 그린 <b>9:16 스마트폰 배경화면</b>입니다. 5종 가운데 원하는 기운을 필요한 만큼 골라 <b>장당 2,900원</b>(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 오행마다 <b>941×1672 PNG 원본</b>을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 위쪽은 시계가 올라앉을 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않고, 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다. 내 사주에 부족한 오행은 종합 사주분석지나 2027 신년운세에서 확인하실 수 있습니다.</p>
+        <p>목(木)·화(火)·토(土)·금(金)·수(水) 다섯 오행을 접월당의 수묵담채로 그린 <b>9:16 스마트폰 배경화면</b>입니다. 5종 가운데 원하는 기운을 필요한 만큼 골라 담으시면 됩니다. 기기는 <b>모바일용 2,900원</b>(9:16 세로 1장 · 941×1672 PNG), <b>태블릿용 4,900원</b>(아이패드 4:3 또는 갤럭시탭 16:10 세로+가로 2장 · JPG), <b>모바일+태블릿 세트 5,900원</b>(3장) 가운데 고르시면 되고, 페이앱 결제 완료 즉시 이 사이트에서 고른 오행의 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 위쪽은 시계가 올라앉을 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않고, 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다. 내 사주에 부족한 오행은 종합 사주분석지나 2027 신년운세에서 확인하실 수 있습니다.</p>
       </details>
       <details>
         <summary>12지신 민화 배경화면은 어떤 상품인가요?</summary>
-        <p>쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 나비를 쫓는 모습을 한지 바탕에 먹선과 홍매·송백으로 그린 <b>9:16 스마트폰 배경화면</b>입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 <b>장당 2,900원</b>(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 <b>941×1672 PNG 원본</b>을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다.</p>
+        <p>쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 나비를 쫓는 모습을 한지 바탕에 먹선과 홍매·송백으로 그린 <b>9:16 스마트폰 배경화면</b>입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 담으시면 됩니다. 기기는 <b>모바일용 2,900원</b>(9:16 세로 1장 · 941×1672 PNG), <b>태블릿용 4,900원</b>(아이패드 4:3 또는 갤럭시탭 16:10 세로+가로 2장 · JPG), <b>모바일+태블릿 세트 5,900원</b>(3장) 가운데 고르시면 되고, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠의 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다.</p>
       </details>
       <details>
         <summary>수채화 12지신 배경화면은 어떤 상품인가요?</summary>
-        <p>쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 <b>보랏빛 수채화 밤하늘</b>과 라벤더 들꽃밭에서 빛나는 나비를 바라보는 <b>9:16 스마트폰 배경화면</b>입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 <b>장당 2,900원</b>(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 <b>941×1672 PNG 원본</b>을 내려받으실 수 있습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후). 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다.</p>
+        <p>쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 <b>보랏빛 수채화 밤하늘</b>과 라벤더 들꽃밭에서 빛나는 나비를 바라보는 <b>9:16 스마트폰 배경화면</b>입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 담으시면 됩니다. 기기는 <b>모바일용 2,900원</b>(9:16 세로 1장 · 941×1672 PNG), <b>태블릿용 4,900원</b>(아이패드 4:3 또는 갤럭시탭 16:10 세로+가로 2장 · JPG), <b>모바일+태블릿 세트 5,900원</b>(3장) 가운데 고르시면 되고, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠의 원본을 내려받으실 수 있습니다(다운로드 가능 기간 3일·최대 10회, 무통장 입금은 입금 확인 후). 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다.</p>
       </details>
 
       <details class="faq__i">
@@ -3655,7 +3708,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
 
       <details class="faq__i">
         <summary>달빛 아래 나비 12지신 배경화면은 어떤 상품인가요?</summary>
-        <p>쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 초승달이 뜬 별밤 들꽃밭에서 빛나는 나비를 바라보는 모습을 그린 <b>9:16 스마트폰 배경화면</b>입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 <b>장당 2,900원</b>(세트 할인 없음)에 구매하시면, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠마다 <b>941×1672 PNG 원본</b>을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다.</p>
+        <p>쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠가 초승달이 뜬 별밤 들꽃밭에서 빛나는 나비를 바라보는 모습을 그린 <b>9:16 스마트폰 배경화면</b>입니다. 12띠 가운데 원하는 띠를 필요한 만큼 골라 담으시면 됩니다. 기기는 <b>모바일용 2,900원</b>(9:16 세로 1장 · 941×1672 PNG), <b>태블릿용 4,900원</b>(아이패드 4:3 또는 갤럭시탭 16:10 세로+가로 2장 · JPG), <b>모바일+태블릿 세트 5,900원</b>(3장) 가운데 고르시면 되고, 페이앱 결제 완료 즉시 이 사이트에서 고른 띠의 원본을 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회). 태어난 해의 띠로 골라도 되고 마음이 끌리는 동물로 골라도 되며, 위쪽은 달과 시계 자리를 비워 두어 잠금화면·홈화면 어디에 넣어도 잘리지 않습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 됩니다.</p>
       </details>
       <details>
         <summary>작명·택일은 얼마나 걸리나요?</summary>
@@ -4132,8 +4185,8 @@ PRODUCTS.push({
   notice:'※ 프리미엄 맞춤 일진형은 접월당이 사주를 보고 365일 표식을 직접 만들어 넣는 상품입니다. 입금 확인과 동시에 작업이 시작되며, 12개월 일진 플래너가 모두 들어간 16페이지 정식판으로 보내드립니다.',
 });
 
-/* ---------- 디지털 굿즈 · 2027 오행 개운 스마트폰 배경화면 ----------
-   5종 원하는 만큼 선택 · 장당 2,900원(정가·할인 표기 없음) · 9:16 PNG 사이트 다운로드.
+/* ---------- 디지털 굿즈 · 2027 오행 개운 배경화면 ----------
+   5종 원하는 만큼 선택 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
    발송용 원본 PNG(941×1672)는 downloads/five_elements_wallpaper_5/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const WALL = [
@@ -4163,8 +4216,8 @@ const WALL = [
     desc:'막힌 흐름이 트이기를 바라는 사람에게. 달빛이 잠긴 남색 물결 위로 푸른 나비를 담았습니다.',
     img:'/store/assets/wallpaper/05_water.jpg?v=1', sm:'/store/assets/wallpaper/05_water_sm.jpg?v=1' },
 ];
-/* ---------- 디지털 굿즈 · 2027 나비 쫓는 12지신 민화 스마트폰 배경화면 ----------
-   12띠 원하는 만큼 선택 · 장당 2,900원(정가·할인 표기 없음) · 9:16 PNG 사이트 다운로드.
+/* ---------- 디지털 굿즈 · 2027 나비 쫓는 12지신 민화 배경화면 ----------
+   12띠 원하는 만큼 선택 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
    발송용 원본 PNG(941×1672)는 downloads/zodiac_12_minhwa/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const ZODIAC = [
@@ -4230,8 +4283,8 @@ const ZODIAC = [
     img:'/store/assets/wallpaper-minhwa/pig.jpg?v=1', sm:'/store/assets/wallpaper-minhwa/pig_sm.jpg?v=1' },
 ];
 
-/* ---------- 디지털 굿즈 · 2027 달빛 아래 나비 12지신 스마트폰 배경화면 ----------
-   12띠 원하는 만큼 선택 · 장당 2,900원(정가·할인 표기 없음) · 9:16 PNG 사이트 다운로드.
+/* ---------- 디지털 굿즈 · 2027 달빛 아래 나비 12지신 배경화면 ----------
+   12띠 원하는 만큼 선택 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
    발송용 원본 PNG(941×1672)는 downloads/zodiac_12_night_illust/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const NIGHT = [
@@ -4297,8 +4350,8 @@ const NIGHT = [
     img:'/store/assets/wallpaper-night/pig.jpg?v=1', sm:'/store/assets/wallpaper-night/pig_sm.jpg?v=1' },
 ];
 
-/* ---------- 디지털 굿즈 · 2027 수채화 밤·달빛 12지신 스마트폰 배경화면 ----------
-   12띠 원하는 만큼 선택 · 장당 2,900원(정가·할인 표기 없음) · 9:16 PNG 사이트 다운로드.
+/* ---------- 디지털 굿즈 · 2027 수채화 밤·달빛 12지신 배경화면 ----------
+   12띠 원하는 만큼 선택 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
    발송용 원본 PNG(941×1672)는 downloads/zodiac_12_watercolor_night/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const WATERCO = [
@@ -4389,6 +4442,32 @@ const isElemOf = (pid, k) => elemKeysOf(pid).includes(k);
 const pickOf = pid => (isElemOf(pid, PICKS[pid]) ? PICKS[pid] : elemsOf(pid)[0].key);
 const setPick = (pid, k) => { PICKS[pid] = k; };
 const wallAll = () => WALL.concat(ZODIAC, NIGHT, WATERCO);
+/* ---------- 기기 선택(모바일 / 태블릿 / 모바일+태블릿 세트) ----------
+   배경화면 4종은 같은 상품 안에서 기기를 고른다. 가격은 기기 기준 장당 가격. */
+const DEV = {
+  mobile: { key:'mobile', label:'모바일용',           short:'모바일', price:2900, files:'9:16 세로 1장' },
+  tablet: { key:'tablet', label:'태블릿용',           short:'태블릿', price:4900, files:'세로+가로 2장' },
+  bundle: { key:'bundle', label:'모바일+태블릿 세트', short:'세트',   price:5900, files:'모바일+세로+가로 3장', rec:true },
+};
+const DEV_KEYS = ['mobile','tablet','bundle'];
+const TABLET = {
+  ipad:   { key:'ipad',   label:'아이패드',   ratio:'4:3 · 3:4',     size:'2048×2732 / 2732×2048' },
+  galaxy: { key:'galaxy', label:'갤럭시탭',   ratio:'16:10 · 10:16', size:'1850×2960 / 2960×1850' },
+};
+const TAB_KEYS = ['ipad','galaxy'];
+const devOf = l => (l && DEV[l.dev]) ? l.dev : 'mobile';
+const tabOf = l => (l && l.tab === 'galaxy') ? 'galaxy' : 'ipad';
+const isWallP = p => !!p && p.type === 'wall';
+const priceOf = (p, l) => isWallP(p) ? DEV[devOf(l)].price : (p ? p.price : 0);
+const lineTotal = l => { const p = byId(l.id); return p ? priceOf(p, l) * l.qty : 0; };
+/* 주문서·장바구니에 보여 줄 기기 설명 한 줄 */
+function devTextOf(l){
+  const d = devOf(l);
+  if(d === 'mobile') return '모바일용 · 9:16 세로 1장 (941×1672 PNG)';
+  const t = TABLET[tabOf(l)];
+  if(d === 'tablet') return `태블릿용 · ${t.label} ${t.ratio} 세로+가로 2장 (${t.size} JPG)`;
+  return `모바일+태블릿 세트 · 3장 (모바일 1장 + ${t.label} 세로·가로 2장)`;
+}
 /* 같은 띠 이름을 민화·달빛 두 세트가 함께 쓰므로 상품(pid)을 주면 그 세트에서 먼저 찾는다 */
 const wallOf = (k, pid) => (pid ? (elemsOf(pid).find(w => w.key === k) || elemsOf(pid)[0])
                                : (wallAll().find(w => w.key === k) || WALL[0]));
@@ -4396,78 +4475,78 @@ const wallLabel = k => { const w = wallOf(k); return w.label || `${w.name}(${w.h
 
 PRODUCTS.push({
   id:'wall-ohaeng', cat:'digital', type:'wall', persons:1, birth:false,
-  optLabel:'2027 오행 개운 배경화면 · 5종 · 장당 2,900원',
-  name:'2027 오행 개운 스마트폰 배경화면', price:2900, badge:'NEW',
+  optLabel:'2027 오행 개운 배경화면 · 5종 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원',
+  name:'2027 오행 개운 배경화면', price:2900, badge:'NEW',
   photo:'/store/assets/wallpaper/card_wallpaper.jpg?v=3',
   short:'하루에 수십 번 여는 잠금화면 — 내 사주에 부족한 오행을 제일 예쁜 그림으로 채우는 방법',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 2027 정미년, 내 사주에 부족한 오행을 골라 잠금화면과 홈화면에 담아 보세요. 목(木)·화(火)·토(土)·금(金)·수(水) 다섯 기운을 접월당의 수묵담채 — 먹의 번짐과 달, 나비 — 로 그린 9:16 세로 아트워크입니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 오행의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회).',
+  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 2027 정미년, 내 사주에 부족한 오행을 골라 잠금화면과 홈화면에 담아 보세요. 목(木)·화(火)·토(土)·금(金)·수(水) 다섯 기운을 접월당의 수묵담채 — 먹의 번짐과 달, 나비 — 로 그린 9:16 세로 아트워크입니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 오행의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회).',
   bullets:[
-    '목·화·토·금·수 5종 가운데 내 사주에 필요한 기운을 원하는 만큼 선택 · 장당 2,900원',
+    '목·화·토·금·수 5종 가운데 내 사주에 필요한 기운을 원하는 만큼 선택 · 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원',
     '시계 자리까지 비워 둔 9:16 고화질 아트워크 — 941×1672 PNG',
     '잠금화면·홈화면 모두 잘리지 않는 세로 비율, 기종 상관없이',
     '먹의 번짐과 달·나비 — 화면을 열 때마다 눈이 쉬어 가는 그림',
     '사주분석지·2027 신년운세에서 부족한 오행을 확인한 뒤 골라도 좋습니다',
     '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
   ],
-  meta:[['구성','PNG 파일 (고른 오행마다 1장)'],['해상도','941 × 1672 (9:16 세로)'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 장당 2,900원이며, 5종 가운데 원하는 기운을 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9장). 세트 할인은 하지 않습니다. 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 잘못 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
+  notice:'※ 기기별 가격입니다 — 모바일용 2,900원(9:16 세로 1장) · 태블릿용 4,900원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장). 5종 가운데 원하는 기운을 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 잘못 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
 });
 
 PRODUCTS.push({
   id:'wall-zodiac-minhwa', cat:'digital', type:'wall', wallSet:'zodiac', persons:1, birth:false,
-  optLabel:'2027 12지신 민화 배경화면 · 12종 · 장당 2,900원',
-  name:'2027 나비 쫓는 12지신 민화 스마트폰 배경화면', price:2900, badge:'NEW',
+  optLabel:'2027 12지신 민화 배경화면 · 12종 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원',
+  name:'2027 나비 쫓는 12지신 민화 배경화면', price:2900, badge:'NEW',
   photo:'/store/assets/wallpaper-minhwa/card_zodiac_minhwa.jpg?v=1',
   short:'하루에 수십 번 여는 잠금화면 — 내 띠의 동물이 나비를 쫓는 민화 한 장',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 태어난 해의 띠를 따라 나비를 쫓는 12지신을 접월당의 민화 — 한지 바탕에 먹선, 소나무와 홍매, 자개빛 물결 — 로 그린 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 장당 2,900원에 담으실 수 있습니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 띠의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회).',
+  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 태어난 해의 띠를 따라 나비를 쫓는 12지신을 접월당의 민화 — 한지 바탕에 먹선, 소나무와 홍매, 자개빛 물결 — 로 그린 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 담으실 수 있습니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 띠의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회).',
   bullets:[
-    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 장당 2,900원',
+    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원',
     '한지 바탕에 먹선과 홍매·송백, 자개빛 물결 — 민화 톤의 9:16 아트워크',
     '시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG',
     '잠금화면·홈화면 모두 잘리지 않는 비율, 기종 상관없이',
     '본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다',
     '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
   ],
-  meta:[['구성','PNG 파일 (고른 띠마다 1장)'],['해상도','941 × 1672 (9:16 세로)'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 장당 2,900원이며, 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9장). 세트 할인은 하지 않습니다. 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
+  notice:'※ 기기별 가격입니다 — 모바일용 2,900원(9:16 세로 1장) · 태블릿용 4,900원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장). 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
 });
 
 PRODUCTS.push({
   id:'wall-zodiac-night', cat:'digital', type:'wall', wallSet:'zodiac', persons:1, birth:false,
-  optLabel:'2027 달빛 12지신 배경화면 · 12종 · 장당 2,900원',
-  name:'2027 달빛 아래 나비 12지신 스마트폰 배경화면', price:2900, badge:'NEW',
+  optLabel:'2027 달빛 12지신 배경화면 · 12종 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원',
+  name:'2027 달빛 아래 나비 12지신 배경화면', price:2900, badge:'NEW',
   photo:'/store/assets/wallpaper-night/card_zodiac_night.jpg?v=1',
   short:'하루에 수십 번 여는 잠금화면 — 초승달이 뜬 별밤, 내 띠의 동물과 빛나는 나비',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 초승달이 뜬 별밤, 들꽃이 핀 풀밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 장당 2,900원에 담으실 수 있습니다. 위쪽은 달과 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 띠의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회).',
+  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 초승달이 뜬 별밤, 들꽃이 핀 풀밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 담으실 수 있습니다. 위쪽은 달과 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 띠의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·최대 10회).',
   bullets:[
-    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 장당 2,900원',
+    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원',
     '초승달·은하수·들꽃과 빛나는 나비 — 밤 풍경의 9:16 아트워크',
     '시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG',
     '잠금화면·홈화면 모두 잘리지 않는 비율, 기종 상관없이',
     '본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다',
     '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
   ],
-  meta:[['구성','PNG 파일 (고른 띠마다 1장)'],['해상도','941 × 1672 (9:16 세로)'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 장당 2,900원이며, 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9장). 세트 할인은 하지 않습니다. 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
+  notice:'※ 기기별 가격입니다 — 모바일용 2,900원(9:16 세로 1장) · 태블릿용 4,900원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장). 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
 });
 
 PRODUCTS.push({
   id:'wall-zodiac-watercolor', cat:'digital', type:'wall', wallSet:'zodiac', persons:1, birth:false,
-  optLabel:'2027 수채화 12지신 배경화면 · 12종 · 장당 2,900원',
-  name:'2027 수채화 밤·달빛 12지신 스마트폰 배경화면', price:2900, badge:'NEW',
+  optLabel:'2027 수채화 12지신 배경화면 · 12종 · 모바일 2,900 / 태블릿 4,900 / 세트 5,900원',
+  name:'2027 수채화 밤·달빛 12지신 배경화면', price:2900, badge:'NEW',
   photo:'/store/assets/wallpaper-watercolor/card_zodiac_watercolor.jpg?v=1',
   short:'하루에 수십 번 여는 잠금화면 — 보랏빛 수채화 밤에 앉은 내 띠의 동물과 빛나는 나비',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 물빛이 번지는 보랏빛 밤하늘, 초승달 아래 연보랏빛 라벤더 들꽃밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 수채화 붓자국의 번짐과 부드러운 색 번짐을 살려, 밤에 보아도 눈이 부시지 않고 낮에 보아도 포근한 톤으로 그렸습니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 장당 2,900원에 담으실 수 있습니다. 위쪽은 달과 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 원본 PNG를 내려받으실 수 있습니다(다운로드 가능 기간 3일·최대 10회).',
+  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 물빛이 번지는 보랏빛 밤하늘, 초승달 아래 연보랏빛 라벤더 들꽃밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 수채화 붓자국의 번짐과 부드러운 색 번짐을 살려, 밤에 보아도 눈이 부시지 않고 낮에 보아도 포근한 톤으로 그렸습니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 담으실 수 있습니다. 위쪽은 달과 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 원본 PNG를 내려받으실 수 있습니다(다운로드 가능 기간 3일·최대 10회).',
   bullets:[
-    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 장당 2,900원',
+    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 모바일 2,900원 / 태블릿(세로+가로 2장) 4,900원 / 세트(3장) 5,900원',
     '수채화로 번진 보랏빛 밤하늘에 라벤더 들꽃밭 — 포근한 톤의 9:16 아트워크',
     '시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG',
     '잠금화면·홈화면 모두 잘리지 않는 비율, 기종 상관없이',
     '본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다',
     '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
   ],
-  meta:[['구성','PNG 파일 (고른 띠마다 1장)'],['해상도','941 × 1672 (9:16 세로)'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 장당 2,900원이며, 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9장). 세트 할인은 하지 않습니다. 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
+  notice:'※ 기기별 가격입니다 — 모바일용 2,900원(9:16 세로 1장) · 태블릿용 4,900원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 5,900원(3장). 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
 });
 
 /* ---------- 작명 · 택일 5종 ---------- */
@@ -4609,7 +4688,21 @@ function preloadCoverImg(){
   DIARY_COVER_CARD.slice(1).forEach(src => { const im = new Image(); im.src = src; });
 }
 /* 표지가 다르면 장바구니에서 다른 줄로 담는다 */
-const lineKeyOf = l => !l ? '' : (l.elem ? `${l.id}|${l.elem}` : l.cover ? `${l.id}|${l.cover}` : l.id);
+const lineKeyOf = l => !l ? '' : (l.elem ? `${l.id}|${l.elem}|${devOf(l)}|${tabOf(l)}` : l.cover ? `${l.id}|${l.cover}` : l.id);
+/* 줄의 기기·기종만 바꾼다(같은 줄이 있으면 수량을 합친다) */
+function setLineDev(key, dev, tab){
+  const line = cart.find(l => lineKeyOf(l) === key) || cart.find(l => l.id === key);
+  if(!line || !isWallP(byId(line.id))) return;
+  const nextDev = DEV_KEYS.includes(dev) ? dev : devOf(line);
+  const nextTab = TAB_KEYS.includes(tab) ? tab : tabOf(line);
+  if(devOf(line) === nextDev && tabOf(line) === nextTab) return;
+  line.dev = nextDev; line.tab = nextTab;
+  /* 같은 기기·기종·그림 줄이 이미 있으면 하나로 합친다 */
+  const twin = cart.find(l => l !== line && l.id === line.id && (l.elem || '') === (line.elem || '') && devOf(l) === nextDev && tabOf(l) === nextTab);
+  if(twin){ twin.qty = Math.min(9, twin.qty + line.qty); cart = cart.filter(l => l !== line); }
+  saveCart(); renderCart(); updateCount();
+  if($('#checkout').classList.contains('is-open')) renderOrderForm();
+}
 const findLine = key => cart.find(l => lineKeyOf(l) === key) || cart.find(l => l.id === key);
 function setCover(cover){
   if(!DIARY_COVERS.includes(cover)) return;
@@ -4670,13 +4763,16 @@ function loadCart(){
       const cover = p.type === 'diary' ? (DIARY_COVERS.includes(l.cover) ? l.cover : DIARY_COVERS[0]) : '';
       const elem = p.type === 'wall' ? (isElemOf(p.id, l.elem) ? l.elem : pickOf(p.id)) : '';
       const qty = Math.max(1, Math.min(9, l.qty|0 || 1));
-      return Object.assign({id:l.id, qty}, cover ? {cover} : {}, elem ? {elem} : {});
+      const dev = p.type === 'wall' ? (DEV_KEYS.includes(l.dev) ? l.dev : 'mobile') : '';
+      const tab = p.type === 'wall' && dev !== 'mobile' ? (TAB_KEYS.includes(l.tab) ? l.tab : 'ipad') : '';
+      return Object.assign({id:l.id, qty}, cover ? {cover} : {},
+        elem ? {elem} : {}, dev ? {dev} : {}, tab ? {tab} : {});
     });
   }catch(e){ return [] }
 }
 function saveCart(){ try{ localStorage.setItem('jwd_cart', JSON.stringify(cart)); }catch(e){} }
 const cartCount = () => cart.reduce((n,l) => n + l.qty, 0);
-const cartTotal = () => cart.reduce((n,l) => n + byId(l.id).price * l.qty, 0);
+const cartTotal = () => cart.reduce((n,l) => n + lineTotal(l), 0);
 
 /* ---------- 렌더 조각 ---------- */
 function coverHTML(p, extra=''){
@@ -4840,6 +4936,7 @@ function setCat(key, opt){
   if(k === 'all') openCatSections(['ziwei','digital','naming']);
   else if(CAT_SECTION[k]) openCatSections([k]);
   else openCatSections([]);
+  if(k !== 'digital' && typeof setDigFilter === 'function' && typeof digNow !== 'undefined' && digNow !== 'all') setDigFilter('all', {scroll:false});
   if(CAT_SLIDE[k] !== undefined){ catLock = true; goSlide(CAT_SLIDE[k], false); }
   paintCatbar();
   if(opt.scroll === false) return;
@@ -4848,11 +4945,33 @@ function setCat(key, opt){
   if(k === 'all'){ scrollToNode($('#catshop'), opt.smooth); return; }
   if(CAT_SLIDE[k] !== undefined){ scrollToNode($('#products'), opt.smooth); return; }
 }
+/* 디지털 굿즈 하위 분류 — 전체 / 모바일·태블릿 배경화면 / 굿노트 다이어리 */
+let digNow = 'all';
+function setDigFilter(v, opt){
+  opt = opt || {};
+  digNow = ['all','wall','diary'].includes(v) ? v : 'all';
+  const sec = $('#digital');
+  if(sec){
+    sec.classList.toggle('dig-wall', digNow === 'wall');
+    sec.classList.toggle('dig-diary', digNow === 'diary');
+  }
+  $$('[data-dig]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.dig === digNow)));
+  if(opt.scroll === false) return;
+  if(digNow === 'diary'){ const d = $('#diary'); if(d){ scrollToNode(d, opt.smooth); return; } }
+  const a = $('#digital'); if(a) scrollToNode(a, opt.smooth);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('[data-dig]');
+  if(!b) return;
+  e.preventDefault();
+  setCat('digital', {scroll:false});
+  setDigFilter(b.dataset.dig);
+});
 /* 해시(#saju · #newyear · #ziwei · #digital · #diary · #naming)로 들어온 경우 그 카테고리를 연다 */
 function catFromHash(){
   const h = (location.hash || '').replace('#','');
   if(!h) return false;
-  if(h === 'diary'){ setCat('digital', {anchor:'#diary', smooth:false}); return true; }
+  if(h === 'diary'){ setCat('digital', {anchor:'#diary', smooth:false}); setDigFilter('diary', {scroll:false}); return true; }
   if(h === 'digital' || h === 'ziwei' || h === 'naming' || h === 'saju' || h === 'newyear'){ setCat(h, {smooth:false}); return true; }
   return false;
 }
@@ -4883,18 +5002,22 @@ function setSajuPersons(n){ setPersons('saju', n); }
 function setZiweiPersons(n){ setPersons('ziwei', n); }
 
 /* ---------- 장바구니 ---------- */
-function addToCart(id, qty=1, cover, elem){
+function addToCart(id, qty=1, cover, elem, dev, tab){
   const p = byId(id); if(!p) return;
   try{ JWDTRACK.add(id); }catch(e){}          /* 방문 통계: 장바구니 담기 */
   const cv = p.type === 'diary' ? (DIARY_COVERS.includes(cover) ? cover : diaryCover) : '';
   const el = p.type === 'wall' ? (isElemOf(id, elem) ? elem : pickOf(id)) : '';
-  const line = cart.find(l => l.id === id && (l.cover || '') === cv && (l.elem || '') === el);
+  const dv = p.type === 'wall' ? (DEV_KEYS.includes(dev) ? dev : 'mobile') : '';
+  const tb = p.type === 'wall' && dv !== 'mobile' ? (TAB_KEYS.includes(tab) ? tab : 'ipad') : '';
+  const line = cart.find(l => l.id === id && (l.cover || '') === cv && (l.elem || '') === el
+    && (!dv || devOf(l) === dv) && (!tb || tabOf(l) === tb));
   if(line) line.qty = Math.min(9, line.qty + qty);
-  else cart.push(Object.assign({id, qty}, cv ? {cover:cv} : {}, el ? {elem:el} : {}));
+  else cart.push(Object.assign({id, qty}, cv ? {cover:cv} : {}, el ? {elem:el} : {}, dv ? {dev:dv} : {}, tb ? {tab:tb} : {}));
   saveCart(); renderCart(); updateCount();
   const w = el ? wallOf(el, id) : null;
   const nm = dispName(p) + (cv ? ` · ${cv} 표지` : '') + (w ? ` · ${wallLabel(w.key)}` : '');
-  toast(`${nm}${w && w.eul ? w.eul : eul(nm)} 장바구니에 담았습니다`);
+  const dvTxt = dv ? ` (${DEV[dv].short}${dv !== 'mobile' ? ' · ' + TABLET[tb].label : ''})` : '';
+  toast(`${nm}${dvTxt} 장바구니에 담았습니다${dv === 'mobile' ? ' · 장바구니에서 태블릿·세트로 바꿀 수 있어요' : ''}`);
 }
 function setQty(id, qty){
   const line = findLine(id);
@@ -4910,6 +5033,15 @@ function updateCount(){
   el.textContent = n;
   el.dataset.empty = n === 0 ? 'true' : 'false';
 }
+/* 장바구니 줄의 기기·기종 선택 칩 */
+function devChipsHTML(l){
+  const key = lineKeyOf(l), d = devOf(l);
+  return `<div class="devwrap" role="group" aria-label="기기 선택">
+            <span class="devwrap__lab">기기</span>
+            ${DEV_KEYS.map(k => `<button type="button" class="devchip" data-dev-line="${key}" data-dev="${k}" aria-pressed="${d === k}">${DEV[k].short}</button>`).join('')}
+            ${d !== 'mobile' ? TAB_KEYS.map(k => `<button type="button" class="devchip" data-tab-line="${key}" data-tabtype="${k}" aria-pressed="${tabOf(l) === k}">${TABLET[k].label}</button>`).join('') : ''}
+          </div>`;
+}
 function renderCart(){
   const body = $('#cartBody'), foot = $('#cartFoot');
   if(!cart.length){
@@ -4920,7 +5052,7 @@ function renderCart(){
   body.innerHTML = cart.map(l => {
     const p = byId(l.id);
     const opt = p.type === 'wall'
-      ? `${wallLabel(l.elem || pickOf(p.id))} · 9:16 PNG · 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)`
+      ? `${wallLabel(l.elem || pickOf(p.id))} · ${devTextOf(l)} · 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)`
       : p.type === 'diary'
       ? `${l.cover || DIARY_COVERS[0]} 표지 · ` + (p.id === 'diary-premium' ? '프리미엄 맞춤 일진형 · 365일 맞춤 표기 후 평균 6시간(최대 12시간) 내 발송' : p.birth ? '원국 기입형 · 기입 후 평균 6시간(최대 12시간) 내 발송' : '기본형 · 페이앱 결제 완료 즉시 사이트에서 다운로드(3일 이내)')
       : p.type === 'naming' ? `${p.optLabel} · 접수 확인 후 순차 발송`
@@ -4930,13 +5062,14 @@ function renderCart(){
       <div>
         <div class="citem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''}${l.elem ? ` · ${wallLabel(l.elem)}` : ''}</div>
         <div class="citem__opt">${opt}</div>
+        ${p.type === 'wall' ? devChipsHTML(l) : ''}
         <div class="citem__row">
           <span class="mini-qty">
             <button data-qty="${lineKeyOf(l)}" data-delta="-1" aria-label="수량 줄이기">−</button>
             <span>${l.qty}</span>
             <button data-qty="${lineKeyOf(l)}" data-delta="1" aria-label="수량 늘리기">+</button>
           </span>
-          <b class="citem__price">${won(p.price * l.qty)}</b>
+          <b class="citem__price">${won(lineTotal(l))}</b>
         </div>
       </div>
       <button class="citem__del" data-del="${lineKeyOf(l)}">삭제</button>
@@ -4961,6 +5094,29 @@ function renderCart(){
     <button class="btn btn--gold btn--block" id="goCheckout">주문서 작성하기</button>`;
 }
 
+/* 기기 선택 — 모바일 / 태블릿 / 모바일+태블릿 세트. 태블릿(또는 세트)을 고르면 기종도 고른다 */
+function devPicker(){
+  const t = TABLET[pdTab] || TABLET.ipad;
+  const needTab = pdDev === 'tablet' || pdDev === 'bundle';
+  return `<div class="pd__dev" id="pdDevBox">
+          <span class="pd__devlab">1. 기기 선택</span>
+          <div class="devgrid">${DEV_KEYS.map(k => { const x = DEV[k]; return `<button type="button" class="devbtn" data-dev="${k}" aria-pressed="${pdDev === k}">
+            <b>${x.label} · ${won(x.price)}</b><em>${x.files}</em>
+            ${x.rec ? '<span class="devbtn__rec">추천</span>' : ''}
+          </button>`; }).join('')}</div>
+          ${needTab ? `<div class="tabrow" role="group" aria-label="태블릿 종류 선택">
+            <span class="tabrow__lab">2. 태블릿 종류</span>
+            ${TAB_KEYS.map(k => { const x = TABLET[k]; return `<button type="button" class="tabbtn" data-tabtype="${k}" aria-pressed="${pdTab === k}">
+              <b>${x.label}</b><em>${x.ratio}</em>
+            </button>`; }).join('')}
+          </div>` : ''}
+          <p class="devnote">${pdDev === 'mobile'
+            ? '휴대폰 배경화면 <b>9:16 세로 1장</b> — 941×1672 PNG 원본'
+            : pdDev === 'tablet'
+            ? `<b>${t.label} ${t.ratio} 세로+가로 2장</b> — ${t.size} JPG 원본`
+            : `휴대폰 1장 + 태블릿 2장 <b>총 3장</b> — 모바일 941×1672 PNG + ${t.label} ${t.ratio} ${t.size} JPG`}</p>
+        </div>`;
+}
 /* 배경화면 상세 — 오행 5종 / 12지신 민화·달빛·수채화 12종 선택
    1장이면 1종을 고르고, 2장 이상이면 슬롯(1번째·2번째…)마다 따로 고른다. */
 function ensureWallSlots(pid, n){
@@ -4984,7 +5140,7 @@ function wallPicker(p){
               <span class="wallslot__n">${i + 1}번째</span><b>${w.name}</b></button>`; }).join('')}
           </div>` : '';
   return `<div class="pd__wall" id="pdWall">
-          <span class="pd__walllab">${multi ? `${st.word} ${pdQty}장 선택 — 슬롯을 누른 뒤 그림을 고르세요` : st.pick}</span>
+          <span class="pd__walllab">3. ${multi ? `${st.word} ${pdQty}장 선택 — 슬롯을 누른 뒤 그림을 고르세요` : st.pick}</span>
           ${slotsHTML}
           <div class="wallview">
             <div class="wallview__img"><img id="wallViewImg" src="${cur.img}" alt="${cur.full} ${st.word} 배경화면 미리보기" loading="lazy"></div>
@@ -5018,14 +5174,16 @@ function addWallSelection(pid){
   const counts = new Map();
   keys.forEach(k => { const key = isElemOf(pid, k) ? k : elemsOf(pid)[0].key; counts.set(key, (counts.get(key) || 0) + 1); });
   try{ JWDTRACK.add(pid); }catch(e){}
+  const dv = DEV_KEYS.includes(pdDev) ? pdDev : 'mobile';
+  const tb = dv !== 'mobile' ? (TAB_KEYS.includes(pdTab) ? pdTab : 'ipad') : '';
   counts.forEach((n, k) => {
-    const line = cart.find(l => l.id === pid && (l.elem || '') === k);
+    const line = cart.find(l => l.id === pid && (l.elem || '') === k && devOf(l) === dv && (!tb || tabOf(l) === tb));
     if(line) line.qty = Math.min(9, line.qty + n);
-    else cart.push({ id: pid, qty: n, elem: k });
+    else cart.push(Object.assign({ id: pid, qty: n, elem: k, dev: dv }, tb ? { tab: tb } : {}));
   });
   saveCart(); renderCart(); updateCount();
   const names = [...counts.entries()].map(([k, n]) => `${wallLabel(k)}${n > 1 ? ` ${n}장` : ''}`).join(', ');
-  toast(`배경화면 ${names} ${keys.length}장을 장바구니에 담았습니다`);
+  toast(`배경화면 ${names} · ${DEV[dv].label}${tb ? ' · ' + TABLET[tb].label : ''} ${keys.length}묶음 담았습니다`);
 }
 
 /* ---------- 다른 상품 둘러보기 (상세 모달 하단 · 최대 4개) ---------- */
@@ -5074,6 +5232,8 @@ function relatedHTML(id){
 
 /* ---------- 상품 상세 ---------- */
 let pdQty = 1, pdId = null;
+/* 배경화면 기기 선택 상태 — 모바일 / 태블릿 / 세트, 태블릿 기종(아이패드·갤럭시탭) */
+let pdDev = 'mobile', pdTab = 'ipad';
 /* 배경화면 여러 장 담기 — 슬롯별 선택 그림(키)과 지금 고치는 슬롯 번호 */
 let wallSlots = [], wallSlot = 0;
 function openProduct(id){
@@ -5083,6 +5243,7 @@ function openProduct(id){
   pdId = id;
   pdQty = tk ? Math.max(1, Object.values(TIER_IDS[tk]).indexOf(id) + 1) : 1;
   wallSlots = []; wallSlot = 0;
+  pdDev = 'mobile'; pdTab = 'ipad';
   REVIEW.showAll = false;
   paintProduct();
   openOverlay('#pdOverlay');
@@ -5105,9 +5266,10 @@ function paintProduct(){
         <h3 class="pd__name">${tk ? tierName : dispName(p)}</h3>
         <p class="pd__short">${p.short}</p>
         <div class="pd__price">
+          ${p.type === 'wall' ? `<span class="pd__tier">${DEV[pdDev].label} · 장당</span>` : ''}
           ${tk ? `<span class="pd__tier">${tierLabel(pdId, pdQty)}</span>` : ''}
           ${p.orig ? `<s>${won(p.orig)}</s>` : ''}
-          <b>${won(p.price)}</b>
+          <b>${won(p.type === 'wall' ? DEV[pdDev].price : p.price)}</b>
           ${p.orig ? `<em class="pcut">${pct(p)}%</em>` : ''}
         </div>
         ${p.type === 'diary' ? `<div class="pd__cover">
@@ -5118,7 +5280,7 @@ function paintProduct(){
           </button>`).join('')}</div>
           <p class="covhint" id="pdCoverNow">선택 · <b>${diaryCover} 표지</b> — 속지 바탕은 그대로, 테두리·장식 포인트만 이 색에 맞춥니다</p>
         </div>` : ''}
-        ${p.type === 'wall' ? wallPicker(p) : ''}
+        ${p.type === 'wall' ? devPicker() + wallPicker(p) : ''}
 
         <ul class="pd__list">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
         <div class="pd__meta">${p.meta.map(([k,v]) => `<div><b>${k}</b><span>${v}</span></div>`).join('')}</div>
@@ -5137,7 +5299,7 @@ function paintProduct(){
         <span id="pdQty">${tierLabel(pdId, pdQty)}</span>
         <button data-pdq="1" aria-label="수량 늘리기"${pdQty >= (tierKind(pdId) ? (TIER_COUNT[tierKind(pdId)] || 2) : 9) ? ' disabled' : ''}>+</button>
       </span>
-      <button class="btn btn--gold pd__add" id="pdAdd">장바구니 담기 · ${won(tierKind(pdId) ? p.price : p.price * pdQty)}</button>
+      <button class="btn btn--gold pd__add" id="pdAdd">장바구니 담기 · ${won(p.type === 'wall' ? DEV[pdDev].price * pdQty : (tierKind(pdId) ? p.price : p.price * pdQty))}</button>
     </div>`;
   if(p.type === 'diary') applyCoverImg();   /* 고른 표지를 모달 상단 이미지에 유지 */
 }
@@ -5162,7 +5324,7 @@ function openCart(){ renderCart(); openOverlay('#cartOverlay'); }
 
 /* ---------- 클릭 위임 ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-add-wall],[data-wall],[data-wall-pick],[data-slot],[data-elem-line],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line]');
+  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-add-wall],[data-wall],[data-wall-pick],[data-slot],[data-dev],[data-tabtype],[data-dev-line],[data-tab-line],[data-elem-line],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line]');
   if(!t) return;
 
   if(t.dataset.person && t.dataset.line){ switchPersons(t.dataset.person, Number(t.dataset.n), t.dataset.line); return; }
@@ -5172,6 +5334,25 @@ document.addEventListener('click', e => {
   if(t.dataset.coverLine){ switchCover(t.dataset.coverLine, t.dataset.cover); return; }
   if(t.dataset.cover){ setCover(t.dataset.cover); return; }
   if(t.dataset.slot !== undefined){ wallSlot = Number(t.dataset.slot) || 0; paintWallPicker(); return; }
+  if(t.dataset.dev !== undefined && t.dataset.devLine === undefined){
+    if(!pdId || !DEV[t.dataset.dev]) return;
+    pdDev = t.dataset.dev;
+    if(pdDev !== 'mobile' && !TAB_KEYS.includes(pdTab)) pdTab = 'ipad';
+    const sc = $('#pdBody'), top = sc ? sc.scrollTop : 0;
+    paintProduct();
+    if(sc) sc.scrollTop = top;
+    return;
+  }
+  if(t.dataset.tabtype !== undefined && t.dataset.tabLine === undefined){
+    if(!TAB_KEYS.includes(t.dataset.tabtype)) return;
+    pdTab = t.dataset.tabtype;
+    const sc = $('#pdBody'), top = sc ? sc.scrollTop : 0;
+    paintProduct();
+    if(sc) sc.scrollTop = top;
+    return;
+  }
+  if(t.dataset.devLine !== undefined){ setLineDev(t.dataset.devLine, t.dataset.dev); return; }
+  if(t.dataset.tabLine !== undefined){ setLineDev(t.dataset.tabLine, null, t.dataset.tabtype); return; }
   if(t.dataset.wallPick){ const pid = t.dataset.pickFor || 'wall-ohaeng'; setWall(t.dataset.wallPick, pid); openProduct(pid); return; }
   if(t.dataset.wall){ setWall(t.dataset.wall, pdId || 'wall-ohaeng'); return; }
   if(t.dataset.elemLine){ switchElem(t.dataset.elemLine, t.dataset.elem); return; }
@@ -5238,7 +5419,7 @@ document.addEventListener('click', e => {
   }
   if(t.dataset.addWall !== undefined){
     const pid = t.dataset.addWall || 'wall-ohaeng';
-    addToCart(pid, 1, null, pickOf(pid));
+    addToCart(pid, 1, null, pickOf(pid), 'mobile', 'ipad');
     return;
   }
   if(t.id === 'pdAdd'){
@@ -5526,7 +5707,7 @@ function renderOrderForm(){
     return `<div class="oitem">
       <div class="oitem__top">
         <span class="oitem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''}${l.elem ? ` · ${wallLabel(l.elem)}` : ''} <span class="oitem__qty">× ${l.qty}</span></span>
-        <b class="oitem__price">${won(p.price * l.qty)}</b>
+        <b class="oitem__price">${won(lineTotal(l))}</b>
       </div>${tk ? `
       <div class="oitem__foot">
         <span class="ptoggle" role="group" aria-label="${dispName(p).replace(/\s*·.*$/, '')} 옵션 선택">
@@ -5542,11 +5723,19 @@ function renderOrderForm(){
         <span class="oitem__note">속지 바탕은 그대로 두고 테두리·장식 포인트만 표지 색에 맞춰 보냅니다</span>
       </div>` : ''}${p.type === 'wall' ? `
       <div class="oitem__foot oitem__cover">
+        <span class="oitem__coverlab">기기</span>
+        <span class="ptoggle" role="group" aria-label="기기 선택">
+          ${DEV_KEYS.map(k => `<button type="button" data-dev-line="${lineKeyOf(l)}" data-dev="${k}" aria-pressed="${devOf(l) === k}">${DEV[k].short}</button>`).join('')}
+          ${devOf(l) !== 'mobile' ? TAB_KEYS.map(k => `<button type="button" data-tab-line="${lineKeyOf(l)}" data-tabtype="${k}" aria-pressed="${tabOf(l) === k}">${TABLET[k].label}</button>`).join('') : ''}
+        </span>
+        <span class="oitem__note">${devTextOf(l)} · 장당 ${won(priceOf(p, l))}</span>
+      </div>
+      <div class="oitem__foot oitem__cover">
         <span class="oitem__coverlab">${p.wallSet === 'zodiac' ? '띠 · 12종 · 원하는 만큼' : '오행 · 5종 · 원하는 만큼'}</span>
         <span class="ptoggle" role="group" aria-label="${p.wallSet === 'zodiac' ? '띠 선택' : '오행 선택'}">
           ${elemsOf(p.id).map(w => `<button type="button" data-elem-line="${lineKeyOf(l)}" data-elem="${w.key}" aria-pressed="${(l.elem || pickOf(p.id)) === w.key}">${w.name}</button>`).join('')}
         </span>
-        <span class="oitem__note">고른 ${p.wallSet === 'zodiac' ? '띠' : '오행'}마다 9:16 PNG 원본 1장 · 장당 2,900원, 페이앱 결제 완료 즉시 사이트에서(무통장은 입금 확인 후) 다운로드하실 수 있습니다</span>
+        <span class="oitem__note">고른 ${p.wallSet === 'zodiac' ? '띠' : '오행'}마다 선택한 기기 파일을 드립니다 · 모바일 2,900원 / 태블릿 4,900원 / 세트 5,900원, 페이앱 결제 완료 즉시 사이트에서(무통장은 입금 확인 후) 다운로드하실 수 있습니다</span>
       </div>` : ''}
     </div>`;
   }).join('') + (hasOne ? `
@@ -5651,7 +5840,11 @@ function validateOrder(){
 function collectOrder(){
   const items = cart.map(l => {
     const p = byId(l.id);
-    return { id:p.id, name:dispName(p), qty:l.qty, price:p.price, amount:p.price * l.qty, type:p.type, option:p.variant || '', cover:l.cover || '', elem:l.elem || '' };
+    const dv = isWallP(p) ? devOf(l) : '';
+    const tb = dv && dv !== 'mobile' ? tabOf(l) : '';
+    return { id:p.id, name:dispName(p), qty:l.qty, price:priceOf(p, l), amount:priceOf(p, l) * l.qty,
+             type:p.type, option:p.variant || '', cover:l.cover || '', elem:l.elem || '',
+             device:dv, tablet:tb };
   });
   const births = [];
   $$('#birthArea [data-birth]').forEach(fg => {
@@ -5706,7 +5899,7 @@ function buildMessage(o, no){
   lines.push(`결제방법: ${o.payMethod === 'bank' ? '무통장 입금(케이뱅크)' : '카드·간편결제(페이앱)'}`);
   lines.push('');
   lines.push('■ 주문 상품');
-  o.items.forEach(i => lines.push(`- ${i.name}${i.elem ? ` (${wallLabel(i.elem)})` : i.cover ? ` (${i.cover} 표지)` : ''} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`));
+  o.items.forEach(i => lines.push(`- ${i.name}${i.elem ? ` (${wallLabel(i.elem)})` : i.cover ? ` (${i.cover} 표지)` : ''}${i.device ? ` [${DEV[i.device].label}${i.tablet ? ' · ' + TABLET[i.tablet].label : ''}]` : ''} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`));
   lines.push(`합계: ${o.total.toLocaleString('ko-KR')}원`);
   if(o.births.length){
     lines.push('');
@@ -6197,10 +6390,10 @@ const DOCS = {
       <tr><td>사주분석지<br>자미두수 분석지<br>2027 신년운세<br><small>1:1 맞춤 제작형</small></td><td>입금 확인과 동시에 제작 시작 · 발송 전 중도 취소 시 진행 작업비 50% 공제 후 50% 환불</td><td>발송 완료 후에는 개인적 불만족·단순 변심·정보 오기재 등 환불 일체 불가. 단, 회사 귀책(지연·미발송·오발송·파일 오류) 시 100% 환불 또는 재작성</td></tr>
       <tr><td>작명·택일<br><small>이름 감명 · 성인 개명 · 신생아 · 상호 작명 · 길일 택일</small></td><td>작업 시작 전 취소 시 <b>100% 전액 환불</b> · 진행 단계별 환불(완료율 20% → 80% 환불 / 40% → 60% / 60% → 40% / 80% → 20%)</td><td>최종 선정 및 감명서·결과물(PDF) 완료(완료율 100%) 후에는 환불 0%로 단순 변심·개인 사유 환불 불가. 단, 판매자 귀책(지연·미발송·오발송·파일 오류) 시 100% 환불 또는 재작성</td></tr>
       <tr><td>2027 사주 개운 다이어리<br><small>기본형 · 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
-      <tr><td>2027 오행 개운 배경화면<br><small>오행 5종 · 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
-      <tr><td>2027 12지신 민화 배경화면<br><small>12띠 · 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
-      <tr><td>2027 수채화 밤·달빛 12지신 배경화면<br><small>12띠 · 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
-      <tr><td>2027 달빛 아래 나비 12지신 배경화면<br><small>12띠 · 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
+      <tr><td>2027 오행 개운 배경화면<br><small>오행 5종 · 모바일·태블릿·세트 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
+      <tr><td>2027 12지신 민화 배경화면<br><small>12띠 · 모바일·태블릿·세트 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
+      <tr><td>2027 수채화 밤·달빛 12지신 배경화면<br><small>12띠 · 모바일·태블릿·세트 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
+      <tr><td>2027 달빛 아래 나비 12지신 배경화면<br><small>12띠 · 모바일·태블릿·세트 즉시 다운로드형</small></td><td>결제(입금 확인) 전 무료 취소 · 다운로드 개시 전(결제 후 3일 이내·10회 이내) 상태면 100% 환불</td><td>결제 완료 즉시 사이트에서 내려받는 상품으로, 다운로드가 시작된 뒤에는 환불 불가. 단, 미다운로드 상태이거나 파일 오류·오배송 등 판매자 귀책 시 재전송 또는 환불</td></tr>
       <tr><td>2027 사주 개운 다이어리<br><small>원국 기입형 · 맞춤 제작형</small></td><td>입금 확인과 동시에 기입 시작 · 발송 전 중도 취소 시 진행 작업비 50% 공제 후 50% 환불</td><td>발송 완료 후에는 개인적 불만족·단순 변심·정보 오기재 등 환불 일체 불가. 단, 회사 귀책(지연·미발송·오발송·파일 오류) 시 100% 환불 또는 재작성</td></tr>
       <tr><td>2027 사주 개운 다이어리<br><small>프리미엄 맞춤 일진형 · 맞춤 제작형</small></td><td>입금 확인과 동시에 365일 맞춤 일진 제작 시작 · 발송 전 중도 취소 시 진행 작업비 50% 공제 후 50% 환불</td><td>발송 완료 후에는 개인적 불만족·단순 변심·정보 오기재 등 환불 일체 불가. 단, 회사 귀책(지연·미발송·오발송·파일 오류) 시 100% 환불 또는 재작성</td></tr>
     </table>
@@ -6618,7 +6811,11 @@ if(mnav && mnavBtn){
     const target = sel && document.querySelector(sel);
     mnavSet(false);                                  // 항목을 누르면 메뉴는 먼저 닫는다
     if(a.dataset.mnavCat){                           // 카테고리 항목은 그 카테고리 섹션을 펼쳐서 이동
+      if(a.dataset.mnavCat === 'digital' && typeof setDigFilter === 'function'){
+        setDigFilter(a.dataset.mnavDig || 'all', {scroll:false});   // 디지털 굿즈는 하위 분류까지 함께
+      }
       setCat(a.dataset.mnavCat);
+      if(a.dataset.mnavDig === 'diary'){ const d = $('#diary'); if(d){ scrollToNode(d, true); } }
       return;
     }
     if(!target) return;

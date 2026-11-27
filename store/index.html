@@ -1718,7 +1718,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
       "email": "jeopwoldang@naver.com",
       "priceRange": "₩10,000~₩1,100,000",
       "currenciesAccepted": "KRW",
-      "paymentAccepted": "무통장 입금, 신용카드, 네이버페이, 카카오페이, 토스페이",
+      "paymentAccepted": "무통장 입금, 신용카드, 네이버페이, 토스페이",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "언주로134길 18, 5층 S52(논현동, 신승빌딩)",
@@ -2752,7 +2752,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
     <noscript>
       <!-- 자바스크립트를 실행하지 않는 환경(일부 검색 로봇 포함)에서도 상품 정보를 읽을 수 있도록 같은 상품 데이터를 정적으로 제공합니다. -->
       <div class="noscript-products">
-        <p>사주·자미두수·신년운세 분석지는 11년 경력 사주명리사가 생년월일시로 명식을 세워 직접 해석·검수한 1:1 맞춤 PDF이며, 주문 후 이메일로 보내드립니다. 결제는 무통장 입금 또는 신용카드·네이버페이·카카오페이·토스페이로 할 수 있습니다.</p>
+        <p>사주·자미두수·신년운세 분석지는 11년 경력 사주명리사가 생년월일시로 명식을 세워 직접 해석·검수한 1:1 맞춤 PDF이며, 주문 후 이메일로 보내드립니다. 결제는 무통장 입금 또는 신용카드·네이버페이·토스페이로 할 수 있습니다.</p>
         <ul>
           <li><a href="/saju/">종합 사주분석지 · 1인</a> — 39,800원 (정가 44,000원). 약 120페이지 PDF, 평균 6시간 · 최대 12시간 내 이메일 발송, 수령일부터 10일 추가 질문(본인 질문만 · 궁합 불가).</li>
           <li><a href="/saju/">종합 사주분석지 · 2인</a> — 70,000원 (정가 78,000원). 두 사람 궁합·동업·동거 분석, 약 120페이지 PDF, 평균 6시간 · 최대 12시간 내 이메일 발송, 수령일부터 10일 추가 질문(2인·궁합 질문 포함).</li>
@@ -2990,7 +2990,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
       <div class="step">
         <div class="step__no">02</div>
         <h3>결제</h3>
-        <p>무통장 입금은 안내되는 케이뱅크 계좌(100-301-474580)로, 카드·간편결제(신용카드·네이버페이·카카오페이·토스페이)는 주문서에서 선택해 바로 결제해 주세요.</p>
+        <p>무통장 입금은 안내되는 케이뱅크 계좌(100-301-474580)로, 카드·간편결제(신용카드·네이버페이·토스페이)는 주문서에서 선택해 바로 결제해 주세요.</p>
       </div>
       <div class="step">
         <div class="step__no">03</div>
@@ -3235,7 +3235,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <label>
           <input type="radio" name="payMethod" value="card">
           <b>카드 · 간편결제</b>
-          <span><span>신용카드 · 네이버페이 · 카카오페이 · 토스페이</span></span>
+          <span><span>신용카드 · 네이버페이 · 토스페이</span></span>
           <span class="tag">바로 결제</span>
         </label>
       </div>
@@ -3312,7 +3312,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
     <div class="bank">
       <div class="k">결제 금액</div>
       <div class="n" id="paidAmount">—</div>
-      <div class="o">신용카드 · 네이버페이 · 카카오페이 · 토스페이</div>
+      <div class="o">신용카드 · 네이버페이 · 토스페이</div>
       <div class="amt"><span>주문번호</span><b id="paidOrderNo">—</b></div>
     </div>
 
@@ -3358,7 +3358,7 @@ const CFG = {
     userid: 'jeopwoldang',
     shopname: '접월당',
     script: 'https://lite.payapp.kr/public/api/v2/payapp-lite.js',
-    paytypes: 'card,naverpay,kakaopay,tosspay',   // 신용카드 · 네이버페이 · 카카오페이 · 토스페이
+    paytypes: 'card,naverpay,tosspay',   // 신용카드 · 네이버페이 · 토스페이
   },
   /* 백엔드(Supabase/REST) 주소 — 실제 값은 jwd-orders.js의 JWD_CFG.API_URL 한 곳에서만 고칩니다.
      비어 있으면 브라우저 저장소(localStorage jwd_orders_v1) 모드로 동작합니다. */
@@ -4694,7 +4694,7 @@ const DOCS = {
     <h4>제3조 (주문 및 결제)</h4>
     <ol>
       <li>이용자는 주문서에 정확한 정보를 기재하여야 하며, 입력 오류로 인한 결과의 차이는 회사가 책임지지 않습니다.</li>
-      <li>결제 수단은 무통장 입금(케이뱅크 100-301-474580 예금주 접월당)과 카드·간편결제(신용카드·네이버페이·카카오페이·토스페이)를 제공합니다. 카드·간편결제는 전자결제대행사 (주)유디아이디(페이앱)를 통해 처리됩니다.</li>
+      <li>결제 수단은 무통장 입금(케이뱅크 100-301-474580 예금주 접월당)과 카드·간편결제(신용카드·네이버페이·토스페이)를 제공합니다. 카드·간편결제는 전자결제대행사 (주)유디아이디(페이앱)를 통해 처리됩니다.</li>
       <li>입금자명이 주문자와 다른 경우 확인이 지연될 수 있습니다.</li>
     </ol>
     <h4>제4조 (발송)</h4>

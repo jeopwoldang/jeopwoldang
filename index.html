@@ -674,6 +674,41 @@ body.cat-mode #catbar{position:sticky;top:var(--hnav);z-index:40;max-width:none;
 @media (max-width:520px){.covgrid--zodiac{grid-template-columns:repeat(4,1fr)}.covbtn--zodiac .covbtn__nm{font-size:9.5px}}
 .pd__wall{margin:14px 0 2px;padding:14px;border-radius:12px;background:rgba(255,255,255,.022);border:1px solid rgba(242,216,155,.16)}
 .pd__wall > .pd__walllab{display:block;font-size:11px;letter-spacing:.14em;color:var(--gold-d);margin-bottom:10px}
+/* 종합사주 구매 사은품 — 개운 배경화면 1종 무료(0원) 선택칸 */
+.fcard__gift{display:inline-flex;align-items:center;gap:5px;margin:9px 0 0;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.01em;color:#F7DFAE;background:rgba(242,216,155,.1);border:1px solid rgba(242,216,155,.32)}
+/* 사은품 전용 배경화면 — 개별 구매 불가 표기 */
+.fbadge--gift{background:linear-gradient(135deg,#FCEDCB,#E3C48F);color:#2A1B44 !important;font-weight:800}
+.fcard__giftprice{font-family:var(--serif);font-size:16px;font-weight:800;color:#F7DFAE;letter-spacing:.01em}
+.fcard__price--row .fcard__giftprice{font-size:15px}
+.pd__price--gift{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.pd__giftprice{font-family:var(--serif);font-size:26px;font-weight:800;color:#F7DFAE;letter-spacing:.01em}
+.pd__giftcond{font-size:11.5px;font-weight:600;color:#CBBDE7}
+.pd__foot--gift{flex-wrap:wrap}
+.pd__footnote{flex-basis:100%;font-size:11px;line-height:1.5;color:var(--mut);letter-spacing:0}
+.pd__foot--gift .pd__add{flex:1 1 auto}
+.dcard--wall .fcard__devp{flex-basis:100%;font-size:11px;line-height:1.55;color:#CBBDE7;letter-spacing:0}
+.pd__gift{margin:16px 0 2px;padding:14px;border-radius:12px;background:linear-gradient(160deg,rgba(242,216,155,.085),rgba(255,255,255,.02));border:1px solid rgba(242,216,155,.32)}
+.pd__gifth{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:7px}
+.pd__gifth b{font-size:12.5px;font-weight:700;color:#F7DFAE;letter-spacing:.01em}
+.pd__giftfree{margin-left:auto;font-family:var(--serif);font-size:12.5px;font-weight:800;color:#2A1B44;background:linear-gradient(135deg,#FBEDCB,#E3C48F);padding:2px 10px;border-radius:999px}
+.pd__giftnote{margin:0 0 12px;font-size:11.5px;line-height:1.6;color:var(--mut)}
+.pd__gift .pd__walllab{display:block;font-size:11px;letter-spacing:.14em;color:var(--gold-d);margin:12px 0 8px}
+.giftgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.giftcard{position:relative;display:flex;flex-direction:column;gap:3px;padding:5px;border-radius:10px;border:1px solid rgba(216,192,255,.22);background:rgba(255,255,255,.03);text-align:center;transition:border-color .18s,background .18s}
+.giftcard__img{display:block;border-radius:7px;overflow:hidden;opacity:.72;transition:opacity .18s}
+.giftcard__img img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.giftcard__nm{font-size:10px;line-height:1.3;color:var(--mut);letter-spacing:-.01em}
+.giftcard__ct{font-size:9px;color:rgba(203,189,231,.7)}
+.giftcard[aria-pressed="true"]{border-color:rgba(242,216,155,.85);background:rgba(242,216,155,.1)}
+.giftcard[aria-pressed="true"] .giftcard__img{opacity:1}
+.giftcard[aria-pressed="true"] .giftcard__nm{color:#F2D89B;font-weight:700}
+.pd__gift .devbtn b{font-size:12.5px}
+.citem__gift{margin-top:4px;font-size:11px;font-weight:600;color:#F2D89B}
+.citem__gift--none{color:var(--mut);font-weight:500}
+.citem__giftfree{margin-left:4px;font-weight:600;color:rgba(203,189,231,.75)}
+.oitem__gift{margin-top:5px;font-size:11.5px;font-weight:600;color:#F2D89B}
+.oitem__gift span{color:var(--mut);font-weight:500;margin-left:4px}
+@media (max-width:520px){.giftgrid{grid-template-columns:repeat(4,1fr);gap:5px}.giftcard__nm{font-size:9.5px}.giftcard{padding:4px}}
 .wallview{display:flex;gap:16px;align-items:flex-start}
 .wallview__img{flex:0 0 168px;border-radius:12px;overflow:hidden;border:1px solid rgba(242,216,155,.32);background:#F4EBD8;box-shadow:0 18px 36px -26px rgba(0,0,0,.95)}
 .wallview__img img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
@@ -2115,6 +2150,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
                 "@type": "PropertyValue",
                 "name": "정가",
                 "value": "44,000원"
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "사은품",
+                "value": "개운 배경화면 1종 무료 증정 — 오행 개운(5종) · 수채화 밤 12지신 · 달빛 일러스트 12지신 · 민화풍 12지신 중 테마와 세부 디자인 1종을 고르면 모바일 9:16(941×1672 PNG) 파일을 분석지와 같은 메일로 받습니다. 배경화면은 개별 구매 불가(사은품 전용)입니다"
               }
             ]
           }
@@ -2163,6 +2203,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
                 "@type": "PropertyValue",
                 "name": "정가",
                 "value": "78,000원"
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "사은품",
+                "value": "개운 배경화면 1종 무료 증정 — 오행 개운(5종) · 수채화 밤 12지신 · 달빛 일러스트 12지신 · 민화풍 12지신 중 테마와 세부 디자인 1종을 고르면 모바일 9:16(941×1672 PNG) 파일을 분석지와 같은 메일로 받습니다. 배경화면은 개별 구매 불가(사은품 전용)입니다"
               }
             ]
           }
@@ -2750,6 +2795,14 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         },
         {
           "@type": "Question",
+          "name": "개운 배경화면은 따로 살 수 없나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네. 오행 개운·수채화 밤 12지신·달빛 일러스트 12지신·민화풍 12지신 배경화면 4종은 개별 구매가 불가능한 사은품입니다. 종합 사주분석지(1인 39,800원 · 2인 70,000원)를 주문하실 때 주문서에서 테마와 세부 디자인 1종을 고르시면 0원으로 모바일용 9:16 배경화면(941×1672 PNG)을 분석지 PDF와 같은 메일로 함께 보내드립니다. 태블릿(아이패드·갤럭시탭)용은 함께 드리지 않습니다."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "디지털 굿즈는 결제하면 언제부터 받을 수 있나요?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -2878,6 +2931,9 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
           <a href="#products" data-mnav data-mnav-slide="0">신년운세</a>
           <a href="#ziwei" data-mnav data-mnav-cat="ziwei">자미두수</a>
           <a href="#digital" data-mnav data-mnav-cat="digital">디지털 굿즈</a>
+          <a href="#digital" class="mnav__sub" data-mnav data-mnav-cat="digital" data-mnav-dig="all">전체</a>
+          <a href="#digital" class="mnav__sub" data-mnav data-mnav-cat="digital" data-mnav-dig="wall">배경화면 4종 · 종합사주 사은품</a>
+          <a href="#diary" class="mnav__sub" data-mnav data-mnav-cat="digital" data-mnav-dig="diary">굿노트 다이어리</a>
           <a href="#naming" data-mnav data-mnav-cat="naming">작명 · 택일</a>
         </nav>
         <p class="mnav__kick">SERVICE</p>
@@ -3031,7 +3087,7 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
   </div>
 </section>
 
-<!-- ===== 디지털 굿즈 · 굿노트 다이어리 ===== -->
+<!-- ===== 디지털 굿즈 · 사은품 배경화면 4종 + 굿노트 다이어리 ===== -->
 <section class="sec catsec" id="digital" data-catsec="digital" style="padding-top:0">
   <div class="wrap">
     <div class="shead" data-rev>
@@ -3039,8 +3095,160 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
         <span class="kicker">Digital Goods</span>
         <h2 class="h2"><span class="h2__emo" aria-hidden="true">🌙</span>디지털 <em>굿즈</em></h2>
       </div>
-      <p class="lead">매일 마주하는 자리에 내 사주를 담았습니다. <b>아이패드 굿노트 다이어리</b>는 내 사주 원국과 2027년 일진을 담은 A4 가로 16페이지 PDF로 365일을 함께합니다. 표지 3종 가운데 하나를 고르시면 속지 바탕은 그대로 두고 테두리·장식 포인트만 표지 색에 맞춰 보내드립니다. 기본형은 <b>페이앱 결제 완료 즉시 이 사이트에서 바로 다운로드</b>하실 수 있고(다운로드 가능 기간 3일·파일별 최대 10회), 원국 기입형·프리미엄 맞춤 일진형은 접월당이 명식을 보고 채워 제작 후 이메일로 보내드립니다.</p>
+      <p class="lead">매일 마주하는 자리에 내 사주를 담았습니다. <b>개운 배경화면 4종</b>(오행 개운 · 수채화 밤 · 달빛 · 민화풍 12지신)은 <b>종합 사주분석지(1인·2인)를 주문하시면 사은품으로 골라 받으시는 그림</b>입니다 — <b>개별 구매는 하지 않습니다</b>(모바일 9:16 1장, 941×1672 PNG). <b>아이패드 굿노트 다이어리</b>는 내 사주 원국과 2027년 일진을 담은 A4 가로 16페이지 PDF로 365일을 함께합니다. 표지 3종 가운데 하나를 고르시면 속지 바탕은 그대로 두고 테두리·장식 포인트만 표지 색에 맞춰 보내드립니다. 기본형은 <b>페이앱 결제 완료 즉시 이 사이트에서 바로 다운로드</b>하실 수 있고(다운로드 가능 기간 3일·파일별 최대 10회), 원국 기입형·프리미엄 맞춤 일진형은 접월당이 명식을 보고 채워 제작 후 이메일로 보내드립니다.</p>
     </div>
+
+    <div class="digsub" role="group" aria-label="디지털 굿즈 하위 분류" data-rev>
+      <button type="button" class="digsub__b" data-dig="all" aria-pressed="true">전체</button>
+      <button type="button" class="digsub__b" data-dig="wall" aria-pressed="false">배경화면 4종 · 사은품</button>
+      <button type="button" class="digsub__b" data-dig="diary" aria-pressed="false">굿노트 다이어리</button>
+    </div>
+
+    <p class="pnote" style="margin:0 0 14px">
+      <span>🎁 배경화면 4종은 <b>개별 구매 불가</b> · <b>종합사주분석 구매 시 증정</b> — 아래 그림을 누르면 미리 보실 수 있습니다</span>
+    </p>
+
+    <article class="dcard dcard--wall " data-rev data-card="wall">
+      <button class="dcard__media" data-open="wall-ohaeng" aria-label="2027 오행 개운 배경화면 미리보기 — 개별 구매 불가, 종합사주분석 구매 시 증정">
+        <img src="/store/assets/wallpaper/card_wallpaper.jpg?v=3" alt="2027 오행 개운 배경화면 — 종합사주분석 구매 사은품" width="1448" height="1086" loading="lazy">
+        <span class="fbadge fbadge--gift">🎁 종합사주 사은품</span>
+      </button>
+      <div class="dcard__body">
+        <span class="fcard__cat">모바일 9:16 · 5종 중 1종 · <b>개별 구매 불가</b></span>
+        <h3 class="fcard__name" data-open="wall-ohaeng">2027 오행 개운 배경화면</h3>
+        <p class="fcard__lines">잠금화면·홈화면에<br>내 사주에 부족한 오행을<br>제일 예쁘게 채우는 그림</p>
+        <p class="fcard__spec">목·화·토·금·수 5종 중 1종 · 모바일 9:16 (941×1672 PNG) · <b>개별 구매 불가 — 종합 사주분석지(1인·2인)를 주문하시면 1종을 0원으로 골라 같은 메일로 보내드립니다</b></p>
+        <div class="fcard__foot">
+          <div class="fcard__price fcard__price--row"><b class="fcard__giftprice">🎁 무료 증정</b><span class="fcard__devp">종합사주분석 구매 사은품 · 0원</span></div>
+        </div>
+        <div class="dcard__cover">
+          <span class="dcard__coverlab">오행<em>5종 · 원하는 1종 미리보기</em></span>
+          <div class="covgrid covgrid--wall" style="flex-basis:100%">
+            <button type="button" class="covbtn covbtn--wall" data-wall-pick="wood" aria-pressed="true" aria-label="목(木) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper/01_wood_sm.jpg?v=1" alt="목(木) 배경화면 — 대나무와 안개 낀 산, 초승달로 그린 시작의 자리" loading="lazy"></span><span class="covbtn__nm">목</span></button>
+            <button type="button" class="covbtn covbtn--wall" data-wall-pick="fire" aria-pressed="false" aria-label="화(火) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper/02_fire_sm.jpg?v=1" alt="화(火) 배경화면 — 매화와 노을, 보름달로 그린 불꽃의 자리" loading="lazy"></span><span class="covbtn__nm">화</span></button>
+            <button type="button" class="covbtn covbtn--wall" data-wall-pick="earth" aria-pressed="false" aria-label="토(土) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper/03_earth_sm.jpg?v=1" alt="토(土) 배경화면 — 겹겹의 산과 황금 달로 그린 중심의 자리" loading="lazy"></span><span class="covbtn__nm">토</span></button>
+            <button type="button" class="covbtn covbtn--wall" data-wall-pick="metal" aria-pressed="false" aria-label="금(金) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper/04_metal_sm.jpg?v=2" alt="금(金) 배경화면 — 자개 같은 구름과 흰 나비로 그린 정리의 자리" loading="lazy"></span><span class="covbtn__nm">금</span></button>
+            <button type="button" class="covbtn covbtn--wall" data-wall-pick="water" aria-pressed="false" aria-label="수(水) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper/05_water_sm.jpg?v=1" alt="수(水) 배경화면 — 밤의 물결과 초승달로 그린 흐름의 자리" loading="lazy"></span><span class="covbtn__nm">수</span></button>
+          </div>
+          <span class="dcard__covernote">미리보기입니다. 받으실 그림은 종합사주분석 주문서에서 고르시면 됩니다</span>
+        </div>
+        <div class="dcard__cta">
+          <button class="btn btn--gold" data-open="saju1">종합사주분석 보고 사은품 받기 <span class="ar">›</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="dcard dcard--wall dcard--watercolor" data-rev data-card="wall-zodiac-watercolor">
+      <button class="dcard__media" data-open="wall-zodiac-watercolor" aria-label="2027 수채화 밤 12지신 배경화면 미리보기 — 개별 구매 불가, 종합사주분석 구매 시 증정">
+        <img src="/store/assets/wallpaper-watercolor/card_zodiac_watercolor.jpg?v=1" alt="2027 수채화 밤 12지신 배경화면 — 종합사주분석 구매 사은품" width="1448" height="1086" loading="lazy">
+        <span class="fbadge fbadge--gift">🎁 종합사주 사은품</span>
+      </button>
+      <div class="dcard__body">
+        <span class="fcard__cat">모바일 9:16 · 12띠 중 1종 · <b>개별 구매 불가</b></span>
+        <h3 class="fcard__name" data-open="wall-zodiac-watercolor">2027 수채화 밤 12지신 배경화면</h3>
+        <p class="fcard__lines">보랏빛 수채화 밤, 라벤더 들꽃밭에 앉은<br>내 띠의 동물과 빛나는 나비를<br>한 장에</p>
+        <p class="fcard__spec">쥐~돼지 12띠 중 1종 · 모바일 9:16 (941×1672 PNG) · <b>개별 구매 불가 — 종합 사주분석지(1인·2인)를 주문하시면 1종을 0원으로 골라 같은 메일로 보내드립니다</b></p>
+        <div class="fcard__foot">
+          <div class="fcard__price fcard__price--row"><b class="fcard__giftprice">🎁 무료 증정</b><span class="fcard__devp">종합사주분석 구매 사은품 · 0원</span></div>
+        </div>
+        <div class="dcard__cover">
+          <span class="dcard__coverlab">띠<em>12종 · 원하는 1종 미리보기</em></span>
+          <div class="covgrid covgrid--zodiac" style="flex-basis:100%">
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rat" data-pick-for="wall-zodiac-watercolor" aria-pressed="true" aria-label="쥐띠 (子) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/rat_sm.jpg?v=1" alt="쥐띠 (子) 배경화면 — 라벤더 들꽃밭에 앙증맞게 앉아 나비를 맞이하는 아기 쥐" loading="lazy"></span><span class="covbtn__nm">쥐</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="ox" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="소띠 (丑) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/ox_sm.jpg?v=1" alt="소띠 (丑) 배경화면 — 보랏빛 들판에 앉아 나비에 볼을 대는 점박이 아기 소" loading="lazy"></span><span class="covbtn__nm">소</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="tiger" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="호랑이띠 (寅) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/tiger_sm.jpg?v=1" alt="호랑이띠 (寅) 배경화면 — 라벤더 사이에 앉아 나비를 바라보는 아기 호랑이" loading="lazy"></span><span class="covbtn__nm">호랑이</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rabbit" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="토끼띠 (卯) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/rabbit_sm.jpg?v=1" alt="토끼띠 (卯) 배경화면 — 긴 귀를 세우고 나비를 맞이하는 흰 아기 토끼" loading="lazy"></span><span class="covbtn__nm">토끼</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="dragon" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="용띠 (辰) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/dragon_sm.jpg?v=1" alt="용띠 (辰) 배경화면 — 보랏빛 구름 아래, 나비를 좇아 고개를 든 옥빛 아기 용" loading="lazy"></span><span class="covbtn__nm">용</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="snake" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="뱀띠 (巳) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/snake_sm.jpg?v=1" alt="뱀띠 (巳) 배경화면 — 몸을 둥글게 감고 나비를 올려다보는 연둣빛 뱀" loading="lazy"></span><span class="covbtn__nm">뱀</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="horse" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="말띠 (午) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/horse_sm.jpg?v=1" alt="말띠 (午) 배경화면 — 보랏빛 들꽃밭에 앉은 아기 말과 빛나는 나비" loading="lazy"></span><span class="covbtn__nm">말</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="goat" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="양띠 (未) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/goat_sm.jpg?v=1" alt="양띠 (未) 배경화면 — 복슬복슬한 털의 아기 양과 보랏빛 나비" loading="lazy"></span><span class="covbtn__nm">양</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="monkey" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="원숭이띠 (申) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/monkey_sm.jpg?v=1" alt="원숭이띠 (申) 배경화면 — 긴 꼬리를 세우고 나비를 좇는 아기 원숭이" loading="lazy"></span><span class="covbtn__nm">원숭이</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rooster" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="닭띠 (酉) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/rooster_sm.jpg?v=1" alt="닭띠 (酉) 배경화면 — 붉은 볏을 세운 병아리와 빛나는 나비" loading="lazy"></span><span class="covbtn__nm">닭</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="dog" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="개띠 (戌) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/dog_sm.jpg?v=1" alt="개띠 (戌) 배경화면 — 보랏빛 들꽃밭에 앉은 흰 강아지와 나비" loading="lazy"></span><span class="covbtn__nm">개</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="pig" data-pick-for="wall-zodiac-watercolor" aria-pressed="false" aria-label="돼지띠 (亥) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-watercolor/pig_sm.jpg?v=1" alt="돼지띠 (亥) 배경화면 — 볼이 발그레한 아기 돼지와 빛나는 나비" loading="lazy"></span><span class="covbtn__nm">돼지</span></button>
+          </div>
+          <span class="dcard__covernote">미리보기입니다. 받으실 그림은 종합사주분석 주문서에서 고르시면 됩니다</span>
+        </div>
+        <div class="dcard__cta">
+          <button class="btn btn--gold" data-open="saju1">종합사주분석 보고 사은품 받기 <span class="ar">›</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="dcard dcard--wall dcard--night" data-rev data-card="wall-zodiac-night">
+      <button class="dcard__media" data-open="wall-zodiac-night" aria-label="2027 달빛 12지신 배경화면 미리보기 — 개별 구매 불가, 종합사주분석 구매 시 증정">
+        <img src="/store/assets/wallpaper-night/card_zodiac_night.jpg?v=1" alt="2027 달빛 12지신 배경화면 — 종합사주분석 구매 사은품" width="1448" height="1086" loading="lazy">
+        <span class="fbadge fbadge--gift">🎁 종합사주 사은품</span>
+      </button>
+      <div class="dcard__body">
+        <span class="fcard__cat">모바일 9:16 · 12띠 중 1종 · <b>개별 구매 불가</b></span>
+        <h3 class="fcard__name" data-open="wall-zodiac-night">2027 달빛 12지신 배경화면</h3>
+        <p class="fcard__lines">초승달이 뜬 밤, 들꽃밭에 앉은<br>내 띠의 동물과 빛나는 나비를<br>한 장에</p>
+        <p class="fcard__spec">쥐~돼지 12띠 중 1종 · 모바일 9:16 (941×1672 PNG) · <b>개별 구매 불가 — 종합 사주분석지(1인·2인)를 주문하시면 1종을 0원으로 골라 같은 메일로 보내드립니다</b></p>
+        <div class="fcard__foot">
+          <div class="fcard__price fcard__price--row"><b class="fcard__giftprice">🎁 무료 증정</b><span class="fcard__devp">종합사주분석 구매 사은품 · 0원</span></div>
+        </div>
+        <div class="dcard__cover">
+          <span class="dcard__coverlab">띠<em>12종 · 원하는 1종 미리보기</em></span>
+          <div class="covgrid covgrid--zodiac" style="flex-basis:100%">
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rat" data-pick-for="wall-zodiac-night" aria-pressed="true" aria-label="쥐띠 (子) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/rat_sm.jpg?v=1" alt="쥐띠 (子) 배경화면 — 별이 뜬 들꽃밭, 나비를 올려다보는 아기 쥐" loading="lazy"></span><span class="covbtn__nm">쥐</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="ox" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="소띠 (丑) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/ox_sm.jpg?v=1" alt="소띠 (丑) 배경화면 — 은하수 아래, 나비를 따라 고개를 든 아기 소" loading="lazy"></span><span class="covbtn__nm">소</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="tiger" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="호랑이띠 (寅) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/tiger_sm.jpg?v=1" alt="호랑이띠 (寅) 배경화면 — 별밤 들꽃밭에 앉아 나비를 바라보는 아기 호랑이" loading="lazy"></span><span class="covbtn__nm">호랑이</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rabbit" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="토끼띠 (卯) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/rabbit_sm.jpg?v=1" alt="토끼띠 (卯) 배경화면 — 긴 귀를 세우고 나비를 바라보는 흰 아기 토끼" loading="lazy"></span><span class="covbtn__nm">토끼</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="dragon" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="용띠 (辰) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/dragon_sm.jpg?v=1" alt="용띠 (辰) 배경화면 — 은하수 아래, 나비를 좇아 몸을 튼 아기 용" loading="lazy"></span><span class="covbtn__nm">용</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="snake" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="뱀띠 (巳) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/snake_sm.jpg?v=1" alt="뱀띠 (巳) 배경화면 — 몸을 둥글게 감고 나비를 보는 연둣빛 뱀" loading="lazy"></span><span class="covbtn__nm">뱀</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="horse" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="말띠 (午) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/horse_sm.jpg?v=1" alt="말띠 (午) 배경화면 — 별밤 들꽃밭에 앉은 아기 말과 빛나는 나비" loading="lazy"></span><span class="covbtn__nm">말</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="goat" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="양띠 (未) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/goat_sm.jpg?v=1" alt="양띠 (未) 배경화면 — 복슬복슬한 털의 아기 양과 달빛 나비" loading="lazy"></span><span class="covbtn__nm">양</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="monkey" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="원숭이띠 (申) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/monkey_sm.jpg?v=1" alt="원숭이띠 (申) 배경화면 — 긴 꼬리를 세우고 나비를 좇는 아기 원숭이" loading="lazy"></span><span class="covbtn__nm">원숭이</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rooster" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="닭띠 (酉) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/rooster_sm.jpg?v=1" alt="닭띠 (酉) 배경화면 — 붉은 볏을 세운 병아리와 빛나는 나비" loading="lazy"></span><span class="covbtn__nm">닭</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="dog" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="개띠 (戌) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/dog_sm.jpg?v=1" alt="개띠 (戌) 배경화면 — 별밤 들꽃밭에 앉은 흰 강아지와 나비" loading="lazy"></span><span class="covbtn__nm">개</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="pig" data-pick-for="wall-zodiac-night" aria-pressed="false" aria-label="돼지띠 (亥) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-night/pig_sm.jpg?v=1" alt="돼지띠 (亥) 배경화면 — 볼이 발그레한 아기 돼지와 빛나는 나비" loading="lazy"></span><span class="covbtn__nm">돼지</span></button>
+          </div>
+          <span class="dcard__covernote">미리보기입니다. 받으실 그림은 종합사주분석 주문서에서 고르시면 됩니다</span>
+        </div>
+        <div class="dcard__cta">
+          <button class="btn btn--gold" data-open="saju1">종합사주분석 보고 사은품 받기 <span class="ar">›</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="dcard dcard--wall " data-rev data-card="wall-zodiac">
+      <button class="dcard__media" data-open="wall-zodiac-minhwa" aria-label="2027 12지신 민화 배경화면 미리보기 — 개별 구매 불가, 종합사주분석 구매 시 증정">
+        <img src="/store/assets/wallpaper-minhwa/card_zodiac_minhwa.jpg?v=1" alt="2027 12지신 민화 배경화면 — 종합사주분석 구매 사은품" width="1448" height="1086" loading="lazy">
+        <span class="fbadge fbadge--gift">🎁 종합사주 사은품</span>
+      </button>
+      <div class="dcard__body">
+        <span class="fcard__cat">모바일 9:16 · 12띠 중 1종 · <b>개별 구매 불가</b></span>
+        <h3 class="fcard__name" data-open="wall-zodiac-minhwa">2027 12지신 민화 배경화면</h3>
+        <p class="fcard__lines">하루에 수십 번 여는 잠금화면에<br>내 띠의 동물이 나비를 쫓는<br>민화 한 장을</p>
+        <p class="fcard__spec">쥐~돼지 12띠 중 1종 · 모바일 9:16 (941×1672 PNG) · <b>개별 구매 불가 — 종합 사주분석지(1인·2인)를 주문하시면 1종을 0원으로 골라 같은 메일로 보내드립니다</b></p>
+        <div class="fcard__foot">
+          <div class="fcard__price fcard__price--row"><b class="fcard__giftprice">🎁 무료 증정</b><span class="fcard__devp">종합사주분석 구매 사은품 · 0원</span></div>
+        </div>
+        <div class="dcard__cover">
+          <span class="dcard__coverlab">띠<em>12종 · 원하는 1종 미리보기</em></span>
+          <div class="covgrid covgrid--zodiac" style="flex-basis:100%">
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rat" data-pick-for="wall-zodiac-minhwa" aria-pressed="true" aria-label="쥐띠 (子) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/rat_sm.jpg?v=1" alt="쥐띠 (子) 배경화면 — 솔가지와 홍매 사이, 나비를 잡으려 앞발을 든 쥐" loading="lazy"></span><span class="covbtn__nm">쥐</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="ox" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="소띠 (丑) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/ox_sm.jpg?v=1" alt="소띠 (丑) 배경화면 — 겨우살이 소나무 아래, 나비를 따라 뛰는 소" loading="lazy"></span><span class="covbtn__nm">소</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="tiger" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="호랑이띠 (寅) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/tiger_sm.jpg?v=1" alt="호랑이띠 (寅) 배경화면 — 홍매 가지 아래, 나비를 쫓아 달리는 호랑이" loading="lazy"></span><span class="covbtn__nm">호랑이</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rabbit" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="토끼띠 (卯) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/rabbit_sm.jpg?v=1" alt="토끼띠 (卯) 배경화면 — 홍매와 나비 사이로 가볍게 뛰어오른 토끼" loading="lazy"></span><span class="covbtn__nm">토끼</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="dragon" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="용띠 (辰) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/dragon_sm.jpg?v=1" alt="용띠 (辰) 배경화면 — 푸른 물결 위로 솟구치는 용" loading="lazy"></span><span class="covbtn__nm">용</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="snake" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="뱀띠 (巳) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/snake_sm.jpg?v=1" alt="뱀띠 (巳) 배경화면 — 몸을 둥글게 감고 나비를 올려다보는 뱀" loading="lazy"></span><span class="covbtn__nm">뱀</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="horse" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="말띠 (午) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/horse_sm.jpg?v=1" alt="말띠 (午) 배경화면 — 수놓은 안장을 두른 말과 나비" loading="lazy"></span><span class="covbtn__nm">말</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="goat" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="양띠 (未) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/goat_sm.jpg?v=1" alt="양띠 (未) 배경화면 — 복슬복슬한 털의 양과 홍매" loading="lazy"></span><span class="covbtn__nm">양</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="monkey" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="원숭이띠 (申) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/monkey_sm.jpg?v=1" alt="원숭이띠 (申) 배경화면 — 긴 팔로 나비를 좇는 원숭이" loading="lazy"></span><span class="covbtn__nm">원숭이</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="rooster" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="닭띠 (酉) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/rooster_sm.jpg?v=1" alt="닭띠 (酉) 배경화면 — 붉은 볏을 세운 닭과 홍매" loading="lazy"></span><span class="covbtn__nm">닭</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="dog" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="개띠 (戌) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/dog_sm.jpg?v=1" alt="개띠 (戌) 배경화면 — 앞발을 내밀어 나비를 좇는 개" loading="lazy"></span><span class="covbtn__nm">개</span></button>
+            <button type="button" class="covbtn covbtn--zodiac" data-wall-pick="pig" data-pick-for="wall-zodiac-minhwa" aria-pressed="false" aria-label="돼지띠 (亥) 배경화면 보기"><span class="covbtn__img"><img src="/store/assets/wallpaper-minhwa/pig_sm.jpg?v=1" alt="돼지띠 (亥) 배경화면 — 분홍빛 돼지와 홍매" loading="lazy"></span><span class="covbtn__nm">돼지</span></button>
+          </div>
+          <span class="dcard__covernote">미리보기입니다. 받으실 그림은 종합사주분석 주문서에서 고르시면 됩니다</span>
+        </div>
+        <div class="dcard__cta">
+          <button class="btn btn--gold" data-open="saju1">종합사주분석 보고 사은품 받기 <span class="ar">›</span></button>
+        </div>
+      </div>
+    </article>
+
 
     <article class="dcard" id="diary" data-rev data-card="diary">
       <button class="dcard__media" data-open="diary-basic" data-open-diary aria-label="2027 사주 개운 굿노트 다이어리 상세 보기">
@@ -3338,6 +3546,11 @@ details[id]{scroll-margin-top:calc(var(--hnav) + 14px)}
       <details>
         <summary>2027 사주 개운 다이어리는 어떻게 쓰나요?</summary>
         <p>아이패드 굿노트·노타빌리티에서 여는 <b>A4 가로 16페이지 PDF</b>입니다. 표지 3종(자개 달빛 · 연보라 클래식 · 붉은 양 · 달과 나비) 중 하나를 고르시면, 속지 바탕은 필기용 그대로 두고 테두리와 장식 포인트만 고른 표지 색에 맞춰 보내드립니다. 사주 원국을 채운 뒤 1월부터 12월까지 월별 일진 플래너에 기록하시면 됩니다. 사주 원국 8칸은 직접 손글씨로 쓰시거나 <b>원국 기입형</b>으로 신청하시면 접월당이 명식을 보고 여덟 칸과 오행 밸런스 게이지를 채워 드립니다. <b>프리미엄 맞춤 일진형</b>은 여기에 더해 내 사주 기준으로 365일 날짜마다 🌸 풀리는 날 · ⚠️ 조심할 날 · ✈️ 이동·변동수 있는 날을 배지로 찍어 드립니다. 16페이지 스티커는 올가미로 오려 속지에 붙여 쓰시면 됩니다. 스티커 24종은 개별 투명 PNG 파일로도 함께 보내드리니, 굿노트 「요소」에 등록해 두면 필요한 날짜 칸에 바로 끌어다 붙일 수 있습니다.</p>
+      </details>
+
+      <details class="faq__i">
+        <summary>개운 배경화면은 따로 살 수 없나요?</summary>
+        <p><b>배경화면 4종(오행 개운 · 수채화 밤 12지신 · 달빛 일러스트 12지신 · 민화풍 12지신)은 개별 구매가 불가능한 사은품</b>입니다. <b>종합 사주분석지(1인 39,800원 · 2인 70,000원)</b>를 주문하실 때 주문서에서 <b>테마와 세부 디자인 1종</b>을 고르시면, 0원으로 <b>모바일용 9:16 배경화면(941×1672 PNG)</b>을 분석지 PDF와 같은 메일로 함께 보내드립니다. 태블릿(아이패드·갤럭시탭)용은 함께 드리지 않습니다.</p>
       </details>
 
       <details class="faq__i">
@@ -3716,7 +3929,7 @@ const PRODUCTS = [
     short:'이직·재물·연애가 꼬일 때, 내 사주에서 답을 찾는 10년 대운 리포트',
     desc:'이직할까, 버틸까. 돈은 왜 계속 새는지, 그 사람과 계속 가도 되는지 — 답이 안 나올 때 명식을 펴 보는 게 가장 빠릅니다. 태어난 연·월·일·시로 명식을 세워 기운의 세기와 균형, 10년 대운과 올해 월별 흐름을 약 120페이지로 정리합니다. 11년 경력 사주명리사가 명식을 <b>직접 해석하고 검수</b>한 1:1 맞춤 정밀 분석으로, 결제 후 평균 6시간(최대 12시간) 안에 메일로 보내드립니다.',
     bullets:['내 여덟 글자에 원래 무엇이 많고 무엇이 비었는지, 기운의 세기와 균형','10년 대운 + 올해 12달 — 언제 밀고 언제 멈출지 시기별로','재물·직업·관계·건강, 지금 새는 곳과 채워야 할 곳을 영역별로','받은 날부터 10일간 1:1 추가 질문 — 궁금한 건 그대로 물어보세요','약 120페이지 PDF · 평균 6시간(최대 12시간) 내 메일 발송'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (본인 질문만 · 궁합 불가)']],
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (본인 질문만 · 궁합 불가)'],['사은품','개운 배경화면 1종 무료(모바일) — 오행 개운 · 수채화 밤 · 달빛 · 민화풍 중 테마와 세부 디자인 선택 · 개별 구매 불가']],
     notice:'※ 1인 상품은 본인 개인 질문만 가능하며, 타인 사주·궁합 질문은 불가합니다. (궁합·2인 비교는 2인을 선택해 주세요.)' },
 
   { id:'saju2', cat:'saju', type:'saju', persons:2, timeRequired:false,
@@ -3725,7 +3938,7 @@ const PRODUCTS = [
     short:'결혼·동업·동거 — 두 사람 사이가 어디서 어긋나는지 명식 두 장을 겹쳐 봅니다',
     desc:'연애만 보는 궁합이 아니라, 같이 살아도 되고 같이 벌어도 되는 사이인지까지 봅니다. 두 분의 명식을 각각 세우고 궁합·동업·동거의 조합을 함께 짚어, 어디서 부딪히고 어떻게 풀어야 하는지 정리합니다. 두 분 모두에게 같은 분석지를 보내드리며, 11년 경력 사주명리사가 명식을 <b>직접 해석하고 검수</b>한 1:1 맞춤 정밀 분석으로 평균 6시간(최대 12시간) 안에 메일로 발송합니다.',
     bullets:['두 사람 명식을 각각 풀고, 만나면 어디서 부딪히고 어디서 맞는지','결혼·동업·동거 — 지금 관계를 계속 가도 되는지 판단할 기준','두 사람 각자의 10년 대운과 올해 흐름','받은 날부터 10일간 두 사람 관계 질문까지 1:1 답변','약 120페이지 PDF · 평균 6시간(최대 12시간) 내 메일 발송'],
-    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)']] },
+    meta:[['분량','약 120페이지 내외 PDF'],['발송','평균 6시간 · 최대 12시간 내 이메일'],['추가 질문','수령일부터 10일 (2인·궁합 질문 포함)'],['사은품','개운 배경화면 1종 무료(모바일) — 오행 개운 · 수채화 밤 · 달빛 · 민화풍 중 테마와 세부 디자인 선택 · 개별 구매 불가']] },
 
   { id:'new2027', cat:'saju', type:'saju', persons:1, timeRequired:false,
     name:'2027 정미년 신년운세', price:19800, orig:34900, badge:'11월 한정', photo:'/store/assets/card_newyear.jpg',
@@ -3821,7 +4034,7 @@ PRODUCTS.push({
 });
 
 /* ---------- 디지털 굿즈 · 2027 오행 개운 배경화면 ----------
-   5종 원하는 만큼 선택 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
+   5종 중 1종 · 종합사주분석 구매 사은품(모바일 9:16 PNG 941×1672) · 개별 구매 불가.
    발송용 원본 PNG(941×1672)는 downloads/five_elements_wallpaper_5/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const WALL = [
@@ -3852,7 +4065,7 @@ const WALL = [
     img:'/store/assets/wallpaper/05_water.jpg?v=1', sm:'/store/assets/wallpaper/05_water_sm.jpg?v=1' },
 ];
 /* ---------- 디지털 굿즈 · 2027 나비 쫓는 12지신 민화 배경화면 ----------
-   12띠 원하는 만큼 선택 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
+   12띠 중 1종 · 종합사주분석 구매 사은품(모바일 9:16 PNG 941×1672) · 개별 구매 불가.
    발송용 원본 PNG(941×1672)는 downloads/zodiac_12_minhwa/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const ZODIAC = [
@@ -3919,7 +4132,7 @@ const ZODIAC = [
 ];
 
 /* ---------- 디지털 굿즈 · 2027 달빛 아래 나비 12지신 배경화면 ----------
-   12띠 원하는 만큼 선택 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
+   12띠 중 1종 · 종합사주분석 구매 사은품(모바일 9:16 PNG 941×1672) · 개별 구매 불가.
    발송용 원본 PNG(941×1672)는 downloads/zodiac_12_night_illust/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const NIGHT = [
@@ -3986,7 +4199,7 @@ const NIGHT = [
 ];
 
 /* ---------- 디지털 굿즈 · 2027 수채화 밤·달빛 12지신 배경화면 ----------
-   12띠 원하는 만큼 선택 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원 · 모바일 9:16 PNG·태블릿 세로+가로 JPG 사이트 다운로드.
+   12띠 중 1종 · 종합사주분석 구매 사은품(모바일 9:16 PNG 941×1672) · 개별 구매 불가.
    발송용 원본 PNG(941×1672)는 downloads/zodiac_12_watercolor_night/에 두고,
    사이트에는 웹 최적화본(540×960 JPG · 목록용 270×480)만 올린다. */
 const WATERCO = [
@@ -4108,80 +4321,91 @@ const wallOf = (k, pid) => (pid ? (elemsOf(pid).find(w => w.key === k) || elemsO
                                : (wallAll().find(w => w.key === k) || WALL[0]));
 const wallLabel = k => { const w = wallOf(k); return w.label || `${w.name}(${w.hanja})`; };
 
+/* ---------- 종합사주 구매 사은품: 개운 배경화면 1종 무료(0원) ----------
+   테마 4종 × 세부 디자인(오행 5종 / 12띠 12종) × 기기(모바일·아이패드·갤럭시탭)를 고른다.
+   종합사주 1·2인을 담을 때 함께 담기고, 금액에는 아무 영향이 없다(0원 사은품). */
+const GIFT_DEV = {
+  mobile: { key:'mobile', label:'모바일', files:'9:16 세로 1장 · 941×1672 PNG' },
+};
+const GIFT_DEV_KEYS = ['mobile'];
+const GIFT_THEMES = [
+  { key:'gift-ohaeng',     name:'오행 개운',           count:'5종',  word:'오행', items:() => WALL,    thumb:'/store/assets/wallpaper/01_wood_sm.jpg?v=1' },
+  { key:'gift-watercolor', name:'수채화 밤 12지신',    count:'12종', word:'띠',   items:() => WATERCO, thumb:'/store/assets/wallpaper-watercolor/horse_sm.jpg?v=1' },
+  { key:'gift-night',      name:'달빛 일러스트 12지신', count:'12종', word:'띠',   items:() => NIGHT,   thumb:'/store/assets/wallpaper-night/horse_sm.jpg?v=1' },
+  { key:'gift-minhwa',     name:'민화풍 12지신',       count:'12종', word:'띠',   items:() => ZODIAC,  thumb:'/store/assets/wallpaper-minhwa/horse_sm.jpg?v=1' },
+];
+const giftThemeOf = k => GIFT_THEMES.find(t => t.key === k) || GIFT_THEMES[0];
+const giftItemsOf = k => giftThemeOf(k).items();
+const isGiftItem = (th, k) => giftItemsOf(th).some(w => w.key === k);
+const giftItemOf = (th, k) => giftItemsOf(th).find(w => w.key === k) || giftItemsOf(th)[0];
+const isSajuP = p => !!p && (p.id === 'saju1' || p.id === 'saju2');
+/* 지금 상세 모달에서 고르고 있는 사은품(기본값 · 오행 개운 목 / 모바일) */
+let pdGift = { theme: GIFT_THEMES[0].key, item: WALL[0].key, device: 'mobile' };
+const normalizeGift = g => {
+  if(!g) return null;
+  const theme = GIFT_THEMES.some(t => t.key === g.theme) ? g.theme : GIFT_THEMES[0].key;
+  const item = isGiftItem(theme, g.item) ? g.item : giftItemsOf(theme)[0].key;
+  return { theme, item, device:'mobile' };   /* 사은품은 모바일 9:16 1장으로 한정 */
+};
+const sameGift = (a, b) => { const x = normalizeGift(a), y = normalizeGift(b); return (!x && !y) || (!!x && !!y && x.theme === y.theme && x.item === y.item && x.device === y.device); };
+/* 장바구니·주문서에 보여 줄 한 줄: `오행 개운 · 목(木) · 모바일` */
+const giftLabel = g => { const n = normalizeGift(g); if(!n) return '';
+  return `${giftThemeOf(n.theme).name} · ${giftItemOf(n.theme, n.item).full} · ${GIFT_DEV[n.device].label}`; };
+/* 주문 데이터에 남기는 사은품 정보 — 이름을 함께 넣어 관리자센터가 혼자 읽어도 어떤 파일인지 알 수 있게 */
+function giftPayload(g){
+  const n = normalizeGift(g); if(!n) return null;
+  const th = giftThemeOf(n.theme), w = giftItemOf(n.theme, n.item), dv = GIFT_DEV[n.device];
+  return { theme:n.theme, themeName:th.name, item:n.item, itemName:w.full,
+           device:n.device, deviceLabel:dv.label, files:dv.files,
+           text:`${th.name} · ${w.full} · ${dv.label}`, price:0 };
+}
+
 PRODUCTS.push({
-  id:'wall-ohaeng', cat:'digital', type:'wall', persons:1, birth:false,
-  optLabel:'2027 오행 개운 배경화면 · 5종 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원',
-  name:'2027 오행 개운 배경화면', price:1000, badge:'NEW',
+  id:'wall-ohaeng', cat:'digital', type:'wall', giftOnly:true, persons:1, birth:false,
+  optLabel:'종합사주분석 구매 사은품 · 개별 구매 불가',
+  name:'2027 오행 개운 배경화면', price:0, badge:'🎁 사은품',
   photo:'/store/assets/wallpaper/card_wallpaper.jpg?v=3',
   short:'하루에 수십 번 여는 잠금화면 — 내 사주에 부족한 오행을 제일 예쁜 그림으로 채우는 방법',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 2027 정미년, 내 사주에 부족한 오행을 골라 잠금화면과 홈화면에 담아 보세요. 목(木)·화(火)·토(土)·금(金)·수(水) 다섯 기운을 접월당의 수묵담채 — 먹의 번짐과 달, 나비 — 로 그린 9:16 세로 아트워크입니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 오행의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·파일별 최대 10회).',
-  bullets:[
-    '목·화·토·금·수 5종 가운데 내 사주에 필요한 기운을 원하는 만큼 선택 · 모바일 1,000원 / 태블릿(세로+가로 2장) 2,500원 / 세트(3장) 3,000원',
-    '시계 자리까지 비워 둔 9:16 고화질 아트워크 — 941×1672 PNG',
-    '잠금화면·홈화면 모두 잘리지 않는 세로 비율, 기종 상관없이',
-    '먹의 번짐과 달·나비 — 화면을 열 때마다 눈이 쉬어 가는 그림',
-    '사주분석지·2027 신년운세에서 부족한 오행을 확인한 뒤 골라도 좋습니다',
-    '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
-  ],
-  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 파일별 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 기기별 가격입니다 — 모바일용 1,000원(9:16 세로 1장) · 태블릿용 2,500원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 3,000원(3장). 5종 가운데 원하는 기운을 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 잘못 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 2027 정미년, 내 사주에 부족한 오행을 골라 잠금화면과 홈화면에 담아 보세요. 목(木)·화(火)·토(土)·금(金)·수(水) 다섯 기운을 접월당의 수묵담채 — 먹의 번짐과 달, 나비 — 로 그린 9:16 세로 아트워크입니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. <b>이 배경화면은 개별로 판매하지 않습니다.</b> 종합 사주분석지(1인·2인)를 주문하실 때 사은품으로 1종을 고르시면, 분석지 PDF와 같은 메일로 모바일용 PNG 원본(941×1672)을 함께 보내드립니다. 추가 요금은 없습니다.',
+  bullets:['목·화·토·금·수 5종 가운데 1종을 종합사주분석 주문서에서 사은품으로 선택 · 0원','시계 자리까지 비워 둔 9:16 고화질 아트워크 — 941×1672 PNG','잠금화면·홈화면 모두 잘리지 않는 세로 비율, 기종 상관없이','먹의 번짐과 달·나비 — 화면을 열 때마다 눈이 쉬어 가는 그림','사주분석지·2027 신년운세에서 부족한 오행을 확인한 뒤 골라도 좋습니다','개별 구매 불가 · 종합 사주분석지(1인·2인) 구매 시 1종 무료 증정'],
+  meta:[['구성','목·화·토·금·수 5종 중 1종 (모바일 9:16 1장)'],['해상도','941×1672 PNG'],['받는 방법','종합 사주분석지(1인·2인) 구매 시 주문서에서 선택 → 분석지 PDF와 같은 메일로 발송'],['요금','0원 (사은품 · 개별 구매 불가)']],
+  notice:'※ 이 배경화면은 <b>개별 구매가 불가능한 사은품</b>입니다. 종합 사주분석지(1인 39,800원 · 2인 70,000원)를 주문하실 때 테마와 디자인을 고르시면 1종을 0원으로 함께 보내드리며, 모바일용(9:16 세로 1장 · 941×1672 PNG)만 드립니다.',
 });
 
 PRODUCTS.push({
-  id:'wall-zodiac-minhwa', cat:'digital', type:'wall', wallSet:'zodiac', persons:1, birth:false,
-  optLabel:'2027 12지신 민화 배경화면 · 12종 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원',
-  name:'2027 나비 쫓는 12지신 민화 배경화면', price:1000, badge:'NEW',
+  id:'wall-zodiac-minhwa', cat:'digital', type:'wall', giftOnly:true, persons:1, birth:false, wallSet:'zodiac',
+  optLabel:'종합사주분석 구매 사은품 · 개별 구매 불가',
+  name:'2027 나비 쫓는 12지신 민화 배경화면', price:0, badge:'🎁 사은품',
   photo:'/store/assets/wallpaper-minhwa/card_zodiac_minhwa.jpg?v=1',
   short:'하루에 수십 번 여는 잠금화면 — 내 띠의 동물이 나비를 쫓는 민화 한 장',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 태어난 해의 띠를 따라 나비를 쫓는 12지신을 접월당의 민화 — 한지 바탕에 먹선, 소나무와 홍매, 자개빛 물결 — 로 그린 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 담으실 수 있습니다. 위쪽은 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 띠의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·파일별 최대 10회).',
-  bullets:[
-    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 모바일 1,000원 / 태블릿(세로+가로 2장) 2,500원 / 세트(3장) 3,000원',
-    '한지 바탕에 먹선과 홍매·송백, 자개빛 물결 — 민화 톤의 9:16 아트워크',
-    '시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG',
-    '잠금화면·홈화면 모두 잘리지 않는 비율, 기종 상관없이',
-    '본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다',
-    '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
-  ],
-  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 파일별 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 기기별 가격입니다 — 모바일용 1,000원(9:16 세로 1장) · 태블릿용 2,500원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 3,000원(3장). 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 태어난 해의 띠를 따라 나비를 쫓는 12지신을 접월당의 민화 — 한지 바탕에 먹선, 소나무와 홍매, 자개빛 물결 — 로 그린 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 하나를 골라 잠금화면에 담아 보세요. <b>이 배경화면은 개별로 판매하지 않습니다.</b> 종합 사주분석지(1인·2인)를 주문하실 때 사은품으로 1종을 고르시면, 분석지 PDF와 같은 메일로 모바일용 PNG 원본(941×1672)을 함께 보내드립니다. 추가 요금은 없습니다.',
+  bullets:['쥐~돼지 12띠 가운데 1종을 종합사주분석 주문서에서 사은품으로 선택 · 0원','한지 바탕에 먹선과 홍매·송백, 자개빛 물결 — 민화 톤의 9:16 아트워크','시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG','본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다','개별 구매 불가 · 종합 사주분석지(1인·2인) 구매 시 1종 무료 증정'],
+  meta:[['구성','12띠 중 1종 (모바일 9:16 1장)'],['해상도','941×1672 PNG'],['받는 방법','종합 사주분석지(1인·2인) 구매 시 주문서에서 선택 → 분석지 PDF와 같은 메일로 발송'],['요금','0원 (사은품 · 개별 구매 불가)']],
+  notice:'※ 이 배경화면은 <b>개별 구매가 불가능한 사은품</b>입니다. 종합 사주분석지(1인 39,800원 · 2인 70,000원)를 주문하실 때 테마와 디자인을 고르시면 1종을 0원으로 함께 보내드리며, 모바일용(9:16 세로 1장 · 941×1672 PNG)만 드립니다.',
 });
 
 PRODUCTS.push({
-  id:'wall-zodiac-night', cat:'digital', type:'wall', wallSet:'zodiac', persons:1, birth:false,
-  optLabel:'2027 달빛 12지신 배경화면 · 12종 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원',
-  name:'2027 달빛 아래 나비 12지신 배경화면', price:1000, badge:'NEW',
+  id:'wall-zodiac-night', cat:'digital', type:'wall', giftOnly:true, persons:1, birth:false, wallSet:'zodiac',
+  optLabel:'종합사주분석 구매 사은품 · 개별 구매 불가',
+  name:'2027 달빛 아래 나비 12지신 배경화면', price:0, badge:'🎁 사은품',
   photo:'/store/assets/wallpaper-night/card_zodiac_night.jpg?v=1',
   short:'하루에 수십 번 여는 잠금화면 — 초승달이 뜬 별밤, 내 띠의 동물과 빛나는 나비',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 초승달이 뜬 별밤, 들꽃이 핀 풀밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 담으실 수 있습니다. 위쪽은 달과 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 고른 띠의 PNG 원본을 바로 내려받으실 수 있습니다(무통장 입금은 입금 확인 후, 다운로드 가능 기간 3일·파일별 최대 10회).',
-  bullets:[
-    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 모바일 1,000원 / 태블릿(세로+가로 2장) 2,500원 / 세트(3장) 3,000원',
-    '초승달·은하수·들꽃과 빛나는 나비 — 밤 풍경의 9:16 아트워크',
-    '시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG',
-    '잠금화면·홈화면 모두 잘리지 않는 비율, 기종 상관없이',
-    '본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다',
-    '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
-  ],
-  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 파일별 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 기기별 가격입니다 — 모바일용 1,000원(9:16 세로 1장) · 태블릿용 2,500원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 3,000원(3장). 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  desc:'초승달이 뜬 별밤, 들꽃이 핀 풀밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 하나를 골라 잠금화면에 담아 보세요. <b>이 배경화면은 개별로 판매하지 않습니다.</b> 종합 사주분석지(1인·2인)를 주문하실 때 사은품으로 1종을 고르시면, 분석지 PDF와 같은 메일로 모바일용 PNG 원본(941×1672)을 함께 보내드립니다. 추가 요금은 없습니다.',
+  bullets:['쥐~돼지 12띠 가운데 1종을 종합사주분석 주문서에서 사은품으로 선택 · 0원','초승달·은하수·들꽃과 빛나는 나비 — 밤 풍경의 9:16 아트워크','시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG','본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다','개별 구매 불가 · 종합 사주분석지(1인·2인) 구매 시 1종 무료 증정'],
+  meta:[['구성','12띠 중 1종 (모바일 9:16 1장)'],['해상도','941×1672 PNG'],['받는 방법','종합 사주분석지(1인·2인) 구매 시 주문서에서 선택 → 분석지 PDF와 같은 메일로 발송'],['요금','0원 (사은품 · 개별 구매 불가)']],
+  notice:'※ 이 배경화면은 <b>개별 구매가 불가능한 사은품</b>입니다. 종합 사주분석지(1인 39,800원 · 2인 70,000원)를 주문하실 때 테마와 디자인을 고르시면 1종을 0원으로 함께 보내드리며, 모바일용(9:16 세로 1장 · 941×1672 PNG)만 드립니다.',
 });
 
 PRODUCTS.push({
-  id:'wall-zodiac-watercolor', cat:'digital', type:'wall', wallSet:'zodiac', persons:1, birth:false,
-  optLabel:'2027 수채화 12지신 배경화면 · 12종 · 모바일 1,000 / 태블릿 2,500 / 세트 3,000원',
-  name:'2027 수채화 밤·달빛 12지신 배경화면', price:1000, badge:'NEW',
+  id:'wall-zodiac-watercolor', cat:'digital', type:'wall', giftOnly:true, persons:1, birth:false, wallSet:'zodiac',
+  optLabel:'종합사주분석 구매 사은품 · 개별 구매 불가',
+  name:'2027 수채화 밤·달빛 12지신 배경화면', price:0, badge:'🎁 사은품',
   photo:'/store/assets/wallpaper-watercolor/card_zodiac_watercolor.jpg?v=1',
   short:'하루에 수십 번 여는 잠금화면 — 보랏빛 수채화 밤에 앉은 내 띠의 동물과 빛나는 나비',
-  desc:'휴대폰을 열 때마다 가장 먼저 보는 그림 하나가 그날의 기분을 바꿉니다. 물빛이 번지는 보랏빛 밤하늘, 초승달 아래 연보랏빛 라벤더 들꽃밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 수채화 붓자국의 번짐과 부드러운 색 번짐을 살려, 밤에 보아도 눈이 부시지 않고 낮에 보아도 포근한 톤으로 그렸습니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 마음에 드는 띠를 원하는 만큼 골라 담으실 수 있습니다. 위쪽은 달과 시계가 올라앉을 자리를 넉넉히 비워 두어 어떤 기종에서도 화면이 답답하지 않고, 잠금화면·홈화면 어디에 넣어도 잘리지 않도록 941×1672 비율로 맞췄습니다. 태블릿용은 아이패드(4:3)와 갤럭시탭(16:10) 비율에 맞춰 세로·가로 두 장으로 따로 준비했고, 모바일+태블릿 세트를 고르시면 모바일 1장까지 세 장을 한 번에 받으실 수 있습니다. 아이폰·안드로이드 구분 없이 사진 앱에서 배경화면으로 지정하시면 되고, 페이앱으로 결제하시면 결제 완료 즉시 이 사이트에서 원본 PNG를 내려받으실 수 있습니다(다운로드 가능 기간 3일·파일별 최대 10회).',
-  bullets:[
-    '쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 12띠 가운데 필요한 띠를 원하는 만큼 선택 · 모바일 1,000원 / 태블릿(세로+가로 2장) 2,500원 / 세트(3장) 3,000원',
-    '수채화로 번진 보랏빛 밤하늘에 라벤더 들꽃밭 — 포근한 톤의 9:16 아트워크',
-    '시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG',
-    '잠금화면·홈화면 모두 잘리지 않는 비율, 기종 상관없이',
-    '본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다',
-    '페이앱 결제 시 결제 완료 즉시 사이트에서 다운로드 가능 (다운로드 가능 기간: 3일 이내)',
-  ],
-  meta:[['구성','모바일 1장 · 태블릿 세로+가로 2장 · 세트 3장 (기기 선택)'],['해상도','모바일 941×1672(9:16) · 아이패드 2048×2732 / 2732×2048 · 갤럭시탭 1850×2960 / 2960×1850'],['다운로드','페이앱 결제 완료 즉시 사이트에서 다운로드 · 기간 3일(72시간) · 파일별 최대 10회'],['사용','잠금화면 · 홈화면 · 배경 이미지'],['결제','무통장 입금 · 카드·간편결제(페이앱)']],
-  notice:'※ 기기별 가격입니다 — 모바일용 1,000원(9:16 세로 1장) · 태블릿용 2,500원(아이패드 4:3 · 갤럭시탭 16:10 세로+가로 2장) · 모바일+태블릿 세트 3,000원(3장). 12띠 가운데 원하는 띠를 필요한 만큼 골라 담을 수 있습니다(한 번에 최대 9묶음). 페이앱 결제는 결제 완료 즉시, 무통장 입금은 입금 확인 후 사이트에서 다운로드하실 수 있습니다. 다운로드가 시작된 뒤에는 단순 변심으로 환불이 불가하며, 파일이 열리지 않거나 신청한 띠와 다른 파일이 발송된 경우 다시 보내드립니다. (판매자 귀책 시 재발송 또는 환불)',
+  desc:'물빛이 번지는 보랏빛 밤하늘, 초승달 아래 연보랏빛 라벤더 들꽃밭에 앉은 내 띠의 동물이 빛나는 나비를 바라보는 9:16 세로 아트워크입니다. 수채화 붓자국의 번짐과 부드러운 색 번짐을 살려, 밤에 보아도 눈이 부시지 않고 낮에 보아도 포근한 톤으로 그렸습니다. 쥐·소·호랑이·토끼·용·뱀·말·양·원숭이·닭·개·돼지 열두 띠 가운데 하나를 골라 잠금화면에 담아 보세요. <b>이 배경화면은 개별로 판매하지 않습니다.</b> 종합 사주분석지(1인·2인)를 주문하실 때 사은품으로 1종을 고르시면, 분석지 PDF와 같은 메일로 모바일용 PNG 원본(941×1672)을 함께 보내드립니다. 추가 요금은 없습니다.',
+  bullets:['쥐~돼지 12띠 가운데 1종을 종합사주분석 주문서에서 사은품으로 선택 · 0원','수채화로 번진 보랏빛 밤하늘에 라벤더 들꽃밭 — 포근한 톤의 9:16 아트워크','시계 자리까지 비워 둔 고화질 세로 비율 — 941×1672 PNG','본인 띠로, 가족·연인의 띠로, 마음이 끌리는 동물로 골라도 좋습니다','개별 구매 불가 · 종합 사주분석지(1인·2인) 구매 시 1종 무료 증정'],
+  meta:[['구성','12띠 중 1종 (모바일 9:16 세로 1장)'],['해상도','941×1672 PNG'],['받는 방법','종합 사주분석지(1인·2인) 구매 시 주문서에서 선택 → 분석지 PDF와 같은 메일로 발송'],['요금','0원 (사은품 · 개별 구매 불가)']],
+  notice:'※ 이 배경화면은 <b>개별 구매가 불가능한 사은품</b>입니다. 종합 사주분석지(1인 39,800원 · 2인 70,000원)를 주문하실 때 테마와 디자인을 고르시면 1종을 0원으로 함께 보내드리며, 모바일용(9:16 세로 1장 · 941×1672 PNG)만 드립니다.',
 });
 
 /* ---------- 작명 · 택일 5종 ---------- */
@@ -4322,8 +4546,9 @@ function applyCoverImg(){
 function preloadCoverImg(){
   DIARY_COVER_CARD.slice(1).forEach(src => { const im = new Image(); im.src = src; });
 }
-/* 표지가 다르면 장바구니에서 다른 줄로 담는다 */
-const lineKeyOf = l => !l ? '' : (l.elem ? `${l.id}|${l.elem}|${devOf(l)}|${tabOf(l)}` : l.cover ? `${l.id}|${l.cover}` : l.id);
+/* 사은품이 다르면 장바구니에서 다른 줄로 담는다(종합사주 1·2인) */
+const lineKeyOf = l => !l ? '' : ((l.elem ? `${l.id}|${l.elem}|${devOf(l)}|${tabOf(l)}` : l.cover ? `${l.id}|${l.cover}` : l.id)
+  + (l.gift ? `|gift:${l.gift.theme}:${l.gift.item}:${l.gift.device}` : ''));
 /* 줄의 기기·기종만 바꾼다(같은 줄이 있으면 수량을 합친다) */
 function setLineDev(key, dev, tab){
   const line = cart.find(l => lineKeyOf(l) === key) || cart.find(l => l.id === key);
@@ -4393,15 +4618,17 @@ let cart = loadCart();
 function loadCart(){
   try{
     const raw = JSON.parse(localStorage.getItem('jwd_cart') || '[]');
-    return raw.filter(l => byId(l.id)).map(l => {
+    return raw.filter(l => { const p = byId(l.id); return p && !p.giftOnly; })   /* 사은품 전용 상품은 장바구니에 남기지 않는다 */
+      .map(l => {
       const p = byId(l.id);
       const cover = p.type === 'diary' ? (DIARY_COVERS.includes(l.cover) ? l.cover : DIARY_COVERS[0]) : '';
       const elem = p.type === 'wall' ? (isElemOf(p.id, l.elem) ? l.elem : pickOf(p.id)) : '';
       const qty = Math.max(1, Math.min(9, l.qty|0 || 1));
       const dev = p.type === 'wall' ? (DEV_KEYS.includes(l.dev) ? l.dev : 'mobile') : '';
       const tab = p.type === 'wall' && dev !== 'mobile' ? (TAB_KEYS.includes(l.tab) ? l.tab : 'ipad') : '';
+      const gift = isSajuP(p) ? normalizeGift(l.gift) : null;
       return Object.assign({id:l.id, qty}, cover ? {cover} : {},
-        elem ? {elem} : {}, dev ? {dev} : {}, tab ? {tab} : {});
+        elem ? {elem} : {}, dev ? {dev} : {}, tab ? {tab} : {}, gift ? {gift} : {});
     });
   }catch(e){ return [] }
 }
@@ -4488,6 +4715,7 @@ function fslideHTML(f){
       <h3 class="fcard__name" ${openAttr}>${f.name}</h3>
       <p class="fcard__lines">${f.lines.join('<br>')}</p>
       ${f.spec ? `<p class="fcard__spec">${f.spec}</p>` : ''}
+      ${f.key === 'saju' ? `<p class="fcard__gift">🎁 구매 사은품: 개운 배경화면 1종 무료 증정</p>` : ''}
       <div class="fcard__foot">
         ${price}
         <button class="addbtn" ${f.dual ? `data-add-${f.key}` : `data-add="${first.id}"`}>담기</button>
@@ -4637,22 +4865,29 @@ function setSajuPersons(n){ setPersons('saju', n); }
 function setZiweiPersons(n){ setPersons('ziwei', n); }
 
 /* ---------- 장바구니 ---------- */
-function addToCart(id, qty=1, cover, elem, dev, tab){
+function addToCart(id, qty=1, cover, elem, dev, tab, gift){
   const p = byId(id); if(!p) return;
+  if(p.giftOnly){ toast('이 배경화면은 개별 구매가 불가한 사은품입니다 · 종합사주분석을 담으면 함께 담을 수 있어요'); return; }
   try{ JWDTRACK.add(id); }catch(e){}          /* 방문 통계: 장바구니 담기 */
   const cv = p.type === 'diary' ? (DIARY_COVERS.includes(cover) ? cover : diaryCover) : '';
   const el = p.type === 'wall' ? (isElemOf(id, elem) ? elem : pickOf(id)) : '';
   const dv = p.type === 'wall' ? (DEV_KEYS.includes(dev) ? dev : 'mobile') : '';
   const tb = p.type === 'wall' && dv !== 'mobile' ? (TAB_KEYS.includes(tab) ? tab : 'ipad') : '';
-  const line = cart.find(l => l.id === id && (l.cover || '') === cv && (l.elem || '') === el
-    && (!dv || devOf(l) === dv) && (!tb || tabOf(l) === tb));
+  const gf = isSajuP(p) ? normalizeGift(gift) : null;   /* 종합사주는 개운 배경화면 1종이 0원으로 따라간다 */
+  const cand = Object.assign({id, qty}, cv ? {cover:cv} : {}, el ? {elem:el} : {}, dv ? {dev:dv} : {}, tb ? {tab:tb} : {}, gf ? {gift:gf} : {});
+  const line = cart.find(l => lineKeyOf(l) === lineKeyOf(cand));
   if(line) line.qty = Math.min(9, line.qty + qty);
-  else cart.push(Object.assign({id, qty}, cv ? {cover:cv} : {}, el ? {elem:el} : {}, dv ? {dev:dv} : {}, tb ? {tab:tb} : {}));
+  else {
+    /* 사은품 기능 이전에 담아 둔 종합사주 줄이 있으면 새 줄을 만들지 않고 그 줄에 사은품만 붙인다 */
+    const bare = gf ? cart.find(l => l.id === id && !l.gift) : null;
+    if(bare) bare.gift = gf; else cart.push(cand);
+  }
   saveCart(); renderCart(); updateCount();
   const w = el ? wallOf(el, id) : null;
   const nm = dispName(p) + (cv ? ` · ${cv} 표지` : '') + (w ? ` · ${wallLabel(w.key)}` : '');
   const dvTxt = dv ? ` (${DEV[dv].short}${dv !== 'mobile' ? ' · ' + TABLET[tb].label : ''})` : '';
-  toast(`${nm}${dvTxt} 장바구니에 담았습니다${dv === 'mobile' ? ' · 장바구니에서 태블릿·세트로 바꿀 수 있어요' : ''}`);
+  const gfTxt = gf ? ` · 🎁 ${giftLabel(gf)}` : '';
+  toast(`${nm}${dvTxt}${gfTxt} 장바구니에 담았습니다${dv === 'mobile' ? ' · 장바구니에서 태블릿·세트로 바꿀 수 있어요' : ''}`);
 }
 function setQty(id, qty){
   const line = findLine(id);
@@ -4696,6 +4931,8 @@ function renderCart(){
       <div class="citem__thumb">${mediaHTML(l.cover ? Object.assign({}, p, {photo: coverCardImg(l.cover)}) : p, true)}</div>
       <div>
         <div class="citem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''}${l.elem ? ` · ${wallLabel(l.elem)}` : ''}</div>
+        ${l.gift ? `<div class="citem__gift">🎁 사은품 · ${giftLabel(l.gift)} <span class="citem__giftfree">0원</span></div>`
+          : (isSajuP(p) ? `<div class="citem__gift citem__gift--none">🎁 사은품 미선택 — 상세에서 고르면 0원으로 함께 담깁니다</div>` : '')}
         <div class="citem__opt">${opt}</div>
         ${p.type === 'wall' ? devChipsHTML(l) : ''}
         <div class="citem__row">
@@ -4765,17 +5002,19 @@ function ensureWallSlots(pid, n){
 function wallPicker(p){
   const st = setOf(p.id);
   const items = elemsOf(p.id);
-  const multi = pdQty >= 2;
+  const gift = !!p.giftOnly;
+  const multi = !gift && pdQty >= 2;
   const slots = multi ? ensureWallSlots(p.id, pdQty) : [pickOf(p.id)];
   const idx = multi ? wallSlot : 0;
   const curKey = slots[idx] || pickOf(p.id);
   const cur = wallOf(curKey, p.id);
+  const lab = gift ? `디자인 미리보기 · ${items.length}종 중 1종` : (multi ? `${st.word} ${pdQty}장 선택 — 슬롯을 누른 뒤 그림을 고르세요` : st.pick);
   const slotsHTML = multi ? `<div class="wallslots" role="tablist" aria-label="${st.word} 선택 순서">
             ${slots.map((k, i) => { const w = wallOf(k, p.id); return `<button type="button" class="wallslot" role="tab" data-slot="${i}" aria-selected="${i === idx}" aria-pressed="${i === idx}" aria-label="${i + 1}번째 ${st.word} 선택">
               <span class="wallslot__n">${i + 1}번째</span><b>${w.name}</b></button>`; }).join('')}
           </div>` : '';
   return `<div class="pd__wall" id="pdWall">
-          <span class="pd__walllab">3. ${multi ? `${st.word} ${pdQty}장 선택 — 슬롯을 누른 뒤 그림을 고르세요` : st.pick}</span>
+          <span class="pd__walllab">${gift ? '' : '3. '}${lab}</span>
           ${slotsHTML}
           <div class="wallview">
             <div class="wallview__img"><img id="wallViewImg" src="${cur.img}" alt="${cur.full} ${st.word} 배경화면 미리보기" loading="lazy"></div>
@@ -4790,8 +5029,8 @@ function wallPicker(p){
             <span class="covbtn__img"><img src="${w.sm}" alt="${w.full} 미리보기" loading="lazy"></span>
             <span class="covbtn__nm">${w.name}</span>
           </button>`).join('')}</div>
-          <p class="covhint" id="pdWallNow">${multi ? `${idx + 1}번째 장 · ` : '선택 · '}<b>${cur.full}</b> — ${cur.line}</p>
-          <p class="covhint covhint--guide">${st.guide}${multi ? ' 여러 장을 담으면 그림마다 따로 담기고, 같은 그림을 고른 장은 수량으로 합쳐집니다.' : ''}</p>
+          <p class="covhint" id="pdWallNow">${multi ? `${idx + 1}번째 장 · ` : (gift ? '미리보기 · ' : '선택 · ')}<b>${cur.full}</b> — ${cur.line}</p>
+          <p class="covhint covhint--guide">${gift ? '마음에 드는 그림을 먼저 골라 두세요. 종합사주분석 주문서에서 같은 그림을 사은품으로 고르시면 모바일용 원본(941×1672 PNG)을 분석지 PDF와 같은 메일로 보내드립니다. 이 배경화면은 개별로 구매하실 수 없습니다.' : st.guide + (multi ? ' 여러 장을 담으면 그림마다 따로 담기고, 같은 그림을 고른 장은 수량으로 합쳐집니다.' : '')}</p>
         </div>`;
 }
 /* 슬롯·미리보기만 다시 그린다(스크롤 위치 유지) */
@@ -4804,7 +5043,7 @@ function paintWallPicker(){
 }
 /* 고른 배경화면 장들을 한 번에 담는다 — 같은 그림은 수량으로 합치고 다른 그림은 줄을 나눈다 */
 function addWallSelection(pid){
-  const p = byId(pid); if(!p) return;
+  const p = byId(pid); if(!p || p.giftOnly) return;   /* 사은품 전용 배경화면은 담지 않는다 */
   const keys = (pdQty >= 2 ? ensureWallSlots(pid, pdQty) : [pickOf(pid)]).slice();
   const counts = new Map();
   keys.forEach(k => { const key = isElemOf(pid, k) ? k : elemsOf(pid)[0].key; counts.set(key, (counts.get(key) || 0) + 1); });
@@ -4820,6 +5059,42 @@ function addWallSelection(pid){
   const names = [...counts.entries()].map(([k, n]) => `${wallLabel(k)}${n > 1 ? ` ${n}장` : ''}`).join(', ');
   toast(`배경화면 ${names} · ${DEV[dv].label}${tb ? ' · ' + TABLET[tb].label : ''} 담았습니다${keys.length > 1 ? ` (${keys.length}종)` : ''}`);
 }
+
+/* ---------- 종합사주 상세 모달의 사은품 선택칸 ----------
+   테마 → 세부 디자인 → 기기를 고르면 바로 아래에 무엇을 보내드리는지 한 줄로 보여 준다. */
+function giftPicker(p){
+  const th = giftThemeOf(pdGift.theme);
+  const items = giftItemsOf(th.key);
+  const w = giftItemOf(th.key, pdGift.item);
+  const dv = GIFT_DEV[pdGift.device];
+  const ohaeng = th.key === 'gift-ohaeng';
+  return `<div class="pd__gift" id="pdGift">
+    <div class="pd__gifth"><span aria-hidden="true">🎁</span><b>구매 사은품: 개운 배경화면 1종 무료 증정</b><span class="pd__giftfree">0원</span></div>
+    <p class="pd__giftnote">분석지와 함께, 잠금화면에 두는 <b>모바일 배경화면 1종</b>을 골라 주세요. 고르신 그림을 분석지 PDF와 같은 메일로 보내드립니다. (개별 구매 불가 · 사은품 전용)</p>
+    <span class="pd__walllab">1. 테마 · ${th.count} 중 1종</span>
+    <div class="giftgrid">${GIFT_THEMES.map(t => `<button type="button" class="giftcard" data-gifttheme="${t.key}" aria-pressed="${t.key === th.key}" aria-label="${t.name} ${t.count} 테마 선택">
+      <span class="giftcard__img"><img src="${t.thumb}" alt="" loading="lazy"></span>
+      <span class="giftcard__nm">${t.name}</span><span class="giftcard__ct">${t.count}</span>
+    </button>`).join('')}</div>
+    <span class="pd__walllab">2. 세부 디자인 · ${th.word} 1종</span>
+    <div class="covgrid ${ohaeng ? 'covgrid--wall' : 'covgrid--zodiac'}">${items.map(x => `<button type="button" class="covbtn ${ohaeng ? 'covbtn--wall' : 'covbtn--zodiac'}" data-giftitem="${x.key}" aria-pressed="${x.key === w.key}" aria-label="${x.full} 사은품 선택">
+      <span class="covbtn__img"><img src="${x.sm}" alt="" loading="lazy"></span>
+      <span class="covbtn__nm">${x.name}</span>
+    </button>`).join('')}</div>
+    <p class="covhint">선택 · <b>${th.name} · ${w.full}</b> — 모바일 ${dv.files}</p>
+  </div>`;
+}
+function paintGift(){
+  const box = $('#pdGift'); if(!box) return;
+  const p = byId(pdId); if(!isSajuP(p)) return;
+  const sc = box.closest('.sheet__body'), top = sc ? sc.scrollTop : 0;
+  box.outerHTML = giftPicker(p);
+  if(sc) sc.scrollTop = top;
+}
+const setGiftTheme = k => { if(!GIFT_THEMES.some(t => t.key === k)) return;
+  pdGift = { theme:k, item:giftItemsOf(k)[0].key, device:pdGift.device }; paintGift(); };
+const setGiftItem = k => { if(!isGiftItem(pdGift.theme, k)) return;
+  pdGift = Object.assign({}, pdGift, { item:k }); paintGift(); };
 
 /* ---------- 다른 상품 둘러보기 (상세 모달 하단 · 최대 4개) ---------- */
 const REL_PREF = {
@@ -4879,6 +5154,7 @@ function openProduct(id){
   pdQty = tk ? Math.max(1, Object.values(TIER_IDS[tk]).indexOf(id) + 1) : 1;
   wallSlots = []; wallSlot = 0;
   pdDev = 'mobile'; pdTab = 'ipad';
+  pdGift = normalizeGift(pdGift) || { theme: GIFT_THEMES[0].key, item: WALL[0].key, device: 'mobile' };
   REVIEW.showAll = false;
   paintProduct();
   openOverlay('#pdOverlay');
@@ -4900,12 +5176,13 @@ function paintProduct(){
         <span class="pd__cat">${cat}</span>
         <h3 class="pd__name">${tk ? tierName : dispName(p)}</h3>
         <p class="pd__short">${p.short}</p>
-        <div class="pd__price">
+        <div class="pd__price${p.giftOnly ? ' pd__price--gift' : ''}">
+          ${p.giftOnly ? `<b class="pd__giftprice">🎁 무료 증정</b><span class="pd__giftcond">개별 구매 불가 · 종합사주분석 구매 시 증정</span>` : `
           ${p.type === 'wall' ? `<span class="pd__tier">${DEV[pdDev].label} · 장당</span>` : ''}
           ${tk ? `<span class="pd__tier">${tierLabel(pdId, pdQty)}</span>` : ''}
           ${p.orig ? `<s>${won(p.orig)}</s>` : ''}
           <b>${won(p.type === 'wall' ? DEV[pdDev].price : p.price)}</b>
-          ${p.orig ? `<em class="pcut">${pct(p)}%</em>` : ''}
+          ${p.orig ? `<em class="pcut">${pct(p)}%</em>` : ''}`}
         </div>
         ${p.type === 'diary' ? `<div class="pd__cover">
           <span>표지 선택 · 3종 중 택 1</span>
@@ -4915,20 +5192,25 @@ function paintProduct(){
           </button>`).join('')}</div>
           <p class="covhint" id="pdCoverNow">선택 · <b>${diaryCover} 표지</b> — 속지 바탕은 그대로, 테두리·장식 포인트만 이 색에 맞춥니다</p>
         </div>` : ''}
-        ${p.type === 'wall' ? devPicker() + wallPicker(p) : ''}
+        ${p.type === 'wall' ? (p.giftOnly ? wallPicker(p) : devPicker() + wallPicker(p)) : ''}
+        ${isSajuP(p) ? giftPicker(p) : ''}
 
         <ul class="pd__list">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
         <div class="pd__meta">${p.meta.map(([k,v]) => `<div><b>${k}</b><span>${v}</span></div>`).join('')}</div>
         <p class="pd__desc">${p.desc}</p>
         ${p.notice ? `<p class="pd__notice">${p.notice}</p>` : ''}
-        ${isDigitalCat(p) ? legalHTML(p) : ''}
+        ${isDigitalCat(p) && !p.giftOnly ? legalHTML(p) : ''}
         ${p.photos ? `<div class="pd__gal${p.type === 'diary' ? ' pd__gal--wide' : ''}">${p.photos.map((src, i) => `<button class="pd__thumb" data-gal="${src}" aria-label="미리보기 ${i + 1}"><img src="${src}" alt=""></button>`).join('')}</div>` : ''}
       </div>
     </div>
     <div id="pdReviewBox">${reviewSectionHTML(reviewFamilyIds(pdId))}</div>
     ${relatedHTML(pdId)}`;
-  $('#pdFoot').innerHTML = `
-    <div class="pd__foot">
+  $('#pdFoot').innerHTML = p.giftOnly
+    ? `<div class="pd__foot pd__foot--gift">
+         <span class="pd__footnote">🎁 개별 구매 불가 · 종합사주분석 구매 시 증정 (모바일 1장)</span>
+         <button class="btn btn--gold pd__add" data-open-saju-gift="1">종합사주분석 보고 사은품 받기 <span class="ar">›</span></button>
+       </div>`
+    : `<div class="pd__foot">
       <span class="qty mini-qty pd__step">
         <button data-pdq="-1" aria-label="수량 줄이기"${pdQty <= 1 ? ' disabled' : ''}>−</button>
         <span id="pdQty">${tierLabel(pdId, pdQty)}</span>
@@ -4959,8 +5241,12 @@ function openCart(){ renderCart(); openOverlay('#cartOverlay'); }
 
 /* ---------- 클릭 위임 ---------- */
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-add-wall],[data-wall],[data-wall-pick],[data-slot],[data-dev],[data-tabtype],[data-dev-line],[data-tab-line],[data-elem-line],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line]');
+  const t = e.target.closest('[data-open],[data-add],[data-add-saju],[data-add-ziwei],[data-add-diary],[data-add-wall],[data-wall],[data-wall-pick],[data-slot],[data-dev],[data-tabtype],[data-dev-line],[data-tab-line],[data-elem-line],[data-qty],[data-del],[data-close],[data-slide],[data-goto],[data-gal],[data-open-terms],[data-tab],[data-pdq],#pdAdd,#goCheckout,[data-scroll],[data-persons],[data-person],[data-cover],[data-cover-line],[data-gifttheme],[data-giftitem],[data-open-saju-gift]');
   if(!t) return;
+
+  if(t.dataset.gifttheme){ setGiftTheme(t.dataset.gifttheme); return; }
+  if(t.dataset.giftitem){ setGiftItem(t.dataset.giftitem); return; }
+  if(t.dataset.openSajuGift !== undefined){ openProduct(sajuPersons === 2 ? 'saju2' : 'saju1'); return; }
 
   if(t.dataset.person && t.dataset.line){ switchPersons(t.dataset.person, Number(t.dataset.n), t.dataset.line); return; }
 
@@ -5041,7 +5327,8 @@ document.addEventListener('click', e => {
     return;
   }
   if(t.dataset.addSaju !== undefined){
-    addToCart(sajuPersons === 2 ? 'saju2' : 'saju1', 1);
+    /* 사은품(개운 배경화면 1종)을 고르고 담도록 상세 모달을 연다 */
+    openProduct(sajuPersons === 2 ? 'saju2' : 'saju1');
     return;
   }
   if(t.dataset.addZiwei !== undefined){
@@ -5061,6 +5348,7 @@ document.addEventListener('click', e => {
     const tk = tierKind(pdId);
     const cur = byId(pdId);
     if(cur && cur.type === 'wall') addWallSelection(pdId);   // 장마다 고른 그림을 그대로 담는다
+    else if(isSajuP(cur)) addToCart(pdId, 1, null, null, null, null, pdGift);   // 종합사주는 고른 사은품 1종을 0원으로 함께
     else addToCart(pdId, tk ? 1 : pdQty);   // 1·2인은 각각 별도 상품(39,800/70,000)으로 담김
     closeAll(); openCart(); return;
   }
@@ -5276,12 +5564,13 @@ function switchPersons(kind, n, lineId){
   if(!targetId || cart[idx].id === targetId) return;
   const qty = cart[idx].qty;
   const cover = cart[idx].cover || '';
-  const dup = cart.findIndex((l, i) => i !== idx && l.id === targetId && (l.cover || '') === cover);
+  const gift = isSajuP(byId(targetId)) ? normalizeGift(cart[idx].gift) : null;   /* 1인 ↔ 2인을 바꿔도 사은품은 따라간다 */
+  const dup = cart.findIndex((l, i) => i !== idx && l.id === targetId && (l.cover || '') === cover && sameGift(l.gift, gift));
   if(dup >= 0){
     cart[dup].qty = Math.min(9, cart[dup].qty + qty);
     cart.splice(idx, 1);
   }else{
-    cart[idx] = cover ? { id: targetId, qty, cover } : { id: targetId, qty };
+    cart[idx] = Object.assign({ id: targetId, qty }, cover ? { cover } : {}, gift ? { gift } : {});
   }
   saveCart(); renderCart(); updateCount();
   setPersons(kind, want);
@@ -5343,7 +5632,8 @@ function renderOrderForm(){
       <div class="oitem__top">
         <span class="oitem__name">${dispName(p)}${l.cover ? ` · ${l.cover} 표지` : ''}${l.elem ? ` · ${wallLabel(l.elem)}` : ''} <span class="oitem__qty">× ${l.qty}</span></span>
         <b class="oitem__price">${won(lineTotal(l))}</b>
-      </div>${tk ? `
+      </div>${l.gift ? `
+      <div class="oitem__gift">🎁 사은품 · ${giftLabel(l.gift)} <span>0원 · 분석지와 같은 메일로 발송</span></div>` : ''}${tk ? `
       <div class="oitem__foot">
         <span class="ptoggle" role="group" aria-label="${dispName(p).replace(/\s*·.*$/, '')} 옵션 선택">
           ${(TIER_LABEL[tk] || ['1인', '2인']).map((lb, i) => `<button type="button" data-person="${tk}" data-n="${i + 1}" data-line="${lineKeyOf(l)}" aria-pressed="${cur === i + 1}">${lb}</button>`).join('')}
@@ -5477,9 +5767,10 @@ function collectOrder(){
     const p = byId(l.id);
     const dv = isWallP(p) ? devOf(l) : '';
     const tb = dv && dv !== 'mobile' ? tabOf(l) : '';
+    const gf = isSajuP(p) ? giftPayload(l.gift) : null;
     return { id:p.id, name:dispName(p), qty:l.qty, price:priceOf(p, l), amount:priceOf(p, l) * l.qty,
              type:p.type, option:p.variant || '', cover:l.cover || '', elem:l.elem || '',
-             device:dv, tablet:tb };
+             device:dv, tablet:tb, gift:gf, giftText:gf ? gf.text : '' };
   });
   const births = [];
   $$('#birthArea [data-birth]').forEach(fg => {
@@ -5534,7 +5825,10 @@ function buildMessage(o, no){
   lines.push(`결제방법: ${o.payMethod === 'bank' ? '무통장 입금(케이뱅크)' : '카드·간편결제(페이앱)'}`);
   lines.push('');
   lines.push('■ 주문 상품');
-  o.items.forEach(i => lines.push(`- ${i.name}${i.elem ? ` (${wallLabel(i.elem)})` : i.cover ? ` (${i.cover} 표지)` : ''}${i.device ? ` [${DEV[i.device].label}${i.tablet ? ' · ' + TABLET[i.tablet].label : ''}]` : ''} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`));
+  o.items.forEach(i => {
+    lines.push(`- ${i.name}${i.elem ? ` (${wallLabel(i.elem)})` : i.cover ? ` (${i.cover} 표지)` : ''}${i.device ? ` [${DEV[i.device].label}${i.tablet ? ' · ' + TABLET[i.tablet].label : ''}]` : ''} × ${i.qty} = ${(i.price * i.qty).toLocaleString('ko-KR')}원`);
+    if(i.gift) lines.push(`   🎁 사은품(0원): ${i.gift.text} — ${i.gift.files}`);
+  });
   lines.push(`합계: ${o.total.toLocaleString('ko-KR')}원`);
   if(o.births.length){
     lines.push('');
@@ -5569,6 +5863,7 @@ function buildOrderRecord(o, no){
       id:i.id, name:i.name, option:itemOption(p) + (i.cover ? ` · ${i.cover} 표지` : '') + (i.elem ? ` · ${wallLabel(i.elem)}` : ''), cover:i.cover || '', elem:i.elem || '',
       qty:i.qty, price:i.price, amount:i.amount,
       type:p.type || i.type || '', cat:p.cat || '',
+      gift:i.gift || null, giftText:i.giftText || '',
     };
   });
   const births = o.births.map(b => ({

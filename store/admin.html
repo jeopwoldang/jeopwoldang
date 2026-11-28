@@ -1528,7 +1528,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
       dlItems.forEach(i => L.push(`- ${itemLabel(i)}${i.elem ? ` · ${elemLabel(i.elem)}` : ''}${i.cover ? ` · ${i.cover} 표지` : ''}`));
       if (dlLink(o)) {
         L.push(`다운로드 링크: ${dlLink(o)}`);
-        L.push(`주문번호 ${o.id} · 다운로드 가능 기간은 결제(입금) 확인 후 3일(72시간), 다운로드 횟수는 파일마다 각각 최대 ${o.downloadMax || DL_MAX}회입니다. 파일마다 따로 세니 한 파일을 다 받아도 다른 파일은 그대로 남습니다. 기간 안에 꼭 저장해 주세요.`);
+        L.push(`주문번호 ${o.id} · 다운로드 가능 기간은 결제(입금) 확인 후 3일(72시간), 다운로드 횟수는 파일마다 각각 최대 ${o.downloadMax || DL_MAX}회입니다. 한 파일을 다 받아도 다른 파일은 그대로 남습니다. 기간 안에 꼭 저장해 주세요.`);
       } else {
         L.push(`스토어 「디지털 굿즈 다운로드 / 내 주문 조회」(https://jeopwoldang.com/store/)에서 주문번호 ${o.id}와 연락처 뒤 4자리를 넣으시면 바로 받으실 수 있습니다.`);
       }

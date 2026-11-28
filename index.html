@@ -1552,7 +1552,11 @@ body:has(#cartOverlay.is-open) .toast{bottom:calc(180px + env(safe-area-inset-bo
   .dcard__body{padding:18px 18px}
 }
 @media (max-width:620px){
-  .dcard{grid-template-columns:1fr}
+  .dcard{grid-template-columns:minmax(0,1fr)}
+  .dcard__body{min-width:0}
+  /* 사은품 배경화면 카드의 5종 디자인 칸 — 좁은 화면에서 카드 밖으로 넘치지 않게 3칸으로 */
+  .dcard__cover .covgrid{min-width:0}
+  .dcard__cover .covgrid--wall{grid-template-columns:repeat(3,1fr)}
   .dcard__media{aspect-ratio:4/3}
   .dcard--wall .dcard__media{aspect-ratio:4/3;height:auto;align-self:auto}
   .dcard__media::after{background:linear-gradient(180deg, rgba(25,17,48,0) 70%, rgba(30,20,58,.45) 90%, rgba(36,26,72,.8) 100%)}

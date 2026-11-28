@@ -1042,7 +1042,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
     const p = String(key || '').split(':');
     if (p[0] === 'diary') return '굿노트 다이어리' + (p[1] ? ' · ' + p[1] : '');
     const it = (o.items || []).find(i => String(i.id) === p[0]);
-    const nm = it ? itemLabel(it) : p[0];
+    const nm = it ? (it.name || p[0]) : p[0];
     const el = p[1] ? elemLabel(p[1]) : '';
     const dev = p.length >= 4 ? `${p[2] === 'galaxy' ? '갤럭시탭' : '아이패드'} ${p[3] === 'landscape' ? '가로' : '세로'}` : '모바일';
     return [nm, el, dev].filter(Boolean).join(' · ');

@@ -11,7 +11,7 @@
        (id, created_at, status, history, is_test, items, total_amount,
         payment_method, customer, births, memo, agreed,
         pay_state, paid_at, download_token, download_expires_at,
-        download_max_count, download_count)
+        download_max_count, download_count, file_download_counts)
      - 주문 생성(손님, anon): POST /rest/v1/orders  · Prefer: return=minimal
        (anon 롤은 INSERT 만 허용 — SELECT 불가이므로 return=minimal 필수)
      - 조회/수정/삭제(관리자, authenticated): Authorization: Bearer <access_token>
@@ -137,6 +137,7 @@ window.JWDOrders = (function () {
     if (o.download_expires_at !== undefined) row.download_expires_at = o.download_expires_at;
     if (o.download_max_count !== undefined) row.download_max_count = Number(o.download_max_count) || 10;
     if (o.download_count !== undefined) row.download_count = Number(o.download_count) || 0;
+    if (o.file_download_counts !== undefined) row.file_download_counts = o.file_download_counts || {};
     return row;
   }
   function fromRow(r) {
@@ -165,6 +166,7 @@ window.JWDOrders = (function () {
       downloadExpiresAt: r.download_expires_at || null,
       downloadMax: r.download_max_count == null ? 10 : Number(r.download_max_count),
       downloadCount: r.download_count == null ? 0 : Number(r.download_count),
+      fileDownloadCounts: (r.file_download_counts && typeof r.file_download_counts === 'object' && !Array.isArray(r.file_download_counts)) ? r.file_download_counts : {},
     };
   }
 
@@ -288,6 +290,7 @@ window.JWDOrders = (function () {
         if (fields.downloadExpiresAt !== undefined) row.download_expires_at = fields.downloadExpiresAt;
         if (fields.downloadMax !== undefined) row.download_max_count = Number(fields.downloadMax) || 10;
         if (fields.downloadCount !== undefined) row.download_count = Number(fields.downloadCount) || 0;
+        if (fields.fileDownloadCounts !== undefined) row.file_download_counts = fields.fileDownloadCounts || {};
         await sbFetch('orders?id=eq.' + encodeURIComponent(id), {
           method: 'PATCH',
           headers: { Prefer: 'return=minimal' },
